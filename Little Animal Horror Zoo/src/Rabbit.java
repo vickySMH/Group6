@@ -4,6 +4,7 @@ public class Rabbit {
     private int checkTurn = 0;
     private boolean xDirection = true; //Keeps the direction of the rabbit, true is right false is left.
     private boolean yDirection = true; //Keeps the direction of the rabbit, true is upwards and false is downwards.
+    private boolean reachCorner = false;
 
     //Constructors
     public Rabbit() {
@@ -22,6 +23,16 @@ public class Rabbit {
     }
 
     //Getters and Setters
+
+
+    public boolean hasReachedCorner() {
+        return reachCorner;
+    }
+
+    public void setReachCorner(boolean reachCorner) {
+        this.reachCorner = reachCorner;
+    }
+
     public int getX() {
         return x;
     }

@@ -24,6 +24,26 @@ public class Main
             }
             else
             {
+                if((rabbit.getX() != 0 && rabbit.getX() != 10) && (rabbit.getY() != 0 && rabbit.getY() != 10)
+                        && rabbit.hasReachedCorner() == false)
+                {
+                    if(rabbit.getX() >= snake.getX())
+                    {
+                        rabbit.setXDirection(true);
+                    }
+                    else
+                    {
+                        rabbit.setXDirection(false);
+                    }
+                    if(rabbit.getY() >= snake.getY())
+                    {
+                        rabbit.setYDirection(true);
+                    }
+                    else
+                    {
+                        rabbit.setYDirection(false);
+                    }
+                }
                 if(rabbit.getX() == 0 && rabbit.getY() == 0)
                 {
                         rabbit.setXDirection(true);
@@ -36,16 +56,19 @@ public class Main
                     {
                         rabbit.setXDirection(false);
                     }
+                    rabbit.setReachCorner(true);
                 }
                 if(rabbit.getX() == 0 && rabbit.getY() == 10)
                 {
                         rabbit.setXDirection(true);
                         rabbit.setYDirection(false);
+                        rabbit.setReachCorner(true);
                 }
                 if(rabbit.getX() == 10 && rabbit.getY() == 0)
                 {
                         rabbit.setXDirection(false);
                         rabbit.setYDirection(true);
+                        rabbit.setReachCorner(true);
                 }
                 if(rabbit.getX() == 10 && rabbit.getY() == 10)
                 {
@@ -59,6 +82,7 @@ public class Main
                         {
                             rabbit.setXDirection(true);
                         }
+                        rabbit.setReachCorner(true);
                 }
                 rabbit.rabbitMove();
 
