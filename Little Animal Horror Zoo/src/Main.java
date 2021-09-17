@@ -25,7 +25,7 @@ public class Main
             else
             {
                 if((rabbit.getX() != 0 && rabbit.getX() != 10) && (rabbit.getY() != 0 && rabbit.getY() != 10)
-                        && rabbit.hasReachedCorner() == false)
+                        && rabbit.hasReachedCorner() == false) //Checks for the directions in which the rabbit should be moving
                 {
                     if(rabbit.getX() >= snake.getX())
                     {
