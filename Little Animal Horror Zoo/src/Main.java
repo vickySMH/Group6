@@ -2,8 +2,8 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Snake snake = new Snake(10,10);
-        Rabbit rabbit = new Rabbit( 5, 5);
+        Snake snake = new Snake(10,7);
+        Rabbit rabbit = new Rabbit( 0, 0);
         int checkTurn = 0;
         System.out.println("I am the rabbit I am now standing on " + rabbit.getX() + " " + rabbit.getY());
         System.out.println("I am the snake I am now standing on " + snake.getX() + " " + snake.getY());
@@ -44,6 +44,11 @@ public class Main
                         rabbit.setYDirection(false);
                     }
                 }
+                if(rabbit.getX() == 0 || rabbit.getX() == 10 || rabbit.getY() == 0 || rabbit.getY() == 10)
+                {
+
+                    rabbit.setReachCorner(true);
+                }
                 if(rabbit.getX() == 0 && rabbit.getY() == 0)
                 {
                         rabbit.setXDirection(true);
@@ -56,19 +61,26 @@ public class Main
                     {
                         rabbit.setXDirection(false);
                     }
-                    rabbit.setReachCorner(true);
                 }
                 if(rabbit.getX() == 0 && rabbit.getY() == 10)
                 {
                         rabbit.setXDirection(true);
                         rabbit.setYDirection(false);
-                        rabbit.setReachCorner(true);
+                    if(snake.getX() <= rabbit.getX())
+                    {
+                        rabbit.setXDirection(true);
+                        rabbit.setYDirection(true);
+                    }
                 }
                 if(rabbit.getX() == 10 && rabbit.getY() == 0)
                 {
                         rabbit.setXDirection(false);
                         rabbit.setYDirection(true);
-                        rabbit.setReachCorner(true);
+                        if(snake.getX() >= rabbit.getX())
+                        {
+                            rabbit.setXDirection(false);
+                            rabbit.setYDirection(false);
+                        }
                 }
                 if(rabbit.getX() == 10 && rabbit.getY() == 10)
                 {
@@ -82,7 +94,6 @@ public class Main
                         {
                             rabbit.setXDirection(true);
                         }
-                        rabbit.setReachCorner(true);
                 }
                 rabbit.rabbitMove();
 

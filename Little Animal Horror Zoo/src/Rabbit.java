@@ -1,10 +1,9 @@
 public class Rabbit {
     private int x;
     private int y;
-    private int checkTurn = 0;
     private boolean xDirection = true; //Keeps the direction of the rabbit, true is right false is left.
     private boolean yDirection = true; //Keeps the direction of the rabbit, true is upwards and false is downwards.
-    private boolean reachCorner = false;
+    private boolean reachCorner = false; //Checks if rabbit has reached corner.
 
     //Constructors
     public Rabbit() {
@@ -71,43 +70,22 @@ public class Rabbit {
 
     public void rabbitMove()
     {
-        if(y == 0 && x > y)
-        {
-            ++checkTurn;
-        }
-        if (x == 10 && y < x)
-        {
-            ++checkTurn;
-        }
-        if (y == 10 && x < y)
-        {
-            ++checkTurn;
-        }
-        if(x == 0 && y > x)
-        {
-            ++checkTurn;
-        }
-        if (y == 10 && x == 0)
-        {
-            ++checkTurn;
-        }
-        if (xDirection == true && x < 10 && checkTurn % 2 == 0)
+        if (xDirection == true && x < 10)
         {
             ++x;
         }
-        if (xDirection == false && x > 0 && checkTurn % 2 == 0)
+        if (xDirection == false && x > 0)
         {
             --x;
         }
-        if (yDirection == true && y < 10 && checkTurn % 2 == 1)
+        if (yDirection == true && y < 10)
         {
             ++y;
         }
-        if (yDirection == false && y > 0 && checkTurn % 2 == 1)
+        if (yDirection == false && y > 0)
         {
             --y;
         }
-            ++checkTurn;
     }
 
     public void setXDirection(boolean xDirection)
