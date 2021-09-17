@@ -46,7 +46,7 @@ public class Main
                 }
                 if(rabbit.getX() == 0 || rabbit.getX() == 10 || rabbit.getY() == 0 || rabbit.getY() == 10)
                 {
-
+                    //Checks if rabbit has reached corner
                     rabbit.setReachCorner(true);
                 }
                 if(rabbit.getX() == 0 && rabbit.getY() == 0)
