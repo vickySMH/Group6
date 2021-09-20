@@ -1,12 +1,15 @@
+import java.util.Scanner;
+
 public class Main
 {
     public static void main(String[] args)
     {
-        Snake snake = new Snake(10,7);
-        Rabbit rabbit = new Rabbit( 0, 0);
-        int checkTurn = 0;
-        System.out.println("I am the rabbit I am now standing on " + rabbit.getX() + " " + rabbit.getY());
-        System.out.println("I am the snake I am now standing on " + snake.getX() + " " + snake.getY());
+        Scanner scan = new Scanner(System.in);
+        Snake snake = new Snake();
+        Rabbit rabbit = new Rabbit();
+        rabbit.setCoordinates(scan);
+        snake.setCoordinates(scan);
+
         //Loop goes until snake has reached rabbit
         while (snake.getX() != rabbit.getX() ||  snake.getY() != rabbit.getY())
         {
@@ -20,12 +23,12 @@ public class Main
                     || (snake.getX() == rabbit.getX() - 1 && snake.getY() == rabbit.getY() + 1)
                     || (snake.getX() == rabbit.getX() - 1 && snake.getY() == rabbit.getY() - 1))
             {
-                System.out.println("Rabbit: Oh no, please do not eat me!");
+                rabbit.cry();
             }
             else
             {
                 if((rabbit.getX() != 0 && rabbit.getX() != 10) && (rabbit.getY() != 0 && rabbit.getY() != 10)
-                        && rabbit.hasReachedCorner() == false) //Checks for the directions in which the rabbit should be moving
+                        && !rabbit.hasReachedCorner()) //Checks for the directions in which the rabbit should be moving
                 {
                     if(rabbit.getX() >= snake.getX())
                     {
@@ -96,8 +99,7 @@ public class Main
                         }
                 }
                 rabbit.rabbitMove();
-
-                System.out.println("Rabbit: I am the rabbit I am now standing on " + rabbit.getX() + " " + rabbit.getY());
+                rabbit.tellCoordinates();
                 //Checks if rabbit has moved to its death
                 if((snake.getX() == rabbit.getX() && snake.getY() == rabbit.getY() + 1)
                         || (snake.getX() == rabbit.getX() && snake.getY() == rabbit.getY() - 1)
@@ -108,7 +110,7 @@ public class Main
                         || (snake.getX() == rabbit.getX() - 1 && snake.getY() == rabbit.getY() + 1)
                         || (snake.getX() == rabbit.getX() - 1 && snake.getY() == rabbit.getY() - 1))
                 {
-                    System.out.println("Rabbit: Oh no, please do not eat me!");
+                    rabbit.cry();
                 }
             }
             if (snake.getX() < rabbit.getX()) //Checks if the snake is behind the rabbit
@@ -127,10 +129,10 @@ public class Main
             {
                 snake.setY(snake.getY()-1); //If it is snake moves down
             }
-            System.out.println("Snake: I am the snake I am now standing on " + snake.getX() + " " + snake.getY());
+            snake.tellCoordinates();
         }
         //After exiting the loop snake eats the rabbit
-        System.out.println("Snake: Haha, I am eating you, rabbit!");
+        snake.eatRabbit();
     }
 }
 

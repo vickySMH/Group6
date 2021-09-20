@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Snake
 {
     private int x;
@@ -22,6 +24,25 @@ public class Snake
         setX(x);
         setY(y);
     }
+
+    public void setCoordinates(Scanner scan)
+    {
+        System.out.print("Please set a number for the snake's X: ");
+        setX(scan.nextInt());
+        System.out.print("Please set a number for the snake's Y: ");
+        setY(scan.nextInt());
+    }
+
+    public void tellCoordinates()
+    {
+        System.out.println("I am the snake I am now standing on " + x + " " + y);
+    }
+
+    public void eatRabbit()
+    {
+        System.out.println("Snake: Haha, I am eating you, rabbit!");
+    }
+
     //Getters and Setters
     public int getX()
     {
