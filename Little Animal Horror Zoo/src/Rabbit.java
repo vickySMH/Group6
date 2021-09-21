@@ -1,21 +1,17 @@
-import java.util.Scanner;
-
-public class Rabbit {
-    private int x;
-    private int y;
+public class Rabbit extends Animal {
     private boolean xDirection = true; //Keeps the direction of the rabbit, true is right false is left.
     private boolean yDirection = true; //Keeps the direction of the rabbit, true is upwards and false is downwards.
     private boolean reachCorner = false; //Checks if rabbit has reached corner.
 
     //Constructors
     public Rabbit() {
-        x = 0;
-        y = 0;
+        setX(0);
+        setY(0);
     }
 
     public Rabbit(int x) {
         setX(x);
-        y = 0;
+        setY(0);
     }
 
     public Rabbit(int x, int y) {
@@ -23,26 +19,19 @@ public class Rabbit {
         setY(y);
     }
 
-    public void setCoordinates(Scanner scan)
+    //Methods
+
+    public void tellCoordinates() //Say coordinates
     {
-        System.out.print("Please set a number for the rabbit's X: ");
-        setX(scan.nextInt());
-        System.out.print("Please set a number for the rabbit's Y: ");
-        setY(scan.nextInt());
+        System.out.println("I am the rabbit I am now standing on " + getX() + " " + getY());
     }
 
-    public void tellCoordinates()
-    {
-        System.out.println("I am the rabbit I am now standing on " + x + " " + y);
-    }
-
-    public void cry()
+    public void cry() //Rabbit's cry for help
     {
         System.out.println("Rabbit: Oh no, please do not eat me!");
     }
 
     //Getters and Setters
-
 
     public boolean hasReachedCorner() {
         return reachCorner;
@@ -52,59 +41,23 @@ public class Rabbit {
         this.reachCorner = reachCorner;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int xChange) {
-        if (xChange < 0) //Checks if x is set in boundaries (Validation)
-        {
-            System.out.println("Rabbit's x cannot be less than 0 changing x to 0!");
-            xChange = 0;
-        }
-        if (xChange > 10) //Checks if x is set in boundaries (Validation)
-        {
-            System.out.println("Since our grid is only 10x10 changing rabbit's x to 10!");
-            xChange = 10;
-        }
-        x = xChange;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int yChange) {
-        if (yChange < 0) //Checks if y is set in boundaries (Validation)
-        {
-            System.out.println("Rabbit's y cannot be less than 0 changing y to 0!");
-            yChange = 0;
-        }
-        if (yChange > 10) //Checks if y is set in boundaries (Validation)
-        {
-            System.out.println("Since our grid is only 10x10 changing rabbit's y to 10!");
-            yChange = 10;
-        }
-        y = yChange;
-    }
-
     public void rabbitMove()
     {
-        if (xDirection == true && x < 10)
+        if (xDirection == true && getX() < 10)
         {
-            ++x;
+            setX(getX()+1);
         }
-        if (xDirection == false && x > 0)
+        if (xDirection == false && getX() > 0)
         {
-            --x;
+            setX(getX()-1);
         }
-        if (yDirection == true && y < 10)
+        if (yDirection == true && getY() < 10)
         {
-            ++y;
+            setY(getY()+1);
         }
-        if (yDirection == false && y > 0)
+        if (yDirection == false && getY() > 0)
         {
-            --y;
+            setY(getY()-1);
         }
     }
 
