@@ -52,6 +52,7 @@ public class Game {
                 {
                     rabbit.setXDirection(true);
                     rabbit.setYDirection(true);
+                    //Checks which direction to run in if cornered
                     if(snake.getX() >= snake.getY())
                     {
                         rabbit.setYDirection(false);
@@ -65,6 +66,7 @@ public class Game {
                 {
                     rabbit.setXDirection(true);
                     rabbit.setYDirection(false);
+                    //Checks which direction to run in if cornered
                     if(snake.getX() <= rabbit.getX())
                     {
                         rabbit.setXDirection(true);
@@ -75,6 +77,7 @@ public class Game {
                 {
                     rabbit.setXDirection(false);
                     rabbit.setYDirection(true);
+                    //Checks which direction to run in if cornered
                     if(snake.getX() >= rabbit.getX())
                     {
                         rabbit.setXDirection(false);
@@ -85,6 +88,7 @@ public class Game {
                 {
                     rabbit.setXDirection(false);
                     rabbit.setYDirection(false);
+                    //Checks which direction to run in if cornered
                     if(snake.getX() >= snake.getY())
                     {
                         rabbit.setYDirection(true);
