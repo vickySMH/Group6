@@ -15,9 +15,12 @@ https://github.com/ckirschberg/little_animal_horror_zoo
 ---------------------------------------------------------------
 
 **Presentation Planning**
-Use Case Model: Kevin Williams
-Domain Model: Ventsislav
-Class Diagram: Vicky
+Use Case Model: 
+- Kevin Williams
+Domain Model: 
+- Ventsislav
+Class Diagram: 
+- Vicky
 Java Code:
 -	Game: Daniel
 -	Animal: Kevin
