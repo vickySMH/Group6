@@ -16,6 +16,9 @@ https://github.com/ckirschberg/little_animal_horror_zoo
 
 **Presentation Planning**
 
+### Link to presentation
+https://prezi.com/i/edit/alqyzdxnwj57
+
 Use Case Model:
 Kevin Williams
 
