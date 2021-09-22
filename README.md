@@ -11,3 +11,15 @@ https://github.com/ckirschberg/little_animal_horror_zoo
 - Kevin Williams
 - Victoria Velichkova
 - Ventsislav Iliev
+
+---------------------------------------------------------------
+
+**Presentation Planning**
+Use Case Model: Kevin Williams
+Domain Model: Ventsislav
+Class Diagram: Vicky
+Java Code:
+-	Game: Daniel
+-	Animal: Kevin
+-	Rabbit: Vicky
+-	Snake: Ventsislav
