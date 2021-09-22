@@ -2,6 +2,8 @@ abstract class Animal {
     private int x;
     private int y;
 
+    // Getters and Setters
+
     public int getX() {
         return x;
     }
