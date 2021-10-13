@@ -1,8 +1,8 @@
 public class Game {
     public void runGame()
     {
-        Snake snake = new Snake(5,2);
-        Rabbit rabbit = new Rabbit(8,7);
+        Snake snake = new Snake(10,10);
+        Rabbit rabbit = new Rabbit(5,5);
         rabbit.tellCoordinates();
         snake.tellCoordinates();
         //Loop goes until snake has reached rabbit

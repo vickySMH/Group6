@@ -6,5 +6,3 @@ public class Main
         game.runGame();
     }
 }
-
-
