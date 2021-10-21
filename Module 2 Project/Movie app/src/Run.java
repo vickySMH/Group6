@@ -24,7 +24,7 @@ public class Run {
                 login();
             }
         }
-        System.out.println("Thank you for using Kaizen's movie app");
+        System.out.println("Thank you for using Kaizen's movie app!");
     }
 
     private static void login() throws IOException
@@ -32,14 +32,14 @@ public class Run {
         int passwordCounter = 0;
         if(command[1] == null)
         {
-            System.out.println("Unknown error with username");
+            System.out.println("Unknown error with username!");
         }
         else
         {
             User.setUsername(command[1]);
         }
         int i = 0;
-        for (User user : getUsers())
+        for (User user : Database.getUserList())
         {
             if(user.getUsername().equals(User.getUsername()))
             {
@@ -50,14 +50,15 @@ public class Run {
                     User.setPassword(cmd);
                     if (user.getPassword().equals(User.getPassword()))
                     {
-                        System.out.println("You have successfully logged in");
+                        System.out.println("You have successfully logged in!");
+                        break;
                     }
                     else
                     {
                         ++passwordCounter;
                         System.out.println("You have entered your password incorrectly" + passwordCounter +
                                 " times, you are allowed to enter it 3 times incorrectly," +
-                                "after this your login will be canceled");
+                                "after this your login will be canceled!");
                     }
                 }
                 while(passwordCounter < 3);
@@ -66,15 +67,19 @@ public class Run {
                 {
                     User.setUsername(null);
                     User.setPassword(null);
-                    System.out.println("Sorry, you have entered wrong password too many times");
+                    System.out.println("Sorry, you have entered wrong password too many times!");
                 }
                 ++i;
             }
-        if(i == getUsers().size)
+        if(i == Database.getUserList().size())
         {
-            System.out.println("Invalid username");
+            System.out.println("Invalid username!");
             User.setUsername(null);
             User.setPassword(null);
+        }
+        else
+        {
+            System.out.println("You have successfully logged in!");
         }
     }
 
@@ -86,7 +91,7 @@ public class Run {
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
-            System.out.println("Invalid movie title");
+            System.out.println("Invalid movie title!");
             cmd = reader.readLine();
             command = cmd.split(" ", 2);
         }
@@ -94,8 +99,8 @@ public class Run {
 
     private static void startMessage() throws IOException
     {
-        System.out.println("Hello and welcome to Kaizen's movie app");
-        System.out.println("For more information about the funcitons of the app please type in \"help\"\n");
+        System.out.println("Hello and welcome to Kaizen's movie app!");
+        System.out.println("For more information about the functions of the app please type in \"help\"\n");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
