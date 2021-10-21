@@ -29,6 +29,7 @@ public class Run {
 
     private static void login() throws IOException
     {
+        command = cmd.split(" ", 3);
         int passwordCounter = 0;
         if(command[1] == null)
         {
@@ -81,6 +82,8 @@ public class Run {
         {
             System.out.println("You have successfully logged in!");
         }
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
     }
 
     private static void addMovie() throws IOException
