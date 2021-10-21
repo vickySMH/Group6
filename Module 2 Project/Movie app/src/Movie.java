@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+enum Genre {
+    ACTION, COMEDY, DRAMA, FANTASY, HORROR, MYSTERY, ROMANCE, THRILLER
+}
+
 public class Movie {
     private ArrayList<Actor> cast = new ArrayList<Actor>();
     private String title;
