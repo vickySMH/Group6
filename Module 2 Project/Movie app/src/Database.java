@@ -2,8 +2,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 public abstract class Database{
-    private static ArrayList<User> userList = new ArrayList<User>();
-    private static ArrayList<Movie>movieList = new ArrayList<Movie>();
+    private static ArrayList<User> userList = new ArrayList<>();
+    private static ArrayList<Movie>movieList = new ArrayList<>();
     private static File movies;
     private static FileOutputStream fos;
     private static ObjectOutputStream output;
