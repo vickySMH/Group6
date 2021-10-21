@@ -196,8 +196,8 @@ public class Run {
 
     private static void helpMessage() throws IOException
     {
-        System.out.println("Register: to create a new account");
-        System.out.println("Login: to log inside of your existing account");
+        System.out.println("Register Username: to create a new account");
+        System.out.println("Login Username: to log inside of your existing account");
         System.out.println("Quit: if you would like to exit the app");
         System.out.println("Add <Movie title>: add a movie to your favourites");
         cmd = reader.readLine();
