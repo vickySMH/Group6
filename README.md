@@ -1,9 +1,13 @@
 # Group-6
 
-This is repository for Module 1 Mandatory assignement.
+This is repository for  1st semester Mandatory assignements.
 
-### Assignment task
+### Assignment tasks:
+##### Module 1
 https://github.com/ckirschberg/little_animal_horror_zoo
+
+##### Module 2
+https://docs.google.com/document/d/1_zJDlQJvfWJ5l_cvxwl3Zo2q9mt5ar5vUnWDOzDD7zs/edit
 
 
 ### Group-6 members (1st semester CS students):
@@ -14,11 +18,14 @@ https://github.com/ckirschberg/little_animal_horror_zoo
 
 ---------------------------------------------------------------
 
-**Presentation Planning**
+## Presentation Planning
 
-### Link to presentation
+### Links to presentations:
+##### Module 1
 https://prezi.com/i/edit/alqyzdxnwj57
 
+### Assaigned tasks:
+##### Module 1
 Use Case Model:
 Kevin Williams
 
