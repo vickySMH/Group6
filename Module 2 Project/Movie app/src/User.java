@@ -12,16 +12,16 @@ public class User {
         return username;
     }
 
-    public static void setUsername(String username) {
-        this.username = username;
+    public static void setUsername(String newUsername) {
+        username = newUsername;
     }
 
     public static String getPassword() {
         return password;
     }
 
-    public static void setPassword(String password) {
-        this.password = password;
+    public static void setPassword(String newPassword) {
+        password = newPassword;
     }
 
     /*public void addFavMovie(Movie movie)
