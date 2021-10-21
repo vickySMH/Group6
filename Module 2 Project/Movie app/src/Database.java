@@ -21,13 +21,13 @@ public abstract class Database{
 
     private static void openMovies() throws IOException
     {
-        movies = new File("movies.txt");
+        movies = new File("Movie app/movies.txt");
         fos = new FileOutputStream(movies, false);
         output = new ObjectOutputStream(fos);
     }
     private static void openUsers() throws IOException
     {
-        users = new File("users.txt");
+        users = new File("Movie app/users.txt");
         fos2 = new FileOutputStream(users, false);
         out = new ObjectOutputStream(fos2);
     }

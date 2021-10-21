@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -164,9 +165,6 @@ public class Run {
         {
             System.out.println("Invalid command. Check 'help' for more information!");
         }
-
-
-
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
 
