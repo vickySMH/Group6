@@ -1,6 +1,33 @@
+import java.util.ArrayList;
+
 public class User {
 
-    String username;
-    String password;
+    private static String username = null;
+    private static String password = null;
+    //ArrayList<Moive> = new ArrayList<Movie>;
+    //ArrayList<History> = new ArrayList<History>;
+
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        this.username = username;
+    }
+
+    public static String getPassword() {
+        return password;
+    }
+
+    public static void setPassword(String password) {
+        this.password = password;
+    }
+
+    /*public void addFavMovie(Movie movie)
+    {
+
+    }*/
+
 
 }

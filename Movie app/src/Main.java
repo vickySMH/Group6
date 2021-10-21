@@ -2,10 +2,9 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        Run run = new Run();
         try
         {
-            run.run();
+            Run.run();
         }
         catch (IOException e)
         {
