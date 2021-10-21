@@ -19,42 +19,42 @@ public abstract class Database{
         return movieList;
     }
 
-    private void openMovies() throws IOException
+    private static void openMovies() throws IOException
     {
         movies = new File("movies.txt");
         fos = new FileOutputStream(movies, false);
         output = new ObjectOutputStream(fos);
     }
-    private void openUsers() throws IOException
+    private static void openUsers() throws IOException
     {
         users = new File("users.txt");
         fos2 = new FileOutputStream(users, false);
         out = new ObjectOutputStream(fos2);
     }
 
-    private void closeMovies() throws IOException
+    private static void closeMovies() throws IOException
     {
         output.close();
     }
 
-    private void closeUsers() throws IOException
+    private static void closeUsers() throws IOException
     {
         out.close();
     }
 
-    public void addMovie(Movie movie)
+    public static void addMovie(Movie movie)
     {
         movieList.add(movie);
         addMovieToDatabase();
     }
 
-    public void addUser(User user)
+    public static void addUser(User user)
     {
         userList.add(user);
         addUserToDatabase();
     }
 
-    private void addMovieToDatabase()
+    private static void addMovieToDatabase()
     {
         try
         {
@@ -68,7 +68,7 @@ public abstract class Database{
         }
     }
 
-    private void addUserToDatabase()
+    private static void addUserToDatabase()
     {
         try
         {

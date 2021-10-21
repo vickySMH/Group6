@@ -7,6 +7,11 @@ public class User {
     //ArrayList<Moive> = new ArrayList<Movie>;
     //ArrayList<History> = new ArrayList<History>;
 
+    public User(String name, String passcode)
+    {
+        setUsername(name);
+        setPassword(passcode);
+    }
 
     public static String getUsername() {
         return username;
