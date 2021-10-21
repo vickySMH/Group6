@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="542e9cd6-51ec-4dbc-8372-8e57f4cb089d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Little Animal Horror Zoo/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Little Animal Horror Zoo/src/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="542e9cd6-51ec-4dbc-8372-8e57f4cb089d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,7 +19,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Little Animal Horror Zoo" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -47,6 +45,7 @@
       <updated>1631618037074</updated>
       <workItem from="1631618040045" duration="436000" />
       <workItem from="1631624669729" duration="1238000" />
+      <workItem from="1632388132064" duration="18000" />
     </task>
     <servers />
   </component>
