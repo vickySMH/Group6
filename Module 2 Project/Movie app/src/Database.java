@@ -15,7 +15,7 @@ public class Database {
     private static File users ;
 
     public static void openMovies() throws IOException {
-        movies = new File("movies.txt");
+        movies = new File("movies.ser");
         fos = new FileOutputStream(movies, false);
         output = new ObjectOutputStream(fos);
     }
@@ -30,7 +30,7 @@ public class Database {
 
 
     public static void openUsers() throws IOException{
-        users = new File("users.txt");
+        users = new File("users.ser");
         fos2 = new FileOutputStream(users, false);
         out = new ObjectOutputStream(fos2);
     }

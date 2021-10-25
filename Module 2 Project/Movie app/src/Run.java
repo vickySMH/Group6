@@ -82,7 +82,7 @@ public class Run {
                     cmd = reader.readLine();
                     command = cmd.split(" ", 2);
                 }
-                while(command[0].equals(password));
+                while(!command[0].equals(password));
                 User user = new User(username, password);
                 Database.addUser(user);
             }

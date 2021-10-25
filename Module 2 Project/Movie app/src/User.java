@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class User {
+public class User implements java.io.Serializable {
 
     private static String username = null;
     private static String password = null;
-    //ArrayList<Moive> = new ArrayList<Movie>;
-    //ArrayList<History> = new ArrayList<History>;
+    private static ArrayList<Movie> favMovies = new ArrayList<>();
+    private static ArrayList<History> history = new ArrayList<>();
 
     public User(String name, String passcode){
         setUsername(name);
