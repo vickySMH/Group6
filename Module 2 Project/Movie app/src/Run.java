@@ -28,6 +28,7 @@ public class Run {
             }
             else{
                 System.out.println("Unknown command.");
+                System.out.println("Please enter a command: ");
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
@@ -91,7 +92,7 @@ public class Run {
         {
             System.out.println("Invalid command. Check 'help' for more information!");
         }
-        System.out.println("Please enter a command!");
+        System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
@@ -166,7 +167,7 @@ public class Run {
         }
 
 
-        System.out.println("Please enter a command!");
+        System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
 
@@ -183,7 +184,7 @@ public class Run {
             System.out.println("Invalid movie title");
         }
 
-        System.out.println("Please enter a command!");
+        System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
@@ -192,7 +193,7 @@ public class Run {
     {
         System.out.println("Hello and welcome to Kaizen's movie app");
         System.out.println("For more information about the funcitons of the app please type in \"help\"\n");
-        System.out.println("Please enter a command!");
+        System.out.print("Please enter a command: ");
 
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -204,7 +205,7 @@ public class Run {
         System.out.println("Login: to log inside of your existing account");
         System.out.println("Quit: if you would like to exit the app");
         System.out.println("Add <Movie title>: add a movie to your favourites");
-        System.out.println("Please enter a command!");
+        System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
