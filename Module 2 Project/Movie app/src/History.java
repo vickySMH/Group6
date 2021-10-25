@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class History {
+public class History implements java.io.Serializable {
 
     private Date watchedDate;
     private Date addedDate;

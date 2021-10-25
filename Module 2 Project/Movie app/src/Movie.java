@@ -1,11 +1,10 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
-enum Genre {
+enum Genre implements java.io.Serializable {
     ACTION, COMEDY, DRAMA, FANTASY, HORROR, MYSTERY, ROMANCE, THRILLER
 }
 
-public class Movie {
+public class Movie implements java.io.Serializable {
     private ArrayList<Actor> cast = new ArrayList<Actor>();
     private String title;
     private Genre genre;

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public abstract class Database{
+public abstract class Database implements java.io.Serializable {
     private static ArrayList<User> userList = new ArrayList<>();
     private static ArrayList<Movie>movieList = new ArrayList<>();
     private static File movies;
@@ -21,13 +21,13 @@ public abstract class Database{
 
     private static void openMovies() throws IOException
     {
-        movies = new File("Movie app/movies.txt");
+        movies = new File("/Users/danielshterev/Desktop/Github projects/Group6/Module 2 Project/Movie app/movies.sers");
         fos = new FileOutputStream(movies, false);
         output = new ObjectOutputStream(fos);
     }
     private static void openUsers() throws IOException
     {
-        users = new File("Movie app/users.txt");
+        users = new File("/Users/danielshterev/Desktop/Github projects/Group6/Module 2 Project/Movie app/users.ser");
         fos2 = new FileOutputStream(users, false);
         out = new ObjectOutputStream(fos2);
     }
