@@ -18,5 +18,4 @@ public class Actor implements java.io.Serializable {
     private void actor(String name){
         this.name = name;
     }
-
 }

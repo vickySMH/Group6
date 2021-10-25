@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 
-public class User implements java.io.Serializable {
+public class User {
 
     private static String username = null;
     private static String password = null;
     //ArrayList<Moive> = new ArrayList<Movie>;
     //ArrayList<History> = new ArrayList<History>;
 
-    public User(String name, String passcode)
-    {
+    public User(String name, String passcode){
         setUsername(name);
         setPassword(passcode);
     }
@@ -33,6 +32,4 @@ public class User implements java.io.Serializable {
     {
 
     }*/
-
-
 }

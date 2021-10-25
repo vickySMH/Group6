@@ -9,7 +9,6 @@ public class Movie implements java.io.Serializable {
     private String title;
     private Genre genre;
 
-
     public String getTitle() {
         return title;
     }
@@ -27,4 +26,3 @@ public class Movie implements java.io.Serializable {
        cast.add(actor);
     }
 }
-

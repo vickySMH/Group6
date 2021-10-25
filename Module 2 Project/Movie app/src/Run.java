@@ -1,4 +1,3 @@
-import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -83,7 +82,7 @@ public class Run {
                     cmd = reader.readLine();
                     command = cmd.split(" ", 2);
                 }
-                while(!command[0].equals(password));
+                while(command[0].equals(password));
                 User user = new User(username, password);
                 Database.addUser(user);
             }
@@ -92,7 +91,7 @@ public class Run {
         {
             System.out.println("Invalid command. Check 'help' for more information!");
         }
-        System.out.print("Please enter command: ");
+
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
@@ -165,7 +164,9 @@ public class Run {
         {
             System.out.println("Invalid command. Check 'help' for more information!");
         }
-        System.out.print("Please enter command: ");
+
+
+
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
 
@@ -180,28 +181,25 @@ public class Run {
         catch (ArrayIndexOutOfBoundsException e)
         {
             System.out.println("Invalid movie title");
+            cmd = reader.readLine();
+            command = cmd.split(" ", 2);
         }
-        System.out.print("Please enter command: ");
-        cmd = reader.readLine();
-        command = cmd.split(" ", 2);
     }
 
     private static void startMessage() throws IOException
     {
         System.out.println("Hello and welcome to Kaizen's movie app");
         System.out.println("For more information about the funcitons of the app please type in \"help\"\n");
-        System.out.print("Please enter command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
 
     private static void helpMessage() throws IOException
     {
-        System.out.println("Register Username: to create a new account");
-        System.out.println("Login Username: to log inside of your existing account");
+        System.out.println("Register: to create a new account");
+        System.out.println("Login: to log inside of your existing account");
         System.out.println("Quit: if you would like to exit the app");
         System.out.println("Add <Movie title>: add a movie to your favourites");
-        System.out.print("Please enter command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }

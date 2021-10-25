@@ -29,7 +29,4 @@ public class History implements java.io.Serializable {
     public Movie getMovie(){
         return movie;
     }
-
-
-
 }
