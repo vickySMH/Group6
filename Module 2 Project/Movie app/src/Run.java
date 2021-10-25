@@ -131,7 +131,9 @@ public class Run {
                         User.setPassword(cmd);
                         if (user.getPassword().equals(User.getPassword()))
                         {
-                            System.out.println("You have successfully logged in");
+                            passwordCounter = 4;
+                            System.out.println("You have successfully logged in!");
+                            break;
                         }
                         else
                         {
@@ -148,6 +150,11 @@ public class Run {
                     User.setUsername(null);
                     User.setPassword(null);
                     System.out.println("Sorry, you have entered wrong password too many times");
+                    break;
+                }
+                if (user.getPassword().equals(User.getPassword()))
+                {
+                    break;
                 }
                 ++i;
             }
@@ -156,9 +163,6 @@ public class Run {
                 System.out.println("Invalid username");
                 User.setUsername(null);
                 User.setPassword(null);
-            }
-            else{
-                System.out.println("You have successfully logged in!");
             }
         }
         catch (ArrayIndexOutOfBoundsException e)
