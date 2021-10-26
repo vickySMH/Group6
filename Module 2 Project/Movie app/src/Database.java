@@ -8,11 +8,29 @@ public class Database {
     private static ArrayList<Movie> movieList = new ArrayList<Movie>();
 
     private static File movies;
+    private static FileInputStream fis;
+    private static ObjectInputStream ois;
     private static FileOutputStream fos;
     private static ObjectOutputStream output;
     private static FileOutputStream fos2;
     private static ObjectOutputStream out;
     private static File users ;
+
+    public static void loadMovies() throws FileNotFoundException, IOException, ClassNotFoundException
+    {
+        fis = new FileInputStream("movies.ser");
+        ois = new ObjectInputStream(fis);
+        movieList = (ArrayList<Movie>) ois.readObject();
+        ois.close();
+    }
+
+    public static void loadUsers() throws FileNotFoundException, IOException, ClassNotFoundException
+    {
+        fis = new FileInputStream("users.ser");
+        ois = new ObjectInputStream(fis);
+        userList = (ArrayList<User>) ois.readObject();
+        ois.close();
+    }
 
     public static void openMovies() throws IOException {
         movies = new File("movies.ser");

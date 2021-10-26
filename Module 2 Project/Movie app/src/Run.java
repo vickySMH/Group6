@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,6 +9,16 @@ public class Run {
     private static String[] command;
     public static void run() throws IOException
     {
+        try
+        {
+            Database.loadUsers();
+            Database.loadMovies();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error loading from our database, please try again!");
+        }
+
         startMessage();
         while(command[0].compareToIgnoreCase("quit") != 0)
         {
@@ -23,10 +34,12 @@ public class Run {
             {
                 login();
             }
-            else if(command[0].equalsIgnoreCase("register")){
+            else if(command[0].equalsIgnoreCase("register"))
+            {
                 register();
             }
-            else{
+            else
+            {
                 System.out.println("Unknown command.");
                 System.out.println("Please enter a command: ");
                 cmd = reader.readLine();
@@ -70,8 +83,10 @@ public class Run {
 
             String password;
             if(i == Database.getUserList().size()){
-                do{
-                    do{
+                do
+                {
+                    do
+                    {
                         System.out.println("Please enter your desired password between 5 and 16 characters!");
                         cmd = reader.readLine();
                         command = cmd.split(" ", 2);
