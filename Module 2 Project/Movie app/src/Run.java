@@ -211,7 +211,18 @@ public class Run {
     {
         try
         {
-            System.out.println(command[1]);
+            int i = 0;
+            for(Movie movie: Database.getMovieList()) {
+                if (movie.getTitle().equalsIgnoreCase(command[1])){
+                    User.addFavMovie(movie);
+                    System.out.println("Movie successfully added to your favourites!");
+                    break;
+                }
+                ++i;
+            }
+            if (i == Database.getMovieList().size()) {
+                System.out.println("Movie not available within our movie database.");
+            }
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
