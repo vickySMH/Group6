@@ -10,6 +10,11 @@ public class Movie {
     private String title;
     private Genre genre;
 
+    public Movie(String title)
+    {
+        setTitle(title);
+    }
+
     public String getTitle() {
         return title;
     }

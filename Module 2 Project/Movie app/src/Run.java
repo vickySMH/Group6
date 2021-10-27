@@ -22,14 +22,28 @@ public class Run {
         startMessage();
         while(command[0].compareToIgnoreCase("quit") != 0)
         {
-            if(command[0].equalsIgnoreCase("help"))
+
+            if(command[0].equalsIgnoreCase("add") && User.getUsername().equalsIgnoreCase("admin"))
+            {
+                adminAdd();
+            }
+            else if(command[0].equalsIgnoreCase("remove") && User.getUsername().equalsIgnoreCase("admin"))
+            {
+                adminRemove();
+            }
+                /*else if(command[0].equalsIgnoreCase("delete"))
+                {
+                    deleteUser();
+                }*/
+
+            else if(command[0].equalsIgnoreCase("help"))
             {
                 helpMessage();
             }
-            else if(command[0].equalsIgnoreCase("add"))
+           /* else if(command[0].equalsIgnoreCase("add"))
             {
                 addMovie();
-            }
+            }*/
             else if(command[0].equalsIgnoreCase("login"))
             {
                 login();
@@ -119,6 +133,7 @@ public class Run {
 
         try
         {
+            String username;
             if(command[1] == null || command[1].length() < 4 || command[1].length() > 20)
             {
                 do{
@@ -162,8 +177,8 @@ public class Run {
                 }
                 if(passwordCounter == 3)
                 {
-                    User.setUsername(null);
-                    User.setPassword(null);
+                    User.setUsername("");
+                    User.setPassword("");
                     System.out.println("Sorry, you have entered wrong password too many times");
                     break;
                 }
@@ -176,8 +191,8 @@ public class Run {
             if(i == Database.getUserList().size())
             {
                 System.out.println("Invalid username");
-                User.setUsername(null);
-                User.setPassword(null);
+                User.setUsername("");
+                User.setPassword("");
             }
         }
         catch (ArrayIndexOutOfBoundsException e)
@@ -220,10 +235,71 @@ public class Run {
 
     private static void helpMessage() throws IOException
     {
-        System.out.println("Register: to create a new account");
-        System.out.println("Login: to log inside of your existing account");
+        System.out.println("Register <Username>: to create a new account");
+        System.out.println("Login <Username>: to log inside of your existing account");
         System.out.println("Quit: if you would like to exit the app");
         System.out.println("Add <Movie title>: add a movie to your favourites");
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
+    private static void adminAdd() throws IOException
+    {
+        int i = 1;
+        try
+        {
+            for (Movie movie : Database.getMovieList())
+            {
+                if (command[1].equalsIgnoreCase(movie.getTitle())) {
+                    System.out.println(command[1] + " already exists!");
+                    break;
+                }
+                ++i;
+            }
+            if (i == Database.getUserList().size())
+            {
+                Movie movie = new Movie(command[1]);
+                Database.addMovie(movie);
+                System.out.println("Added " + command[1] + " to movie list!");
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Invalid movie title!");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+
+    }
+
+    private static void adminRemove() throws IOException
+    {
+        int i = 1;
+        try
+        {
+            for (Movie movie : Database.getMovieList())
+            {
+                if (command[1].equalsIgnoreCase(movie.getTitle()))
+                {
+                    Database.getMovieList().remove(movie);
+                    System.out.println("Deleting " + command[1]);
+                    Database.saveDatabase();
+                    break;
+
+                }
+                ++i;
+            }
+            if(i == Database.getMovieList().size())
+            {
+                System.out.println("Selected movie is not in the list. Try again.");
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Invalid movie title!");
+        }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);

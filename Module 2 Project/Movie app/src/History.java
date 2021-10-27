@@ -1,32 +1,38 @@
 import java.util.Date;
 
-public class History {
-
+public class History
+{
     private Date watchedDate;
     private Date addedDate;
     private Movie movie;
 
 
-    public void setWatchedDate(Date watchedDate){
+    public void setWatchedDate(Date watchedDate)
+    {
         this.watchedDate = watchedDate;
     }
-    public Date getWatchedDate(){
+    public Date getWatchedDate()
+    {
         return watchedDate;
     }
 
 
-    public void setAddedDate(Date addedDate){
+    public void setAddedDate(Date addedDate)
+    {
         this.addedDate = addedDate;
     }
-    public Date getAddedDate(){
+    public Date getAddedDate()
+    {
         return addedDate;
     }
 
 
-    public void setMovie(Movie movie){
+    public void setMovie(Movie movie)
+    {
         this.movie = movie;
     }
-    public Movie getMovie(){
+    public Movie getMovie()
+    {
         return movie;
     }
 }

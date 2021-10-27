@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class User implements Serializable {
 
-    private static String username = null;
-    private static String password = null;
+    private static String username = "";
+    private static String password = "";
     ArrayList<Movie> favMovies= new ArrayList<Movie>();
     ArrayList<History> history = new ArrayList<History>();
 

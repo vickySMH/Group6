@@ -71,6 +71,12 @@ public class Database {
         addUserToDatabase();
     }
 
+    public static void saveDatabase()
+    {
+        addUserToDatabase();
+        addMovieToDatabase();
+    }
+
     public static void addMovieToDatabase(){
 
         try{
