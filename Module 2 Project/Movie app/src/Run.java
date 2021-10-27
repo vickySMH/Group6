@@ -52,6 +52,9 @@ public class Run {
             {
                 register();
             }
+            else if(command[0].equalsIgnoreCase("list")){
+                listMovies();
+            }
             else
             {
                 System.out.println("Unknown command.");
@@ -310,6 +313,20 @@ public class Run {
         catch (ArrayIndexOutOfBoundsException e)
         {
             System.out.println("Invalid movie title!");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
+    private static void listMovies() throws IOException {
+        try{
+            for (Movie movie : Database.getMovieList()){
+                System.out.println(movie.getTitle());
+            }
+        }
+        catch (Exception e){
+            System.out.println("Error listing the movies. Try again");
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
