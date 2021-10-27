@@ -6,24 +6,30 @@ enum Genre {
 }
 
 public class Movie {
-    private ArrayList<Actor> cast = new ArrayList<Actor>();
-    private String title;
-    private Genre genre;
+    private static ArrayList<Actor> cast = new ArrayList<Actor>();
+    private static String title;
+    private static Genre genre;
 
-    public String getTitle() {
+    public static String getTitle() {
         return title;
     }
-    public void setTitle(String title) {
-        this.title = title;
+    public static void setTitle(String newTitle) {
+        title = newTitle;
     }
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public static void setGenre(Genre newGenre) {
+        genre = newGenre;
     }
-    public Genre getGenre() {
+    public static Genre getGenre() {
         return genre;
     }
 
-    public void setActor(Actor actor) {
+    public static void setActor(Actor actor) {
        cast.add(actor);
+    }
+
+    public static void playMovie(){
+        for (Actor actor : cast){
+            System.out.println(actor);
+        }
     }
 }

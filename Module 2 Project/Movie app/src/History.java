@@ -1,30 +1,26 @@
-import java.util.Date;
+import java.util.ArrayList;
+import java.time.LocalDate;
+
 
 public class History {
 
-    private Date watchedDate;
-    private Date addedDate;
-    private Movie movie;
+    private static ArrayList<LocalDate> watchedDates = new ArrayList<>();
+    private static Movie movie;
 
-
-    public void setWatchedDate(Date watchedDate){
-        this.watchedDate = watchedDate;
-    }
-    public Date getWatchedDate(){
-        return watchedDate;
+    public History(Movie m, LocalDate date){
+        setMovie(m);
+        addWatchedDate(date);
     }
 
-
-    public void setAddedDate(Date addedDate){
-        this.addedDate = addedDate;
+    public static void addWatchedDate(LocalDate watchedDate){
+       watchedDates.add(watchedDate);
     }
-    public Date getAddedDate(){
-        return addedDate;
+    public static ArrayList<LocalDate> getWatchedDate(){
+        return watchedDates;
     }
 
-
-    public void setMovie(Movie movie){
-        this.movie = movie;
+    public static void setMovie(Movie newMovie){
+        movie = newMovie;
     }
     public Movie getMovie(){
         return movie;

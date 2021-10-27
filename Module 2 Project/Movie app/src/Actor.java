@@ -18,4 +18,8 @@ public class Actor {
     private void actor(String name){
         this.name = name;
     }
+
+    public String toString(){
+        return name + "-" + role;
+    }
 }

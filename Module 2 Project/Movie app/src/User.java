@@ -6,7 +6,7 @@ public class User implements Serializable {
     private static String username = null;
     private static String password = null;
     ArrayList<Movie> favMovies= new ArrayList<Movie>();
-    ArrayList<History> history = new ArrayList<History>();
+    private static ArrayList<History> history = new ArrayList<History>();
 
     public User(String name, String passcode){
         setUsername(name);
@@ -33,4 +33,8 @@ public class User implements Serializable {
     {
 
     }*/
+
+    public static void addToHistory(History addDate){
+        history.add(addDate);
+    }
 }

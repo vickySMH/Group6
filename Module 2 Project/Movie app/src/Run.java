@@ -2,6 +2,8 @@ import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Run {
     private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -196,7 +198,11 @@ public class Run {
     {
         try
         {
+
+
             System.out.println(command[1]);
+
+
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
@@ -224,6 +230,34 @@ public class Run {
         System.out.println("Login: to log inside of your existing account");
         System.out.println("Quit: if you would like to exit the app");
         System.out.println("Add <Movie title>: add a movie to your favourites");
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
+    public static void play()throws IOException{
+        int i = 0;
+        try {
+            for (Movie movie : Database.getMovieList() ){
+                if (movie.getTitle().equalsIgnoreCase(command[1])){
+                    Movie.playMovie();
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+                    LocalDate localDate = LocalDate.now();
+                    History history = new History(movie, localDate);
+                    User.addToHistory(history);
+                    break;
+
+                }
+                ++i;
+            }
+            if (i == Database.getMovieList().size()){
+                System.out.println("No such movie");
+            }
+
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Invalid movie title");
+        }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
