@@ -13,10 +13,18 @@ public class User implements Serializable {
         setPassword(passcode);
     }
 
+    public ArrayList<Movie> getFavMovies() {
+        return favMovies;
+    }
+
     public User()
     {
         username = "";
         password = "";
+    }
+
+    public void removeMovie(Movie movie){
+        favMovies.remove(movie);
     }
 
     public String getUsername() {

@@ -53,13 +53,16 @@ public class Run {
             else if(command[0].equalsIgnoreCase("list")){
                 listMovies();
             }
-            else if(command[0].equalsIgnoreCase("logout") && !newUser.getUsername().isBlank())
+            else if((command[0].equalsIgnoreCase("logout") || cmd.equalsIgnoreCase("logout")) && !newUser.getUsername().isBlank())
             {
                 logout();
             }
             else if(command[0].equalsIgnoreCase("play") && newUser.getUsername().isBlank())
             {
                 play();
+            }
+            else if(command[0].equalsIgnoreCase("remove") && !newUser.getUsername().equalsIgnoreCase("admin")){
+                removeMovie();
             }
             else
             {
@@ -215,10 +218,13 @@ public class Run {
 
     }
 
-    private void logout()
+    private void logout() throws IOException
     {
         newUser.setUsername("");
         newUser.setPassword("");
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
     }
 
 
@@ -381,6 +387,28 @@ public class Run {
         }
         catch (ArrayIndexOutOfBoundsException e){
             System.out.println("Invalid movie title");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
+    public void removeMovie() throws IOException{
+        try{
+            int i = 0;
+            for(Movie movie : newUser.getFavMovies()){
+                if(command[1].equalsIgnoreCase(movie.getTitle())){
+                    newUser.removeMovie(movie);
+                    System.out.println("Movie successfully removed from favorites.");
+                }
+                ++i;
+            }
+            if(i == newUser.getFavMovies().size()){
+                System.out.println("Movie not found in favorites.");
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Invalid movie title.");
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
