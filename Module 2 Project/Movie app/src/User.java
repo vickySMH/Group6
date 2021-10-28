@@ -52,4 +52,17 @@ public class User implements Serializable {
         history.add(addDate);
     }
 
+    public void displayHistory() 
+    {
+        if(history.size() == 0)
+        {
+            System.out.println("You have not watched any movies yet!");
+        }
+        for (History story: history)
+        {
+            System.out.println("Displaying history...");
+            System.out.println(story);
+        }
+    }
+
 }

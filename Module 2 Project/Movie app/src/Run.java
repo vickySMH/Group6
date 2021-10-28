@@ -64,14 +64,19 @@ public class Run {
             else if(command[0].equalsIgnoreCase("remove") && !newUser.getUsername().equalsIgnoreCase("admin")){
                 removeMovie();
             }
+            else if(command[0].equalsIgnoreCase("history") && !newUser.getUsername().isBlank())
+            {
+                history();
+            }
             else
             {
-                System.out.println("Unknown command.");
+                System.out.println("Unknown command or you must be logged in to use it.");
                 System.out.println("Please enter a command: ");
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
         }
+        Database.saveDatabase();
         System.out.println("Thank you for using Kaizen's movie app");
     }
 
@@ -175,6 +180,7 @@ public class Run {
                         if (user.getPassword().equals(newUser.getPassword()))
                         {
                             passwordCounter = 4;
+                            newUser = user;
                             System.out.println("You have successfully logged in!");
                             break;
                         }
@@ -410,6 +416,19 @@ public class Run {
         catch (ArrayIndexOutOfBoundsException e){
             System.out.println("Invalid movie title.");
         }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+    public void history() throws IOException
+    {
+        try
+        {
+            newUser.displayHistory();
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+        System.out.println("Invalid movie title.");
+    }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);

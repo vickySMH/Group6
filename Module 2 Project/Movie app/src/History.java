@@ -29,4 +29,9 @@ public class History implements Serializable
     {
         return movie;
     }
+
+    public String toString()
+    {
+        return "Movie:" + movie + "watched on: " + watchedDate;
+    }
 }
