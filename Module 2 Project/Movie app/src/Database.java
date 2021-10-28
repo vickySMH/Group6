@@ -1,11 +1,10 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Database {
 
-    private static ArrayList<User> userList = new ArrayList<User>();
-    private static ArrayList<Movie> movieList = new ArrayList<Movie>();
+    private static ArrayList<User> userList = new ArrayList<>();
+    private static ArrayList<Movie> movieList = new ArrayList<>();
 
     private static File movies;
     private static FileInputStream fis;
@@ -16,7 +15,7 @@ public class Database {
     private static ObjectOutputStream out;
     private static File users ;
 
-    public static void loadMovies() throws FileNotFoundException, IOException, ClassNotFoundException
+    public static void loadMovies() throws IOException, ClassNotFoundException
     {
         fis = new FileInputStream("movies.ser");
         ois = new ObjectInputStream(fis);
@@ -24,7 +23,7 @@ public class Database {
         ois.close();
     }
 
-    public static void loadUsers() throws FileNotFoundException, IOException, ClassNotFoundException
+    public static void loadUsers() throws IOException, ClassNotFoundException
     {
         fis = new FileInputStream("users.ser");
         ois = new ObjectInputStream(fis);

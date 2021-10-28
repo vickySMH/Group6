@@ -5,7 +5,8 @@ public class Main {
     {
         try
         {
-            Run.run();
+            Run run = new Run();
+            run.run();
         }
         catch (IOException e)
         {

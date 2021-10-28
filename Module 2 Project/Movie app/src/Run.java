@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Run {
-    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private static String cmd;
-    private static String[] command;
-    public static void run() throws IOException
+    private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private String cmd;
+    private String[] command;
+    private User newUser = new User();
+    public void run() throws IOException
     {
         try
         {
@@ -23,11 +24,11 @@ public class Run {
         while(command[0].compareToIgnoreCase("quit") != 0)
         {
 
-            if(command[0].equalsIgnoreCase("add") && User.getUsername().equalsIgnoreCase("admin"))
+            if(command[0].equalsIgnoreCase("add") && newUser.getUsername().equalsIgnoreCase("admin"))
             {
                 adminAdd();
             }
-            else if(command[0].equalsIgnoreCase("remove") && User.getUsername().equalsIgnoreCase("admin"))
+            else if(command[0].equalsIgnoreCase("remove") && newUser.getUsername().equalsIgnoreCase("admin"))
             {
                 adminRemove();
             }
@@ -66,7 +67,7 @@ public class Run {
         System.out.println("Thank you for using Kaizen's movie app");
     }
 
-    private static void register() throws IOException{
+    private void register() throws IOException{
         command = cmd.split(" ", 3);
         String username;
 
@@ -82,16 +83,16 @@ public class Run {
                 }
                 while(command[0] == null || command[0].length() < 4 || command[0].length() > 20);
 
-                User.setUsername(command[0]);
+                newUser.setUsername(command[0]);
             }
             else {
                 username = command[1];
-                User.setUsername(command[1]);
+                newUser.setUsername(command[1]);
             }
 
             int i = 0;
             for(User user : Database.getUserList()){
-                if(user.getUsername().equals(User.getUsername())){
+                if(user.getUsername().equals(newUser.getUsername())){
                     System.out.println("Username already exists!");
                     break;
                 }
@@ -116,8 +117,9 @@ public class Run {
                     command = cmd.split(" ", 2);
                 }
                 while(!command[0].equals(password));
-                User user = new User(username, password);
-                Database.addUser(user);
+                newUser.setUsername(username);
+            newUser.setPassword(password);
+                Database.addUser(newUser);
             }
         }
         catch (ArrayIndexOutOfBoundsException e)
@@ -129,7 +131,7 @@ public class Run {
         command = cmd.split(" ", 2);
     }
 
-    private static void login() throws IOException
+    private void login() throws IOException
     {
         command = cmd.split(" ", 3);
         int passwordCounter = 0;
@@ -146,23 +148,23 @@ public class Run {
                 }
                 while(command[0] == null || command[0].length() < 4 || command[0].length() > 20);
 
-                User.setUsername(command[0]);
+                newUser.setUsername(command[0]);
             }
             else
             {
-                User.setUsername(command[1]);
+                newUser.setUsername(command[1]);
             }
             int i = 0;
             for (User user :Database.getUserList())
             {
-                if(user.getUsername().equals(User.getUsername()))
+                if(user.getUsername().equals(newUser.getUsername()))
                 {
                     System.out.print("Please enter password: ");
                     do
                     {
                         cmd = reader.readLine();
-                        User.setPassword(cmd);
-                        if (user.getPassword().equals(User.getPassword()))
+                        newUser.setPassword(cmd);
+                        if (user.getPassword().equals(newUser.getPassword()))
                         {
                             passwordCounter = 4;
                             System.out.println("You have successfully logged in!");
@@ -180,12 +182,12 @@ public class Run {
                 }
                 if(passwordCounter == 3)
                 {
-                    User.setUsername("");
-                    User.setPassword("");
+                    newUser.setUsername("");
+                    newUser.setPassword("");
                     System.out.println("Sorry, you have entered wrong password too many times");
                     break;
                 }
-                if (user.getPassword().equals(User.getPassword()))
+                if (user.getPassword().equals(newUser.getPassword()))
                 {
                     break;
                 }
@@ -194,30 +196,28 @@ public class Run {
             if(i == Database.getUserList().size())
             {
                 System.out.println("Invalid username");
-                User.setUsername("");
-                User.setPassword("");
+                newUser.setUsername("");
+                newUser.setPassword("");
             }
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
             System.out.println("Invalid command. Check 'help' for more information!");
         }
-
-
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
 
     }
 
-    private static void addMovie() throws IOException
+    private void addMovie() throws IOException
     {
         try
         {
             int i = 0;
             for(Movie movie: Database.getMovieList()) {
                 if (movie.getTitle().equalsIgnoreCase(command[1])){
-                    User.addFavMovie(movie);
+                    newUser.addFavMovie(movie);
                     System.out.println("Movie successfully added to your favourites!");
                     break;
                 }
@@ -237,7 +237,7 @@ public class Run {
         command = cmd.split(" ", 2);
     }
 
-    private static void startMessage() throws IOException
+    private void startMessage() throws IOException
     {
         System.out.println("Hello and welcome to Kaizen's movie app");
         System.out.println("For more information about the funcitons of the app please type in \"help\"\n");
@@ -247,7 +247,7 @@ public class Run {
         command = cmd.split(" ", 2);
     }
 
-    private static void helpMessage() throws IOException
+    private void helpMessage() throws IOException
     {
         System.out.println("Register <Username>: to create a new account");
         System.out.println("Login <Username>: to log inside of your existing account");
@@ -258,9 +258,9 @@ public class Run {
         command = cmd.split(" ", 2);
     }
 
-    private static void adminAdd() throws IOException
+    private void adminAdd() throws IOException
     {
-        int i = 1;
+        int i = 0;
         try
         {
             for (Movie movie : Database.getMovieList())
@@ -271,7 +271,7 @@ public class Run {
                 }
                 ++i;
             }
-            if (i == Database.getUserList().size())
+            if (i == Database.getMovieList().size())
             {
                 Movie movie = new Movie(command[1]);
                 Database.addMovie(movie);
@@ -288,7 +288,7 @@ public class Run {
 
     }
 
-    private static void adminRemove() throws IOException
+    private void adminRemove() throws IOException
     {
         int i = 1;
         try
@@ -319,7 +319,7 @@ public class Run {
         command = cmd.split(" ", 2);
     }
 
-    private static void listMovies() throws IOException {
+    private void listMovies() throws IOException {
         try{
             for (Movie movie : Database.getMovieList()){
                 System.out.println(movie.getTitle());
