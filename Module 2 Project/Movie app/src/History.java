@@ -1,32 +1,25 @@
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
-public class History
+public class History implements Serializable
 {
-    private Date watchedDate;
-    private Date addedDate;
+    private LocalDate watchedDate;
     private Movie movie;
 
+    public History(Movie movie, LocalDate watchedDate)
+    {
+        setMovie(movie);
+        setWatchedDate(watchedDate);
+    }
 
-    public void setWatchedDate(Date watchedDate)
+    public void setWatchedDate(LocalDate watchedDate)
     {
         this.watchedDate = watchedDate;
     }
-    public Date getWatchedDate()
+    public LocalDate getWatchedDate()
     {
         return watchedDate;
     }
-
-
-    public void setAddedDate(Date addedDate)
-    {
-        this.addedDate = addedDate;
-    }
-    public Date getAddedDate()
-    {
-        return addedDate;
-    }
-
 
     public void setMovie(Movie movie)
     {

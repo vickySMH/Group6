@@ -1,7 +1,9 @@
-import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Run {
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -32,29 +34,32 @@ public class Run {
             {
                 adminRemove();
             }
-                /*else if(command[0].equalsIgnoreCase("delete"))
-                {
-                    deleteUser();
-                }*/
-
             else if(command[0].equalsIgnoreCase("help"))
             {
                 helpMessage();
             }
-           /* else if(command[0].equalsIgnoreCase("add"))
+            else if(command[0].equalsIgnoreCase("add") && !newUser.getUsername().equalsIgnoreCase("admin"))
             {
                 addMovie();
-            }*/
-            else if(command[0].equalsIgnoreCase("login"))
+            }
+            else if(command[0].equalsIgnoreCase("login") && newUser.getUsername().isBlank())
             {
                 login();
             }
-            else if(command[0].equalsIgnoreCase("register"))
+            else if(command[0].equalsIgnoreCase("register") && newUser.getUsername().isBlank())
             {
                 register();
             }
             else if(command[0].equalsIgnoreCase("list")){
                 listMovies();
+            }
+            else if(command[0].equalsIgnoreCase("logout") && !newUser.getUsername().isBlank())
+            {
+                logout();
+            }
+            else if(command[0].equalsIgnoreCase("play") && newUser.getUsername().isBlank())
+            {
+                play();
             }
             else
             {
@@ -118,7 +123,7 @@ public class Run {
                 }
                 while(!command[0].equals(password));
                 newUser.setUsername(username);
-            newUser.setPassword(password);
+                newUser.setPassword(password);
                 Database.addUser(newUser);
             }
         }
@@ -210,6 +215,13 @@ public class Run {
 
     }
 
+    private void logout()
+    {
+        newUser.setUsername("");
+        newUser.setPassword("");
+    }
+
+
     private void addMovie() throws IOException
     {
         try
@@ -273,7 +285,21 @@ public class Run {
             }
             if (i == Database.getMovieList().size())
             {
-                Movie movie = new Movie(command[1]);
+                String actorName;
+                String movieName;
+                ArrayList<Actor> cast = new ArrayList<>();
+                for(int j = 0; j < 3 ; ++j)
+                {
+                    System.out.print("Enter actor's real name: ");
+                    cmd = reader.readLine();
+                    actorName = cmd;
+                    System.out.println("Enter actor's movie name: ");
+                    cmd = reader.readLine();
+                    movieName = cmd;
+                    Actor actor = new Actor(actorName, movieName);
+                    cast.add(actor);
+                }
+                Movie movie = new Movie(command[1], cast);
                 Database.addMovie(movie);
                 System.out.println("Added " + command[1] + " to movie list!");
             }
@@ -290,7 +316,7 @@ public class Run {
 
     private void adminRemove() throws IOException
     {
-        int i = 1;
+        int i = 0;
         try
         {
             for (Movie movie : Database.getMovieList())
@@ -333,4 +359,31 @@ public class Run {
         command = cmd.split(" ", 2);
     }
 
+    public void play()throws IOException{
+        int i = 0;
+        try {
+            for (Movie movie : Database.getMovieList() ){
+                if (movie.getTitle().equalsIgnoreCase(command[1])){
+                    movie.playMovie();
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+                    LocalDate localDate = LocalDate.now();
+                    History history = new History(movie, localDate);
+                    newUser.addToHistory(history);
+                    break;
+
+                }
+                ++i;
+            }
+            if (i == Database.getMovieList().size()){
+                System.out.println("No such movie");
+            }
+
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Invalid movie title");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
 }
