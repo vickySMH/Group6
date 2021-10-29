@@ -436,7 +436,7 @@ public class Run {
                 }
                 ++i;
             }
-            if(i == newUser.getFavMovies().size()){
+            if(i == newUser.getFavMovies().size() || newUser.getFavMovies().size() == 0){
                 System.out.println("Movie not found in favorites.");
             }
         }
