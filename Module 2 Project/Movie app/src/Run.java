@@ -230,8 +230,8 @@ public class Run {
     private void logout() throws IOException
     {
         System.out.println("You have successfully logged out!");
-        newUser.setUsername("");
-        newUser.setPassword("");
+        newUser = null;
+        newUser = new User();
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
