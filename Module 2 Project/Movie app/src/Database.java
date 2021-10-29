@@ -5,7 +5,11 @@ public class Database {
 
     private static ArrayList<User> userList = new ArrayList<>();
     private static ArrayList<Movie> movieList = new ArrayList<>();
+    private static ArrayList<Actor> actorList = new ArrayList<>();
 
+    private static File actors;
+    private static FileOutputStream fos3;
+    private static ObjectOutputStream out1;
     private static File movies;
     private static FileInputStream fis;
     private static ObjectInputStream ois;
@@ -14,6 +18,14 @@ public class Database {
     private static FileOutputStream fos2;
     private static ObjectOutputStream out;
     private static File users ;
+
+    public static void loadActors() throws IOException, ClassNotFoundException
+    {
+        fis = new FileInputStream("actors.ser");
+        ois = new ObjectInputStream(fis);
+        movieList = (ArrayList<Movie>) ois.readObject();
+        ois.close();
+    }
 
     public static void loadMovies() throws IOException, ClassNotFoundException
     {
@@ -35,6 +47,18 @@ public class Database {
         movies = new File("movies.ser");
         fos = new FileOutputStream(movies, false);
         output = new ObjectOutputStream(fos);
+    }
+
+    public static void openActors() throws IOException
+    {
+        users = new File("actors.ser");
+        fos3 = new FileOutputStream(users, false);
+        out1 = new ObjectOutputStream(fos3);
+    }
+
+    public static void closeActors() throws IOException
+    {
+        out1.close();
     }
 
     public static ArrayList<User> getUserList() {
@@ -70,13 +94,33 @@ public class Database {
         addUserToDatabase();
     }
 
+    public static void addActor(Actor actor)
+    {
+        actorList.add(actor);
+        addActorToDatabase();
+    }
+
+    private static void addActorToDatabase()
+    {
+        try{
+            openActors();
+            out1.writeObject(actorList);
+            closeActors();
+        }
+        catch(IOException e){
+            System.out.println("Error in database actor file not found");
+        }
+    }
+
+
     public static void saveDatabase()
     {
         addUserToDatabase();
         addMovieToDatabase();
+        addActorToDatabase();
     }
 
-    public static void addMovieToDatabase(){
+    private static void addMovieToDatabase(){
 
         try{
             openMovies();
@@ -88,7 +132,7 @@ public class Database {
         }
     }
 
-    public static void addUserToDatabase(){
+    private static void addUserToDatabase(){
         try{
             openUsers();
             out.writeObject(userList);
@@ -97,5 +141,10 @@ public class Database {
         catch (IOException e) {
             System.out.println("Error in database user ");
         }
+    }
+
+    public static ArrayList<Actor> getActorList()
+    {
+        return actorList;
     }
 }

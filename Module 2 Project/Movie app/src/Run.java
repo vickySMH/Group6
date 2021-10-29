@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -319,6 +320,7 @@ public class Run {
                 ArrayList<Actor> cast = new ArrayList<>();
                 for(int j = 0; j < 3 ; ++j)
                 {
+                    boolean isInList = false;
                     System.out.print("Enter actor's real name: ");
                     cmd = reader.readLine();
                     actorName = cmd;
@@ -326,6 +328,19 @@ public class Run {
                     cmd = reader.readLine();
                     movieName = cmd;
                     Actor actor = new Actor(actorName, movieName);
+                    for(Actor actorInList : Database.getActorList())
+                    {
+                        if(actorInList.getName().equals(actor.getName()))
+                        {
+                            System.out.println("Actor already in list");
+                            isInList = true;
+                            break;
+                        }
+                    }
+                    if(isInList == false)
+                    {
+                        Database.addActor(actor);
+                    }
                     cast.add(actor);
                 }
                 System.out.print("Enter release year: ");
