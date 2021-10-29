@@ -58,7 +58,7 @@ public class Run {
             {
                 logout();
             }
-            else if(command[0].equalsIgnoreCase("play") && newUser.getUsername().isBlank())
+            else if(command[0].equalsIgnoreCase("play") && !newUser.getUsername().isBlank())
             {
                 play();
             }

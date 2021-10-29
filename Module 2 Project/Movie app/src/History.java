@@ -32,6 +32,6 @@ public class History implements Serializable
 
     public String toString()
     {
-        return "Movie:" + movie + "watched on: " + watchedDate;
+        return "Movie: " + movie + " watched on: " + watchedDate;
     }
 }
