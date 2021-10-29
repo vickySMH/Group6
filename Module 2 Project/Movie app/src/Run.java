@@ -335,13 +335,14 @@ public class Run {
                     {
                         if(actorInList.getName().equals(actor.getName()))
                         {
-                            System.out.println("Actor already in list");
+                            System.out.println("Actor is in Database");
                             isInList = true;
                             break;
                         }
                     }
                     if(isInList == false)
                     {
+                        System.out.println("Added actor in Database");
                         Database.addActor(actor);
                     }
                     cast.add(actor);
