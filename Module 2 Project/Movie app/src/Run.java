@@ -240,11 +240,24 @@ public class Run {
         try
         {
             int i = 0;
+            boolean alreadyFav = false;
             for(Movie movie: Database.getMovieList()) {
                 if (movie.getTitle().equalsIgnoreCase(command[1])){
-                    newUser.addFavMovie(movie);
-                    System.out.println("Movie successfully added to your favourites!");
-                    break;
+                    for(Movie favMovie : newUser.getFavMovies())
+                    {
+                        if(movie.getTitle().equalsIgnoreCase(favMovie.getTitle()))
+                        {
+                            alreadyFav = true;
+                            System.out.println("Movie already in favourites!");
+                            break;
+                        }
+                    }
+                    if(alreadyFav == false)
+                    {
+                        newUser.addFavMovie(movie);
+                        System.out.println("Movie successfully added to your favourites!");
+                        break;
+                    }
                 }
                 ++i;
             }
