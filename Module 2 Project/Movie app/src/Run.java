@@ -70,6 +70,9 @@ public class Run {
             {
                 history();
             }
+            else if (command[0].equalsIgnoreCase("favourites") && !newUser.getUsername().isBlank()){
+                favourites();
+            }
             else
             {
                 System.out.println("Unknown command or you must be logged in to use it.");
@@ -471,6 +474,14 @@ public class Run {
         catch (ArrayIndexOutOfBoundsException e){
         System.out.println("Invalid movie title.");
     }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
+    public void favourites()throws IOException{
+        newUser.displayFavourites();
+
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
