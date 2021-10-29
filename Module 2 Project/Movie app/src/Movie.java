@@ -39,4 +39,9 @@ public class Movie implements Serializable {
             System.out.println(actor);
         }
     }
+
+    public String toString()
+    {
+        return title;
+    }
 }
