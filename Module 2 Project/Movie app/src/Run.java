@@ -72,7 +72,7 @@ public class Run {
             else
             {
                 System.out.println("Unknown command or you must be logged in to use it.");
-                System.out.println("Please enter a command: ");
+                System.out.print("Please enter a command: ");
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
@@ -264,7 +264,7 @@ public class Run {
                 }
                 ++i;
             }
-            if (i == Database.getMovieList().size()) {
+            if (i == Database.getMovieList().size() && alreadyFav == false) {
                 System.out.println("Movie not available within our movie database.");
             }
         }
