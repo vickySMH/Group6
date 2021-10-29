@@ -169,7 +169,7 @@ public class Run {
                 newUser.setUsername(command[1]);
             }
             int i = 0;
-            for (User user :Database.getUserList())
+            for (User user : Database.getUserList())
             {
                 if(user.getUsername().equals(newUser.getUsername()))
                 {
