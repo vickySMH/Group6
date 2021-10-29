@@ -69,6 +69,9 @@ public class Run {
             {
                 history();
             }
+            else if (command[0].equalsIgnoreCase("favourites") && !newUser.getUsername().isBlank()){
+                favourites();
+            }
             else
             {
                 System.out.println("Unknown command or you must be logged in to use it.");
@@ -384,14 +387,9 @@ public class Run {
     }
 
     private void listMovies() throws IOException {
-        try{
             for (Movie movie : Database.getMovieList()){
                 System.out.println(movie.getTitle());
             }
-        }
-        catch (Exception e){
-            System.out.println("Error listing the movies. Try again");
-        }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -449,13 +447,16 @@ public class Run {
     }
     public void history() throws IOException
     {
-        try
-        {
-            newUser.displayHistory();
-        }
-        catch (ArrayIndexOutOfBoundsException e){
-        System.out.println("Invalid movie title.");
+        newUser.displayHistory();
+
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
     }
+
+    public void favourites()throws IOException{
+        newUser.displayFavourites();
+
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
