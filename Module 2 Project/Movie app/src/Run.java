@@ -105,9 +105,11 @@ public class Run {
             }
 
             int i = 0;
-            for(User user : Database.getUserList()){
+            for(User user : Database.getUserList())
+            {
                 if(user.getUsername().equals(newUser.getUsername())){
                     System.out.println("Username already exists!");
+                    newUser.setUsername("");
                     break;
                 }
                 ++i;
@@ -180,7 +182,7 @@ public class Run {
                         newUser.setPassword(cmd);
                         if (user.getPassword().equals(newUser.getPassword()))
                         {
-                            passwordCounter = 4;
+                            passwordCounter = 5;
                             newUser = user;
                             System.out.println("You have successfully logged in!");
                             break;
@@ -195,7 +197,7 @@ public class Run {
                     }
                     while(passwordCounter < 3);
                 }
-                if(passwordCounter == 3)
+                if(passwordCounter == 4)
                 {
                     newUser.setUsername("");
                     newUser.setPassword("");
@@ -227,6 +229,7 @@ public class Run {
 
     private void logout() throws IOException
     {
+        System.out.println("You have successfully logged out!");
         newUser.setUsername("");
         newUser.setPassword("");
         System.out.print("Please enter a command: ");
