@@ -58,11 +58,14 @@ public class User implements Serializable {
         {
             System.out.println("You have not watched any movies yet!");
         }
-        for (History story: history)
-        {
+        else{
             System.out.println("Displaying history...");
-            System.out.println(story);
+            for (History story: history)
+                {
+                    System.out.println(story);
+                }
         }
+
     }
 
 }
