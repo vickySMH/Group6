@@ -25,7 +25,7 @@ public class Run {
         startMessage();
         while(command[0].compareToIgnoreCase("quit") != 0)
         {
-
+            Database.saveDatabase();
             if(command[0].equalsIgnoreCase("add") && newUser.getUsername().equalsIgnoreCase("admin"))
             {
                 adminAdd();
@@ -416,6 +416,7 @@ public class Run {
                 if(command[1].equalsIgnoreCase(movie.getTitle())){
                     newUser.removeMovie(movie);
                     System.out.println("Movie successfully removed from favorites.");
+                    break;
                 }
                 ++i;
             }
