@@ -50,7 +50,8 @@ public class Run {
             {
                 register();
             }
-            else if(command[0].equalsIgnoreCase("list")){
+            else if(command[0].equalsIgnoreCase("list"))
+            {
                 listMovies();
             }
             else if((command[0].equalsIgnoreCase("logout") || cmd.equalsIgnoreCase("logout")) && !newUser.getUsername().isBlank())
@@ -305,13 +306,22 @@ public class Run {
                     System.out.print("Enter actor's real name: ");
                     cmd = reader.readLine();
                     actorName = cmd;
-                    System.out.println("Enter actor's movie name: ");
+                    System.out.print("Enter actor's movie name: ");
                     cmd = reader.readLine();
                     movieName = cmd;
                     Actor actor = new Actor(actorName, movieName);
                     cast.add(actor);
                 }
-                Movie movie = new Movie(command[1], cast);
+                System.out.print("Enter release year: ");
+                int releaseYear;
+                do
+                {
+                    System.out.println("Release year cannot be before 1878");
+                    cmd = reader.readLine();
+                    releaseYear = Integer.parseInt(cmd);
+                }
+                while(releaseYear < 1878);
+                Movie movie = new Movie(command[1], cast, releaseYear);
                 Database.addMovie(movie);
                 System.out.println("Added " + command[1] + " to movie list!");
             }
