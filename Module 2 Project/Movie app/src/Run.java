@@ -351,11 +351,11 @@ public class Run {
                 int releaseYear;
                 do
                 {
-                    System.out.println("Release year cannot be before 1878");
+                    System.out.println("Release year cannot be before 1878 or after 2021");
                     cmd = reader.readLine();
                     releaseYear = Integer.parseInt(cmd);
                 }
-                while(releaseYear < 1878);
+                while(releaseYear < 1878 || releaseYear > 2021);
                 Movie movie = new Movie(command[1], cast, releaseYear);
                 Database.addMovie(movie);
                 System.out.println("Added " + command[1] + " to movie list!");
