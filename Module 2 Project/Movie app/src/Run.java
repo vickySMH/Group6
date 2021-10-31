@@ -490,9 +490,10 @@ public class Run {
                 }
             }
             ++i;
+            System.out.println(command[1] + " not found.");
         }
         catch (Exception e){
-            System.out.println(command[1] + " not found.");
+            System.out.println("There is an error. Please try again!");
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
