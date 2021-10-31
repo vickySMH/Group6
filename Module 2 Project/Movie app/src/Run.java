@@ -1,9 +1,10 @@
+import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.*;
 
 public class Run {
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -68,6 +69,9 @@ public class Run {
             else if(command[0].equalsIgnoreCase("history") && !newUser.getUsername().isBlank())
             {
                 history();
+            }
+            else if(command[0].equalsIgnoreCase("search")){
+                search();
             }
             else
             {
@@ -455,7 +459,25 @@ public class Run {
         }
         catch (ArrayIndexOutOfBoundsException e){
         System.out.println("Invalid movie title.");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
     }
+
+    public void search() throws IOException{
+        int i = 0;
+        try{
+            for(Movie movie : Database.getMovieList()){
+                if(movie.getTitle().toLowerCase().contains(command[1].toLowerCase())){
+                    System.out.println(movie.getTitle());
+                }
+            }
+            ++i;
+        }
+        catch (Exception e){
+            System.out.println(command[1] + " not found.");
+        }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
