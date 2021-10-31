@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
 
 public class Run {
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -70,13 +70,11 @@ public class Run {
             {
                 history();
             }
-<<<<<<< HEAD
-            else if(command[0].equalsIgnoreCase("search")){
-                search();
-=======
             else if (command[0].equalsIgnoreCase("favourites") && !newUser.getUsername().isBlank()){
                 favourites();
->>>>>>> 34f2a810d608aa9b46893a810db3cfd1987fa1eb
+            }
+            else if (command[0].equalsIgnoreCase("search")){
+                search();
             }
             else
             {
@@ -356,11 +354,11 @@ public class Run {
                 int releaseYear;
                 do
                 {
-                    System.out.println("Release year cannot be before 1878 or after 2021");
+                    System.out.println("Release year cannot be before 1878");
                     cmd = reader.readLine();
                     releaseYear = Integer.parseInt(cmd);
                 }
-                while(releaseYear < 1878 || releaseYear > 2021);
+                while(releaseYear < 1878);
                 Movie movie = new Movie(command[1], cast, releaseYear);
                 Database.addMovie(movie);
                 System.out.println("Added " + command[1] + " to movie list!");
@@ -408,9 +406,9 @@ public class Run {
     }
 
     private void listMovies() throws IOException {
-            for (Movie movie : Database.getMovieList()){
-                System.out.println(movie.getTitle());
-            }
+        for (Movie movie : Database.getMovieList()){
+            System.out.println(movie.getTitle());
+        }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -468,24 +466,21 @@ public class Run {
     }
     public void history() throws IOException
     {
-<<<<<<< HEAD
-        try
-        {
-            newUser.displayHistory();
-        }
-        catch (ArrayIndexOutOfBoundsException e){
-        System.out.println("Invalid movie title.");
-        }
-=======
         newUser.displayHistory();
 
->>>>>>> 34f2a810d608aa9b46893a810db3cfd1987fa1eb
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
 
-<<<<<<< HEAD
+    public void favourites()throws IOException{
+        newUser.displayFavourites();
+
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
     public void search() throws IOException{
         int i = 0;
         try{
@@ -499,11 +494,6 @@ public class Run {
         catch (Exception e){
             System.out.println(command[1] + " not found.");
         }
-=======
-    public void favourites()throws IOException{
-        newUser.displayFavourites();
-
->>>>>>> 34f2a810d608aa9b46893a810db3cfd1987fa1eb
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
