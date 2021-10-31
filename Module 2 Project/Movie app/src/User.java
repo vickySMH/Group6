@@ -68,4 +68,15 @@ public class User implements Serializable {
 
     }
 
+    public void displayFavourites(){
+        if (favMovies.size() == 0){
+            System.out.println("Your list is empty");
+        }
+        else{
+            for (Movie movie: favMovies){
+                System.out.println(movie);
+            }
+        }
+    }
+
 }

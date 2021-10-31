@@ -70,8 +70,13 @@ public class Run {
             {
                 history();
             }
+<<<<<<< HEAD
             else if(command[0].equalsIgnoreCase("search")){
                 search();
+=======
+            else if (command[0].equalsIgnoreCase("favourites") && !newUser.getUsername().isBlank()){
+                favourites();
+>>>>>>> 34f2a810d608aa9b46893a810db3cfd1987fa1eb
             }
             else
             {
@@ -323,6 +328,7 @@ public class Run {
                 ArrayList<Actor> cast = new ArrayList<>();
                 for(int j = 0; j < 3 ; ++j)
                 {
+                    boolean isInList = false;
                     System.out.print("Enter actor's real name: ");
                     cmd = reader.readLine();
                     actorName = cmd;
@@ -330,17 +336,31 @@ public class Run {
                     cmd = reader.readLine();
                     movieName = cmd;
                     Actor actor = new Actor(actorName, movieName);
+                    for(Actor actorInList : Database.getActorList())
+                    {
+                        if(actorInList.getName().equals(actor.getName()))
+                        {
+                            System.out.println("Actor is in Database");
+                            isInList = true;
+                            break;
+                        }
+                    }
+                    if(isInList == false)
+                    {
+                        System.out.println("Added actor in Database");
+                        Database.addActor(actor);
+                    }
                     cast.add(actor);
                 }
                 System.out.print("Enter release year: ");
                 int releaseYear;
                 do
                 {
-                    System.out.println("Release year cannot be before 1878");
+                    System.out.println("Release year cannot be before 1878 or after 2021");
                     cmd = reader.readLine();
                     releaseYear = Integer.parseInt(cmd);
                 }
-                while(releaseYear < 1878);
+                while(releaseYear < 1878 || releaseYear > 2021);
                 Movie movie = new Movie(command[1], cast, releaseYear);
                 Database.addMovie(movie);
                 System.out.println("Added " + command[1] + " to movie list!");
@@ -388,14 +408,9 @@ public class Run {
     }
 
     private void listMovies() throws IOException {
-        try{
             for (Movie movie : Database.getMovieList()){
                 System.out.println(movie.getTitle());
             }
-        }
-        catch (Exception e){
-            System.out.println("Error listing the movies. Try again");
-        }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -453,6 +468,7 @@ public class Run {
     }
     public void history() throws IOException
     {
+<<<<<<< HEAD
         try
         {
             newUser.displayHistory();
@@ -460,11 +476,16 @@ public class Run {
         catch (ArrayIndexOutOfBoundsException e){
         System.out.println("Invalid movie title.");
         }
+=======
+        newUser.displayHistory();
+
+>>>>>>> 34f2a810d608aa9b46893a810db3cfd1987fa1eb
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
 
+<<<<<<< HEAD
     public void search() throws IOException{
         int i = 0;
         try{
@@ -478,8 +499,14 @@ public class Run {
         catch (Exception e){
             System.out.println(command[1] + " not found.");
         }
+=======
+    public void favourites()throws IOException{
+        newUser.displayFavourites();
+
+>>>>>>> 34f2a810d608aa9b46893a810db3cfd1987fa1eb
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
+
 }
