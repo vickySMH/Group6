@@ -17,6 +17,7 @@ public class Run {
         {
             Database.loadUsers();
             Database.loadMovies();
+            Database.loadActors();
         }
         catch (Exception e)
         {
@@ -486,15 +487,18 @@ public class Run {
     }
 
     public void search() throws IOException{
-        int i = 0;
+        boolean foundMovie = false;
         try{
             for(Movie movie : Database.getMovieList()){
                 if(movie.getTitle().toLowerCase().contains(command[1].toLowerCase())){
+                    foundMovie = true;
                     System.out.println(movie.getTitle());
                 }
             }
-            ++i;
-            System.out.println(command[1] + " not found.");
+            if(foundMovie == false)
+            {
+                System.out.println(command[1] + " not found.");
+            }
         }
         catch (Exception e){
             System.out.println("There is an error. Please try again!");
