@@ -499,5 +499,15 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
+    
+        private void listActors() throws IOException {
+        for (Actor actor : Database.getActorList()){
+            System.out.println(actor.getName());
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+    
 
 }
