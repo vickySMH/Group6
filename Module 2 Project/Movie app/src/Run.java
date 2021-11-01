@@ -382,7 +382,7 @@ public class Run {
 
     private void adminRemove() throws IOException
     {
-        int i = 0;
+        boolean movieFound = false;
         try
         {
             for (Movie movie : Database.getMovieList())
@@ -390,14 +390,14 @@ public class Run {
                 if (command[1].equalsIgnoreCase(movie.getTitle()))
                 {
                     Database.getMovieList().remove(movie);
+                    movieFound = true;
                     System.out.println("Deleting " + command[1]);
                     Database.saveDatabase();
                     break;
 
                 }
-                ++i;
             }
-            if(i == Database.getMovieList().size())
+            if(movieFound == false)
             {
                 System.out.println("Selected movie is not in the list. Try again.");
             }
@@ -421,21 +421,21 @@ public class Run {
     }
 
     public void play()throws IOException{
-        int i = 0;
+        boolean movieFound = false;
         try {
             for (Movie movie : Database.getMovieList() ){
                 if (movie.getTitle().equalsIgnoreCase(command[1])){
                     movie.playMovie();
+                    movieFound = true;
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
                     LocalDate localDate = LocalDate.now();
                     History history = new History(movie, localDate);
                     newUser.addToHistory(history);
                     break;
-
                 }
-                ++i;
             }
-            if (i == Database.getMovieList().size()){
+            if (movieFound == false)
+            {
                 System.out.println("No such movie");
             }
 
@@ -450,16 +450,16 @@ public class Run {
 
     public void removeMovie() throws IOException{
         try{
-            int i = 0;
+            boolean movieFound = false;
             for(Movie movie : newUser.getFavMovies()){
                 if(command[1].equalsIgnoreCase(movie.getTitle())){
                     newUser.removeMovie(movie);
+                    movieFound = true;
                     System.out.println("Movie successfully removed from favorites.");
                     break;
                 }
-                ++i;
             }
-            if(i == newUser.getFavMovies().size() || newUser.getFavMovies().size() == 0){
+            if(movieFound == false || newUser.getFavMovies().size() == 0){
                 System.out.println("Movie not found in favorites.");
             }
         }
@@ -533,7 +533,4 @@ public class Run {
             return 0;
         }
     }
-
-
-
 }
