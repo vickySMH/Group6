@@ -1,19 +1,22 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User implements Serializable {
+public class User implements Serializable
+{
 
     private String username;
     private String password;
     private ArrayList<Movie> favMovies= new ArrayList<>();
     private ArrayList<History> history = new ArrayList<>();
 
-    public User(String name, String passcode){
+    public User(String name, String passcode)
+    {
         setUsername(name);
         setPassword(passcode);
     }
 
-    public ArrayList<Movie> getFavMovies() {
+    public ArrayList<Movie> getFavMovies()
+    {
         return favMovies;
     }
 
@@ -23,23 +26,28 @@ public class User implements Serializable {
         password = "";
     }
 
-    public void removeMovie(Movie movie){
+    public void removeMovie(Movie movie)
+    {
         favMovies.remove(movie);
     }
 
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
-    public void setUsername(String newUsername) {
+    public void setUsername(String newUsername)
+    {
         username = newUsername;
     }
 
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
-    public void setPassword(String newPassword) {
+    public void setPassword(String newPassword)
+    {
         password = newPassword;
     }
 
@@ -48,7 +56,8 @@ public class User implements Serializable {
         favMovies.add(movie);
     }
 
-    public void addToHistory(History addDate){
+    public void addToHistory(History addDate)
+    {
         history.add(addDate);
     }
 
@@ -58,22 +67,27 @@ public class User implements Serializable {
         {
             System.out.println("You have not watched any movies yet!");
         }
-        else{
+        else
+        {
             System.out.println("Displaying history...");
             for (History story: history)
-                {
-                    System.out.println(story);
-                }
+            {
+                System.out.println(story);
+            }
         }
 
     }
 
-    public void displayFavourites(){
-        if (favMovies.size() == 0){
+    public void displayFavourites()
+    {
+        if (favMovies.size() == 0)
+        {
             System.out.println("Your list is empty");
         }
-        else{
-            for (Movie movie: favMovies){
+        else
+        {
+            for (Movie movie: favMovies)
+            {
                 System.out.println(movie);
             }
         }

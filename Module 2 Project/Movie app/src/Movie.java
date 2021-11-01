@@ -1,7 +1,8 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Movie implements Serializable {
+public class Movie implements Serializable
+{
     private ArrayList<Actor> cast = new ArrayList<Actor>();
     private String title;
     private int releaseYear;
@@ -24,23 +25,29 @@ public class Movie implements Serializable {
         this.releaseYear = releaseYear;
     }
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return title;
     }
-    public void setTitle(String newTitle) {
+    public void setTitle(String newTitle)
+    {
         title = newTitle;
     }
-    public void setActor(Actor actor) {
+    public void setActor(Actor actor)
+    {
        cast.add(actor);
     }
 
-    public void playMovie(){
-        for (Actor actor : cast){
+    public void playMovie()
+    {
+        for (Actor actor : cast)
+        {
             System.out.println(actor);
         }
     }
 
-    public ArrayList<Actor> getCast() {
+    public ArrayList<Actor> getCast()
+    {
         return cast;
     }
 

@@ -7,7 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Run {
+public class Run
+{
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private String cmd;
     private String[] command;
@@ -76,7 +77,8 @@ public class Run {
             {
                 history();
             }
-            else if (command[0].equalsIgnoreCase("favourites") && !newUser.getUsername().isBlank()){
+            else if (command[0].equalsIgnoreCase("favourites") && !newUser.getUsername().isBlank())
+            {
                 favourites();
             }
             else if (command[0].equalsIgnoreCase("search")){
@@ -84,7 +86,7 @@ public class Run {
             }
             else
             {
-                System.out.println("Unknown command or you must be logged in to use it.");
+                System.out.println("Unknown command or you must be logged in to use it. Check 'help' for more information! ");
                 System.out.print("Please enter a command: ");
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
@@ -102,7 +104,8 @@ public class Run {
         {
 
             if(command[1] == null || command[1].length() < 4 || command[1].length() > 20){
-                do{
+                do
+                {
                     System.out.println("You need to enter a new username");
                     cmd = reader.readLine();
                     command = cmd.split(" ", 2);
@@ -112,7 +115,8 @@ public class Run {
 
                 newUser.setUsername(command[0]);
             }
-            else {
+            else
+            {
                 username = command[1];
                 newUser.setUsername(command[1]);
             }
@@ -170,7 +174,8 @@ public class Run {
             String username;
             if(command[1] == null || command[1].length() < 4 || command[1].length() > 20)
             {
-                do{
+                do
+                {
                     System.out.println("Please enter a username!");
                     cmd = reader.readLine();
                     command = cmd.split(" ", 2);
@@ -257,7 +262,8 @@ public class Run {
         {
             int i = 0;
             boolean alreadyFav = false;
-            for(Movie movie: Database.getMovieList()) {
+            for(Movie movie: Database.getMovieList())
+            {
                 if (movie.getTitle().equalsIgnoreCase(command[1])){
                     for(Movie favMovie : newUser.getFavMovies())
                     {
@@ -283,7 +289,7 @@ public class Run {
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
-            System.out.println("Invalid movie title");
+            System.out.println("Invalid command. Check 'help' for more information!");
         }
 
         System.out.print("Please enter a command: ");
@@ -303,10 +309,20 @@ public class Run {
 
     private void helpMessage() throws IOException
     {
+        System.out.println("List of all commands:");
         System.out.println("Register <Username>: to create a new account");
         System.out.println("Login <Username>: to log inside of your existing account");
         System.out.println("Quit: if you would like to exit the app");
         System.out.println("Add <Movie title>: add a movie to your favourites");
+        System.out.println("Favourites: displays user's favourite movies");
+        System.out.println("Remove: removes a movie from user's favourites");
+        System.out.println("List: displays all movies in our database");
+        System.out.println("History: displays all movies a user has watched and when");
+        System.out.println("Play: displays actors playing in the movie");
+        System.out.println("Actors: displays all actors inside of our database");
+        System.out.println("Search <Movie/Actor/Year>: allows you to search via movie name, actor name or year of release");
+        System.out.println("Logout: logs user out of their account");
+        System.out.println("Help: Displays this message");
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -372,7 +388,7 @@ public class Run {
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
-            System.out.println("Invalid movie title!");
+            System.out.println("Invalid command. Check 'help' for more information!");
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
@@ -404,15 +420,17 @@ public class Run {
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
-            System.out.println("Invalid movie title!");
+            System.out.println("Invalid command. Check 'help' for more information!");
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
 
-    private void listMovies() throws IOException {
-        for (Movie movie : Database.getMovieList()){
+    private void listMovies() throws IOException
+    {
+        for (Movie movie : Database.getMovieList())
+        {
             System.out.println(movie.getTitle());
         }
         System.out.print("Please enter a command: ");
@@ -422,9 +440,12 @@ public class Run {
 
     public void play()throws IOException{
         boolean movieFound = false;
-        try {
-            for (Movie movie : Database.getMovieList() ){
-                if (movie.getTitle().equalsIgnoreCase(command[1])){
+        try
+        {
+            for (Movie movie : Database.getMovieList() )
+            {
+                if (movie.getTitle().equalsIgnoreCase(command[1]))
+                {
                     movie.playMovie();
                     movieFound = true;
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
@@ -440,8 +461,9 @@ public class Run {
             }
 
         }
-        catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Invalid movie title");
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Invalid command. Check 'help' for more information!");
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
@@ -449,22 +471,26 @@ public class Run {
     }
 
     public void removeMovie() throws IOException{
-        try{
+        try
+        {
             boolean movieFound = false;
             for(Movie movie : newUser.getFavMovies()){
-                if(command[1].equalsIgnoreCase(movie.getTitle())){
+                if(command[1].equalsIgnoreCase(movie.getTitle()))
+                {
                     newUser.removeMovie(movie);
                     movieFound = true;
                     System.out.println("Movie successfully removed from favorites.");
                     break;
                 }
             }
-            if(movieFound == false || newUser.getFavMovies().size() == 0){
+            if(movieFound == false || newUser.getFavMovies().size() == 0)
+            {
                 System.out.println("Movie not found in favorites.");
             }
         }
-        catch (ArrayIndexOutOfBoundsException e){
-            System.out.println("Invalid movie title.");
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Invalid command. Check 'help' for more information!");
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
@@ -479,7 +505,8 @@ public class Run {
         command = cmd.split(" ", 2);
     }
 
-    public void favourites()throws IOException{
+    public void favourites()throws IOException
+    {
         newUser.displayFavourites();
 
         System.out.print("Please enter a command: ");
@@ -487,16 +514,20 @@ public class Run {
         command = cmd.split(" ", 2);
     }
 
-    public void search() throws IOException{
+    public void search() throws IOException
+    {
         boolean foundMovie = false;
-        try{
+        try
+        {
             for(Movie movie : Database.getMovieList()){
                 if(movie.getTitle().toLowerCase().contains(command[1].toLowerCase())
-                        || movie.getReleaseYear() == parseIntOrNull(command[1])){
+                        || movie.getReleaseYear() == parseIntOrNull(command[1]))
+                {
                     foundMovie = true;
                     System.out.println(movie.getTitle());
                 }
-                for (Actor actor : movie.getCast()) {
+                for (Actor actor : movie.getCast())
+                {
                     if(actor.getName().toLowerCase().contains(command[1].toLowerCase()))
                     {
                         System.out.println(movie.getTitle());
@@ -509,7 +540,8 @@ public class Run {
                 System.out.println(command[1] + " not found.");
             }
         }
-        catch (ArrayIndexOutOfBoundsException e){
+        catch (ArrayIndexOutOfBoundsException e)
+        {
             System.out.println("There is an error. Please try again!");
         }
         System.out.print("Please enter a command: ");
@@ -517,8 +549,10 @@ public class Run {
         command = cmd.split(" ", 2);
     }
     
-        private void listActors() throws IOException {
-        for (Actor actor : Database.getActorList()){
+        private void listActors() throws IOException
+        {
+        for (Actor actor : Database.getActorList())
+        {
             System.out.println(actor.getName());
         }
         System.out.print("Please enter a command: ");
@@ -526,10 +560,14 @@ public class Run {
         command = cmd.split(" ", 2);
     }
 
-    public Integer parseIntOrNull(String value) {
-        try {
+    public Integer parseIntOrNull(String value)
+    {
+        try
+        {
             return Integer.parseInt(value);
-        } catch (NumberFormatException e) {
+        }
+        catch (NumberFormatException e)
+        {
             return 0;
         }
     }
