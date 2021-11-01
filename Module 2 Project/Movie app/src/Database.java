@@ -44,21 +44,21 @@ public class Database
         ois.close();
     }
 
-    public static void openMovies() throws IOException
+    private static void openMovies() throws IOException
     {
         movies = new File("movies.ser");
         fos = new FileOutputStream(movies, false);
         output = new ObjectOutputStream(fos);
     }
 
-    public static void openActors() throws IOException
+    private static void openActors() throws IOException
     {
         actors = new File("actors.ser");
         fos3 = new FileOutputStream(actors, false);
         out1 = new ObjectOutputStream(fos3);
     }
 
-    public static void closeActors() throws IOException
+    private static void closeActors() throws IOException
     {
         out1.close();
     }
@@ -72,19 +72,19 @@ public class Database
     }
 
 
-    public static void openUsers() throws IOException
+    private static void openUsers() throws IOException
     {
         users = new File("users.ser");
         fos2 = new FileOutputStream(users, false);
         out = new ObjectOutputStream(fos2);
     }
 
-    public static void closeMovies() throws IOException
+    private static void closeMovies() throws IOException
     {
         output.close();
     }
 
-    public static void closeUsers() throws IOException
+    private static void closeUsers() throws IOException
     {
         out.close();
     }
