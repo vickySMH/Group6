@@ -490,7 +490,8 @@ public class Run {
         boolean foundMovie = false;
         try{
             for(Movie movie : Database.getMovieList()){
-                if(movie.getTitle().toLowerCase().contains(command[1].toLowerCase())){
+                if(movie.getTitle().toLowerCase().contains(command[1].toLowerCase())
+                        || movie.getReleaseYear() == Integer.parseInt(command[1])){
                     foundMovie = true;
                     System.out.println(movie.getTitle());
                 }

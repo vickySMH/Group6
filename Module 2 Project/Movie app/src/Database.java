@@ -23,7 +23,7 @@ public class Database {
     {
         fis = new FileInputStream("actors.ser");
         ois = new ObjectInputStream(fis);
-        movieList = (ArrayList<Movie>) ois.readObject();
+        actorList = (ArrayList<Actor>) ois.readObject();
         ois.close();
     }
 
@@ -51,8 +51,8 @@ public class Database {
 
     public static void openActors() throws IOException
     {
-        users = new File("actors.ser");
-        fos3 = new FileOutputStream(users, false);
+        actors = new File("actors.ser");
+        fos3 = new FileOutputStream(actors, false);
         out1 = new ObjectOutputStream(fos3);
     }
 
