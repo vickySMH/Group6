@@ -55,6 +55,10 @@ public class Run {
             {
                 listMovies();
             }
+            else if(command[0].equalsIgnoreCase("actors"))
+            {
+                listActors();
+            }
             else if((command[0].equalsIgnoreCase("logout") || cmd.equalsIgnoreCase("logout")) && !newUser.getUsername().isBlank())
             {
                 logout();
