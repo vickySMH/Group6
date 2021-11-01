@@ -40,6 +40,10 @@ public class Movie implements Serializable {
         }
     }
 
+    public ArrayList<Actor> getCast() {
+        return cast;
+    }
+
     public String toString()
     {
         return title;

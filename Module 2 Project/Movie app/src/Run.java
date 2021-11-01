@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Run {
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -491,9 +492,16 @@ public class Run {
         try{
             for(Movie movie : Database.getMovieList()){
                 if(movie.getTitle().toLowerCase().contains(command[1].toLowerCase())
-                        || movie.getReleaseYear() == Integer.parseInt(command[1])){
+                        || movie.getReleaseYear() == parseIntOrNull(command[1])){
                     foundMovie = true;
                     System.out.println(movie.getTitle());
+                }
+                for (Actor actor : movie.getCast()) {
+                    if(actor.getName().toLowerCase().contains(command[1].toLowerCase()))
+                    {
+                        System.out.println(movie.getTitle());
+                        foundMovie = true;
+                    }
                 }
             }
             if(foundMovie == false)
@@ -501,7 +509,7 @@ public class Run {
                 System.out.println(command[1] + " not found.");
             }
         }
-        catch (Exception e){
+        catch (ArrayIndexOutOfBoundsException e){
             System.out.println("There is an error. Please try again!");
         }
         System.out.print("Please enter a command: ");
@@ -517,6 +525,15 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
-    
+
+    public Integer parseIntOrNull(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+
 
 }
