@@ -483,7 +483,7 @@ public class Run
                     break;
                 }
             }
-            if(movieFound == false || newUser.getFavMovies().size() == 0)
+            if(movieFound == false)
             {
                 System.out.println("Movie not found in favorites.");
             }
