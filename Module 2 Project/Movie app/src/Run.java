@@ -86,7 +86,7 @@ public class Run
             }
             else
             {
-                System.out.println("Unknown command or you must be logged in to use it. Check 'help' for more information! ");
+                System.out.println("Unknown command or you must be logged in/out to use it. Check 'help' for more information! ");
                 System.out.print("Please enter a command: ");
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
@@ -153,6 +153,7 @@ public class Run
                 newUser.setUsername(username);
                 newUser.setPassword(password);
                 Database.addUser(newUser);
+                System.out.println("Successfully registered and logged in!");
             }
         }
         catch (ArrayIndexOutOfBoundsException e)
