@@ -153,6 +153,7 @@ public class Run
                 newUser.setUsername(username);
                 newUser.setPassword(password);
                 Database.addUser(newUser);
+                System.out.println("Successfully registered and logged in!");
             }
         }
         catch (ArrayIndexOutOfBoundsException e)
