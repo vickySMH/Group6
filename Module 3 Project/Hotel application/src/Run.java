@@ -31,9 +31,9 @@ public class Run
                 if(command[0].equalsIgnoreCase("staff")
                         && staff.getTitle().equalsIgnoreCase("manager"))
                 {
-                    for(Staff personel : Database.getStaff())
+                    for(Staff personnel : Database.getStaff())
                     {
-                        System.out.println(personel);
+                        System.out.println(personnel);
                     }
                 }
                 if(command[0].equalsIgnoreCase("help"))
