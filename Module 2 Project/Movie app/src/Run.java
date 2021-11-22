@@ -103,7 +103,7 @@ public class Run
         try
         {
 
-            if(command[1] == null || command[1].length() < 4 || command[1].length() > 20){
+            if(command[1] == null || command[1].length() < 4 || command[1].length() > 20f){
                 do
                 {
                     System.out.println("You need to enter a new username");
@@ -209,9 +209,19 @@ public class Run
                         else
                         {
                             ++passwordCounter;
-                            System.out.println("You have entered your password incorrectly" + passwordCounter +
-                                    " times, you are allowed to enter it 3 times incorrectly," +
-                                    "after this your login will be canceled");
+                            if(passwordCounter == 1)
+                            {
+                                System.out.println("You have entered your password incorrectly " + passwordCounter +
+                                        " time, you are allowed to enter it 3 times incorrectly," +
+                                        "after this your login will be canceled");
+                            }
+                            else
+                            {
+                                System.out.println("You have entered your password incorrectly" + passwordCounter +
+                                        " times, you are allowed to enter it 3 times incorrectly," +
+                                        "after this your login will be canceled");
+                            }
+
                         }
                     }
                     while(passwordCounter < 3);
