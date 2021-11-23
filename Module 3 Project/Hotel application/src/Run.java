@@ -110,5 +110,31 @@ public class Run
             System.out.println("Error loading from database!");
         }
     }
+    
+    public void dirty() throws IOException
+    {
+        try
+        {
+            for (Room room : Database.getRooms())
+            {
+                if (!room.isClean())
+                {
+                    System.out.println("The room needs cleaning");
+                }
+                else
+                {
+                    System.out.println("The room is clean");
+                }
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Invalid command");
+        }
+        System.out.println("Please enter new command");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
 
 }
