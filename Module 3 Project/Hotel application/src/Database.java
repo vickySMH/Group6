@@ -1,10 +1,18 @@
-public class Database
+import People.Staff;
+
+import java.io.*;
+import java.util.ArrayList;
+
+public class Database implements Serializable
 {
     private static File rooms;
+    private static File staffFile;
     private static FileInputStream fis;
     private static ObjectInputStream ois;
     private static FileOutputStream fos;
     private static ObjectOutputStream output;
+    private static FileOutputStream fos1;
+    private static ObjectOutputStream output1;
 
     private static ArrayList<Staff> staff = new ArrayList<>();
     private static ArrayList<Room> roomList = new ArrayList<>();
@@ -16,11 +24,22 @@ public class Database
 
     public static void loadRooms() throws IOException, ClassNotFoundException
     {
-        fis = new FileInputStream("rooms.ser");
+        openRooms();
+        fis = new  FileInputStream("rooms.ser");
         ois = new ObjectInputStream(fis);
         roomList = (ArrayList<Room>) ois.readObject();
         ois.close();
     }
+
+    public static void loadStaff() throws IOException, ClassNotFoundException
+    {
+        openStaff();
+        fis = new FileInputStream("staff.ser");
+        ois = new ObjectInputStream(fis);
+        staff = (ArrayList<Staff>) ois.readObject();
+        ois.close();
+    }
+
     private static void openRooms() throws IOException
     {
         rooms = new File("rooms.ser");
@@ -28,7 +47,16 @@ public class Database
         output = new ObjectOutputStream(fos);
     }
 
-    public static ArrayList<Room> getRoomList() {
+    private static void openStaff() throws IOException
+    {
+        staffFile = new File("staff.ser");
+        fos1 = new FileOutputStream(staffFile, false);
+        output1 = new ObjectOutputStream(fos1);
+    }
+
+
+    public static ArrayList<Room> getRoomList()
+    {
         return roomList;
     }
 
@@ -48,7 +76,8 @@ public class Database
         addRoomToDatabase();
     }
 
-    private static void addRoomToDatabase(){
+    private static void addRoomToDatabase()
+    {
 
         try
         {
@@ -60,7 +89,27 @@ public class Database
         {
             System.out.println("Error in database, room not found");
         }
-    {
     }
+
+    private static void closeStaff() throws IOException
+    {
+        output1.close();
+    }
+
+    private static void addStaffToDatabase()
+    {
+
+        try
+        {
+            openStaff();
+            output1.writeObject(roomList);
+            closeStaff();
+        }
+        catch(IOException e)
+        {
+            System.out.println("Error in database, room not found");
+        }
+    }
+
 
 }

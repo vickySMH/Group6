@@ -1,5 +1,6 @@
 import People.Staff;
 
+import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,16 +16,6 @@ public class Run
 
     public void run() throws IOException
     {
-
-        try
-        {
-            Database.loadStaff();
-        }
-        catch(Exception e)
-        {
-            System.out.println("Error loading from database!");
-        }
-
         startMessage();
         while(command[0].compareToIgnoreCase("quit") != 0)
         {
@@ -53,6 +44,7 @@ public class Run
 
     public void startMessage() throws IOException
     {
+        loadDatabase();
         System.out.println("Welcome to Kaizen's hotel app! " + "\n" +
                 "For more information please, type in 'help'!");
         cmd = reader.readLine();
@@ -95,6 +87,28 @@ public class Run
         }
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
+    }
+
+
+    private static void loadDatabase()
+    {
+        try
+        {
+            Database.loadRooms();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error loading from database!");
+        }
+
+        try
+        {
+            Database.loadStaff();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error loading from database!");
+        }
     }
 
 }
