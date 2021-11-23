@@ -9,4 +9,9 @@ public class Room
     private boolean occupied;
     private LocalDate startDate;
     private LocalDate endDate;
+    private boolean isClean;
+
+    public boolean isClean() {
+        return isClean;
+    }
 }

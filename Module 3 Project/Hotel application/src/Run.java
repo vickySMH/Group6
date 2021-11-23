@@ -117,13 +117,13 @@ public class Run
         {
             for (Room room : Database.getRooms())
             {
-                if (!room.isClean())
+                if (room.isClean())
                 {
-                    System.out.println("The room needs cleaning");
+                    System.out.println("The room is clean");
                 }
                 else
                 {
-                    System.out.println("The room is clean");
+                    System.out.println("The room needs cleaning");
                 }
             }
         }

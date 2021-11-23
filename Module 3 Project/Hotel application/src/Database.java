@@ -55,7 +55,7 @@ public class Database implements Serializable
     }
 
 
-    public static ArrayList<Room> getRoomList()
+    public static ArrayList<Room> getRooms()
     {
         return roomList;
     }
