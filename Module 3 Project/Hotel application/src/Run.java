@@ -16,6 +16,8 @@ public class Run
 
     public void run() throws IOException
     {
+        User user = new User("pencho");
+        System.out.println(user.getPassword());
         startMessage();
         while(command[0].compareToIgnoreCase("quit") != 0)
         {
@@ -62,12 +64,14 @@ public class Run
             System.out.println("Payroll - checks staff's salaries");
             System.out.println("Dirty - displays all of the dirty rooms in the hotel");
             System.out.println("Bookings - displays all booked rooms");
+            System.out.println("Password - gives you the opportunity to change password");
         }
 
         if(staff.getTitle().equalsIgnoreCase("cleaner"))
         {
             System.out.println("Clean - marks room as no longer dirty");
             System.out.println("Dirty - displays all of the dirty rooms in the hotel");
+            System.out.println("Password - gives you the opportunity to change password");
         }
 
         if(staff.getTitle().equalsIgnoreCase("receptionist"))
@@ -76,6 +80,7 @@ public class Run
             System.out.println("Change - changes a booking for a customer");
             System.out.println("Remove - removes a booking for a customer");
             System.out.println("Bookings - displays all booked rooms");
+            System.out.println("Password - gives you the opportunity to change password");
         }
 
         if(staff.getTitle().equalsIgnoreCase("accountant"))
@@ -84,6 +89,7 @@ public class Run
             System.out.println("Tax - checks taxes that the hotel has to pay");
             System.out.println("Payroll - checks staff's salaries");
             System.out.println("Budget - checks budget for hotel needs");
+            System.out.println("Password - gives you the opportunity to change password");
         }
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -135,6 +141,4 @@ public class Run
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
-
-
 }
