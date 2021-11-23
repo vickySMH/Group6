@@ -16,8 +16,6 @@ public class Run
 
     public void run() throws IOException
     {
-        User user = new User("pencho");
-        System.out.println(user.getPassword());
         startMessage();
         while(command[0].compareToIgnoreCase("quit") != 0)
         {
