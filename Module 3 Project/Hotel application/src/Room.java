@@ -10,8 +10,17 @@ public class Room
     private LocalDate startDate;
     private LocalDate endDate;
     private boolean isClean;
+    private int roomNumber;
 
     public boolean isClean() {
         return isClean;
+    }
+    public void cleanRoom(boolean isClean)
+    {
+        this.isClean = isClean;
+    }
+    public int getRoomNumber()
+    {
+        return roomNumber;
     }
 }

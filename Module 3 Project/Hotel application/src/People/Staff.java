@@ -9,6 +9,11 @@ public class Staff extends Person
         return title;
     }
 
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
     public String toString()
     {
         return "Name: " + fullName + " Position: " + title + " Phone number: " + phoneNumber;

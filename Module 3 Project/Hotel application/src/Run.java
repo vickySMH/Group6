@@ -12,10 +12,12 @@ public class Run
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private String cmd;
     private Staff staff = new Staff();
+
     private String[] command;
 
     public void run() throws IOException
     {
+        staff.setTitle("cleaner");
         startMessage();
         while(command[0].compareToIgnoreCase("quit") != 0)
         {
@@ -27,9 +29,17 @@ public class Run
                         System.out.println(personel);
                     }
                 }
-                if(command[0].equalsIgnoreCase("help"))
+                else if(command[0].equalsIgnoreCase("help"))
                 {
                     helpMessage();
+                }
+                else if(command[0].equalsIgnoreCase("dirty"))
+                {
+                    dirty();
+                }
+                else if(command[0].equalsIgnoreCase("clean"))
+                {
+                    clean();
                 }
                 else
                 {
@@ -42,16 +52,45 @@ public class Run
         System.out.println("Thank you for using Kaizen's hotel app!");
     }
 
-    public void startMessage() throws IOException
+    private void startMessage() throws IOException
     {
         loadDatabase();
         System.out.println("Welcome to Kaizen's hotel app! " + "\n" +
                 "For more information please, type in 'help'!");
+        System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
 
-    public void helpMessage() throws IOException
+
+    private void clean() throws IOException
+    {
+        int roomNumber;
+        try
+        {
+            roomNumber = Integer.parseInt(command[1]);
+                for(Room room : Database.getRooms())
+                {
+                    if(roomNumber == room.getRoomNumber())
+                    {
+                        if(room.isClean() == false)
+                        {
+                            room.cleanRoom(true);
+                            System.out.println("Room is now clean, thank you for doing such an amazing job!");
+                        }
+                    }
+                }
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("You have added a letter to the room number, please try using the command again");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
+    private void helpMessage() throws IOException
     {
         if(staff.getTitle().equalsIgnoreCase("manager"))
         {
@@ -89,12 +128,13 @@ public class Run
             System.out.println("Budget - checks budget for hotel needs");
             System.out.println("Password - gives you the opportunity to change password");
         }
+        System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
 
 
-    private static void loadDatabase()
+    private void loadDatabase()
     {
         try
         {
@@ -115,27 +155,40 @@ public class Run
         }
     }
     
-    public void dirty() throws IOException
+    private void dirty() throws IOException
     {
-        try
+        if(staff.getTitle().equalsIgnoreCase("cleaner"))
         {
-            for (Room room : Database.getRooms())
+            try
             {
-                if (room.isClean())
+                boolean noDirtyRooms = true;
+                for (Room room : Database.getRooms())
                 {
-                    System.out.println("The room is clean");
+                    if (room.isClean())
+                    {
+                        System.out.println("Room " + room.getRoomNumber() + " is clean!" );
+                    }
+                    else
+                    {
+                        System.out.println("Room " + room.getRoomNumber() + " needs cleaning!");
+                        noDirtyRooms = false;
+                    }
                 }
-                else
+                if(noDirtyRooms)
                 {
-                    System.out.println("The room needs cleaning");
+                    System.out.println("No rooms need cleaning at the moment.");
                 }
             }
+            catch (ArrayIndexOutOfBoundsException e)
+            {
+                System.out.println("Invalid command");
+            }
         }
-        catch (ArrayIndexOutOfBoundsException e)
+        else
         {
-            System.out.println("Invalid command");
+            System.out.println("This command is only usable by the cleaner staff");
         }
-        System.out.println("Please enter new command");
+        System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
