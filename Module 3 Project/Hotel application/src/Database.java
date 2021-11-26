@@ -13,13 +13,32 @@ public class Database implements Serializable
     private static ObjectOutputStream output;
     private static FileOutputStream fos1;
     private static ObjectOutputStream output1;
+    private static FileOutputStream fos2;
+    private static ObjectOutputStream output2;
 
     private static ArrayList<Staff> staff = new ArrayList<>();
     private static ArrayList<Room> roomList = new ArrayList<>();
+    private static ArrayList<Guest> guestList = new ArrayList<>();
 
     public static ArrayList<Staff> getStaff()
     {
         return staff;
+    }
+    
+    public static void loadGuests() throws IOException, ClassNotFoundException
+    {
+        openGuests();
+        fis1 = new  FileInputStream("guests.ser");
+        ois1 = new ObjectInputStream(fis);
+        guestList = (ArrayList<Guest>) ois.readObject();
+        ois.close();
+    }
+
+    private static void openGuests() throws IOException
+    {
+        guests = new File("guests.ser");
+        fos2 = new FileOutputStream(guests, false);
+        output2 = new ObjectOutputStream(fos);
     }
 
     public static void loadRooms() throws IOException, ClassNotFoundException
@@ -95,6 +114,11 @@ public class Database implements Serializable
     {
         output1.close();
     }
+    
+        private static void closeGuests() throws IOException
+    {
+        output2.close();
+    }
 
     private static void addStaffToDatabase()
     {
@@ -109,6 +133,26 @@ public class Database implements Serializable
         {
             System.out.println("Error in database, room not found");
         }
+    }
+    
+        private static void addGuestToDatabase()
+    {
+
+        try
+        {
+            openGuests();
+            output.writeObject(guestList);
+            closeGuests();
+        }
+        catch(IOException e)
+        {
+            System.out.println("Error in database, guest not found");
+        }
+    }
+
+
+    public static ArrayList<Guest> getGuestList() {
+        return guestList;
     }
     
     public static void addStaff(Staff staff1)
