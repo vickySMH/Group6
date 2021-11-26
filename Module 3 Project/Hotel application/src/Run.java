@@ -50,6 +50,13 @@ public class Run
                 {
                     password();
                 }
+                else if (command[0].equalsIgnoreCase("add"))
+                {
+                    if (command[1].equalsIgnoreCase("staff"))
+                    {
+                        addStaff();
+                    }
+                }
                 else
                 {
                     System.out.println("Unknown command, please check 'help ' for list of commands");
@@ -245,6 +252,71 @@ public class Run
             System.out.println("This command is only usable by the cleaner staff");
         }
         System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+    
+    public void addStaff() throws IOException {
+        String firstName, lastName, title, phoneNumber;
+        int ID;
+        boolean isRegistered = false;
+        try
+        {
+            System.out.print("Please enter first name: ");
+            cmd = reader.readLine();
+            command = cmd.split(" ", 2);
+            firstName = command[0];
+            System.out.print("Please enter last name: ");
+            cmd = reader.readLine();
+            command = cmd.split(" ", 2);
+            lastName = command[0];
+            System.out.print("Please enter position: ");
+            cmd = reader.readLine();
+            command = cmd.split(" ", 2);
+            title = command[0];
+            System.out.print("Please enter phone number: ");
+            cmd = reader.readLine();
+            command = cmd.split(" ", 2);
+            phoneNumber = command[0];
+            System.out.print("Please enter ID: ");
+            cmd = reader.readLine();
+            command = cmd.split(" ", 2);
+            try
+            {
+                if (Integer.parseInt(command[0]) % 1000000 == 0 || Integer.parseInt(command[0]) % 1000000 > 9)
+                {
+                    throw new NumberFormatException();
+                }
+                else
+                {
+                    ID = Integer.parseInt(command[0]);
+                    for (Staff staff : Database.getStaff())
+                    {
+                        if (ID == staff.getID())
+                        {
+                            isRegistered = true;
+                            System.out.println("Person already registered.");
+                        }
+                    }
+                    if (isRegistered == false)
+                    {
+                        Staff staff = new Staff(firstName, lastName, title, phoneNumber, ID);
+                        Database.addStaff(staff);
+                    }
+                }
+            }
+            catch (NumberFormatException ex)
+            {
+                System.out.println("Invalid ID, making ID to default, please change it later.");
+                ID = 0;
+            }
+
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Invalid command. Check 'help' for more information!");
+        }
+        System.out.print("Please enter a new command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
