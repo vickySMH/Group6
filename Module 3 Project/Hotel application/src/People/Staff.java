@@ -5,6 +5,16 @@ import java.io.Serializable;
 public class Staff extends Person implements Serializable
 {
     private String title;
+    
+    public Staff(String firstName, String lastName, String title, String phoneNumber, int ID)
+    {
+        super(firstName, lastName, phoneNumber, ID);
+        this.title = title;
+    }
+
+    public Staff() {
+
+    }
 
     public String getTitle()
     {
