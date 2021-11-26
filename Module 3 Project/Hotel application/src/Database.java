@@ -110,6 +110,13 @@ public class Database implements Serializable
             System.out.println("Error in database, room not found");
         }
     }
+    
+    public static void addStaff(Staff staff1)
+    {
+        staff.add(staff1);
+        addStaffToDatabase();
+    }
+
 
 
 }
