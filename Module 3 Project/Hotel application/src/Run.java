@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Run
 {
@@ -12,11 +13,15 @@ public class Run
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private String cmd;
     private Staff staff = new Staff();
+    private User user = new User();
 
     private String[] command;
 
     public void run() throws IOException
     {
+        user.setUsername("random");
+        user.setPassword("random");
+
         staff.setTitle("cleaner");
         startMessage();
         while(command[0].compareToIgnoreCase("quit") != 0)
@@ -41,9 +46,14 @@ public class Run
                 {
                     clean();
                 }
+                else if(command[0].equalsIgnoreCase("password"))
+                {
+                    password();
+                }
                 else
                 {
                     System.out.println("Unknown command, please check 'help ' for list of commands");
+                    System.out.print("Please enter a command: ");
                     cmd = reader.readLine();
                     command = cmd.split(" ", 2);
                     break;
@@ -88,6 +98,52 @@ public class Run
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
+    }
+
+    private void password() throws IOException
+    {
+        String password;
+        if(!user.getUsername().isEmpty())
+        {
+            System.out.print("Please enter your old password: ");
+            cmd = reader.readLine();
+            if (cmd.equalsIgnoreCase(user.getPassword()))
+            {
+                System.out.print("Please enter a new password: ");
+                cmd = reader.readLine();
+                password = cmd;
+                do
+                {
+                    System.out.println("If you feel like you have mistyped your password please enter 'reset'");
+                    System.out.print("Please confirm your password: ");
+                    cmd = reader.readLine();
+                    if(cmd.equalsIgnoreCase("reset"))
+                    {
+                        break;
+                    }
+                }
+                while (!password.equals(cmd));
+                if(cmd.equalsIgnoreCase("reset"))
+                {
+                    password();
+                }
+                else
+                {
+                    user.setPassword(password);
+                    System.out.println("Successfully changed password!");
+                    System.out.print("Please enter a command: ");
+                    cmd = reader.readLine();
+                    command = cmd.split(" ", 2);
+                }
+            }
+            else
+            {
+                System.out.println("Invalid password!");
+                System.out.print("Please enter a command: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+            }
+        }
     }
 
     private void helpMessage() throws IOException

@@ -1,6 +1,8 @@
 package People;
 
-public class Staff extends Person
+import java.io.Serializable;
+
+public class Staff extends Person implements Serializable
 {
     private String title;
 
