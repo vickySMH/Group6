@@ -24,4 +24,12 @@ public class Room implements Serializable
     {
         return roomNumber;
     }
+
+    public Room(int beds, boolean hasNet, int price, int roomNum)
+    {
+        numOfBeds = beds;
+        hasInternetAccess = hasNet;
+        pricePerNight = price;
+        roomNumber = roomNum;
+    }
 }

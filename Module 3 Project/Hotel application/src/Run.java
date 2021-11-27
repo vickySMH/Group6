@@ -305,4 +305,28 @@ public class Run
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
+
+   /* public void addRooms()
+    {
+        for (int i = 1; i < 5; i++)
+        {
+            Room room = new Room(1, false, 200, 100 + i);
+            Database.addRoom(room);
+        }
+        for (int i = 1; i < 9; i++)
+        {
+            Room room = new Room(2, true, 420, 200 + i);
+            Database.addRoom(room);
+        }
+        for (int i = 1; i < 3; i++)
+        {
+            Room room = new Room(4, true, 900, 304 + i);
+            Database.addRoom(room);
+        }
+        for (int i = 1; i < 5; i++)
+        {
+            Room room = new Room(2, true, 420, 300 + i);
+            Database.addRoom(room);
+        }
+    }*/
 }
