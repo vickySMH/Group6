@@ -485,8 +485,24 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
-
-
-
+    
+    public void removeStaff() throws IOException
+    {
+        System.out.print("Please enter the phone number of the person: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        for (Staff staff : Database.getStaff())
+        {
+            if (staff.getPhoneNumber().equals(command[0]))
+            {
+                Database.getStaff().remove(staff);
+                Database.saveDatabase();
+                break;
+            }
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
 }
 
