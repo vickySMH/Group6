@@ -21,6 +21,10 @@ public class Run {
         startMessage();
         while (command[0].compareToIgnoreCase("quit") != 0)
         {
+            if(command[0].equalsIgnoreCase("register"))
+            {
+                register();
+            }
             if (command[0].equalsIgnoreCase("staff")
                     && staff.getTitle().equalsIgnoreCase("manager"))
             {
@@ -221,6 +225,15 @@ public class Run {
     {
         try
         {
+            Database.loadUsers();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error loading from database!");
+        }
+
+        try
+        {
             Database.loadRooms();
         }
         catch (Exception e)
@@ -289,54 +302,47 @@ public class Run {
         String firstName, lastName, title, phoneNumber;
         int salary;
         boolean isRegistered = false;
+        System.out.print("Please enter first name: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        firstName = command[0];
+        System.out.print("Please enter last name: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        lastName = command[0];
+        System.out.print("Please enter position: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        title = command[0];
+        System.out.print("Please enter phone number: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        phoneNumber = command[0];
+        System.out.println("Please enter salary: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
         try
         {
-            System.out.print("Please enter first name: ");
-            cmd = reader.readLine();
-            command = cmd.split(" ", 2);
-            firstName = command[0];
-            System.out.print("Please enter last name: ");
-            cmd = reader.readLine();
-            command = cmd.split(" ", 2);
-            lastName = command[0];
-            System.out.print("Please enter position: ");
-            cmd = reader.readLine();
-            command = cmd.split(" ", 2);
-            title = command[0];
-            System.out.print("Please enter phone number: ");
-            cmd = reader.readLine();
-            command = cmd.split(" ", 2);
-            phoneNumber = command[0];
-            System.out.println("Please enter salary: ");
-            cmd = reader.readLine();
-            command = cmd.split(" ", 2);
-            try
+            salary = Integer.parseInt(command[0]);
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Error with salary. Automatically setting salary to default");
+            salary = 17000;
+        }
+        for (Staff staff1 : Database.getStaff())
+        {
+            if (staff1.getPhoneNumber().equalsIgnoreCase(phoneNumber))
             {
-                salary = Integer.parseInt(command[0]);
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Error with salary. Automatically setting salary to default");
-                salary = 17000;
-            }
-            for (Staff staff1 : Database.getStaff())
-            {
-                if (staff1.getPhoneNumber().equalsIgnoreCase(phoneNumber))
-                {
-                    isRegistered = true;
-                    System.out.println("Person already registered as staff!");
-                }
-            }
-            if (isRegistered == false)
-            {
-                System.out.println("Successfully registered " + firstName + " " + lastName + " as " + title);
-                Staff stafff = new Staff(firstName, lastName, title, phoneNumber, salary);
-                Database.addStaff(stafff);
+                isRegistered = true;
+                System.out.println("Person already registered as staff!");
             }
         }
-        catch (ArrayIndexOutOfBoundsException e)
+        if (isRegistered == false)
         {
-            System.out.println("Invalid command. Check 'help' for more information!");
+            System.out.println("Successfully registered " + firstName + " " + lastName + " as " + title);
+            Staff stafff = new Staff(firstName, lastName, title, phoneNumber, salary);
+            Database.addStaff(stafff);
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
@@ -367,76 +373,58 @@ public class Run {
         }
     }*/
 
-    public void addRoom()
+    public void addRoom() throws IOException
     {
         int numOfBeds, pricePerNight, roomNum;
         boolean hasNet = false;
         boolean roomExists = false;
 
-        try
-        {
-            System.out.print("Please enter room number: ");
-            cmd = reader.readLine();
-            command = cmd.split(" ", 2);
-            try
-            {
-                roomNum = Integer.parseInt(command[0]);
-                for (Room room : Database.getRooms())
-                {
-                    if (room.getRoomNumber() == roomNum)
-                    {
-                        roomExists = true;
-                        throw new NumberFormatException();
-                    }
-                }
-                if (roomExists == false)
-                {
-                    System.out.print("Please enter number of beds: ");
-                    cmd = reader.readLine();
-                    command = cmd.split(" ", 2);
-                    try
-                    {
-                        numOfBeds = Integer.parseInt(command[0]);
-                    }
-                    catch (NumberFormatException e)
-                    {
-                        System.out.println("You have mistyped the number of beds. " +
-                                "Automatically setting the beds to 2.");
-                        numOfBeds = 2;
-                    }
-                    System.out.print("Does the room have internet connection: ");
-                    cmd = reader.readLine();
-                    command = cmd.split(" ", 2);
-                    if (command[0].equalsIgnoreCase("yes"))
-                    {
-                        hasNet = true;
-                    }
-                    else if (command[0].equalsIgnoreCase("no"))
-                    {
-                        hasNet = false;
-                    }
-                    else
-                    {
-                        System.out.println("Invalid command. " + "Automatically making the room without internet access.");
-                        hasNet = false;
-                    }
-
-                    System.out.print("Please enter price per night for the room: ");
-                    cmd = reader.readLine();
-                    command = cmd.split(" ", 2);
-                    try
-                    {
-                        pricePerNight = Integer.parseInt(command[0]);
-                    }
-                    catch (NumberFormatException e)
-                    {
-                        System.out.println("Invalid number. " + "Room price set to default");
-                        pricePerNight = 420;
-                    }
-                    Room room = new Room(numOfBeds, hasNet, pricePerNight, roomNum);
-                    Database.addRoom(room);
-                }
-            }
+         System.out.print("Please enter room number: ");
+         cmd = reader.readLine();
+         command = cmd.split(" ", 2);
+         try {
+             roomNum = Integer.parseInt(command[0]);
+             for (Room room : Database.getRooms()) {
+                 if (room.getRoomNumber() == roomNum) {
+                     roomExists = true;
+                     throw new NumberFormatException();
+                 }
+             }
+             if (roomExists == false) {
+                 System.out.print("Please enter number of beds: ");
+                 cmd = reader.readLine();
+                 command = cmd.split(" ", 2);
+                 try {
+                     numOfBeds = Integer.parseInt(command[0]);
+                 } catch (NumberFormatException e) {
+                     System.out.println("You have mistyped the number of beds. " +
+                             "Automatically setting the beds to 2.");
+                     numOfBeds = 2;
+                 }
+                 System.out.print("Does the room have internet connection: ");
+                 cmd = reader.readLine();
+                 command = cmd.split(" ", 2);
+                 if (command[0].equalsIgnoreCase("yes")) {
+                     hasNet = true;
+                 } else if (command[0].equalsIgnoreCase("no")) {
+                     hasNet = false;
+                 } else {
+                     System.out.println("Invalid command. " + "Automatically making the room without internet access.");
+                     hasNet = false;
+                 }
+                 System.out.print("Please enter price per night for the room: ");
+                 cmd = reader.readLine();
+                 command = cmd.split(" ", 2);
+                 try {
+                     pricePerNight = Integer.parseInt(command[0]);
+                 } catch (NumberFormatException e) {
+                     System.out.println("Invalid number. " + "Room price set to default");
+                     pricePerNight = 420;
+                 }
+                 Room room = new Room(numOfBeds, hasNet, pricePerNight, roomNum);
+                 Database.addRoom(room);
+             }
+         }
             catch (NumberFormatException e)
             {
                 System.out.println("Invalid room number");
@@ -444,11 +432,61 @@ public class Run {
             System.out.print("Please enter a command: ");
             cmd = reader.readLine();
             command = cmd.split(" ", 2);
-        }
-        catch (IOException e)
-        {
-            System.out.println("Invalid command");
-        }
     }
+
+    private void register() throws IOException
+    {
+        command = cmd.split(" ", 3);
+        User newUser = new User();
+        String username;
+        boolean exists = false;
+        try
+        {
+            if (command[1].length() < 5 || command[1].length() > 16)
+            {
+                do
+                {
+                    System.out.print("You need to enter a different username: ");
+                    cmd = reader.readLine();
+                    command = cmd.split(" ", 2);
+                    username = command[0];
+                }
+                while (command[0].length() < 5 || command.length > 16);
+                newUser.setUsername(command[0]);
+            }
+            else
+            {
+                username = command[1];
+                newUser.setUsername(command[1]);
+            }
+            for (User existing : Database.getUserList())
+            {
+                if (existing.getUsername().equalsIgnoreCase(username))
+                {
+                    System.out.println("User already exists!");
+                    exists = true;
+                    user.setUsername("");
+                    break;
+                }
+            }
+            if (exists == false)
+            {
+                System.out.println("Successfully registered: " + newUser.getUsername()
+                        + " with temporary password: " + newUser.getPassword());
+                System.out.println("If temporary password is forgotten, do not hesitate to contact the manager!");
+                Database.addUser(newUser);
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Unknown command, please check 'help ' for list of commands");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
+
+
 }
 

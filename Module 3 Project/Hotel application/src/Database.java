@@ -9,6 +9,7 @@ public class Database
     private static File rooms;
     private static File staffFile;
     private static File guests;
+    private static File users;
     private static FileInputStream fis;
     private static ObjectInputStream ois;
     private static FileOutputStream fos;
@@ -17,16 +18,28 @@ public class Database
     private static ObjectOutputStream output1;
     private static FileOutputStream fos2;
     private static ObjectOutputStream output2;
+    private static FileOutputStream fos3;
+    private static ObjectOutputStream output3;
+
 
     private static ArrayList<Staff> staff = new ArrayList<>();
     private static ArrayList<Room> roomList = new ArrayList<>();
     private static ArrayList<Guest> guestList = new ArrayList<>();
+    private static ArrayList<User> userList = new ArrayList<>();
 
     public static ArrayList<Staff> getStaff()
     {
         return staff;
     }
-    
+
+    public static void loadUsers() throws IOException, ClassNotFoundException
+    {
+        fis = new FileInputStream("users.ser");
+        ois = new ObjectInputStream(fis);
+        userList = (ArrayList<User>) ois.readObject();
+        ois.close();
+    }
+
     public static void loadGuests() throws IOException, ClassNotFoundException
     {
         fis = new  FileInputStream("guests.ser");
@@ -34,13 +47,6 @@ public class Database
         guestList = (ArrayList<Guest>) ois.readObject();
         ois.close();
 
-    }
-
-    private static void openGuests() throws IOException
-    {
-        guests = new File("guests.ser");
-        fos2 = new FileOutputStream(guests, false);
-        output2 = new ObjectOutputStream(fos2);
     }
 
     public static void loadRooms() throws IOException, ClassNotFoundException
@@ -63,27 +69,36 @@ public class Database
 
     private static void openRooms() throws IOException
     {
-        rooms = new File("rooms.ser");
-        fos = new FileOutputStream(rooms, false);
+        fos = new FileOutputStream("rooms.ser", false);
         output = new ObjectOutputStream(fos);
     }
 
     private static void openStaff() throws IOException
     {
-        staffFile = new File("staff.ser");
-        fos1 = new FileOutputStream(staffFile, false);
+        fos1 = new FileOutputStream("staff.ser", false);
         output1 = new ObjectOutputStream(fos1);
     }
 
+    private static void openGuests() throws IOException
+    {
+        fos2 = new FileOutputStream("guests.ser", false);
+        output2 = new ObjectOutputStream(fos2);
+    }
+
+    public static void openUsers() throws IOException
+    {
+        fos3 = new FileOutputStream("users.ser", false);
+        output3 = new ObjectOutputStream(fos3);
+    }
+
+    public static ArrayList<User> getUserList()
+    {
+        return userList;
+    }
 
     public static ArrayList<Room> getRooms()
     {
         return roomList;
-    }
-
-    private static void closeRooms() throws IOException
-    {
-        output.close();
     }
 
     public static void addRoom(Room room)
@@ -94,9 +109,30 @@ public class Database
 
     public static void saveDatabase()
     {
+        addUserToDatabase();
         addGuestToDatabase();
         addRoomToDatabase();
         addStaffToDatabase();
+    }
+
+    private static void closeStaff() throws IOException
+    {
+        output1.close();
+    }
+    
+        private static void closeGuests() throws IOException
+    {
+        output2.close();
+    }
+
+    private static void closeRooms() throws IOException
+    {
+        output.close();
+    }
+
+    private static void closeUsers() throws IOException
+    {
+        output3.close();
     }
 
     private static void addRoomToDatabase()
@@ -114,16 +150,6 @@ public class Database
         }
     }
 
-    private static void closeStaff() throws IOException
-    {
-        output1.close();
-    }
-    
-        private static void closeGuests() throws IOException
-    {
-        output2.close();
-    }
-
     private static void addStaffToDatabase()
     {
 
@@ -139,18 +165,32 @@ public class Database
         }
     }
     
-        private static void addGuestToDatabase()
+    private static void addGuestToDatabase()
     {
 
         try
         {
             openGuests();
-            output.writeObject(guestList);
+            output2.writeObject(guestList);
             closeGuests();
         }
         catch(IOException e)
         {
             System.out.println("Error in database, guest not found");
+        }
+    }
+
+    private static void addUserToDatabase()
+    {
+        try
+        {
+            openUsers();
+            output3.writeObject(userList);
+            closeUsers();
+        }
+        catch (IOException e)
+        {
+            System.out.println("Error in database, user not found");
         }
     }
 
@@ -165,6 +205,10 @@ public class Database
         addStaffToDatabase();
     }
 
-
+    public static void addUser(User user)
+    {
+        userList.add(user);
+        addUserToDatabase();
+    }
 
 }

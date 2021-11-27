@@ -10,7 +10,7 @@ public class User implements Serializable
 
     public User()
     {
-
+        generateRandomPass();
     }
 
     public User(String username)

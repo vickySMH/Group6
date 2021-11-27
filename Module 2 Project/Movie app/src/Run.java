@@ -103,7 +103,7 @@ public class Run
         try
         {
 
-            if(command[1] == null || command[1].length() < 4 || command[1].length() > 20f){
+            if(command[1] == null || command[1].length() < 4 || command[1].length() > 20){
                 do
                 {
                     System.out.println("You need to enter a new username");
