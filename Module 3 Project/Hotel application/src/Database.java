@@ -156,7 +156,7 @@ public class Database
         try
         {
             openStaff();
-            output1.writeObject(roomList);
+            output1.writeObject(staff);
             closeStaff();
         }
         catch(IOException e)

@@ -19,14 +19,22 @@ public class Run {
     public void run() throws IOException
     {
         startMessage();
-        while (command[0].compareToIgnoreCase("quit") != 0)
+        while (!command[0].equalsIgnoreCase("quit"))
         {
             if(command[0].equalsIgnoreCase("register"))
             {
                 register();
             }
-            if (command[0].equalsIgnoreCase("staff")
-                    && staff.getTitle().equalsIgnoreCase("manager"))
+            else if(command[0].equalsIgnoreCase("remove"))
+            {
+                command = cmd.split(" ", 3);
+                if(command[1].equalsIgnoreCase("staff"))
+                {
+                    removeStaff();
+                }
+            }
+            else if (command[0].equalsIgnoreCase("staff"))
+                    //&& staff.getTitle().equalsIgnoreCase("manager"))
             {
                 for (Staff personel : Database.getStaff())
                 {
@@ -59,7 +67,7 @@ public class Run {
             {
                 clean();
             }
-            else if (command[0].equalsIgnoreCase("password"))
+            else if (command[0].equalsIgnoreCase("password") && !user.getUsername().isBlank())
             {
                 password();
             }
@@ -318,7 +326,7 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
         phoneNumber = command[0];
-        System.out.println("Please enter salary: ");
+        System.out.print("Please enter salary: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
         try
@@ -404,11 +412,16 @@ public class Run {
                  System.out.print("Does the room have internet connection: ");
                  cmd = reader.readLine();
                  command = cmd.split(" ", 2);
-                 if (command[0].equalsIgnoreCase("yes")) {
+                 if (command[0].equalsIgnoreCase("yes"))
+                 {
                      hasNet = true;
-                 } else if (command[0].equalsIgnoreCase("no")) {
+                 }
+                 else if (command[0].equalsIgnoreCase("no"))
+                 {
                      hasNet = false;
-                 } else {
+                 }
+                 else
+                 {
                      System.out.println("Invalid command. " + "Automatically making the room without internet access.");
                      hasNet = false;
                  }
@@ -417,7 +430,9 @@ public class Run {
                  command = cmd.split(" ", 2);
                  try {
                      pricePerNight = Integer.parseInt(command[0]);
-                 } catch (NumberFormatException e) {
+                 }
+                 catch (NumberFormatException e)
+                 {
                      System.out.println("Invalid number. " + "Room price set to default");
                      pricePerNight = 420;
                  }
@@ -488,6 +503,7 @@ public class Run {
     
     public void removeStaff() throws IOException
     {
+        boolean removedStaff = false ;
         System.out.print("Please enter the phone number of the person: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -495,10 +511,16 @@ public class Run {
         {
             if (staff.getPhoneNumber().equals(command[0]))
             {
+                System.out.println("Successfully removed " + staff.getFullName() + "!");
+                removedStaff = true;
                 Database.getStaff().remove(staff);
                 Database.saveDatabase();
                 break;
             }
+        }
+        if(removedStaff == false)
+        {
+            System.out.println("No such person in hotel staff");
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
