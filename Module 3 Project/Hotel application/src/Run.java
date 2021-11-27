@@ -287,7 +287,7 @@ public class Run {
     public void addStaff() throws IOException
     {
         String firstName, lastName, title, phoneNumber;
-        int ID;
+        int salary;
         boolean isRegistered = false;
         try
         {
@@ -307,6 +307,18 @@ public class Run {
             cmd = reader.readLine();
             command = cmd.split(" ", 2);
             phoneNumber = command[0];
+            System.out.println("Please enter salary: ");
+            cmd = reader.readLine();
+            command = cmd.split(" ", 2);
+            try
+            {
+                salary = Integer.parseInt(command[0]);
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Error with salary. Automatically setting salary to default");
+                salary = 17000;
+            }
             for (Staff staff1 : Database.getStaff())
             {
                 if (staff1.getPhoneNumber().equalsIgnoreCase(phoneNumber))
@@ -318,7 +330,7 @@ public class Run {
             if (isRegistered == false)
             {
                 System.out.println("Successfully registered " + firstName + " " + lastName + " as " + title);
-                Staff stafff = new Staff(firstName, lastName, title, phoneNumber);
+                Staff stafff = new Staff(firstName, lastName, title, phoneNumber, salary);
                 Database.addStaff(stafff);
             }
         }
