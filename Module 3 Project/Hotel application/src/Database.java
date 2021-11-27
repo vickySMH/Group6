@@ -1,12 +1,14 @@
 import People.Staff;
+import People.Guest;
 
 import java.io.*;
 import java.util.ArrayList;
 
-public class Database implements Serializable
+public class Database
 {
     private static File rooms;
     private static File staffFile;
+    private static File guests;
     private static FileInputStream fis;
     private static ObjectInputStream ois;
     private static FileOutputStream fos;
@@ -27,36 +29,36 @@ public class Database implements Serializable
     
     public static void loadGuests() throws IOException, ClassNotFoundException
     {
-        openGuests();
-        fis1 = new  FileInputStream("guests.ser");
-        ois1 = new ObjectInputStream(fis);
+        fis = new  FileInputStream("guests.ser");
+        ois = new ObjectInputStream(fis);
         guestList = (ArrayList<Guest>) ois.readObject();
         ois.close();
+
     }
 
     private static void openGuests() throws IOException
     {
         guests = new File("guests.ser");
         fos2 = new FileOutputStream(guests, false);
-        output2 = new ObjectOutputStream(fos);
+        output2 = new ObjectOutputStream(fos2);
     }
 
     public static void loadRooms() throws IOException, ClassNotFoundException
     {
-        openRooms();
         fis = new  FileInputStream("rooms.ser");
         ois = new ObjectInputStream(fis);
         roomList = (ArrayList<Room>) ois.readObject();
         ois.close();
+
     }
 
     public static void loadStaff() throws IOException, ClassNotFoundException
     {
-        openStaff();
         fis = new FileInputStream("staff.ser");
         ois = new ObjectInputStream(fis);
         staff = (ArrayList<Staff>) ois.readObject();
         ois.close();
+
     }
 
     private static void openRooms() throws IOException
@@ -92,7 +94,9 @@ public class Database implements Serializable
 
     public static void saveDatabase()
     {
+        addGuestToDatabase();
         addRoomToDatabase();
+        addStaffToDatabase();
     }
 
     private static void addRoomToDatabase()

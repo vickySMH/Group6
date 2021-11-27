@@ -1,25 +1,25 @@
 package People;
 
-abstract class Person
+import java.io.Serializable;
+
+abstract class Person implements Serializable
 {
 
     protected String fullName;
     protected String phoneNumber;
-    protected int ID
 
     public Person()
     {
         fullName = "";
         phoneNumber = "";
     }
-    public Person(String firstName, String lastName, String phoneNumber, int ID)
+    public Person(String firstName, String lastName, String phoneNumber)
     {
         fullName = firstName + " " + lastName;
         this.phoneNumber = phoneNumber;
     }
-    
-    public int getID() {
-        return ID;
-    }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 }

@@ -19,53 +19,50 @@ public class Run
 
     public void run() throws IOException
     {
-        user.setUsername("random");
-        user.setPassword("random");
-
-        staff.setTitle("cleaner");
         startMessage();
         while(command[0].compareToIgnoreCase("quit") != 0)
         {
-                if(command[0].equalsIgnoreCase("staff")
-                        && staff.getTitle().equalsIgnoreCase("manager"))
+            if(command[0].equalsIgnoreCase("staff")
+                    && staff.getTitle().equalsIgnoreCase("manager"))
+            {
+                for(Staff personel : Database.getStaff())
                 {
-                    for(Staff personel : Database.getStaff())
-                    {
                         System.out.println(personel);
-                    }
-                }
-                else if(command[0].equalsIgnoreCase("help"))
-                {
-                    helpMessage();
-                }
-                else if(command[0].equalsIgnoreCase("dirty"))
-                {
-                    dirty();
-                }
-                else if(command[0].equalsIgnoreCase("clean"))
-                {
-                    clean();
-                }
-                else if(command[0].equalsIgnoreCase("password"))
-                {
-                    password();
-                }
-                else if (command[0].equalsIgnoreCase("add"))
-                {
-                    if (command[1].equalsIgnoreCase("staff"))
-                    {
-                        addStaff();
-                    }
-                }
-                else
-                {
-                    System.out.println("Unknown command, please check 'help ' for list of commands");
-                    System.out.print("Please enter a command: ");
-                    cmd = reader.readLine();
-                    command = cmd.split(" ", 2);
-                    break;
                 }
             }
+            else if(command[0].equalsIgnoreCase("help"))
+            {
+                helpMessage();
+            }
+            else if(command[0].equalsIgnoreCase("dirty"))
+            {
+                dirty();
+            }
+            else if(command[0].equalsIgnoreCase("clean"))
+            {
+                clean();
+            }
+            else if(command[0].equalsIgnoreCase("password"))
+            {
+                password();
+            }
+            else if (command[0].equalsIgnoreCase("add"))
+            {
+                if (command[1].equalsIgnoreCase("staff"))
+                {
+                    addStaff();
+                }
+            }
+            else
+            {
+                System.out.println("Unknown command, please check 'help ' for list of commands");
+                System.out.print("Please enter a command: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                break;
+            }
+            Database.saveDatabase();
+        }
         System.out.println("Thank you for using Kaizen's hotel app!");
     }
 
@@ -216,8 +213,16 @@ public class Run
         {
             System.out.println("Error loading from database!");
         }
+        try
+        {
+            Database.loadGuests();
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error loading from database!");
+        }
     }
-    
+
     private void dirty() throws IOException
     {
         if(staff.getTitle().equalsIgnoreCase("cleaner"))
@@ -260,8 +265,7 @@ public class Run
         String firstName, lastName, title, phoneNumber;
         int ID;
         boolean isRegistered = false;
-        try
-        {
+        try {
             System.out.print("Please enter first name: ");
             cmd = reader.readLine();
             command = cmd.split(" ", 2);
@@ -278,45 +282,26 @@ public class Run
             cmd = reader.readLine();
             command = cmd.split(" ", 2);
             phoneNumber = command[0];
-            System.out.print("Please enter ID: ");
-            cmd = reader.readLine();
-            command = cmd.split(" ", 2);
-            try
+            for(Staff staff1: Database.getStaff())
             {
-                if (Integer.parseInt(command[0]) % 1000000 == 0 || Integer.parseInt(command[0]) % 1000000 > 9)
+                if(staff1.getPhoneNumber().equalsIgnoreCase(phoneNumber))
                 {
-                    throw new NumberFormatException();
-                }
-                else
-                {
-                    ID = Integer.parseInt(command[0]);
-                    for (Staff staff : Database.getStaff())
-                    {
-                        if (ID == staff.getID())
-                        {
-                            isRegistered = true;
-                            System.out.println("Person already registered.");
-                        }
-                    }
-                    if (isRegistered == false)
-                    {
-                        Staff staff = new Staff(firstName, lastName, title, phoneNumber, ID);
-                        Database.addStaff(staff);
-                    }
+                    isRegistered = true;
+                    System.out.println("Person already registered as staff!");
                 }
             }
-            catch (NumberFormatException ex)
+            if(isRegistered == false)
             {
-                System.out.println("Invalid ID, making ID to default, please change it later.");
-                ID = 0;
+                System.out.println("Successfully registered " + firstName + " " + lastName + " as " + title);
+                Staff stafff = new Staff(firstName, lastName, title, phoneNumber);
+                Database.addStaff(stafff);
             }
-
         }
         catch (ArrayIndexOutOfBoundsException e)
         {
             System.out.println("Invalid command. Check 'help' for more information!");
         }
-        System.out.print("Please enter a new command: ");
+        System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }

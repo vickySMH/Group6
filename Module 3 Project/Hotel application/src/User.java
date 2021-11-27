@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.Random;
 
-public class User
+public class User implements Serializable
 {
     private String username;
     private String password;

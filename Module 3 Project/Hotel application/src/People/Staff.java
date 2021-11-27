@@ -6,9 +6,9 @@ public class Staff extends Person implements Serializable
 {
     private String title;
     
-    public Staff(String firstName, String lastName, String title, String phoneNumber, int ID)
+    public Staff(String firstName, String lastName, String title, String phoneNumber)
     {
-        super(firstName, lastName, phoneNumber, ID);
+        super(firstName, lastName, phoneNumber);
         this.title = title;
     }
 
