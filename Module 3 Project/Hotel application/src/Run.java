@@ -61,13 +61,21 @@ public class Run {
             }
             else if (command[0].equalsIgnoreCase("add"))
             {
+                command = cmd.split(" " , 3);
                 if (command[1].equalsIgnoreCase("staff"))
                 {
                     addStaff();
                 }
-                if(command[1].equalsIgnoreCase("room"))
+                else if(command[1].equalsIgnoreCase("room"))
                 {
                     addRoom();
+                }
+                else
+                {
+                    System.out.println("Unknown command");
+                    System.out.print("Please enter a command: ");
+                    cmd = reader.readLine();
+                    command = cmd.split(" ", 2);
                 }
             }
             else
