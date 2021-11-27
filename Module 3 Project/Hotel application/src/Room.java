@@ -31,5 +31,19 @@ public class Room implements Serializable
         hasInternetAccess = hasNet;
         pricePerNight = price;
         roomNumber = roomNum;
+        occupied = false;
+        isClean = true;
     }
+
+    public String toString() {
+        if (occupied)
+        {
+            return "Room " + roomNumber + " - is occupied";
+        }
+        else
+        {
+            return "Room " + roomNumber + " - is not occupied";
+        }
+    }
+
 }

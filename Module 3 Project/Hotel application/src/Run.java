@@ -29,6 +29,19 @@ public class Run
                 {
                         System.out.println(personel);
                 }
+                System.out.print("Please enter a command: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+            }
+            if(command[0].equalsIgnoreCase("rooms"))
+            {
+                for(Room room : Database.getRooms())
+                {
+                    System.out.println(room);
+                }
+                System.out.print("Please enter a command: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
             }
             else if(command[0].equalsIgnoreCase("help"))
             {
@@ -61,7 +74,7 @@ public class Run
                 command = cmd.split(" ", 2);
                 break;
             }
-            Database.saveDatabase();
+            //Database.saveDatabase();
         }
         System.out.println("Thank you for using Kaizen's hotel app!");
     }
@@ -154,6 +167,7 @@ public class Run
     {
         if(staff.getTitle().equalsIgnoreCase("manager"))
         {
+            System.out.println("Rooms - displays all rooms in the hotel and if they are taken or not");
             System.out.println("Staff - displays all of the staff working in the hotel");
             System.out.println("Add - displays a message asking if you would like to add a room or staff");
             System.out.println("Remove - displays a message asking if you would like to remove a room or staff");
@@ -306,7 +320,7 @@ public class Run
         command = cmd.split(" ", 2);
     }
 
-   /* public void addRooms()
+    /*public void addRooms()
     {
         for (int i = 1; i < 5; i++)
         {
@@ -318,14 +332,14 @@ public class Run
             Room room = new Room(2, true, 420, 200 + i);
             Database.addRoom(room);
         }
-        for (int i = 1; i < 3; i++)
-        {
-            Room room = new Room(4, true, 900, 304 + i);
-            Database.addRoom(room);
-        }
         for (int i = 1; i < 5; i++)
         {
             Room room = new Room(2, true, 420, 300 + i);
+            Database.addRoom(room);
+        }
+        for (int i = 1; i < 3; i++)
+        {
+            Room room = new Room(4, true, 900, 304 + i);
             Database.addRoom(room);
         }
     }*/
