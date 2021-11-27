@@ -46,4 +46,10 @@ public class Room implements Serializable
         }
     }
 
+    public void printRoom()
+    {
+        System.out.println("Room " + roomNumber + " - internet access: " + hasInternetAccess
+                + ", price per night: " + pricePerNight + ", number of beds: " + numOfBeds);
+    }
+
 }
