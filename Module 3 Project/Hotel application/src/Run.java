@@ -1,18 +1,15 @@
-import People.Staff;
+import People.Employee;
+import People.User;
 
-import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Run {
 
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private String cmd;
-    private Staff staff = new Staff();
-    private User user = new User();
+    private Employee user = new Employee();
 
     private String[] command;
 
@@ -21,11 +18,7 @@ public class Run {
         startMessage();
         while (!command[0].equalsIgnoreCase("quit"))
         {
-            if(command[0].equalsIgnoreCase("register"))
-            {
-                register();
-            }
-            else if(command[0].equalsIgnoreCase("remove"))
+            if(command[0].equalsIgnoreCase("remove"))
             {
                 command = cmd.split(" ", 3);
                 if(command[1].equalsIgnoreCase("staff"))
@@ -33,10 +26,10 @@ public class Run {
                     removeStaff();
                 }
             }
-            else if (command[0].equalsIgnoreCase("staff"))
-                    //&& staff.getTitle().equalsIgnoreCase("manager"))
+            else if (command[0].equalsIgnoreCase("staff")
+                    && user.getTitle().equalsIgnoreCase("manager"))
             {
-                for (Staff personel : Database.getStaff())
+                for (Employee personel : Database.getStaff())
                 {
                     System.out.println(personel);
                 }
@@ -54,6 +47,14 @@ public class Run {
                 System.out.print("Please enter a command: ");
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
+            }
+            else if(command[0].equalsIgnoreCase("login") && user.getUsername().isBlank())
+            {
+                login();
+            }
+            else if(command[0].equalsIgnoreCase("logout") && !user.getUsername().isBlank())
+            {
+                logout();
             }
             else if (command[0].equalsIgnoreCase("help"))
             {
@@ -143,50 +144,56 @@ public class Run {
     private void password() throws IOException
     {
         String password;
-        if (!user.getUsername().isEmpty())
+        System.out.print("Please enter your old password: ");
+        cmd = reader.readLine();
+        if (cmd.equalsIgnoreCase(user.getPassword()))
         {
-            System.out.print("Please enter your old password: ");
+            System.out.print("Please enter a new password: ");
             cmd = reader.readLine();
-            if (cmd.equalsIgnoreCase(user.getPassword()))
+            password = cmd;
+            do
             {
-                System.out.print("Please enter a new password: ");
+                System.out.println("If you feel like you have mistyped your password please enter 'reset'");
+                System.out.print("Please confirm your password: ");
                 cmd = reader.readLine();
-                password = cmd;
-                do
-                {
-                    System.out.println("If you feel like you have mistyped your password please enter 'reset'");
-                    System.out.print("Please confirm your password: ");
-                    cmd = reader.readLine();
-                    if (cmd.equalsIgnoreCase("reset"))
-                    {
-                        break;
-                    }
-                }
-                while (!password.equals(cmd));
                 if (cmd.equalsIgnoreCase("reset"))
                 {
-                    password();
-                } else
-                {
-                    user.setPassword(password);
-                    System.out.println("Successfully changed password!");
-                    System.out.print("Please enter a command: ");
-                    cmd = reader.readLine();
-                    command = cmd.split(" ", 2);
+                    break;
                 }
+            }
+            while (!password.equals(cmd));
+            if (cmd.equalsIgnoreCase("reset"))
+            {
+                password();
             }
             else
             {
-                System.out.println("Invalid password!");
+                for(Employee user1 : Database.getStaff())
+                {
+                    if(user1.getUsername().equals(user.getUsername()))
+                    {
+                        user1.setPassword(password);
+                        Database.saveDatabase();
+                    }
+                }
+                user.setPassword(password);
+                System.out.println("Successfully changed password!");
                 System.out.print("Please enter a command: ");
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
         }
+        else
+        {
+            System.out.println("Invalid password!");
+            System.out.print("Please enter a command: ");
+            cmd = reader.readLine();
+            command = cmd.split(" ", 2);
+        }
     }
 
     private void helpMessage() throws IOException {
-        if (staff.getTitle().equalsIgnoreCase("manager"))
+        if (user.getTitle().equalsIgnoreCase("manager"))
         {
             System.out.println("Rooms - displays all rooms in the hotel and if they are taken or not");
             System.out.println("Staff - displays all of the staff working in the hotel");
@@ -199,14 +206,14 @@ public class Run {
             System.out.println("Password - gives you the opportunity to change password");
         }
 
-        if (staff.getTitle().equalsIgnoreCase("cleaner"))
+        if (user.getTitle().equalsIgnoreCase("cleaner"))
         {
             System.out.println("Clean - marks room as no longer dirty");
             System.out.println("Dirty - displays all of the dirty rooms in the hotel");
             System.out.println("Password - gives you the opportunity to change password");
         }
 
-        if (staff.getTitle().equalsIgnoreCase("receptionist"))
+        if (user.getTitle().equalsIgnoreCase("receptionist"))
         {
             System.out.println("Book - books a room for a customer");
             System.out.println("Change - changes a booking for a customer");
@@ -215,7 +222,7 @@ public class Run {
             System.out.println("Password - gives you the opportunity to change password");
         }
 
-        if (staff.getTitle().equalsIgnoreCase("accountant"))
+        if (user.getTitle().equalsIgnoreCase("accountant"))
         {
             System.out.println("Income - checks income of hotel");
             System.out.println("Tax - checks taxes that the hotel has to pay");
@@ -231,15 +238,6 @@ public class Run {
 
     private void loadDatabase()
     {
-        try
-        {
-            Database.loadUsers();
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error loading from database!");
-        }
-
         try
         {
             Database.loadRooms();
@@ -269,7 +267,7 @@ public class Run {
 
     private void dirty() throws IOException
     {
-        if (staff.getTitle().equalsIgnoreCase("cleaner"))
+        if (user.getTitle().equalsIgnoreCase("cleaner"))
         {
             try
             {
@@ -310,6 +308,18 @@ public class Run {
         String firstName, lastName, title, phoneNumber;
         int salary;
         boolean isRegistered = false;
+        System.out.print("Please enter phone number: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        phoneNumber = command[0];
+        for (Employee staff1 : Database.getStaff())
+        {
+            if (staff1.getPhoneNumber().equalsIgnoreCase(phoneNumber))
+            {
+                isRegistered = true;
+                System.out.println("Person already registered as staff!");
+            }
+        }
         System.out.print("Please enter first name: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -322,10 +332,6 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
         title = command[0];
-        System.out.print("Please enter phone number: ");
-        cmd = reader.readLine();
-        command = cmd.split(" ", 2);
-        phoneNumber = command[0];
         System.out.print("Please enter salary: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -338,24 +344,86 @@ public class Run {
             System.out.println("Error with salary. Automatically setting salary to default");
             salary = 17000;
         }
-        for (Staff staff1 : Database.getStaff())
-        {
-            if (staff1.getPhoneNumber().equalsIgnoreCase(phoneNumber))
-            {
-                isRegistered = true;
-                System.out.println("Person already registered as staff!");
-            }
-        }
+        User newUser = register();
         if (isRegistered == false)
         {
-            System.out.println("Successfully registered " + firstName + " " + lastName + " as " + title);
-            Staff stafff = new Staff(firstName, lastName, title, phoneNumber, salary);
-            Database.addStaff(stafff);
+            {
+                System.out.println("Successfully registered " + firstName + " " + lastName + " as " + title);
+                System.out.println("Account for " + firstName + " " + lastName + ": " + newUser.getUsername()
+                        + " with temporary password: " + newUser.getPassword());
+                Employee stafff = new Employee(firstName, lastName, title, phoneNumber, salary, newUser);
+                Database.addStaff(stafff);
+            }
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
+
+    private void login() throws IOException
+    {
+        command = cmd.split(" ", 3);
+        boolean success = false;
+        int passwordSuccess = 0;
+        try
+        {
+            for (Employee user1 : Database.getStaff())
+            {
+                if (user1.getUsername().equals(command[1]))
+                {
+                    user.setUsername(command[1]);
+                    do
+                    {
+                        System.out.print("Please enter your password: ");
+                        cmd = reader.readLine();
+                        command = cmd.split(" ", 2);
+                        if (user1.getPassword().equals(command[0]))
+                        {
+                            success = true;
+                            System.out.println("Successfully logged in!");
+                            user = user1;
+                            break;
+                        }
+                        else
+                        {
+                            passwordSuccess++;
+                            int timesLeft = 3 - passwordSuccess;
+                            if (timesLeft > 1)
+                            {
+                                System.out.println("You have entered your password incorrectly " + passwordSuccess
+                                        + " times, you have " + timesLeft + " remaining tries.");
+                            }
+                            else if (timesLeft == 1)
+                            {
+                                System.out.println("You have entered your password incorrectly " + passwordSuccess
+                                        + " times, you have " + timesLeft + " remaining try.");
+                            }
+                        }
+                    }
+                    while (passwordSuccess < 3);
+                    if (passwordSuccess == 3)
+                    {
+                        user.setUsername("");
+                        user.setPassword("");
+                        System.out.println("You have entered your password too many times! " +
+                                "In case you have forgotten your password please check in with the manager");
+                    }
+                }
+            }
+            if(!success)
+            {
+                System.out.println("Unknown user, please try again.");
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Unknown command, please check 'help ' for list of commands");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
 
     /*public void addRooms()
     {
@@ -390,21 +458,28 @@ public class Run {
          System.out.print("Please enter room number: ");
          cmd = reader.readLine();
          command = cmd.split(" ", 2);
-         try {
+         try
+         {
              roomNum = Integer.parseInt(command[0]);
-             for (Room room : Database.getRooms()) {
-                 if (room.getRoomNumber() == roomNum) {
+             for (Room room : Database.getRooms())
+             {
+                 if (room.getRoomNumber() == roomNum)
+                 {
                      roomExists = true;
                      throw new NumberFormatException();
                  }
              }
-             if (roomExists == false) {
+             if (roomExists == false)
+             {
                  System.out.print("Please enter number of beds: ");
                  cmd = reader.readLine();
                  command = cmd.split(" ", 2);
-                 try {
+                 try
+                 {
                      numOfBeds = Integer.parseInt(command[0]);
-                 } catch (NumberFormatException e) {
+                 }
+                 catch (NumberFormatException e)
+                 {
                      System.out.println("You have mistyped the number of beds. " +
                              "Automatically setting the beds to 2.");
                      numOfBeds = 2;
@@ -428,7 +503,8 @@ public class Run {
                  System.out.print("Please enter price per night for the room: ");
                  cmd = reader.readLine();
                  command = cmd.split(" ", 2);
-                 try {
+                 try
+                 {
                      pricePerNight = Integer.parseInt(command[0]);
                  }
                  catch (NumberFormatException e)
@@ -449,71 +525,55 @@ public class Run {
             command = cmd.split(" ", 2);
     }
 
-    private void register() throws IOException
+    private User register() throws IOException
     {
-        command = cmd.split(" ", 3);
-        User newUser = new User();
-        String username;
-        boolean exists = false;
-        try
-        {
-            if (command[1].length() < 5 || command[1].length() > 16)
-            {
-                do
-                {
-                    System.out.print("You need to enter a different username: ");
-                    cmd = reader.readLine();
-                    command = cmd.split(" ", 2);
-                    username = command[0];
-                }
-                while (command[0].length() < 5 || command.length > 16);
-                newUser.setUsername(command[0]);
-            }
-            else
-            {
-                username = command[1];
-                newUser.setUsername(command[1]);
-            }
-            for (User existing : Database.getUserList())
-            {
-                if (existing.getUsername().equalsIgnoreCase(username))
-                {
-                    System.out.println("User already exists!");
-                    exists = true;
-                    user.setUsername("");
-                    break;
-                }
-            }
-            if (exists == false)
-            {
-                System.out.println("Successfully registered: " + newUser.getUsername()
-                        + " with temporary password: " + newUser.getPassword());
-                System.out.println("If temporary password is forgotten, do not hesitate to contact the manager!");
-                Database.addUser(newUser);
-            }
-        }
-        catch (ArrayIndexOutOfBoundsException e)
-        {
-            System.out.println("Unknown command, please check 'help ' for list of commands");
-        }
-        System.out.print("Please enter a command: ");
+        System.out.print("Please enter a username: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
+        User newUser = new User();
+        String username;
+        if (command[0].length() < 5 || command[0].length() > 16)
+        {
+            do
+            {
+                System.out.print("You need to enter a different username: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                username = command[0];
+            }
+            while (command[0].length() < 5 || command.length > 16);
+            newUser.setUsername(command[0]);
+        }
+        else
+        {
+            username = command[0];
+            newUser.setUsername(command[0]);
+        }
+        for (Employee existing : Database.getStaff())
+        {
+            if (existing.getUsername().equalsIgnoreCase(username))
+            {
+                System.out.println("Username already exists!");
+                user.setUsername("");
+                register();
+            }
+        }
+        return newUser;
     }
-    
+
     public void removeStaff() throws IOException
     {
         boolean removedStaff = false ;
         System.out.print("Please enter the phone number of the person: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
-        for (Staff staff : Database.getStaff())
+        for (Employee employee : Database.getStaff())
         {
-            if (staff.getPhoneNumber().equals(command[0]))
+            if (employee.getPhoneNumber().equals(command[0]))
             {
-                System.out.println("Successfully removed " + staff.getFullName() + "!");
+                System.out.println("Successfully removed " + employee.getFullName() + "!");
                 removedStaff = true;
-                Database.getStaff().remove(staff);
+                Database.getStaff().remove(employee);
                 Database.saveDatabase();
                 break;
             }
@@ -522,6 +582,15 @@ public class Run {
         {
             System.out.println("No such person in hotel staff");
         }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+    private void logout() throws IOException
+    {
+        System.out.println("Successfully logged out!");
+        Employee user1 = new Employee();
+        user = user1;
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);

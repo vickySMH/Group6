@@ -1,4 +1,4 @@
-import People.Staff;
+import People.Employee;
 import People.Guest;
 
 import java.io.*;
@@ -6,10 +6,6 @@ import java.util.ArrayList;
 
 public class Database
 {
-    private static File rooms;
-    private static File staffFile;
-    private static File guests;
-    private static File users;
     private static FileInputStream fis;
     private static ObjectInputStream ois;
     private static FileOutputStream fos;
@@ -18,27 +14,18 @@ public class Database
     private static ObjectOutputStream output1;
     private static FileOutputStream fos2;
     private static ObjectOutputStream output2;
-    private static FileOutputStream fos3;
-    private static ObjectOutputStream output3;
 
 
-    private static ArrayList<Staff> staff = new ArrayList<>();
+
+    private static ArrayList<Employee> staff = new ArrayList<>();
     private static ArrayList<Room> roomList = new ArrayList<>();
     private static ArrayList<Guest> guestList = new ArrayList<>();
-    private static ArrayList<User> userList = new ArrayList<>();
 
-    public static ArrayList<Staff> getStaff()
+    public static ArrayList<Employee> getStaff()
     {
         return staff;
     }
 
-    public static void loadUsers() throws IOException, ClassNotFoundException
-    {
-        fis = new FileInputStream("users.ser");
-        ois = new ObjectInputStream(fis);
-        userList = (ArrayList<User>) ois.readObject();
-        ois.close();
-    }
 
     public static void loadGuests() throws IOException, ClassNotFoundException
     {
@@ -62,7 +49,7 @@ public class Database
     {
         fis = new FileInputStream("staff.ser");
         ois = new ObjectInputStream(fis);
-        staff = (ArrayList<Staff>) ois.readObject();
+        staff = (ArrayList<Employee>) ois.readObject();
         ois.close();
 
     }
@@ -85,17 +72,6 @@ public class Database
         output2 = new ObjectOutputStream(fos2);
     }
 
-    public static void openUsers() throws IOException
-    {
-        fos3 = new FileOutputStream("users.ser", false);
-        output3 = new ObjectOutputStream(fos3);
-    }
-
-    public static ArrayList<User> getUserList()
-    {
-        return userList;
-    }
-
     public static ArrayList<Room> getRooms()
     {
         return roomList;
@@ -109,7 +85,6 @@ public class Database
 
     public static void saveDatabase()
     {
-        addUserToDatabase();
         addGuestToDatabase();
         addRoomToDatabase();
         addStaffToDatabase();
@@ -128,11 +103,6 @@ public class Database
     private static void closeRooms() throws IOException
     {
         output.close();
-    }
-
-    private static void closeUsers() throws IOException
-    {
-        output3.close();
     }
 
     private static void addRoomToDatabase()
@@ -180,35 +150,14 @@ public class Database
         }
     }
 
-    private static void addUserToDatabase()
-    {
-        try
-        {
-            openUsers();
-            output3.writeObject(userList);
-            closeUsers();
-        }
-        catch (IOException e)
-        {
-            System.out.println("Error in database, user not found");
-        }
-    }
-
-
     public static ArrayList<Guest> getGuestList() {
         return guestList;
     }
     
-    public static void addStaff(Staff staff1)
+    public static void addStaff(Employee staff1)
     {
         staff.add(staff1);
         addStaffToDatabase();
-    }
-
-    public static void addUser(User user)
-    {
-        userList.add(user);
-        addUserToDatabase();
     }
 
 }
