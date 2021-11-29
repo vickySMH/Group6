@@ -52,6 +52,14 @@ public class Run {
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
+            else if (command[0].equalsIgnoreCase("change"))
+            {
+                command = cmd.split(" ", 3);
+                if (command[1].equalsIgnoreCase("staff"))
+                {
+                    changeStaff();
+                }
+            }
             else if (command[0].equalsIgnoreCase("rooms"))
             {
                 for (Room room : Database.getRooms())
@@ -645,6 +653,78 @@ public class Run {
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
+    }
+    
+    public void changeStaff() throws IOException
+    {
+        String phoneNumber;
+        System.out.print("Please enter the phone number of the person: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        phoneNumber = command[0];
+        for (Employee name : Database.getStaff()) {
+            if (name.getPhoneNumber().equals(phoneNumber)) {
+                System.out.println(name);
+                System.out.print("What would you like to change: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                if (command[0].equalsIgnoreCase("phone")) {
+                    System.out.print("Please enter new phone number: ");
+                    cmd = reader.readLine();
+                    command = cmd.split(" ", 2);
+                    name.setPhoneNumber(command[0]);
+                    System.out.println("Phone number successfully changed");
+                    Database.saveDatabase();
+                }
+                else if (command[0].equalsIgnoreCase("name"))
+                {
+                    System.out.print("Please enter new first name: ");
+                    cmd = reader.readLine();
+                    command = cmd.split(" ", 2);
+                    name.setFullName(command[0]);
+                    System.out.println("Name successfully changed");
+                    Database.saveDatabase();
+                }
+                else if (command[0].equalsIgnoreCase("position"))
+                {
+                    System.out.print("Please enter new position: ");
+                    cmd = reader.readLine();
+                    command = cmd.split(" ", 2);
+                    name.setTitle(command[0]);
+                    System.out.println("Position successfully changed");
+                    Database.saveDatabase();
+                }
+                else if (command[0].equalsIgnoreCase("salary"))
+                {
+                    int salary = salary(name);
+                    name.setSalary(salary);
+                    Database.saveDatabase();
+                }
+            }
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+    
+     private int salary(Employee name) throws IOException
+    {
+        int salary = 17000;
+        System.out.print("Please enter new salary: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        try
+        {
+            salary = Integer.parseInt(command[0]);
+            System.out.print("Salary successfully changed");
+            Database.saveDatabase();
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Invalid amount" + " Please enter salary again");
+            salary(name);
+        }
+        return salary;
     }
     
     private void logout() throws IOException
