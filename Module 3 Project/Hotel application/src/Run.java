@@ -25,6 +25,17 @@ public class Run {
                 {
                     removeStaff();
                 }
+                else if (command[1].equalsIgnoreCase("room"))
+                {
+                    removeRoom();
+                }
+                else
+                {
+                    System.out.println("Unknown command");
+                    System.out.print("Please enter a command: ");
+                    cmd = reader.readLine();
+                    command = cmd.split(" ", 2);
+                }
             }
             else if (command[0].equalsIgnoreCase("staff")
                     && user.getTitle().equalsIgnoreCase("manager"))
@@ -586,6 +597,26 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
+    
+     public void removeRoom() throws IOException
+    {
+        System.out.print("Please enter the number of the room: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        for (Room room : Database.getRooms())
+        {
+            if (room.getRoomNumber() == Integer.parseInt(command[0]))
+            {
+                Database.getRooms().remove(room);
+                Database.saveDatabase();
+                break;
+            }
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+    
     private void logout() throws IOException
     {
         System.out.println("Successfully logged out!");
