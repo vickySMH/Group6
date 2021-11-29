@@ -59,5 +59,10 @@ public class Employee extends Person implements Serializable
         user.setUsername(username);
     }
 
+    public void printUser()
+    {
+        System.out.println(user);
+    }
+
 
 }

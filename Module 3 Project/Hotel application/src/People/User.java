@@ -47,5 +47,11 @@ public class User implements Serializable
         password = random.ints(48, 122 + 1).filter(i -> (i <= 57) || (i >=65))
                 .limit(6).collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append).toString();
     }
+
+    public String toString()
+    {
+        return "Username: " + username + " Password: " + password;
+    }
+
     
 }

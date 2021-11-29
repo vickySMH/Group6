@@ -21,21 +21,25 @@ public class Run {
             if(command[0].equalsIgnoreCase("remove"))
             {
                 command = cmd.split(" ", 3);
-                if(command[1].equalsIgnoreCase("staff"))
+                if(command[1].equalsIgnoreCase("staff") && user.getTitle().equalsIgnoreCase("manager"))
                 {
                     removeStaff();
                 }
-                else if (command[1].equalsIgnoreCase("room"))
+                else if (command[1].equalsIgnoreCase("room") && user.getTitle().equalsIgnoreCase("manager"))
                 {
                     removeRoom();
                 }
                 else
                 {
-                    System.out.println("Unknown command");
+                    System.out.println("Unknown command, please check 'help ' for list of commands");
                     System.out.print("Please enter a command: ");
                     cmd = reader.readLine();
                     command = cmd.split(" ", 2);
                 }
+            }
+            else if (command[0].equalsIgnoreCase("accounts"))
+            {
+                accounts();
             }
             else if (command[0].equalsIgnoreCase("staff")
                     && user.getTitle().equalsIgnoreCase("manager"))
@@ -71,11 +75,11 @@ public class Run {
             {
                 helpMessage();
             }
-            else if (command[0].equalsIgnoreCase("dirty"))
+            else if (command[0].equalsIgnoreCase("dirty") && user.getTitle().equalsIgnoreCase("cleaner"))
             {
                 dirty();
             }
-            else if (command[0].equalsIgnoreCase("clean"))
+            else if (command[0].equalsIgnoreCase("clean") && user.getTitle().equalsIgnoreCase("cleaner"))
             {
                 clean();
             }
@@ -83,7 +87,7 @@ public class Run {
             {
                 password();
             }
-            else if (command[0].equalsIgnoreCase("add"))
+            else if (command[0].equalsIgnoreCase("add"))//&& user.getTitle().equalsIgnoreCase("manager"))
             {
                 command = cmd.split(" " , 3);
                 if (command[1].equalsIgnoreCase("staff"))
@@ -96,7 +100,7 @@ public class Run {
                 }
                 else
                 {
-                    System.out.println("Unknown command");
+                    System.out.println("Unknown command, please check 'help ' for list of commands");
                     System.out.print("Please enter a command: ");
                     cmd = reader.readLine();
                     command = cmd.split(" ", 2);
@@ -157,11 +161,13 @@ public class Run {
         String password;
         System.out.print("Please enter your old password: ");
         cmd = reader.readLine();
-        if (cmd.equalsIgnoreCase(user.getPassword()))
+        command = cmd.split(" ", 2);
+        if (command[0].equalsIgnoreCase(user.getPassword()))
         {
             System.out.print("Please enter a new password: ");
             cmd = reader.readLine();
-            password = cmd;
+            command = cmd.split(" ", 2);
+            password = command[0];
             do
             {
                 System.out.println("If you feel like you have mistyped your password please enter 'reset'");
@@ -214,6 +220,7 @@ public class Run {
             System.out.println("Payroll - checks staff's salaries");
             System.out.println("Dirty - displays all of the dirty rooms in the hotel");
             System.out.println("Bookings - displays all booked rooms");
+            System.out.println("Accounts - displays all accounts and passwords");
             System.out.println("Password - gives you the opportunity to change password");
         }
 
@@ -339,10 +346,7 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
         lastName = command[0];
-        System.out.print("Please enter position: ");
-        cmd = reader.readLine();
-        command = cmd.split(" ", 2);
-        title = command[0];
+        title = title();
         System.out.print("Please enter salary: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -626,5 +630,51 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
+    private String title() throws IOException
+    {
+        String title;
+        System.out.print("Please enter position: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        if(command[0].equalsIgnoreCase("cleaner"))
+        {
+            title = command[0];
+        }
+        else if(command[0].equalsIgnoreCase("manager"))
+        {
+            title = command[0];
+        }
+        else if(command[0].equalsIgnoreCase("receptionist"))
+        {
+            title = command[0];
+        }
+        else if(command[0].equalsIgnoreCase("accountant"))
+        {
+            title = command[0];
+        }
+        else
+        {
+            System.out.println("No such position in hotel!");
+            title = title();
+        }
+        return title;
+    }
+
+    private void accounts() throws IOException
+    {
+        for (Employee employee: Database.getStaff())
+        {
+            employee.printUser();
+        }
+        if(Database.getStaff().isEmpty())
+        {
+            System.out.println("No accounts yet!");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
+
 }
 
