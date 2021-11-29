@@ -63,6 +63,8 @@ public class Employee extends Person implements Serializable
     {
         System.out.println(user);
     }
-
-
+    
+    public int getSalary(){
+        return salary;
+    }
 }
