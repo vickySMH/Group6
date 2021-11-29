@@ -21,21 +21,28 @@ public class Run {
             if(command[0].equalsIgnoreCase("remove"))
             {
                 command = cmd.split(" ", 3);
-                if(command[1].equalsIgnoreCase("staff") && user.getTitle().equalsIgnoreCase("manager"))
+                try
                 {
-                    removeStaff();
+                    if (command[1].equalsIgnoreCase("staff") && user.getTitle().equalsIgnoreCase("manager"))
+                    {
+                        removeStaff();
+                    }
+                    else if (command[1].equalsIgnoreCase("room") && user.getTitle().equalsIgnoreCase("manager"))
+                    {
+                        removeRoom();
+                    }
+                    else
+                    {
+                        System.out.println("Unknown command, please check 'help ' for list of commands");
+                    }
                 }
-                else if (command[1].equalsIgnoreCase("room") && user.getTitle().equalsIgnoreCase("manager"))
-                {
-                    removeRoom();
-                }
-                else
+                catch(ArrayIndexOutOfBoundsException e)
                 {
                     System.out.println("Unknown command, please check 'help ' for list of commands");
-                    System.out.print("Please enter a command: ");
-                    cmd = reader.readLine();
-                    command = cmd.split(" ", 2);
                 }
+                System.out.print("Please enter a command: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
             }
             else if (command[0].equalsIgnoreCase("accounts"))
             {
@@ -147,7 +154,7 @@ public class Run {
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
-            //Database.saveDatabase();
+            Database.saveDatabase();
         }
         System.out.println("Thank you for using Kaizen's hotel app!");
     }
@@ -244,6 +251,10 @@ public class Run {
     }
 
     private void helpMessage() throws IOException {
+        if(user.getTitle().isBlank())
+        {
+            System.out.println("Please log in your account to see the commands appropriate for your job");
+        }
         if (user.getTitle().equalsIgnoreCase("manager"))
         {
             System.out.println("Rooms - displays all rooms in the hotel and if they are taken or not");
@@ -474,7 +485,7 @@ public class Run {
     }
 
 
-    /*public void addRooms()
+    public void addRooms()
     {
         for (int i = 1; i < 5; i++)
         {
@@ -496,7 +507,7 @@ public class Run {
             Room room = new Room(4, true, 900, 304 + i);
             Database.addRoom(room);
         }
-    }*/
+    }
 
     public void addRoom() throws IOException
     {
@@ -631,28 +642,40 @@ public class Run {
         {
             System.out.println("No such person in hotel staff");
         }
-        System.out.print("Please enter a command: ");
+        /*System.out.print("Please enter a command: ");
         cmd = reader.readLine();
-        command = cmd.split(" ", 2);
+        command = cmd.split(" ", 2);*/
     }
     
      public void removeRoom() throws IOException
     {
+        boolean removeRoom = false;
         System.out.print("Please enter the number of the room: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
         for (Room room : Database.getRooms())
         {
-            if (room.getRoomNumber() == Integer.parseInt(command[0]))
+            try
             {
-                Database.getRooms().remove(room);
-                Database.saveDatabase();
-                break;
+                if (room.getRoomNumber() == Integer.parseInt(command[0]))
+                {
+                    Database.getRooms().remove(room);
+                    Database.saveDatabase();
+                    break;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                removeRoom();
             }
         }
-        System.out.print("Please enter a command: ");
+        if(!removeRoom)
+        {
+            System.out.println("No such room in hotel!s");
+        }
+        /*System.out.print("Please enter a command: ");
         cmd = reader.readLine();
-        command = cmd.split(" ", 2);
+        command = cmd.split(" ", 2);*/
     }
     
     public void changeStaff() throws IOException
@@ -827,7 +850,6 @@ public class Run {
         budget += 55000;
         return budget;
     }
-
 
 }
 
