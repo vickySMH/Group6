@@ -704,7 +704,6 @@ public class Run {
     
     private void payroll() throws IOException
     {
-        int salary;
         System.out.println("Loading employee's salary information....");
         for(Employee staff1 : Database.getStaff())
         {
@@ -717,7 +716,6 @@ public class Run {
 
     private int income() throws IOException
     {
-        //1 375 200dkk before
         int calculateIncome = 0;
         for(Room room : Database.getRooms())
         {
@@ -730,7 +728,6 @@ public class Run {
 
     private void tax() throws IOException
     {
-        //450 000 dkk
         double tax = 0;
         tax = income() * 0.45;
         System.out.println("The taxes are: " + tax + " dkk.");
