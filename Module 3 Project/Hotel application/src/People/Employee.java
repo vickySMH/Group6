@@ -33,6 +33,10 @@ public class Employee extends Person implements Serializable
     {
         this.title = title;
     }
+    
+     public void setSalary(int salary) {
+        this.salary = salary;
+    }
 
     public String toString()
     {
