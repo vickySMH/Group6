@@ -106,6 +106,32 @@ public class Run {
                     command = cmd.split(" ", 2);
                 }
             }
+            else if(command[0].equalsIgnoreCase("payroll") && (user.getTitle().equalsIgnoreCase("manager")
+                    || user.getTitle().equalsIgnoreCase("accountant")))
+            {
+                payroll();
+            }
+            else if(command[0].equalsIgnoreCase("tax")&& (user.getTitle().equalsIgnoreCase("manager")
+                    || user.getTitle().equalsIgnoreCase("accountant")))
+            {
+                tax();
+            }
+            else if(command[0].equalsIgnoreCase("income")&& (user.getTitle().equalsIgnoreCase("manager")
+                    || user.getTitle().equalsIgnoreCase("accountant")))
+            {
+                System.out.println("Income: " + income() + " dkk.");
+                System.out.print("Please enter a command: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+            }
+            else if(command[0].equalsIgnoreCase("budget")&& (user.getTitle().equalsIgnoreCase("manager")
+                    || user.getTitle().equalsIgnoreCase("accountant")))
+            {
+                System.out.println("Budget: " + budget() + " dkk.");
+                System.out.print("Please enter a command: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+            }
             else
             {
                 System.out.println("Unknown command, please check 'help ' for list of commands");
@@ -673,6 +699,56 @@ public class Run {
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
+    }
+    
+    
+    private void payroll() throws IOException
+    {
+        int salary;
+        System.out.println("Loading employee's salary information....");
+        for(Employee staff1 : Database.getStaff())
+        {
+            System.out.println(staff1.getFullName() + "(" + staff1.getTitle() + ")" +": " + staff1.getSalary());
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+    }
+
+    private int income() throws IOException
+    {
+        //1 375 200dkk before
+        int calculateIncome = 0;
+        for(Room room : Database.getRooms())
+        {
+            calculateIncome += room.getPricePerNight() * 200;
+        }
+
+        calculateIncome -= budget();
+        return calculateIncome;
+    }
+
+    private void tax() throws IOException
+    {
+        //450 000 dkk
+        double tax = 0;
+        tax = income() * 0.45;
+        System.out.println("The taxes are: " + tax + " dkk.");
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+
+    }
+
+    private int budget() throws  IOException
+    {
+        int budget = 0;
+
+        for (Employee employee : Database.getStaff()){
+            budget += employee.getSalary() * 12;
+        }
+        budget += 55000;
+        return budget;
     }
 
 
