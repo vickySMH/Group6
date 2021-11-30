@@ -158,6 +158,8 @@ public class Run {
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
+            } else if (command[0].equalsIgnoreCase("book") && user.getTitle().equalsIgnoreCase("receptionist")) {
+                book();
             else
             {
                 System.out.println("Unknown command, please check 'help ' for list of commands");
@@ -998,6 +1000,38 @@ public class Run {
         budget += 55000;
         return budget;
     }
+    
+    private void book() throws IOException {
+        String phoneNumber, firstName, lastName;
+        System.out.print("How many people are you booking: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        int people;
+        try {
+            people = Integer.parseInt(command[0]);
+            for (Room room : Database.getRooms()) {
+                if (room.getNumOfBeds() >= people && room.occupied() == false) {
+                    System.out.print("The following rooms are available: " + room.getRoomNumber());
+                    for (int i = 0; i < people; ++i) {
+                        System.out.print("Please enter guest phone number: ");
+                        cmd = reader.readLine();
+                        command = cmd.split(" ", 2);
+                        phoneNumber = command[0];
+                        System.out.print("Please enter guest first name: ");
+                        cmd = reader.readLine();
+                        command = cmd.split(" ", 2);
+                        firstName = command[0];
+                        System.out.print("Please enter guest last name: ");
+                        cmd = reader.readLine();
+                        command = cmd.split(" ", 2);
+                        lastName = command[0];
+                    }
+                }
+            }
+        }
+        catch (NumberFormatException e){
+            book();
+        }
 
 }
 
