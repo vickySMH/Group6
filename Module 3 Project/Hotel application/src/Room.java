@@ -1,3 +1,5 @@
+import People.Guest;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -12,6 +14,7 @@ public class Room implements Serializable
     private LocalDate endDate;
     private boolean isClean;
     private int roomNumber;
+    private Guest[] guestsInRoom = new Guest[numOfBeds];
 
     public boolean isClean() {
         return isClean;
