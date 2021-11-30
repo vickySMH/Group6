@@ -5,7 +5,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Run {
+public class Run
+{
 
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private String cmd;
@@ -18,7 +19,7 @@ public class Run {
         startMessage();
         while (!command[0].equalsIgnoreCase("quit"))
         {
-            if(command[0].equalsIgnoreCase("remove"))
+            if (command[0].equalsIgnoreCase("remove"))
             {
                 command = cmd.split(" ", 3);
                 try
@@ -36,7 +37,7 @@ public class Run {
                         System.out.println("Unknown command, please check 'help ' for list of commands");
                     }
                 }
-                catch(ArrayIndexOutOfBoundsException e)
+                catch (ArrayIndexOutOfBoundsException e)
                 {
                     System.out.println("Unknown command, please check 'help ' for list of commands");
                 }
@@ -78,7 +79,9 @@ public class Run {
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
-            else if (command[0].equalsIgnoreCase("rooms"))
+            else if (command[0].equalsIgnoreCase("rooms") &&
+                    (user.getTitle().equalsIgnoreCase("manager")
+                            || user.getTitle().equalsIgnoreCase("receptionist")))
             {
                 for (Room room : Database.getRooms())
                 {
@@ -89,11 +92,11 @@ public class Run {
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
-            else if(command[0].equalsIgnoreCase("login") && user.getUsername().isBlank())
+            else if (command[0].equalsIgnoreCase("login") && user.getUsername().isBlank())
             {
                 login();
             }
-            else if(command[0].equalsIgnoreCase("logout") && !user.getUsername().isBlank())
+            else if (command[0].equalsIgnoreCase("logout") && !user.getUsername().isBlank())
             {
                 logout();
             }
@@ -115,12 +118,12 @@ public class Run {
             }
             else if (command[0].equalsIgnoreCase("add"))//&& user.getTitle().equalsIgnoreCase("manager"))
             {
-                command = cmd.split(" " , 3);
+                command = cmd.split(" ", 3);
                 if (command[1].equalsIgnoreCase("staff"))
                 {
                     addStaff();
                 }
-                else if(command[1].equalsIgnoreCase("room"))
+                else if (command[1].equalsIgnoreCase("room"))
                 {
                     addRoom();
                 }
@@ -132,25 +135,22 @@ public class Run {
                     command = cmd.split(" ", 2);
                 }
             }
-            else if(command[0].equalsIgnoreCase("payroll") && (user.getTitle().equalsIgnoreCase("manager")
-                    || user.getTitle().equalsIgnoreCase("accountant")))
-            {
+            else if (command[0].equalsIgnoreCase("payroll") && (user.getTitle().equalsIgnoreCase("manager")
+                    || user.getTitle().equalsIgnoreCase("accountant"))) {
                 payroll();
             }
-            else if(command[0].equalsIgnoreCase("tax")&& (user.getTitle().equalsIgnoreCase("manager")
-                    || user.getTitle().equalsIgnoreCase("accountant")))
-            {
+            else if (command[0].equalsIgnoreCase("tax") && (user.getTitle().equalsIgnoreCase("manager")
+                    || user.getTitle().equalsIgnoreCase("accountant"))) {
                 tax();
             }
-            else if(command[0].equalsIgnoreCase("income")&& (user.getTitle().equalsIgnoreCase("manager")
-                    || user.getTitle().equalsIgnoreCase("accountant")))
-            {
+            else if (command[0].equalsIgnoreCase("income") && (user.getTitle().equalsIgnoreCase("manager")
+                    || user.getTitle().equalsIgnoreCase("accountant"))) {
                 System.out.println("Income: " + income() + " dkk.");
                 System.out.print("Please enter a command: ");
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
-            else if(command[0].equalsIgnoreCase("budget")&& (user.getTitle().equalsIgnoreCase("manager")
+            else if (command[0].equalsIgnoreCase("budget") && (user.getTitle().equalsIgnoreCase("manager")
                     || user.getTitle().equalsIgnoreCase("accountant")))
             {
                 System.out.println("Budget: " + budget() + " dkk.");
@@ -158,8 +158,10 @@ public class Run {
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
-            } else if (command[0].equalsIgnoreCase("book") && user.getTitle().equalsIgnoreCase("receptionist")) {
+            else if (command[0].equalsIgnoreCase("book") && user.getTitle().equalsIgnoreCase("receptionist"))
+            {
                 book();
+            }
             else
             {
                 System.out.println("Unknown command, please check 'help ' for list of commands");
@@ -193,17 +195,16 @@ public class Run {
             {
                 if (roomNumber == room.getRoomNumber())
                 {
-                    if (room.isClean() == false)
-                    {
+                    if (room.isClean() == false) {
                         room.cleanRoom(true);
                         System.out.println("Room is now clean, thank you for doing such an amazing job!");
                     }
                 }
             }
-        }
-        catch (NumberFormatException e)
+        } catch (NumberFormatException e)
         {
             System.out.println("You have added a letter to the room number, please try using the command again");
+            clean();
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
@@ -239,9 +240,9 @@ public class Run {
             }
             else
             {
-                for(Employee user1 : Database.getStaff())
+                for (Employee user1 : Database.getStaff())
                 {
-                    if(user1.getUsername().equals(user.getUsername()))
+                    if (user1.getUsername().equals(user.getUsername()))
                     {
                         user1.setPassword(password);
                         Database.saveDatabase();
@@ -263,8 +264,9 @@ public class Run {
         }
     }
 
-    private void helpMessage() throws IOException {
-        if(user.getTitle().isBlank())
+    private void helpMessage() throws IOException
+    {
+        if (user.getTitle().isBlank())
         {
             System.out.println("Please log in your account to see the commands appropriate for your job");
         }
@@ -420,13 +422,11 @@ public class Run {
         User newUser = register();
         if (isRegistered == false)
         {
-            {
                 System.out.println("Successfully registered " + firstName + " " + lastName + " as " + title);
                 System.out.println("Account for " + firstName + " " + lastName + ": " + newUser.getUsername()
                         + " with temporary password: " + newUser.getPassword());
                 Employee stafff = new Employee(firstName, lastName, title, phoneNumber, salary, newUser);
                 Database.addStaff(stafff);
-            }
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
@@ -461,8 +461,7 @@ public class Run {
                         {
                             passwordSuccess++;
                             int timesLeft = 3 - passwordSuccess;
-                            if (timesLeft > 1)
-                            {
+                            if (timesLeft > 1) {
                                 System.out.println("You have entered your password incorrectly " + passwordSuccess
                                         + " times, you have " + timesLeft + " remaining tries.");
                             }
@@ -483,7 +482,7 @@ public class Run {
                     }
                 }
             }
-            if(!success)
+            if (!success)
             {
                 System.out.println("Unknown user, please try again.");
             }
@@ -528,74 +527,75 @@ public class Run {
         boolean hasNet = false;
         boolean roomExists = false;
 
-         System.out.print("Please enter room number: ");
-         cmd = reader.readLine();
-         command = cmd.split(" ", 2);
-         try
-         {
-             roomNum = Integer.parseInt(command[0]);
-             for (Room room : Database.getRooms())
-             {
-                 if (room.getRoomNumber() == roomNum)
-                 {
-                     roomExists = true;
-                     throw new NumberFormatException();
-                 }
-             }
-             if (roomExists == false)
-             {
-                 System.out.print("Please enter number of beds: ");
-                 cmd = reader.readLine();
-                 command = cmd.split(" ", 2);
-                 try
-                 {
-                     numOfBeds = Integer.parseInt(command[0]);
-                 }
-                 catch (NumberFormatException e)
-                 {
-                     System.out.println("You have mistyped the number of beds. " +
-                             "Automatically setting the beds to 2.");
-                     numOfBeds = 2;
-                 }
-                 System.out.print("Does the room have internet connection: ");
-                 cmd = reader.readLine();
-                 command = cmd.split(" ", 2);
-                 if (command[0].equalsIgnoreCase("yes"))
-                 {
-                     hasNet = true;
-                 }
-                 else if (command[0].equalsIgnoreCase("no"))
-                 {
-                     hasNet = false;
-                 }
-                 else
-                 {
-                     System.out.println("Invalid command. " + "Automatically making the room without internet access.");
-                     hasNet = false;
-                 }
-                 System.out.print("Please enter price per night for the room: ");
-                 cmd = reader.readLine();
-                 command = cmd.split(" ", 2);
-                 try
-                 {
-                     pricePerNight = Integer.parseInt(command[0]);
-                 }
-                 catch (NumberFormatException e)
-                 {
-                     System.out.println("Invalid number. " + "Room price set to default");
-                     pricePerNight = 420;
-                 }
-                 Room room = new Room(numOfBeds, hasNet, pricePerNight, roomNum);
-                 Database.addRoom(room);
-             }
-         }
-            catch (NumberFormatException e)
+        System.out.print("Please enter room number: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        try
+        {
+            roomNum = Integer.parseInt(command[0]);
+            for (Room room : Database.getRooms())
             {
-                System.out.println("Invalid room number");
+                if (room.getRoomNumber() == roomNum)
+                {
+                    roomExists = true;
+                    throw new NumberFormatException();
+                }
             }
-            System.out.print("Please enter a command: ");
-            cmd = reader.readLine();
-            command = cmd.split(" ", 2);
+            if (roomExists == false)
+            {
+                System.out.print("Please enter number of beds: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                try
+                {
+                    numOfBeds = Integer.parseInt(command[0]);
+                }
+                catch (NumberFormatException e)
+                {
+                    System.out.println("You have mistyped the number of beds. " +
+                            "Automatically setting the beds to 2.");
+                    numOfBeds = 2;
+                }
+                System.out.print("Does the room have internet connection: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                if (command[0].equalsIgnoreCase("yes"))
+                {
+                    hasNet = true;
+                }
+                else if (command[0].equalsIgnoreCase("no"))
+                {
+                    hasNet = false;
+                }
+                else
+                {
+                    System.out.println("Invalid command. Automatically making the room without internet access.");
+                    hasNet = false;
+                }
+                System.out.print("Please enter price per night for the room: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                try
+                {
+                    pricePerNight = Integer.parseInt(command[0]);
+                }
+                catch (NumberFormatException e)
+                {
+                    System.out.println("Invalid number. " + "Room price set to default");
+                    pricePerNight = 420;
+                }
+                System.out.println("Successfully added room!");
+                Room room = new Room(numOfBeds, hasNet, pricePerNight, roomNum);
+                Database.addRoom(room);
+            }
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Invalid room number");
+        }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
     }
 
     private User register() throws IOException
@@ -636,7 +636,7 @@ public class Run {
 
     public void removeStaff() throws IOException
     {
-        boolean removedStaff = false ;
+        boolean removedStaff = false;
         System.out.print("Please enter the phone number of the person: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
@@ -651,7 +651,7 @@ public class Run {
                 break;
             }
         }
-        if(removedStaff == false)
+        if (removedStaff == false)
         {
             System.out.println("No such person in hotel staff");
         }
@@ -659,8 +659,8 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);*/
     }
-    
-     public void removeRoom() throws IOException
+
+    public void removeRoom() throws IOException
     {
         boolean removeRoom = false;
         System.out.print("Please enter the number of the room: ");
@@ -682,15 +682,12 @@ public class Run {
                 removeRoom();
             }
         }
-        if(!removeRoom)
+        if (!removeRoom)
         {
             System.out.println("No such room in hotel!s");
         }
-        /*System.out.print("Please enter a command: ");
-        cmd = reader.readLine();
-        command = cmd.split(" ", 2);*/
     }
-    
+
     public void changeStaff() throws IOException
     {
         String phoneNumber;
@@ -698,13 +695,16 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
         phoneNumber = command[0];
-        for (Employee name : Database.getStaff()) {
-            if (name.getPhoneNumber().equals(phoneNumber)) {
+        for (Employee name : Database.getStaff())
+        {
+            if (name.getPhoneNumber().equals(phoneNumber))
+            {
                 System.out.println(name);
                 System.out.print("What would you like to change: ");
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
-                if (command[0].equalsIgnoreCase("phone")) {
+                if (command[0].equalsIgnoreCase("phone"))
+                {
                     System.out.print("Please enter new phone number: ");
                     cmd = reader.readLine();
                     command = cmd.split(" ", 2);
@@ -746,63 +746,14 @@ public class Run {
     public void changeRoom() throws IOException
     {
         int roomNum;
-        boolean roomExists = false;
+        boolean roomExists;
         System.out.print("Please enter room number: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
         try
         {
             roomNum = Integer.parseInt(command[0]);
-            for (Room room : Database.getRooms())
-            {
-                if (room.getRoomNumber() == Integer.parseInt(command[0]))
-                {
-                    roomExists = true;
-                    room.printRoom();
-                    System.out.print("What would you like to change: ");
-                    cmd = reader.readLine();
-                    command = cmd.split(" ", 2);
-                    if (command[0].equalsIgnoreCase("number"))
-                    {
-                        int roomNumber = roomNumber(room);
-                        room.setRoomNumber(roomNumber);
-                        Database.saveDatabase();
-                    }
-                    else if (command[0].equalsIgnoreCase("internet"))
-                    {
-                        System.out.print("Would you like this room to have internet access: ");
-                        cmd = reader.readLine();
-                        command = cmd.split(" ", 2);
-                        if (command[0].equalsIgnoreCase("yes"))
-                        {
-                            room.setHasInternetAccess(true);
-                            System.out.println("Internet access granted to the room");
-                        }
-                        else if (command[0].equalsIgnoreCase("no"))
-                        {
-                            room.setHasInternetAccess(false);
-                            System.out.println("Internet access removed");
-                        }
-                        else
-                        {
-                            System.out.println("Invalid command " + ", automatically making the room without internet access.");
-                            room.setHasInternetAccess(false);
-                        }
-                    }
-                    else if (command[0].equalsIgnoreCase("beds"))
-                    {
-                      int numOfBeds = numOfBeds(room);
-                      room.setNumOfBeds(numOfBeds);
-                      Database.saveDatabase();
-                    }
-                    else if (command[0].equalsIgnoreCase("price"))
-                    {
-                        int pricePerNight = pricePerNight(room);
-                        room.setPricePerNight(pricePerNight);
-                        Database.saveDatabase();
-                    }
-                }
-            }
+            roomExists = roomChange(roomNum);
             if (roomExists == false)
             {
                 throw new NumberFormatException();
@@ -810,13 +761,12 @@ public class Run {
         }
         catch (NumberFormatException e)
         {
-            System.out.println("Invalid room" + ", please enter room number again");
+            System.out.println("Invalid room, please enter room number again");
             changeRoom();
         }
-        System.out.print("Please enter a command: ");
+        /*System.out.print("Please enter a command: ");
         cmd = reader.readLine();
-        command = cmd.split(" ", 2);
-
+        command = cmd.split(" ", 2);*/
     }
 
     private int roomNumber(Room number) throws IOException
@@ -833,7 +783,7 @@ public class Run {
         }
         catch (NumberFormatException e)
         {
-            System.out.println("Invalid number" + ", please enter room number again");
+            System.out.println("Invalid number, please enter room number again");
             roomNumber(number);
         }
         return roomNum;
@@ -847,13 +797,13 @@ public class Run {
         command = cmd.split(" ", 2);
         try
         {
-           bedsNum = Integer.parseInt(command[0]);
-           System.out.println("Number of beds successfully changed");
-           Database.saveDatabase();
+            bedsNum = Integer.parseInt(command[0]);
+            System.out.println("Number of beds successfully changed");
+            Database.saveDatabase();
         }
         catch (NumberFormatException e)
         {
-            System.out.println("Invalid number" + ", please enter the number beds again");
+            System.out.println("Invalid number, please enter the number beds again");
             numOfBeds(beds);
         }
         return bedsNum;
@@ -873,14 +823,14 @@ public class Run {
         }
         catch (NumberFormatException e)
         {
-            System.out.println("Invalid number" + ", please enter the price again");
+            System.out.println("Invalid number, please enter the price again");
             pricePerNight(price);
         }
         return priceNight;
     }
 
-    
-     private int salary(Employee name) throws IOException
+
+    private int salary(Employee name) throws IOException
     {
         int salary = 17000;
         System.out.print("Please enter new salary: ");
@@ -899,7 +849,7 @@ public class Run {
         }
         return salary;
     }
-    
+
     private void logout() throws IOException
     {
         System.out.println("Successfully logged out!");
@@ -909,26 +859,24 @@ public class Run {
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
+
     private String title() throws IOException
     {
         String title;
         System.out.print("Please enter position: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
-        if(command[0].equalsIgnoreCase("cleaner"))
+        if (command[0].equalsIgnoreCase("cleaner"))
         {
             title = command[0];
         }
-        else if(command[0].equalsIgnoreCase("manager"))
-        {
+        else if (command[0].equalsIgnoreCase("manager")) {
             title = command[0];
         }
-        else if(command[0].equalsIgnoreCase("receptionist"))
-        {
+        else if (command[0].equalsIgnoreCase("receptionist")) {
             title = command[0];
         }
-        else if(command[0].equalsIgnoreCase("accountant"))
-        {
+        else if (command[0].equalsIgnoreCase("accountant")) {
             title = command[0];
         }
         else
@@ -941,26 +889,19 @@ public class Run {
 
     private void accounts() throws IOException
     {
-        for (Employee employee: Database.getStaff())
-        {
-            employee.printUser();
-        }
-        if(Database.getStaff().isEmpty())
-        {
-            System.out.println("No accounts yet!");
-        }
+        Database.accounts();
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
     }
-    
-    
+
+
     private void payroll() throws IOException
     {
         System.out.println("Loading employee's salary information....");
-        for(Employee staff1 : Database.getStaff())
+        for (Employee staff1 : Database.getStaff())
         {
-            System.out.println(staff1.getFullName() + "(" + staff1.getTitle() + ")" +": " + staff1.getSalary());
+            System.out.println(staff1.getFullName() + "(" + staff1.getTitle() + ")" + ": " + staff1.getSalary());
         }
         System.out.print("Please enter a command: ");
         cmd = reader.readLine();
@@ -970,7 +911,7 @@ public class Run {
     private int income() throws IOException
     {
         int calculateIncome = 0;
-        for(Room room : Database.getRooms())
+        for (Room room : Database.getRooms())
         {
             calculateIncome += room.getPricePerNight() * 200;
         }
@@ -990,29 +931,35 @@ public class Run {
 
     }
 
-    private int budget() throws  IOException
+    private int budget() throws IOException
     {
         int budget = 0;
 
-        for (Employee employee : Database.getStaff()){
+        for (Employee employee : Database.getStaff())
+        {
             budget += employee.getSalary() * 12;
         }
         budget += 55000;
         return budget;
     }
-    
-    private void book() throws IOException {
+
+    private void book() throws IOException
+    {
         String phoneNumber, firstName, lastName;
         System.out.print("How many people are you booking: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
         int people;
-        try {
+        try
+        {
             people = Integer.parseInt(command[0]);
-            for (Room room : Database.getRooms()) {
-                if (room.getNumOfBeds() >= people && room.occupied() == false) {
+            for (Room room : Database.getRooms())
+            {
+                if (room.getNumOfBeds() >= people && room.occupied() == false)
+                {
                     System.out.print("The following rooms are available: " + room.getRoomNumber());
-                    for (int i = 0; i < people; ++i) {
+                    for (int i = 0; i < people; ++i)
+                    {
                         System.out.print("Please enter guest phone number: ");
                         cmd = reader.readLine();
                         command = cmd.split(" ", 2);
@@ -1029,9 +976,74 @@ public class Run {
                 }
             }
         }
-        catch (NumberFormatException e){
+        catch (NumberFormatException e)
+        {
             book();
         }
+    }
 
+    private void internetAccess(Room room) throws IOException
+    {
+        System.out.print("Would you like this room to have internet access: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        if (command[0].equalsIgnoreCase("yes"))
+        {
+            room.setHasInternetAccess(true);
+            System.out.println("Internet access granted to the room");
+        }
+        else if (command[0].equalsIgnoreCase("no"))
+        {
+            room.setHasInternetAccess(false);
+            System.out.println("Internet access removed");
+        }
+        else
+        {
+            internetAccess(room);
+        }
+    }
+
+    private boolean roomChange(int roomNumber) throws IOException
+    {
+        boolean roomExists = false;
+        for (Room room : Database.getRooms())
+        {
+            if (room.getRoomNumber() == roomNumber)
+            {
+                roomExists = true;
+                room.printRoom();
+                System.out.print("What would you like to change: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                if (command[0].equalsIgnoreCase("number"))
+                {
+                    int roomNum = roomNumber(room);
+                    room.setRoomNumber(roomNum);
+                    Database.saveDatabase();
+                }
+                else if (command[0].equalsIgnoreCase("internet"))
+                {
+                    internetAccess(room);
+                }
+                else if (command[0].equalsIgnoreCase("beds"))
+                {
+                    int numOfBeds = numOfBeds(room);
+                    room.setNumOfBeds(numOfBeds);
+                    Database.saveDatabase();
+                }
+                else if (command[0].equalsIgnoreCase("price"))
+                {
+                    int pricePerNight = pricePerNight(room);
+                    room.setPricePerNight(pricePerNight);
+                    Database.saveDatabase();
+                }
+                else
+                {
+                    throw new NumberFormatException();
+                }
+            }
+        }
+        return roomExists;
+    }
 }
 

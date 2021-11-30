@@ -160,4 +160,16 @@ public class Database
         addStaffToDatabase();
     }
 
+    public static void accounts()
+    {
+        for (Employee employee : staff)
+        {
+            employee.printUser();
+        }
+        if (Database.getStaff().isEmpty())
+        {
+            System.out.println("No accounts yet!");
+        }
+    }
+
 }
