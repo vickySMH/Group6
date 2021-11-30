@@ -51,9 +51,30 @@ public class Room implements Serializable
         System.out.println("Room " + roomNumber + " - internet access: " + hasInternetAccess
                 + ", price per night: " + pricePerNight + ", number of beds: " + numOfBeds);
     }
+
     
-    public int getPricePerNight() {
+    public int getPricePerNight()
+    {
         return pricePerNight;
     }
 
+    public void setRoomNumber(int roomNumber)
+    {
+        this.roomNumber = roomNumber;
+    }
+
+    public void setHasInternetAccess(boolean hasInternetAccess)
+    {
+        this.hasInternetAccess = hasInternetAccess;
+    }
+
+    public void setNumOfBeds(int numOfBeds)
+    {
+        this.numOfBeds = numOfBeds;
+    }
+
+    public void setPricePerNight(int pricePerNight)
+    {
+        this.pricePerNight = pricePerNight;
+    }
 }
