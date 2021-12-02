@@ -1,9 +1,17 @@
 import People.Employee;
+import People.Guest;
 import People.User;
 
+import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Run
 {
@@ -16,6 +24,7 @@ public class Run
 
     public void run() throws IOException
     {
+        addRooms();
         startMessage();
         while (!command[0].equalsIgnoreCase("quit"))
         {
@@ -79,9 +88,9 @@ public class Run
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
-            else if (command[0].equalsIgnoreCase("rooms") &&
-                    (user.getTitle().equalsIgnoreCase("manager")
-                            || user.getTitle().equalsIgnoreCase("receptionist")))
+            else if (command[0].equalsIgnoreCase("rooms"))// &&
+                    //(user.getTitle().equalsIgnoreCase("manager")
+                           // || user.getTitle().equalsIgnoreCase("receptionist")))
             {
                 for (Room room : Database.getRooms())
                 {
@@ -158,9 +167,22 @@ public class Run
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
-            else if (command[0].equalsIgnoreCase("book") && user.getTitle().equalsIgnoreCase("receptionist"))
+            else if (command[0].equalsIgnoreCase("book"))// && user.getTitle().equalsIgnoreCase("receptionist"))
             {
                 book();
+            }
+            else if(command[0].equalsIgnoreCase("bookings"))
+            {
+                for(Room room : Database.getRooms())
+                {
+                    if(!room.getDates().isEmpty())
+                    {
+                        System.out.println("Room " + room.getRoomNumber() + " is booked" );
+                    }
+                }
+                System.out.print("Please enter a command: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
             }
             else
             {
@@ -381,7 +403,7 @@ public class Run
         command = cmd.split(" ", 2);
     }
 
-    public void addStaff() throws IOException
+    private void addStaff() throws IOException
     {
         String firstName, lastName, title, phoneNumber;
         int salary;
@@ -501,7 +523,7 @@ public class Run
     }
 
 
-   /* public void addRooms()
+    private void addRooms()
     {
         for (int i = 1; i < 5; i++)
         {
@@ -523,9 +545,9 @@ public class Run
             Room room = new Room(4, true, 900, 304 + i);
             Database.addRoom(room);
         }
-    }*/
+    }
 
-    public void addRoom() throws IOException
+    private void addRoom() throws IOException
     {
         int numOfBeds, pricePerNight, roomNum;
         boolean hasNet = false;
@@ -638,7 +660,7 @@ public class Run
         return newUser;
     }
 
-    public void removeStaff() throws IOException
+    private void removeStaff() throws IOException
     {
         boolean removedStaff = false;
         System.out.print("Please enter the phone number of the person: ");
@@ -664,7 +686,7 @@ public class Run
         command = cmd.split(" ", 2);*/
     }
 
-    public void removeRoom() throws IOException
+    private void removeRoom() throws IOException
     {
         boolean removeRoom = false;
         System.out.print("Please enter the number of the room: ");
@@ -692,7 +714,7 @@ public class Run
         }
     }
 
-    public void changeStaff() throws IOException
+    private void changeStaff() throws IOException
     {
         String phoneNumber;
         System.out.print("Please enter the phone number of the person: ");
@@ -747,7 +769,7 @@ public class Run
         command = cmd.split(" ", 2);
     }
 
-    public void changeRoom() throws IOException
+    private void changeRoom() throws IOException
     {
         int roomNum;
         boolean roomExists;
@@ -949,41 +971,63 @@ public class Run
 
     private void book() throws IOException
     {
-        String phoneNumber, firstName, lastName;
-        System.out.print("How many people are you booking: ");
+
+        String phoneNumber = "", firstName = "", lastName = "", address = "";
+        LocalDate beginningDate, endDate;
+        ArrayList<Room> roomsFree = new ArrayList<>();
+        System.out.print("How many people are you booking for: ");
         cmd = reader.readLine();
         command = cmd.split(" ", 2);
         int people;
         try
         {
             people = Integer.parseInt(command[0]);
+            beginningDate = date();
+            endDate = endDate();
+            if(endDate.isBefore(beginningDate))
+            {
+                System.out.println("End date you have entered is before your beginning date");
+                endDate = endDate();
+            }
             for (Room room : Database.getRooms())
             {
-                if (room.getNumOfBeds() >= people && room.occupied() == false)
+                boolean roomFree = false;
+                Collections.sort(room.getDates());
+                for (int i = 0 ; i < room.getDates().size(); i = i+2)
                 {
-                    System.out.print("The following rooms are available: " + room.getRoomNumber());
-                    for (int i = 0; i < people; ++i)
+                    if(beginningDate.isBefore(room.getDates().get(i)))
                     {
-                        System.out.print("Please enter guest phone number: ");
-                        cmd = reader.readLine();
-                        command = cmd.split(" ", 2);
-                        phoneNumber = command[0];
-                        System.out.print("Please enter guest first name: ");
-                        cmd = reader.readLine();
-                        command = cmd.split(" ", 2);
-                        firstName = command[0];
-                        System.out.print("Please enter guest last name: ");
-                        cmd = reader.readLine();
-                        command = cmd.split(" ", 2);
-                        lastName = command[0];
+                        if(endDate.isBefore(room.getDates().get(i)))
+                        {
+                            if(i == 0)
+                            {
+                                roomFree = true;
+                                break;
+                            }
+                            if(i >= 2 && beginningDate.isBefore(room.getDates().get(i - 1)))
+                            {
+                                roomFree = true;
+                                break;
+                            }
+                        }
                     }
                 }
+                if (room.getNumOfBeds() >= people && (roomFree == true || room.getDates().isEmpty()))
+                {
+                    System.out.println("Room " + room.getRoomNumber() + " is available");
+                    roomsFree.add(room);
+                }
             }
+            roomNum(roomsFree, phoneNumber, firstName, lastName, address,beginningDate,endDate);
+            Database.saveDatabase();
         }
         catch (NumberFormatException e)
         {
             book();
         }
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
     }
 
     private void internetAccess(Room room) throws IOException
@@ -1049,5 +1093,125 @@ public class Run
         }
         return roomExists;
     }
+
+    private LocalDate date() throws IOException
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        LocalDate localDate = LocalDate.now();
+        System.out.println("Supported date formats: (dd/mm/yyyy) and (dd-mm-yyyy)");
+        System.out.print("Please enter beginning date: ");
+        cmd = reader.readLine();
+        try
+        {
+            localDate = LocalDate.parse(cmd, formatter);
+        }
+        catch (DateTimeParseException e)
+        {
+            try
+            {
+                formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
+                localDate = LocalDate.parse(cmd, formatter);
+            }
+            catch (DateTimeParseException ex)
+            {
+                System.out.println("Invalid date format!");
+                date();
+            }
+        }
+        return localDate;
+    }
+
+    private LocalDate endDate() throws IOException
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        LocalDate localDate = LocalDate.now();
+        System.out.println("Supported date formats: (dd/mm/yyyy) and (dd-mm-yyyy)");
+        System.out.print("Please enter end date: ");
+        cmd = reader.readLine();
+        try
+        {
+            localDate = LocalDate.parse(cmd, formatter);
+        }
+        catch (DateTimeParseException e)
+        {
+            try
+            {
+                formatter = DateTimeFormatter.ofPattern("d-MM-yyyy");
+                localDate = LocalDate.parse(cmd, formatter);
+            }
+            catch (DateTimeParseException ex)
+            {
+                System.out.println("Invalid date format!");
+                endDate();
+            }
+        }
+        return localDate;
+    }
+
+    private int parseRoomNumber() throws IOException
+    {
+        System.out.print("Please enter room number for the room you would like to book: ");
+        int number = 0;
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+        try
+        {
+            number = Integer.parseInt(command[0]);
+        }
+        catch (NumberFormatException e)
+        {
+            System.out.println("Incorrect room number");
+            parseRoomNumber();
+        }
+        return number;
+    }
+
+    private void roomNum(ArrayList<Room> roomsFree, String phoneNumber, String firstName, String lastName, String address, LocalDate beginningDate, LocalDate endDate) throws IOException
+    {
+        int roomNumber = parseRoomNumber();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        boolean wrongNum = true;
+        for(int i = 0 ; i < roomsFree.size(); ++i)
+        {
+            if (roomNumber == roomsFree.get(i).getRoomNumber())
+            {
+                wrongNum = false;
+                System.out.print("Please enter guest phone number: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                phoneNumber = command[0];
+                System.out.print("Please enter guest first name: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                firstName = command[0];
+                System.out.print("Please enter guest last name: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                lastName = command[0];
+                System.out.print("Please enter guest address: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
+                address = command[0];
+                for(Room room : Database.getRooms())
+                {
+                    if(roomNumber == room.getRoomNumber())
+                    {
+                        Guest guest = new Guest(firstName,lastName,phoneNumber,address);
+                        room.addGuests(guest);
+                        room.setDates(beginningDate, endDate);
+                        Database.saveDatabase();
+                        System.out.println("Successfully booked room " + room.getRoomNumber()
+                                + " for dates: " + formatter.format(beginningDate) + " - " + formatter.format(endDate) + " for " + guest);
+                    }
+                }
+            }
+        }
+        if(wrongNum == true)
+        {
+            System.out.println("Wrong room number");
+            roomNum(roomsFree,phoneNumber,firstName,lastName,address,beginningDate,endDate);
+        }
+    }
+
 }
 

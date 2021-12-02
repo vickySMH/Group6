@@ -2,6 +2,7 @@ import People.Guest;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Room implements Serializable
 {
@@ -9,12 +10,10 @@ public class Room implements Serializable
     private int numOfBeds;
     private boolean hasInternetAccess;
     private int pricePerNight;
-    private boolean occupied;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private ArrayList<LocalDate>dates = new ArrayList<>();
     private boolean isClean;
     private int roomNumber;
-    private Guest[] guestsInRoom = new Guest[numOfBeds];
+    private ArrayList<Guest> personBooked = new ArrayList<>();
 
     public boolean isClean() {
         return isClean;
@@ -30,9 +29,6 @@ public class Room implements Serializable
         public int getNumOfBeds() {
         return numOfBeds;
     }
-    public boolean occupied() {
-        return occupied;
-    }
 
     public Room(int beds, boolean hasNet, int price, int roomNum)
     {
@@ -40,20 +36,9 @@ public class Room implements Serializable
         hasInternetAccess = hasNet;
         pricePerNight = price;
         roomNumber = roomNum;
-        occupied = false;
         isClean = true;
     }
 
-    public String toString() {
-        if (occupied)
-        {
-            return "Room " + roomNumber + " - is occupied";
-        }
-        else
-        {
-            return "Room " + roomNumber + " - is not occupied";
-        }
-    }
 
     public void printRoom()
     {
@@ -85,5 +70,26 @@ public class Room implements Serializable
     public void setPricePerNight(int pricePerNight)
     {
         this.pricePerNight = pricePerNight;
+    }
+
+    public ArrayList<LocalDate> getDates()
+    {
+        return dates;
+    }
+
+    public void addGuests(Guest guest)
+    {
+        personBooked.add(guest);
+    }
+
+    public void setDates(LocalDate startDate, LocalDate endDate)
+    {
+        dates.add(startDate);
+        dates.add(endDate);
+    }
+
+    public ArrayList<Guest> getPersonBooked()
+    {
+        return personBooked;
     }
 }
