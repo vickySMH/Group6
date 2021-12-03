@@ -17,7 +17,6 @@ public class Run
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private String cmd;
     private Employee user = new Employee();
-
     private String[] command;
 
     public void run() throws IOException
@@ -220,6 +219,7 @@ public class Run
     private void startMessage() throws IOException
     {
         loadDatabase();
+        roomBecomesDirty();
         System.out.println("Welcome to Kaizen's hotel app! " + "\n" +
                 "For more information please, type in 'help'!");
         System.out.print("Please enter a command: ");
@@ -233,18 +233,35 @@ public class Run
         int roomNumber;
         try
         {
+            boolean roomExists = false;
             roomNumber = Integer.parseInt(command[1]);
             for (Room room : Database.getRooms())
             {
                 if (roomNumber == room.getRoomNumber())
                 {
-                    if (room.isClean() == false) {
+                    if (room.isClean() == false)
+                    {
+                        roomExists = true;
                         room.cleanRoom(true);
                         System.out.println("Room is now clean, thank you for doing such an amazing job!");
                     }
+                    else
+                    {
+                        roomExists = true;
+                        System.out.println("Room is already clean");
+                    }
                 }
             }
-        } catch (NumberFormatException e)
+            if(!roomExists)
+            {
+                System.out.println("Room does not exist!");
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e)
+        {
+            System.out.println("Unknown command, please check 'help ' for list of commands");
+        }
+        catch (NumberFormatException e)
         {
             System.out.println("You have added a letter to the room number, please try using the command again");
             clean();
@@ -386,11 +403,7 @@ public class Run
                 boolean noDirtyRooms = true;
                 for (Room room : Database.getRooms())
                 {
-                    if (room.isClean())
-                    {
-                        System.out.println("Room " + room.getRoomNumber() + " is clean!");
-                    }
-                    else
+                    if(!room.isClean())
                     {
                         System.out.println("Room " + room.getRoomNumber() + " needs cleaning!");
                         noDirtyRooms = false;
@@ -1271,5 +1284,23 @@ public class Run
         }
     }
 
+    private void roomBecomesDirty()
+    {
+        int j = 0;
+        for(int i = 0 ; i < Database.getRooms().size(); ++i)
+        {
+            try
+            {
+                if (LocalDate.now().isAfter(Database.getRooms().get(i).getDates().get(j)))
+                {
+                    Database.getRooms().get(j).cleanRoom(false);
+                }
+                j += 2;
+            }
+            catch (IndexOutOfBoundsException e)
+            {
+            }
+        }
+    }
 }
 
