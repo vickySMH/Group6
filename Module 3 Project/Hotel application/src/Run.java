@@ -55,7 +55,8 @@ public class Run
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
-            else if (command[0].equalsIgnoreCase("accounts"))
+            else if (command[0].equalsIgnoreCase("accounts")
+                    && user.getTitle().equalsIgnoreCase("manager"))
             {
                 accounts();
             }
@@ -70,7 +71,7 @@ public class Run
                 cmd = reader.readLine();
                 command = cmd.split(" ", 2);
             }
-            else if (command[0].equalsIgnoreCase("change"))
+            else if (command[0].equalsIgnoreCase("change") && user.getTitle().equalsIgnoreCase("manager"))
             {
                 try
                 {
@@ -187,7 +188,9 @@ public class Run
             {
                 book();
             }
-            else if(command[0].equalsIgnoreCase("bookings"))
+            else if(command[0].equalsIgnoreCase("bookings")
+                    && (user.getTitle().equalsIgnoreCase("receptionist")
+                    || user.getTitle().equalsIgnoreCase("manager")))
             {
                 for(Room room : Database.getRooms())
                 {
@@ -1047,6 +1050,10 @@ public class Run
         try
         {
             people = Integer.parseInt(command[0]);
+            if(people > 4)
+            {
+                book();
+            }
             beginningDate = date();
             endDate = endDate();
             if(endDate.isBefore(beginningDate))
@@ -1058,7 +1065,8 @@ public class Run
             {
                 boolean roomFree = false;
                 Collections.sort(room.getDates());
-                for (int i = 0 ; i < room.getDates().size(); i = i+2)
+                int i = 0;
+                for (; i < room.getDates().size(); i = i+2)
                 {
                     if(beginningDate.isBefore(room.getDates().get(i)))
                     {
@@ -1077,6 +1085,17 @@ public class Run
                         }
                     }
                 }
+                try
+                {
+                    if(beginningDate.isAfter(room.getDates().get(i-1)))
+                    {
+                        roomFree = true;
+                    }
+                }
+                catch (IndexOutOfBoundsException e)
+                {
+
+                }
                 if (room.getNumOfBeds() >= people && (roomFree == true || room.getDates().isEmpty()))
                 {
                     System.out.println("Room " + room.getRoomNumber() + " is available");
@@ -1090,9 +1109,9 @@ public class Run
         {
             book();
         }
-        System.out.print("Please enter a command: ");
+        /*System.out.print("Please enter a command: ");
         cmd = reader.readLine();
-        command = cmd.split(" ", 2);
+        command = cmd.split(" ", 2);*/
     }
 
     private void internetAccess(Room room) throws IOException
