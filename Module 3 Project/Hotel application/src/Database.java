@@ -19,22 +19,12 @@ public class Database
 
     private static ArrayList<Employee> staff = new ArrayList<>();
     private static ArrayList<Room> roomList = new ArrayList<>();
-    private static ArrayList<Guest> guestList = new ArrayList<>();
 
     public static ArrayList<Employee> getStaff()
     {
         return staff;
     }
 
-
-    public static void loadGuests() throws IOException, ClassNotFoundException
-    {
-        fis = new  FileInputStream("guests.ser");
-        ois = new ObjectInputStream(fis);
-        guestList = (ArrayList<Guest>) ois.readObject();
-        ois.close();
-
-    }
 
     public static void loadRooms() throws IOException, ClassNotFoundException
     {
@@ -66,12 +56,6 @@ public class Database
         output1 = new ObjectOutputStream(fos1);
     }
 
-    private static void openGuests() throws IOException
-    {
-        fos2 = new FileOutputStream("guests.ser", false);
-        output2 = new ObjectOutputStream(fos2);
-    }
-
     public static ArrayList<Room> getRooms()
     {
         return roomList;
@@ -85,7 +69,6 @@ public class Database
 
     public static void saveDatabase()
     {
-        addGuestToDatabase();
         addRoomToDatabase();
         addStaffToDatabase();
     }
@@ -93,11 +76,6 @@ public class Database
     private static void closeStaff() throws IOException
     {
         output1.close();
-    }
-    
-        private static void closeGuests() throws IOException
-    {
-        output2.close();
     }
 
     private static void closeRooms() throws IOException
@@ -134,26 +112,7 @@ public class Database
             System.out.println("Error in database, room not found");
         }
     }
-    
-    private static void addGuestToDatabase()
-    {
 
-        try
-        {
-            openGuests();
-            output2.writeObject(guestList);
-            closeGuests();
-        }
-        catch(IOException e)
-        {
-            System.out.println("Error in database, guest not found");
-        }
-    }
-
-    public static ArrayList<Guest> getGuestList() {
-        return guestList;
-    }
-    
     public static void addStaff(Employee staff1)
     {
         staff.add(staff1);

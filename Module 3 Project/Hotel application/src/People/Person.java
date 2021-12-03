@@ -16,7 +16,7 @@ abstract class Person implements Serializable
     public Person(String firstName, String lastName, String phoneNumber)
     {
         fullName = firstName + " " + lastName;
-        this.phoneNumber = phoneNumber;
+        setPhoneNumber(phoneNumber);
     }
 
     public String getFullName()
@@ -32,7 +32,8 @@ abstract class Person implements Serializable
         return phoneNumber;
     }
     
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber)
+    {
         this.phoneNumber = phoneNumber;
     }
 }

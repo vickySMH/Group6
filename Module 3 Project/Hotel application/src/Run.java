@@ -2,7 +2,6 @@ import People.Employee;
 import People.Guest;
 import People.User;
 
-import javax.xml.crypto.Data;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +9,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class Run
@@ -24,7 +22,7 @@ public class Run
 
     public void run() throws IOException
     {
-        addRooms();
+        //addRooms();
         startMessage();
         while (!command[0].equalsIgnoreCase("quit"))
         {
@@ -71,16 +69,23 @@ public class Run
             }
             else if (command[0].equalsIgnoreCase("change"))
             {
-                command = cmd.split(" ", 3);
-                if (command[1].equalsIgnoreCase("staff"))
+                try
                 {
-                    changeStaff();
+                    command = cmd.split(" ", 3);
+                    if (command[1].equalsIgnoreCase("staff"))
+                    {
+                        changeStaff();
+                    }
+                    else if (command[1].equalsIgnoreCase("room"))
+                    {
+                        changeRoom();
+                    }
+                    else
+                    {
+                        System.out.println("Unknown command, please check 'help ' for list of commands");
+                    }
                 }
-                else if (command[1].equalsIgnoreCase("room"))
-                {
-                    changeRoom();
-                }
-                else
+                catch (ArrayIndexOutOfBoundsException e)
                 {
                     System.out.println("Unknown command, please check 'help ' for list of commands");
                 }
@@ -127,22 +132,30 @@ public class Run
             }
             else if (command[0].equalsIgnoreCase("add"))//&& user.getTitle().equalsIgnoreCase("manager"))
             {
-                command = cmd.split(" ", 3);
-                if (command[1].equalsIgnoreCase("staff"))
+                try
                 {
-                    addStaff();
+
+                    command = cmd.split(" ", 3);
+                    if (command[1].equalsIgnoreCase("staff"))
+                    {
+                        addStaff();
+                    }
+                    else if (command[1].equalsIgnoreCase("room"))
+                    {
+                        addRoom();
+                    }
+                    else
+                    {
+                        System.out.println("Unknown command, please check 'help ' for list of commands");
+                    }
                 }
-                else if (command[1].equalsIgnoreCase("room"))
-                {
-                    addRoom();
-                }
-                else
+                catch (ArrayIndexOutOfBoundsException e)
                 {
                     System.out.println("Unknown command, please check 'help ' for list of commands");
-                    System.out.print("Please enter a command: ");
-                    cmd = reader.readLine();
-                    command = cmd.split(" ", 2);
                 }
+                System.out.print("Please enter a command: ");
+                cmd = reader.readLine();
+                command = cmd.split(" ", 2);
             }
             else if (command[0].equalsIgnoreCase("payroll") && (user.getTitle().equalsIgnoreCase("manager")
                     || user.getTitle().equalsIgnoreCase("accountant"))) {
@@ -177,7 +190,11 @@ public class Run
                 {
                     if(!room.getDates().isEmpty())
                     {
-                        System.out.println("Room " + room.getRoomNumber() + " is booked" );
+                        System.out.println("Room " + room.getRoomNumber() + " is booked on: " + room.getDates() );
+                    }
+                    else
+                    {
+                        System.out.println("No current bookings");
                     }
                 }
                 System.out.print("Please enter a command: ");
@@ -350,14 +367,6 @@ public class Run
         try
         {
             Database.loadStaff();
-        }
-        catch (Exception e)
-        {
-            System.out.println("Error loading from database!");
-        }
-        try
-        {
-            Database.loadGuests();
         }
         catch (Exception e)
         {
@@ -804,6 +813,14 @@ public class Run
         try
         {
             roomNum = Integer.parseInt(command[0]);
+            for (Room room : Database.getRooms())
+            {
+                if(room.getRoomNumber() == roomNum)
+                {
+                    System.out.println("Room with this number already exists!");
+                    break;
+                }
+            }
             System.out.println("Room number successfully changed");
             Database.saveDatabase();
         }
@@ -1065,8 +1082,12 @@ public class Run
                 command = cmd.split(" ", 2);
                 if (command[0].equalsIgnoreCase("number"))
                 {
+                    boolean roomNumExists = false;
                     int roomNum = roomNumber(room);
-                    room.setRoomNumber(roomNum);
+                    if(roomNumExists == false)
+                    {
+                        room.setRoomNumber(roomNum);
+                    }
                     Database.saveDatabase();
                 }
                 else if (command[0].equalsIgnoreCase("internet"))
@@ -1198,10 +1219,12 @@ public class Run
                     {
                         Guest guest = new Guest(firstName,lastName,phoneNumber,address);
                         room.addGuests(guest);
+                        Database.saveDatabase();
                         room.setDates(beginningDate, endDate);
                         Database.saveDatabase();
                         System.out.println("Successfully booked room " + room.getRoomNumber()
                                 + " for dates: " + formatter.format(beginningDate) + " - " + formatter.format(endDate) + " for " + guest);
+                        break;
                     }
                 }
             }
