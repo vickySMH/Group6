@@ -18,6 +18,17 @@ public class Utilities
 
     public static void loginUser(ActionEvent event, String username, String password)
     {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT password, from Daycare.users where username = ?; ");
+            preparedStatement.setString(1, username);
+            resultSet = preparedStatement.executeQuery();
+        }
+        catch (SQLException e)
+        {
+
+        }
     }
 
     private static void connection()

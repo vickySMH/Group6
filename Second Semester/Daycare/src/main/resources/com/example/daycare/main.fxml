@@ -14,12 +14,17 @@
    <children>
       <AnchorPane layoutX="16.0" layoutY="5.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
          <children>
-            <ImageView fitHeight="499.0" fitWidth="749.0" layoutX="-21.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image" fitHeight="500.0" fitWidth="750.0" layoutX="-21.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/imgs/Alien.png" />
                </image>
             </ImageView>
-            <AnchorPane id="mainBubble" layoutX="157.0" layoutY="267.0" prefHeight="182.0" prefWidth="452.0" style="-fx-background-color: #bafb6cbafb6c; -fx-background-radius: 20px;">
+            <ImageView fx:id="cancelImage" fitHeight="500.0" fitWidth="750.0" layoutX="-22.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/imgs/sad%20alien%20copy.png" />
+               </image>
+            </ImageView>
+            <AnchorPane id="mainBubble" fx:id="box" layoutX="157.0" layoutY="267.0" prefHeight="182.0" prefWidth="452.0" style="-fx-background-color: #bafb6cbafb6c; -fx-background-radius: 20px;">
                <children>
                   <TextField fx:id="usernameField" layoutX="161.0" layoutY="36.0" style="-fx-background-radius: 12px;" />
                   <PasswordField fx:id="passwordField" layoutX="160.0" layoutY="78.0" style="-fx-background-radius: 12px;" />
@@ -33,7 +38,7 @@
                      </cursor></Button>
                </children>
             </AnchorPane>
-            <Label id="Speech" fx:id="thumbnail" layoutX="302.0" layoutY="134.0" prefHeight="42.0" prefWidth="349.0" text="Roskilde Kindergarten">
+            <Label id="Speech" fx:id="thumbnail" layoutX="310.0" layoutY="134.0" prefHeight="37.0" prefWidth="351.0" text="Roskilde Kindergarten">
                <font>
                   <Font name="SansSerif Bold" size="32.0" />
                </font>
