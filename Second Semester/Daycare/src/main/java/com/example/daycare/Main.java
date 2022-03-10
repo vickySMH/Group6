@@ -19,7 +19,7 @@ public class Main extends Application
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initStyle(StageStyle.TRANSPARENT);
-        stage.setTitle("Hello!");
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
     }
