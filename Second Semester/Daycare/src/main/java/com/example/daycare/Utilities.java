@@ -15,6 +15,29 @@ public class Utilities
     private static String url = System.getenv("URL");
     private static String user = System.getenv("user");
     private static String password = System.getenv("password");
+    
+//    public static void changeScene(ActionEvent event, String fmxlFile, String username, String password){
+//        Parent root = null;
+//
+//        if(user != null && password != null){
+//            try {
+//                FXMLLoader loader = new FXMLLoader(Utilities.class.getResource(fmxlFile));
+//                root = loader.load();
+//                LoggedInController loggedInController = loader.getController();
+//            }
+//            catch (IOException e){
+//                e.printStackTrace();
+//            }
+//        }
+//        else{
+//            try{
+//                root = FXMLLoader.load(Utilities.class.getResource(fmxlFile));
+//            }
+//            catch (IOException e){
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     public static void loginUser(ActionEvent event, String username, String password)
     {
