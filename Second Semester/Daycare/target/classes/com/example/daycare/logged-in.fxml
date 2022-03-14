@@ -67,7 +67,7 @@
             <Image url="@resources/imgs/Alien.png" />
          </image>
       </ImageView>
-      <Button layoutX="687.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="addTeacherButton" layoutX="687.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Teacher">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -75,7 +75,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="566.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="addKidButton" layoutX="566.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Kid">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -83,7 +83,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="808.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="addScheduleButton" layoutX="808.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Schedule">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -91,7 +91,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="947.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="updateTeacher" layoutX="947.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Teacher">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -99,7 +99,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="1068.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="updateSchedule" layoutX="1068.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Schedule">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -107,7 +107,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="826.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="updateKid" layoutX="826.0" layoutY="580.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Kid">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -115,7 +115,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="566.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="viewKid" layoutX="566.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Kids">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -123,7 +123,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="687.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="viewTeacher" layoutX="687.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Teachers">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -131,7 +131,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="808.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="vieSchedule" layoutX="808.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Schedule">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -139,7 +139,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="826.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="removeKid" layoutX="826.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Kid">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -147,7 +147,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="947.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="removeTeacher" layoutX="947.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Teacher">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -155,7 +155,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button layoutX="1068.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Button">
+      <Button fx:id="removeSchedule" layoutX="1068.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Schedule">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

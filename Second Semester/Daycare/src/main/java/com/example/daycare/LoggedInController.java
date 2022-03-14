@@ -35,11 +35,47 @@ public class LoggedInController implements Initializable
     ImageView image;
     @FXML
     Button backButton;
+    @FXML
+    Button addKidButton;
+    @FXML
+    Button addTeacherButton;
+    @FXML
+    Button addScheduleButton;
+    @FXML
+    Button updateKid;
+    @FXML
+    Button updateTeacher;
+    @FXML
+    Button updateSchedule;
+    @FXML
+    Button viewKid;
+    @FXML
+    Button viewTeacher;
+    @FXML
+    Button vieSchedule;
+    @FXML
+    Button removeKid;
+    @FXML
+    Button removeTeacher;
+    @FXML
+    Button removeSchedule;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         Platform.runLater( () -> image.requestFocus() );
+        addKidButton.setVisible(false);
+        addTeacherButton.setVisible(false);
+        addScheduleButton.setVisible(false);
+        updateKid.setVisible(false);
+        updateTeacher.setVisible(false);
+        updateSchedule.setVisible(false);
+        viewKid.setVisible(false);
+        viewTeacher.setVisible(false);
+        vieSchedule.setVisible(false);
+        removeKid.setVisible(false);
+        removeTeacher.setVisible(false);
+        removeSchedule.setVisible(false);
         addPane.setVisible(false);
         viewPane.setVisible(false);
         updatePane.setVisible(false);
@@ -49,6 +85,18 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                addKidButton.setVisible(true);
+                addTeacherButton.setVisible(true);
+                addScheduleButton.setVisible(true);
+                updateKid.setVisible(false);
+                updateTeacher.setVisible(false);
+                updateSchedule.setVisible(false);
+                viewKid.setVisible(false);
+                viewTeacher.setVisible(false);
+                vieSchedule.setVisible(false);
+                removeKid.setVisible(false);
+                removeTeacher.setVisible(false);
+                removeSchedule.setVisible(false);
                 addPane.setVisible(true);
                 viewPane.setVisible(false);
                 updatePane.setVisible(false);
@@ -60,6 +108,18 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                addKidButton.setVisible(false);
+                addTeacherButton.setVisible(false);
+                addScheduleButton.setVisible(false);
+                updateKid.setVisible(false);
+                updateTeacher.setVisible(false);
+                updateSchedule.setVisible(false);
+                viewKid.setVisible(true);
+                viewTeacher.setVisible(true);
+                vieSchedule.setVisible(true);
+                removeKid.setVisible(false);
+                removeTeacher.setVisible(false);
+                removeSchedule.setVisible(false);
                 viewPane.setVisible(true);
                 addPane.setVisible(false);
                 updatePane.setVisible(false);
@@ -71,6 +131,18 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                addKidButton.setVisible(false);
+                addTeacherButton.setVisible(false);
+                addScheduleButton.setVisible(false);
+                updateKid.setVisible(true);
+                updateTeacher.setVisible(true);
+                updateSchedule.setVisible(true);
+                viewKid.setVisible(false);
+                viewTeacher.setVisible(false);
+                vieSchedule.setVisible(false);
+                removeKid.setVisible(false);
+                removeTeacher.setVisible(false);
+                removeSchedule.setVisible(false);
                 updatePane.setVisible(true);
                 viewPane.setVisible(false);
                 addPane.setVisible(false);
@@ -82,6 +154,18 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                addKidButton.setVisible(false);
+                addTeacherButton.setVisible(false);
+                addScheduleButton.setVisible(false);
+                updateKid.setVisible(false);
+                updateTeacher.setVisible(false);
+                updateSchedule.setVisible(false);
+                viewKid.setVisible(false);
+                viewTeacher.setVisible(false);
+                vieSchedule.setVisible(false);
+                removeKid.setVisible(true);
+                removeTeacher.setVisible(true);
+                removeSchedule.setVisible(true);
                 removePane.setVisible(true);
                 updatePane.setVisible(false);
                 viewPane.setVisible(false);
@@ -96,5 +180,6 @@ public class LoggedInController implements Initializable
                 Utilities.returnToLogin(event);
             }
         });
+
     }
 }

@@ -44,8 +44,7 @@ public class Utilities
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root, 750, 500);
         scene.setFill(Color.TRANSPARENT);
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX(screenBounds.getWidth()/0.92);
+        stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
     }
