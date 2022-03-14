@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.*;
@@ -53,7 +54,8 @@ public class Utilities
         }
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
-        stage.setScene(new Scene(root, 2880 ,1800));
+        stage.setScene(new Scene(root, 1440 ,800));
+        stage.centerOnScreen();
         stage.setMaximized(true);
         stage.show();
     }
