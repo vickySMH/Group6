@@ -6,34 +6,33 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="800.0" prefWidth="1440.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.daycare.LoggedInController">
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.daycare.LoggedInController">
    <children>
-      <Button layoutX="1182.0" layoutY="719.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="638.0" layoutY="732.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="1078.0" layoutY="719.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="960.0" layoutY="748.0" mnemonicParsing="false" text="Button" />
-      <AnchorPane prefHeight="480.0" prefWidth="1440.0">
+      <Button fx:id="addButton" layoutX="638.0" layoutY="732.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="viewButton" layoutX="960.0" layoutY="748.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="updateButton" layoutX="1078.0" layoutY="719.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="removeButton" layoutX="1182.0" layoutY="719.0" mnemonicParsing="false" text="Button" />
+      <AnchorPane fx:id="addPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
             <Label text="a" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="480.0" prefWidth="1440.0">
+      <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
             <Label text="b" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="480.0" prefWidth="1440.0">
+      <AnchorPane fx:id="updatePane" prefHeight="480.0" prefWidth="1440.0">
          <children>
             <Label text="c" />
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="480.0" prefWidth="1440.0">
+      <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0">
          <children>
             <Label layoutX="154.0" layoutY="271.0" text="d" />
          </children>
       </AnchorPane>
-      <ImageView fitHeight="318.0" fitWidth="467.0" layoutX="-2.0" layoutY="553.0">
+      <ImageView fx:id="image" fitHeight="318.0" fitWidth="467.0" layoutX="-2.0" layoutY="553.0">
          <image>
             <Image url="@resources/imgs/Alien.png" />
          </image>

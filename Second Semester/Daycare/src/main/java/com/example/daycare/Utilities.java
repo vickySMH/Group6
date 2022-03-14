@@ -9,6 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.awt.*;
+
 import java.io.IOException;
 import java.sql.*;
 
@@ -23,7 +25,7 @@ public class Utilities
     private static String url = System.getenv("URL");
     private static String user = System.getenv("user");
     private static String password = System.getenv("password");
-    
+
     public static void changeScene(ActionEvent event, String fmxlFile, String title ,String username, String password)
     {
         Parent root = null;
@@ -54,8 +56,11 @@ public class Utilities
         }
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setTitle(title);
-        stage.setScene(new Scene(root, 1440 ,800));
-        stage.centerOnScreen();
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        int width = gd.getDisplayMode().getWidth();
+        int height = gd.getDisplayMode().getHeight();
+        stage.setScene(new Scene(root, Double.MAX_VALUE,Double.MAX_VALUE));
+        stage.sizeToScene();
         stage.setMaximized(true);
         stage.show();
     }

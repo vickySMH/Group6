@@ -3,6 +3,7 @@ module com.example.daycare {
     requires javafx.fxml;
     requires javafx.graphics;
     requires java.sql;
+    requires java.desktop;
 
 
     opens com.example.daycare to javafx.fxml;
