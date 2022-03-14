@@ -93,7 +93,7 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                Utilities.changeScene(event, "main.fxml", "login", null, null);
+                Utilities.returnToLogin(event);
             }
         });
     }

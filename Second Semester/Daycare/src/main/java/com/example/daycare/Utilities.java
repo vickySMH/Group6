@@ -2,12 +2,14 @@ package com.example.daycare;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.awt.*;
 
@@ -26,7 +28,29 @@ public class Utilities
     private static String user = System.getenv("user");
     private static String password = System.getenv("password");
 
-    public static void changeScene(ActionEvent event, String fmxlFile, String title ,String username, String password)
+    public static void returnToLogin(ActionEvent event)
+    {
+        Parent root = null;
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(Utilities.class.getResource("main.fxml"));
+            root = loader.load();
+            MainController mainController = loader.getController();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root, 750, 500);
+        scene.setFill(Color.TRANSPARENT);
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX(screenBounds.getWidth()/0.92);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void changeScene(ActionEvent event, String fxmlFile, String title ,String username, String password)
     {
         Parent root = null;
 
@@ -34,7 +58,7 @@ public class Utilities
         {
             try
             {
-                FXMLLoader loader = new FXMLLoader(Utilities.class.getResource(fmxlFile));
+                FXMLLoader loader = new FXMLLoader(Utilities.class.getResource(fxmlFile));
                 root = loader.load();
                 LoggedInController loggedInController = loader.getController();
             }
@@ -47,7 +71,7 @@ public class Utilities
         {
             try
             {
-                root = FXMLLoader.load(Utilities.class.getResource(fmxlFile));
+                root = FXMLLoader.load(Utilities.class.getResource(fxmlFile));
             }
             catch (IOException e)
             {
