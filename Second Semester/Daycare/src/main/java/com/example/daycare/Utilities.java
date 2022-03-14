@@ -65,7 +65,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("SELECT password from Daycare.users where username = ?; ");
+            preparedStatement = connection.prepareStatement("SELECT password from Users where username = ?; ");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             if(!resultSet.isBeforeFirst())
