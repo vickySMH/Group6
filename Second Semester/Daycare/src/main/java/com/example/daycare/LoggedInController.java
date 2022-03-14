@@ -33,6 +33,8 @@ public class LoggedInController implements Initializable
     AnchorPane removePane;
     @FXML
     ImageView image;
+    @FXML
+    Button backButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -84,6 +86,14 @@ public class LoggedInController implements Initializable
                 updatePane.setVisible(false);
                 viewPane.setVisible(false);
                 addPane.setVisible(false);
+            }
+        });
+        backButton.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Utilities.changeScene(event, "main.fxml", "login", null, null);
             }
         });
     }

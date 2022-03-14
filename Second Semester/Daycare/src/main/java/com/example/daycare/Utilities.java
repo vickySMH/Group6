@@ -61,7 +61,7 @@ public class Utilities
         int height = gd.getDisplayMode().getHeight();
         stage.setScene(new Scene(root, Double.MAX_VALUE,Double.MAX_VALUE));
         stage.sizeToScene();
-        stage.setMaximized(true);
+        stage.setFullScreen(true);
         stage.show();
     }
 
