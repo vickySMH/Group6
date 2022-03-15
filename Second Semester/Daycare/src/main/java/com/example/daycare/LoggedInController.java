@@ -83,10 +83,10 @@ public class LoggedInController implements Initializable
 
     private void resetButtons()
     {
-        addButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-border-radius: 12px");
-        viewButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-border-radius: 12px");
-        updateButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-border-radius: 12px");
-        removeButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-border-radius: 12px");
+        addButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
+        viewButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
+        updateButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
+        removeButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
     }
 
     @Override
@@ -122,12 +122,12 @@ public class LoggedInController implements Initializable
                 else
                 {
                     ++counter;
-                    addButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-border-radius: 12px");
+                    addButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 }
                 if(counter == 0)
                 {
                     ++counter;
-                    addButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-border-radius: 12px");
+                    addButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 }
                 addKidButton.setVisible(true);
                 addTeacherButton.setVisible(true);
@@ -169,12 +169,12 @@ public class LoggedInController implements Initializable
                 else
                 {
                     ++counter;
-                    viewButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-border-radius: 12px");
+                    viewButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 }
                 if(counter == 0)
                 {
                     ++counter;
-                    viewButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-border-radius: 12px");
+                    viewButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
@@ -207,12 +207,12 @@ public class LoggedInController implements Initializable
                 else
                 {
                     ++counter;
-                    updateButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-border-radius: 12px");
+                    updateButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 }
                 if(counter == 0)
                 {
                     ++counter;
-                    updateButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-border-radius: 12px");
+                    updateButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
@@ -245,12 +245,12 @@ public class LoggedInController implements Initializable
                 else
                 {
                     ++counter;
-                    removeButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-border-radius: 12px");
+                    removeButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 }
                 if(counter == 0)
                 {
                     ++counter;
-                    removeButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-border-radius: 12px;");
+                    removeButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px;");
                 }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
