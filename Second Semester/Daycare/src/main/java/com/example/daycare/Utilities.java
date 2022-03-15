@@ -57,6 +57,7 @@ public class Utilities
         {
             try
             {
+                LoggedInController.setUsername(username);
                 FXMLLoader loader = new FXMLLoader(Utilities.class.getResource(fxmlFile));
                 root = loader.load();
                 LoggedInController loggedInController = loader.getController();

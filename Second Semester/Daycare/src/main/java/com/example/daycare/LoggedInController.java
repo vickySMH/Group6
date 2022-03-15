@@ -18,6 +18,7 @@ public class LoggedInController implements Initializable
 {
     //todo add buttons to the panes;
     private static int counter = 0;
+    private static String username;
     @FXML
     Button addButton;
     @FXML
@@ -91,12 +92,18 @@ public class LoggedInController implements Initializable
     @FXML
     TextField groupNumber;
 
+    public static void setUsername(String newUsername)
+    {
+        username = newUsername;
+    }
+
     private void resetButtons()
     {
         addButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
         viewButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
         updateButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
         removeButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
+        addKidButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
     }
 
     @Override
@@ -119,11 +126,29 @@ public class LoggedInController implements Initializable
         viewPane.setVisible(false);
         updatePane.setVisible(false);
         removePane.setVisible(false);
+        if(!username.equals("admin"))
+        {
+            addButton.setVisible(false);
+            removeButton.setVisible(false);
+            updateButton.setVisible(false);
+            viewButton.setLayoutX(700);
+            viewButton.setLayoutY(685);
+            viewKid.setLayoutY(620);
+            viewKid.setLayoutX(700);
+            viewSchedule.setLayoutY(620);
+            viewSchedule.setLayoutX(833);
+        }
         addButton.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event)
             {
+                if(viewButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
+                        || removeButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
+                        || updateButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")  )
+                {
+                    resetButtons();
+                }
                 if(counter == 2)
                 {
                     counter = 0;
@@ -164,11 +189,6 @@ public class LoggedInController implements Initializable
                 viewPane.setVisible(false);
                 updatePane.setVisible(false);
                 removePane.setVisible(false);
-                childImage.setVisible(false);
-                teacherName.setVisible(false);
-                teacherSurname.setVisible(false);
-                teacherPhone.setVisible(false);
-                groupNumber.setVisible(false);
             }
         });
         viewButton.setOnAction(new EventHandler<ActionEvent>()
@@ -176,6 +196,13 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                if(addButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
+                        || removeButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
+                        || updateButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")  )
+                {
+                    resetButtons();
+                }
+                resetButtons();
                 if(counter == 2)
                 {
                     counter = 0;
@@ -198,7 +225,10 @@ public class LoggedInController implements Initializable
                 updateTeacher.setVisible(false);
                 updateSchedule.setVisible(false);
                 viewKid.setVisible(true);
-                viewTeacher.setVisible(true);
+                if(username.equals("admin"))
+                {
+                    viewTeacher.setVisible(true);
+                }
                 viewSchedule.setVisible(true);
                 removeKid.setVisible(false);
                 removeTeacher.setVisible(false);
@@ -214,6 +244,10 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                if(addButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
+                        || removeButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
+                        || viewButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px") )
+                resetButtons();
                 if(counter == 2)
                 {
                     counter = 0;
@@ -252,6 +286,10 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                if(addButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
+                        || viewButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
+                        || updateButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")  )
+                resetButtons();
                 if(counter == 2)
                 {
                     counter = 0;
@@ -299,6 +337,22 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                if(counter == 2)
+                {
+                    counter = 0;
+                    resetButtons();
+                }
+                else
+                {
+                    ++counter;
+                    addKidButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
+                }
+                if(counter == 0)
+                {
+                    ++counter;
+                    addKidButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px;");
+                }
+                addButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 name.setVisible(true);
                 surname.setVisible(true);
                 dateOfBirth.setVisible(true);
