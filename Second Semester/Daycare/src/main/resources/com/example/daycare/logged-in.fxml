@@ -13,35 +13,40 @@
    <children>
       <AnchorPane fx:id="addPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
-            <TextField fx:id="name" layoutX="680.0" layoutY="150.0">
+            <ImageView fx:id="childImage" fitHeight="270.0" fitWidth="570.0" layoutX="40.0" layoutY="170.0">
+               <image>
+                  <Image url="@resources/imgs/pngegg.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="name" layoutX="680.0" layoutY="150.0" promptText="Child name">
                <font>
                   <Font size="16.0" />
                </font></TextField>
-            <TextField fx:id="dateOfBirth" layoutX="680.0" layoutY="220.0">
+            <TextField fx:id="dateOfBirth" layoutX="680.0" layoutY="220.0" promptText="Date of birth">
                <font>
                   <Font size="16.0" />
                </font></TextField>
-            <TextField fx:id="parentName" layoutX="680.0" layoutY="290.0">
+            <TextField fx:id="parentName" layoutX="680.0" layoutY="290.0" promptText="Parent name">
                <font>
                   <Font size="16.0" />
                </font></TextField>
-            <TextField fx:id="address" layoutX="680.0" layoutY="360.0">
+            <TextField fx:id="address" layoutX="680.0" layoutY="360.0" promptText="Address">
                <font>
                   <Font size="16.0" />
                </font></TextField>
-            <TextField fx:id="surname" layoutX="930.0" layoutY="150.0">
+            <TextField fx:id="surname" layoutX="930.0" layoutY="150.0" promptText="Child surname">
                <font>
                   <Font size="16.0" />
                </font></TextField>
-            <TextField fx:id="parentPhone" layoutX="930.0" layoutY="220.0">
+            <TextField fx:id="parentPhone" layoutX="930.0" layoutY="220.0" promptText="Parent phone">
                <font>
                   <Font size="16.0" />
                </font></TextField>
-            <TextField fx:id="parentSurname" layoutX="930.0" layoutY="290.0">
+            <TextField fx:id="parentSurname" layoutX="930.0" layoutY="290.0" promptText="Parent surname">
                <font>
                   <Font size="16.0" />
                </font></TextField>
-            <TextField fx:id="group" layoutX="930.0" layoutY="360.0">
+            <TextField fx:id="group" layoutX="930.0" layoutY="360.0" promptText="Group number">
                <font>
                   <Font size="16.0" />
                </font></TextField>
@@ -49,6 +54,26 @@
                <font>
                   <Font size="20.0" />
                </font></RadioButton>
+            <TextField fx:id="teacherName" layoutX="680.0" layoutY="150.0" promptText="Teacher name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="teacherSurname" layoutX="930.0" layoutY="150.0" promptText="Teachere surname">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="teacherPhone" layoutX="680.0" layoutY="220.0" promptText="Phone number">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="groupNumber" layoutX="930.0" layoutY="220.0" promptText="Group number">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0" />
@@ -158,7 +183,7 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Button fx:id="vieSchedule" layoutX="848.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Schedule">
+      <Button fx:id="viewSchedule" layoutX="848.0" layoutY="790.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="107.0" style="-fx-background-radius: 12;" text="Schedule">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
