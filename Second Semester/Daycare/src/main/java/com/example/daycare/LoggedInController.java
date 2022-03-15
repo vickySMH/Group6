@@ -6,6 +6,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -60,6 +62,24 @@ public class LoggedInController implements Initializable
     Button removeTeacher;
     @FXML
     Button removeSchedule;
+    @FXML
+    TextField name;
+    @FXML
+    TextField surname;
+    @FXML
+    TextField dateOfBirth;
+    @FXML
+    TextField parentPhone;
+    @FXML
+    TextField parentName;
+    @FXML
+    TextField parentSurname;
+    @FXML
+    TextField address;
+    @FXML
+    TextField group;
+    @FXML
+    RadioButton waitingList;
 
     private void resetButtons()
     {
@@ -121,6 +141,15 @@ public class LoggedInController implements Initializable
                 removeKid.setVisible(false);
                 removeTeacher.setVisible(false);
                 removeSchedule.setVisible(false);
+                name.setVisible(false);
+                surname.setVisible(false);
+                dateOfBirth.setVisible(false);
+                parentPhone.setVisible(false);
+                parentName.setVisible(false);
+                parentSurname.setVisible(false);
+                address.setVisible(false);
+                group.setVisible(false);
+                waitingList.setVisible(false);
                 addPane.setVisible(true);
                 viewPane.setVisible(false);
                 updatePane.setVisible(false);
@@ -247,6 +276,27 @@ public class LoggedInController implements Initializable
             public void handle(ActionEvent event)
             {
                 Utilities.returnToLogin(event);
+            }
+        });
+
+        addKidButton.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                name.setVisible(true);
+                surname.setVisible(true);
+                dateOfBirth.setVisible(true);
+                parentPhone.setVisible(true);
+                parentName.setVisible(true);
+                parentSurname.setVisible(true);
+                address.setVisible(true);
+                group.setVisible(true);
+                waitingList.setVisible(true);
+                addPane.setVisible(true);
+                viewPane.setVisible(false);
+                updatePane.setVisible(false);
+                removePane.setVisible(false);
             }
         });
     }
