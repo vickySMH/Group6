@@ -91,6 +91,8 @@ public class LoggedInController implements Initializable
     TextField teacherPhone;
     @FXML
     TextField groupNumber;
+    @FXML
+    ImageView teachersImage;
 
     public static void setUsername(String newUsername)
     {
@@ -189,6 +191,12 @@ public class LoggedInController implements Initializable
                 viewPane.setVisible(false);
                 updatePane.setVisible(false);
                 removePane.setVisible(false);
+                teacherName.setVisible(false);
+                teacherSurname.setVisible(false);
+                teacherPhone.setVisible(false);
+                groupNumber.setVisible(false);
+                childImage.setVisible(false);
+                teachersImage.setVisible(false);
             }
         });
         viewButton.setOnAction(new EventHandler<ActionEvent>()
@@ -362,11 +370,16 @@ public class LoggedInController implements Initializable
                 address.setVisible(true);
                 group.setVisible(true);
                 waitingList.setVisible(true);
+                teacherName.setVisible(false);
+                teacherSurname.setVisible(false);
+                teacherPhone.setVisible(false);
+                groupNumber.setVisible(false);
                 addPane.setVisible(true);
                 viewPane.setVisible(false);
                 updatePane.setVisible(false);
                 removePane.setVisible(false);
                 childImage.setVisible(true);
+                teachersImage.setVisible(false);
             }
         });
 
@@ -393,6 +406,7 @@ public class LoggedInController implements Initializable
                 updatePane.setVisible(false);
                 removePane.setVisible(false);
                 childImage.setVisible(false);
+                teachersImage.setVisible(true);
             }
         });
     }

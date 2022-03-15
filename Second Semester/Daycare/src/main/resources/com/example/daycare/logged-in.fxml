@@ -59,7 +59,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="teacherSurname" layoutX="930.0" layoutY="150.0" promptText="Teachere surname">
+            <TextField fx:id="teacherSurname" layoutX="930.0" layoutY="150.0" promptText="Teacher surname">
                <font>
                   <Font size="16.0" />
                </font>
@@ -74,6 +74,11 @@
                   <Font size="16.0" />
                </font>
             </TextField>
+            <ImageView fx:id="teachersImage" fitHeight="370.0" fitWidth="570.0" layoutX="50.0" layoutY="90.0">
+               <image>
+                  <Image url="@resources/imgs/teacher.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0" />
