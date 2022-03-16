@@ -17,8 +17,8 @@ import java.util.ResourceBundle;
 
 public class LoggedInController implements Initializable
 {
+    //Danny is cool
     private static String username;
-
     @FXML
     Button addButton;
     @FXML
