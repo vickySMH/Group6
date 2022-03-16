@@ -5,8 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -104,11 +105,12 @@ public class LoggedInController implements Initializable
     @FXML
     TextField endHour;
     @FXML
-    AnchorPane employeePane;
+    TextField groupNumberUpdate;
     @FXML
-    AnchorPane kidPane;
+    TextField childIdUpdate;
     @FXML
-    AnchorPane schedulePane;
+    Button search;
+
 
     public static void setUsername(String newUsername)
     {
@@ -146,9 +148,6 @@ public class LoggedInController implements Initializable
         viewPane.setVisible(false);
         updatePane.setVisible(false);
         removePane.setVisible(false);
-        employeePane.setVisible(false);
-        kidPane.setVisible(false);
-        schedulePane.setVisible(false);
         if(!username.equals("admin"))
         {
             addButton.setVisible(false);
@@ -222,9 +221,6 @@ public class LoggedInController implements Initializable
                 groupNumber.setVisible(false);
                 childImage.setVisible(false);
                 teachersImage.setVisible(false);
-                employeePane.setVisible(false);
-                kidPane.setVisible(false);
-                schedulePane.setVisible(false);
                 teacherID.setVisible(false);
                 workDay.setVisible(false);
                 startHour.setVisible(false);
@@ -277,9 +273,6 @@ public class LoggedInController implements Initializable
                 addPane.setVisible(false);
                 updatePane.setVisible(false);
                 removePane.setVisible(false);
-                employeePane.setVisible(false);
-                kidPane.setVisible(false);
-                schedulePane.setVisible(false);
             }
         });
         updateButton.setOnAction(new EventHandler<ActionEvent>()
@@ -324,9 +317,10 @@ public class LoggedInController implements Initializable
                 viewPane.setVisible(false);
                 addPane.setVisible(false);
                 removePane.setVisible(false);
-                employeePane.setVisible(false);
-                kidPane.setVisible(false);
-                schedulePane.setVisible(false);
+                groupNumberUpdate.setVisible(false);
+                childIdUpdate.setVisible(false);
+                search.setVisible(false);
+
             }
         });
         removeButton.setOnAction(new EventHandler<ActionEvent>()
@@ -369,9 +363,6 @@ public class LoggedInController implements Initializable
                 updatePane.setVisible(false);
                 viewPane.setVisible(false);
                 addPane.setVisible(false);
-                employeePane.setVisible(false);
-                kidPane.setVisible(false);
-                schedulePane.setVisible(false);
 
             }
         });
@@ -426,9 +417,6 @@ public class LoggedInController implements Initializable
                 removePane.setVisible(false);
                 childImage.setVisible(true);
                 teachersImage.setVisible(false);
-                employeePane.setVisible(false);
-                kidPane.setVisible(false);
-                schedulePane.setVisible(false);
                 teacherID.setVisible(false);
                 workDay.setVisible(false);
                 startHour.setVisible(false);
@@ -478,29 +466,18 @@ public class LoggedInController implements Initializable
                 removePane.setVisible(false);
                 childImage.setVisible(false);
                 teachersImage.setVisible(true);
-                employeePane.setVisible(false);
-                kidPane.setVisible(false);
-                schedulePane.setVisible(false);
             }
         });
 
         viewKid.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                kidPane.setVisible(true);
-                employeePane.setVisible(false);
-                schedulePane.setVisible(false);
-                Utilities.view();
             }
         });
 
         viewTeacher.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                employeePane.setVisible(true);
-                kidPane.setVisible(false);
-                schedulePane.setVisible(false);
-                Utilities.view();
                 teacherID.setVisible(false);
                 workDay.setVisible(false);
                 startHour.setVisible(false);
@@ -560,10 +537,6 @@ public class LoggedInController implements Initializable
         viewSchedule.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                schedulePane.setVisible(true);
-                employeePane.setVisible(false);
-                kidPane.setVisible(false);
-                Utilities.view();
             }
         });
 
@@ -574,5 +547,16 @@ public class LoggedInController implements Initializable
 //        empSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
 //        empPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
 //        empGroup.setCellValueFactory(new PropertyValueFactory<>("groupNumber"));
+        updateKid.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                updatePane.setVisible(true);
+                groupNumberUpdate.setVisible(true);
+                childIdUpdate.setVisible(true);
+                search.setVisible(true);
+            }
+        });
     }
 }

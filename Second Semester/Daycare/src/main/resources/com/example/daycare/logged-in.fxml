@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1440.0" style="" stylesheets="@resources/stylesheets/loggedIn.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.daycare.LoggedInController">
    <children>
-      <AnchorPane fx:id="addPane" prefHeight="480.0" prefWidth="1440.0" AnchorPane.bottomAnchor="280.0">
+      <AnchorPane fx:id="addPane" layoutY="10.0" prefHeight="480.0" prefWidth="1440.0" AnchorPane.bottomAnchor="390.0">
          <children>
             <ImageView fx:id="childImage" fitHeight="270.0" fitWidth="570.0" layoutX="40.0" layoutY="170.0">
                <image>
@@ -105,48 +105,36 @@
       </AnchorPane>
       <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
-            <AnchorPane fx:id="employeePane" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <TableView fx:id="tableEmp" prefHeight="477.0" prefWidth="1440.0">
-                    <columns>
-                      <TableColumn fx:id="emploId" prefWidth="100.0" text="ID" />
-                      <TableColumn fx:id="empGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
-                        <TableColumn fx:id="empName" minWidth="250.0" prefWidth="260.0" text="Name" />
-                        <TableColumn fx:id="empSurname" minWidth="250.0" prefWidth="260.0" text="Surname" />
-                        <TableColumn fx:id="empPhone" minWidth="250.0" prefWidth="250.0" text="PhoneNumber" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="kidPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <TableView fx:id="tableKid" prefHeight="477.0" prefWidth="1440.0">
-                     <columns>
-                        <TableColumn fx:id="kidId" prefWidth="70.0" text="ID" />
-                        <TableColumn fx:id="kidName" minWidth="200.0" prefWidth="200.0" text="Name" />
-                        <TableColumn fx:id="kidSurname" minWidth="180.0" prefWidth="200.0" text="Surname" />
-                        <TableColumn fx:id="kidBirthday" minWidth="90.0" prefWidth="100.0" text="DateOfBirth" />
-                        <TableColumn fx:id="parentPhoneNumber" minWidth="100.0" prefWidth="170.0" text="ParentPhone" />
-                        <TableColumn fx:id="parentsName" minWidth="200.0" prefWidth="200.0" text="ParentName" />
-                        <TableColumn fx:id="parentsSurname" prefWidth="200.0" text="ParentSurname" />
-                        <TableColumn fx:id="kidAddress" prefWidth="200.0" text="Address" />
-                        <TableColumn fx:id="kidGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
-                     </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="schedulePane" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <TableView fx:id="tableSchedule" layoutX="300.0" prefHeight="478.0" prefWidth="900.0">
-                     <columns>
-                        <TableColumn fx:id="viewWorkDay" minWidth="200.0" prefWidth="225.0" text="WorkDay" />
-                        <TableColumn fx:id="viewStartHour" minWidth="200.0" prefWidth="225.0" text="StartHour" />
-                        <TableColumn fx:id="viewEndHour" minWidth="200.0" prefWidth="225.0" text="EndHour" />
-                        <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="EmployeeID" />
-                     </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
+            <TableView fx:id="tableEmp" prefHeight="480.0" prefWidth="1540.0">
+              <columns>
+                <TableColumn fx:id="emploId" prefWidth="100.0" text="ID" />
+                <TableColumn fx:id="empGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
+                  <TableColumn fx:id="empName" minWidth="250.0" prefWidth="260.0" text="Name" />
+                  <TableColumn fx:id="empSurname" minWidth="250.0" prefWidth="260.0" text="Surname" />
+                  <TableColumn fx:id="empPhone" minWidth="250.0" prefWidth="250.0" text="PhoneNumber" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tableKid" prefHeight="480.0" prefWidth="1540.0">
+               <columns>
+                  <TableColumn fx:id="kidId" prefWidth="70.0" text="ID" />
+                  <TableColumn fx:id="kidName" minWidth="200.0" prefWidth="200.0" text="Name" />
+                  <TableColumn fx:id="kidSurname" minWidth="180.0" prefWidth="200.0" text="Surname" />
+                  <TableColumn fx:id="kidBirthday" minWidth="90.0" prefWidth="100.0" text="DateOfBirth" />
+                  <TableColumn fx:id="parentPhoneNumber" minWidth="100.0" prefWidth="170.0" text="ParentPhone" />
+                  <TableColumn fx:id="parentsName" minWidth="200.0" prefWidth="200.0" text="ParentName" />
+                  <TableColumn fx:id="parentsSurname" prefWidth="200.0" text="ParentSurname" />
+                  <TableColumn fx:id="kidAddress" prefWidth="200.0" text="Address" />
+                  <TableColumn fx:id="kidGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tableSchedule" prefHeight="480.0" prefWidth="1540.0">
+               <columns>
+                  <TableColumn fx:id="viewWorkDay" minWidth="200.0" prefWidth="225.0" text="WorkDay" />
+                  <TableColumn fx:id="viewStartHour" minWidth="200.0" prefWidth="225.0" text="StartHour" />
+                  <TableColumn fx:id="viewEndHour" minWidth="200.0" prefWidth="225.0" text="EndHour" />
+                  <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="EmployeeID" />
+               </columns>
+            </TableView>
          </children></AnchorPane>
       <AnchorPane fx:id="updatePane" prefHeight="480.0" prefWidth="1440.0" />
       <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0" />
