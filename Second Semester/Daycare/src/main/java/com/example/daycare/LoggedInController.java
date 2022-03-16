@@ -93,6 +93,14 @@ public class LoggedInController implements Initializable
     TextField groupNumber;
     @FXML
     ImageView teachersImage;
+    @FXML
+    TextField teacherID;
+    @FXML
+    TextField workDay;
+    @FXML
+    TextField startHour;
+    @FXML
+    TextField endHour;
 
     public static void setUsername(String newUsername)
     {
@@ -197,6 +205,10 @@ public class LoggedInController implements Initializable
                 groupNumber.setVisible(false);
                 childImage.setVisible(false);
                 teachersImage.setVisible(false);
+                teacherID.setVisible(false);
+                workDay.setVisible(false);
+                startHour.setVisible(false);
+                endHour.setVisible(false);
             }
         });
         viewButton.setOnAction(new EventHandler<ActionEvent>()
@@ -380,6 +392,10 @@ public class LoggedInController implements Initializable
                 removePane.setVisible(false);
                 childImage.setVisible(true);
                 teachersImage.setVisible(false);
+                teacherID.setVisible(false);
+                workDay.setVisible(false);
+                startHour.setVisible(false);
+                endHour.setVisible(false);
             }
         });
 
@@ -407,6 +423,41 @@ public class LoggedInController implements Initializable
                 removePane.setVisible(false);
                 childImage.setVisible(false);
                 teachersImage.setVisible(true);
+                teacherID.setVisible(false);
+                workDay.setVisible(false);
+                startHour.setVisible(false);
+                endHour.setVisible(false);
+            }
+        });
+
+        addScheduleButton.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                teacherID.setVisible(true);
+                workDay.setVisible(true);
+                startHour.setVisible(true);
+                endHour.setVisible(true);
+                teacherName.setVisible(false);
+                teacherSurname.setVisible(false);
+                teacherPhone.setVisible(false);
+                groupNumber.setVisible(false);
+                name.setVisible(false);
+                surname.setVisible(false);
+                dateOfBirth.setVisible(false);
+                parentPhone.setVisible(false);
+                parentName.setVisible(false);
+                parentSurname.setVisible(false);
+                address.setVisible(false);
+                group.setVisible(false);
+                waitingList.setVisible(false);
+                addPane.setVisible(true);
+                viewPane.setVisible(false);
+                updatePane.setVisible(false);
+                removePane.setVisible(false);
+                childImage.setVisible(false);
+                teachersImage.setVisible(false);
             }
         });
     }

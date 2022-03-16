@@ -54,22 +54,22 @@
                <font>
                   <Font size="20.0" />
                </font></RadioButton>
-            <TextField fx:id="teacherName" layoutX="680.0" layoutY="150.0" promptText="Teacher name">
+            <TextField fx:id="teacherName" layoutX="680.0" layoutY="220.0" promptText="Teacher name">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="teacherSurname" layoutX="930.0" layoutY="150.0" promptText="Teacher surname">
+            <TextField fx:id="teacherSurname" layoutX="930.0" layoutY="220.0" promptText="Teacher surname">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="teacherPhone" layoutX="680.0" layoutY="220.0" promptText="Phone number">
+            <TextField fx:id="teacherPhone" layoutX="680.0" layoutY="290.0" promptText="Phone number">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="groupNumber" layoutX="930.0" layoutY="220.0" promptText="Group number">
+            <TextField fx:id="groupNumber" layoutX="930.0" layoutY="290.0" promptText="Group number">
                <font>
                   <Font size="16.0" />
                </font>
@@ -79,6 +79,26 @@
                   <Image url="@resources/imgs/teacher.png" />
                </image>
             </ImageView>
+            <TextField fx:id="teacherID" layoutX="680.0" layoutY="220.0" promptText="Teacher ID">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="workDay" layoutX="930.0" layoutY="220.0" promptText="Work day">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="startHour" layoutX="680.0" layoutY="290.0" promptText="Start hour">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="endHour" layoutX="930.0" layoutY="290.0" promptText="End hour">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0" />
