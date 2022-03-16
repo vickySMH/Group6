@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -110,6 +111,12 @@ public class LoggedInController implements Initializable
     TextField childIdUpdate;
     @FXML
     Button search;
+    @FXML
+    TableView tableEmp;
+    @FXML
+    TableView tableKid;
+    @FXML
+    TableView tableSchedule;
 
 
     public static void setUsername(String newUsername)
