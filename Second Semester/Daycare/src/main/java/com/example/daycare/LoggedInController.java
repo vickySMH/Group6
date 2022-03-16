@@ -1,9 +1,6 @@
 package com.example.daycare;
 
 import javafx.application.Platform;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,14 +11,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LoggedInController implements Initializable
 {
@@ -117,80 +109,6 @@ public class LoggedInController implements Initializable
     AnchorPane kidPane;
     @FXML
     AnchorPane schedulePane;
-    @FXML
-    static TableView<ModelTableEmployee> tableEmp;
-    @FXML
-    static TableView<ModelTableKid> tableKid;
-    @FXML
-    static TableView<ModelTableSchedule> tableSchedule;
-    @FXML
-    static TableColumn<ModelTableEmployee, Integer> empId;
-    @FXML
-    static TableColumn<ModelTableEmployee, Integer> empGroup;
-    @FXML
-    static TableColumn<ModelTableEmployee, String> empName;
-    @FXML
-    static TableColumn<ModelTableEmployee, String> empSurname;
-    @FXML
-    static TableColumn<ModelTableEmployee, String> empPhone;
-    @FXML
-    TableColumn<ModelTableKid, Integer> kidId;
-    @FXML
-    TableColumn<ModelTableKid, String> kidName;
-    @FXML
-    TableColumn<ModelTableKid, String> kidSurname;
-    @FXML
-    TableColumn<ModelTableKid, Date> kidBirthday;
-    @FXML
-    TableColumn<ModelTableKid, String> parentPhoneNumber;
-    @FXML
-    TableColumn<ModelTableKid, String> parentsName;
-    @FXML
-    TableColumn<ModelTableKid, String> parentsSurname;
-    @FXML
-    TableColumn<ModelTableKid, String> kidAddress;
-    @FXML
-    TableColumn<ModelTableKid, String> kidGroup;
-    @FXML
-    TableColumn<ModelTableSchedule, Date> workDay;
-    @FXML
-    TableColumn<ModelTableSchedule, Time> startHour;
-    @FXML
-    TableColumn<ModelTableSchedule, Time> endHour;
-    @FXML
-    TableColumn<ModelTableSchedule, Integer> employeeId;
-
-    public static TableView<ModelTableEmployee> getTableEmp() {
-        return tableEmp;
-    }
-
-    public static TableView<ModelTableKid> getTableKid() {
-        return tableKid;
-    }
-
-    public static TableView<ModelTableSchedule> getTableSchedule() {
-        return tableSchedule;
-    }
-
-    public static TableColumn<ModelTableEmployee, Integer> getEmpId() {
-        return empId;
-    }
-
-    public static TableColumn<ModelTableEmployee, Integer> getEmpGroup() {
-        return empGroup;
-    }
-
-    public static TableColumn<ModelTableEmployee, String> getEmpName() {
-        return empName;
-    }
-
-    public static TableColumn<ModelTableEmployee, String> getEmpSurname(){
-        return empSurname;
-    }
-
-    public static TableColumn<ModelTableEmployee, String> getEmpPhone(){
-        return empPhone;
-    }
 
     public static void setUsername(String newUsername)
     {
