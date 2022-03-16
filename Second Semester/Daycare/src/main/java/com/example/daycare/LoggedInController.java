@@ -558,6 +558,9 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                resetButtons();
+                updateButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
+                updateKid.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 updatePane.setVisible(true);
                 nameUpdate.setVisible(true);
                 surnameUpdate.setVisible(true);
