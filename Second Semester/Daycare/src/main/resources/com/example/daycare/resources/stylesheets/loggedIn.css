@@ -10,9 +10,19 @@
 {
     -fx-background-color:#005918;
     -fx-text-fill:white;
+    -fx-cursor: pointer;
 }
 #back:hover
 {
     -fx-background-color:#781000;
     -fx-text-fill:white;
+}
+#commit
+{
+    -fx-background-color: #fcb900;
+}
+
+#commit:hover
+{
+    -fx-background-color: #9e7400
 }

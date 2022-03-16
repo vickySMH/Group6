@@ -32,6 +32,54 @@ public class Utilities
     private static String url = System.getenv("URL");
     private static String user = System.getenv("user");
     private static String password = System.getenv("password");
+    public static void addTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
+    {
+        try
+        {
+            boolean teacherExists = false;
+            connection();
+            preparedStatementInsert = connection.prepareStatement("INSERT INTO Employees (GroupNumber, Name, Surname, PhoneNumber) VALUES (?, ?, ?, ? )");
+            preparedStatementInsert.setString(1, GroupNumber);
+            preparedStatementInsert.setString(2, name);
+            preparedStatementInsert.setString(3, surname);
+            preparedStatementInsert.setString(4, phoneNumber);
+            preparedStatement = connection.prepareStatement("SELECT PhoneNumber FROM Employees");
+            resultSet = preparedStatement.executeQuery();
+            if(!resultSet.isBeforeFirst())
+            {
+                preparedStatementInsert.executeUpdate();
+            }
+            else
+            {
+                while(resultSet.next())
+                {
+                    String retrievePhoneNumber = resultSet.getString("PhoneNumber");
+                    if(retrievePhoneNumber.equals(phoneNumber))
+                    {
+                        teacherExists = true;
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Teacher already hired");
+                        alert.show();
+                    }
+                }
+                if(!teacherExists)
+                {
+                    preparedStatementInsert.executeUpdate();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully hired teacher");
+                    alert.show();
+                }
+            }
+
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
 
     public static void returnToLogin(ActionEvent event)
     {

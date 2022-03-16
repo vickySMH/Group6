@@ -109,6 +109,24 @@ public class LoggedInController implements Initializable
     TableView tableEmp;
     @FXML
     TableView tableSchedule;
+    @FXML
+    Button commitAddKid;
+    @FXML
+    Button commitAddTeacher;
+    @FXML
+    Button commitAddSchedule;
+    @FXML
+    Button commitUpdateKid;
+    @FXML
+    Button commitUpdateTeacher;
+    @FXML
+    Button commitUpdateSchedule;
+    @FXML
+    Button commitRemoveKid;
+    @FXML
+    Button commitRemoveTeacher;
+    @FXML
+    Button commitRemoveSchedule;
 
     public static void setUsername(String newUsername)
     {
@@ -130,6 +148,15 @@ public class LoggedInController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         Platform.runLater( () -> image.requestFocus() );
+        commitAddKid.setVisible(false);
+        commitAddTeacher.setVisible(false);
+        commitAddSchedule.setVisible(false);
+        commitRemoveKid.setVisible(false);
+        commitRemoveSchedule.setVisible(false);
+        commitRemoveTeacher.setVisible(false);
+        commitUpdateKid.setVisible(false);
+        commitUpdateTeacher.setVisible(false);
+        commitUpdateSchedule.setVisible(false);
         addKidButton.setVisible(false);
         addTeacherButton.setVisible(false);
         addScheduleButton.setVisible(false);
@@ -160,9 +187,19 @@ public class LoggedInController implements Initializable
         }
         addButton.setOnAction(new EventHandler<ActionEvent>()
         {
+
             @Override
             public void handle(ActionEvent event)
             {
+                commitAddKid.setVisible(false);
+                commitAddTeacher.setVisible(false);
+                commitAddSchedule.setVisible(false);
+                commitRemoveKid.setVisible(false);
+                commitRemoveSchedule.setVisible(false);
+                commitRemoveTeacher.setVisible(false);
+                commitUpdateKid.setVisible(false);
+                commitUpdateTeacher.setVisible(false);
+                commitUpdateSchedule.setVisible(false);
                 removeButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
                 addTeacherButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
                 addKidButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
@@ -230,6 +267,15 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                commitAddKid.setVisible(false);
+                commitAddTeacher.setVisible(false);
+                commitAddSchedule.setVisible(false);
+                commitRemoveKid.setVisible(false);
+                commitRemoveSchedule.setVisible(false);
+                commitRemoveTeacher.setVisible(false);
+                commitUpdateKid.setVisible(false);
+                commitUpdateTeacher.setVisible(false);
+                commitUpdateSchedule.setVisible(false);
                 if(addButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
                         || removeButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
                         || updateButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")  )
@@ -278,6 +324,15 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                commitAddKid.setVisible(false);
+                commitAddTeacher.setVisible(false);
+                commitAddSchedule.setVisible(false);
+                commitRemoveKid.setVisible(false);
+                commitRemoveSchedule.setVisible(false);
+                commitRemoveTeacher.setVisible(false);
+                commitUpdateKid.setVisible(false);
+                commitUpdateTeacher.setVisible(false);
+                commitUpdateSchedule.setVisible(false);
                 if(addButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
                         || removeButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
                         || viewButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px") )
@@ -322,6 +377,15 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                commitAddKid.setVisible(false);
+                commitAddTeacher.setVisible(false);
+                commitAddSchedule.setVisible(false);
+                commitRemoveKid.setVisible(false);
+                commitRemoveSchedule.setVisible(false);
+                commitRemoveTeacher.setVisible(false);
+                commitUpdateKid.setVisible(false);
+                commitUpdateTeacher.setVisible(false);
+                commitUpdateSchedule.setVisible(false);
                 if(addButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
                         || viewButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")
                         || updateButton.getStyle().equals("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px")  )
@@ -373,6 +437,15 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                commitAddKid.setVisible(true);
+                commitAddTeacher.setVisible(false);
+                commitAddSchedule.setVisible(false);
+                commitRemoveKid.setVisible(false);
+                commitRemoveSchedule.setVisible(false);
+                commitRemoveTeacher.setVisible(false);
+                commitUpdateKid.setVisible(false);
+                commitUpdateTeacher.setVisible(false);
+                commitUpdateSchedule.setVisible(false);
                 addTeacherButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
                 addScheduleButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
                 if(counter == 2)
@@ -419,9 +492,19 @@ public class LoggedInController implements Initializable
 
         addTeacherButton.setOnAction(new EventHandler<ActionEvent>()
         {
+
             @Override
             public void handle(ActionEvent event)
             {
+                commitAddKid.setVisible(false);
+                commitAddTeacher.setVisible(true);
+                commitAddSchedule.setVisible(false);
+                commitRemoveKid.setVisible(false);
+                commitRemoveSchedule.setVisible(false);
+                commitRemoveTeacher.setVisible(false);
+                commitUpdateKid.setVisible(false);
+                commitUpdateTeacher.setVisible(false);
+                commitUpdateSchedule.setVisible(false);
                 addKidButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
                 addScheduleButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
                 if(counter == 2)
@@ -459,6 +542,10 @@ public class LoggedInController implements Initializable
                 removePane.setVisible(false);
                 childImage.setVisible(false);
                 teachersImage.setVisible(true);
+                teacherID.setVisible(false);
+                workDay.setVisible(false);
+                startHour.setVisible(false);
+                endHour.setVisible(false);
             }
         });
 
@@ -487,6 +574,15 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                commitAddKid.setVisible(false);
+                commitAddTeacher.setVisible(false);
+                commitAddSchedule.setVisible(true);
+                commitRemoveKid.setVisible(false);
+                commitRemoveSchedule.setVisible(false);
+                commitRemoveTeacher.setVisible(false);
+                commitUpdateKid.setVisible(false);
+                commitUpdateTeacher.setVisible(false);
+                commitUpdateSchedule.setVisible(false);
                 addKidButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
                 addTeacherButton.setStyle("-fx-background-color: #00ff44; -fx-text-fill:black; -fx-background-radius: 12px");
                 if(counter == 2)
@@ -538,6 +634,14 @@ public class LoggedInController implements Initializable
                 tableKid.setVisible(false);
                 tableEmp.setVisible(false);
                 tableSchedule.setVisible(true);
+            }
+        });
+        commitAddTeacher.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Utilities.addTeacher(event, teacherName.getText(), teacherSurname.getText(),teacherPhone.getText(), groupNumber.getText());
             }
         });
     }
