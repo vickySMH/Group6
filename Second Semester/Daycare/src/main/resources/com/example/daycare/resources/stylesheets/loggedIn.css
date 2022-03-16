@@ -10,7 +10,6 @@
 {
     -fx-background-color:#005918;
     -fx-text-fill:white;
-    -fx-cursor: pointer;
 }
 #back:hover
 {

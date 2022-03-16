@@ -105,7 +105,7 @@
       </AnchorPane>
       <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
-            <TableView fx:id="tableKid" prefHeight="480.0" prefWidth="1442.5">
+            <TableView fx:id="tableKid" layoutX="45.0" prefHeight="480.0" prefWidth="1442.5">
                <columns>
                   <TableColumn fx:id="kidId" prefWidth="70.0" text="ID" />
                   <TableColumn fx:id="kidName" minWidth="200.0" prefWidth="200.0" text="Name" />
@@ -118,15 +118,7 @@
                   <TableColumn fx:id="kidGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
                </columns>
             </TableView>
-            <TableView fx:id="tableSchedule" prefHeight="480.0" prefWidth="904.5">
-               <columns>
-                  <TableColumn fx:id="viewWorkDay" minWidth="200.0" prefWidth="225.0" text="WorkDay" />
-                  <TableColumn fx:id="viewStartHour" minWidth="200.0" prefWidth="225.0" text="StartHour" />
-                  <TableColumn fx:id="viewEndHour" minWidth="200.0" prefWidth="225.0" text="EndHour" />
-                  <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="EmployeeID" />
-               </columns>
-            </TableView>
-            <TableView fx:id="tableEmp" prefHeight="480.0" prefWidth="972.5">
+            <TableView fx:id="tableEmp" layoutX="280.0" prefHeight="480.0" prefWidth="972.5">
               <columns>
                 <TableColumn fx:id="emploId" prefWidth="100.0" text="ID" />
                 <TableColumn fx:id="empGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
@@ -134,6 +126,14 @@
                   <TableColumn fx:id="empSurname" minWidth="250.0" prefWidth="260.0" text="Surname" />
                   <TableColumn fx:id="empPhone" minWidth="250.0" prefWidth="250.0" text="PhoneNumber" />
               </columns>
+            </TableView>
+            <TableView fx:id="tableSchedule" layoutX="315.0" prefHeight="480.0" prefWidth="904.5">
+               <columns>
+                  <TableColumn fx:id="viewWorkDay" minWidth="200.0" prefWidth="225.0" text="WorkDay" />
+                  <TableColumn fx:id="viewStartHour" minWidth="200.0" prefWidth="225.0" text="StartHour" />
+                  <TableColumn fx:id="viewEndHour" minWidth="200.0" prefWidth="225.0" text="EndHour" />
+                  <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="EmployeeID" />
+               </columns>
             </TableView>
          </children></AnchorPane>
       <AnchorPane fx:id="updatePane" prefHeight="480.0" prefWidth="1440.0" />
