@@ -1,6 +1,7 @@
 .button
 {
     -fx-background-color: #00ff44;
+    -fx-background-radius: 12px;
 }
 #back
 {
@@ -10,6 +11,7 @@
 {
     -fx-background-color:#005918;
     -fx-text-fill:white;
+    -fx-background-radius: 12px;
 }
 #back:hover
 {
