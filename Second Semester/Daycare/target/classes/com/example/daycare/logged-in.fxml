@@ -13,6 +13,39 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1440.0" stylesheets="@resources/stylesheets/loggedIn.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.daycare.LoggedInController">
    <children>
+      <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0">
+         <children>
+            <TableView fx:id="tableKid" layoutX="45.0" prefHeight="480.0" prefWidth="1442.5">
+               <columns>
+                  <TableColumn fx:id="kidId" prefWidth="70.0" text="ID" />
+                  <TableColumn fx:id="kidName" minWidth="200.0" prefWidth="200.0" text="Name" />
+                  <TableColumn fx:id="kidSurname" minWidth="180.0" prefWidth="200.0" text="Surname" />
+                  <TableColumn fx:id="kidBirthday" minWidth="90.0" prefWidth="100.0" text="DateOfBirth" />
+                  <TableColumn fx:id="parentPhoneNumber" minWidth="100.0" prefWidth="170.0" text="ParentPhone" />
+                  <TableColumn fx:id="parentsName" minWidth="200.0" prefWidth="200.0" text="ParentName" />
+                  <TableColumn fx:id="parentsSurname" prefWidth="200.0" text="ParentSurname" />
+                  <TableColumn fx:id="kidAddress" prefWidth="200.0" text="Address" />
+                  <TableColumn fx:id="kidGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tableEmp" layoutX="280.0" prefHeight="480.0" prefWidth="972.5">
+              <columns>
+                <TableColumn fx:id="emploId" prefWidth="100.0" text="ID" />
+                <TableColumn fx:id="empGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
+                  <TableColumn fx:id="empName" minWidth="250.0" prefWidth="260.0" text="Name" />
+                  <TableColumn fx:id="empSurname" minWidth="250.0" prefWidth="260.0" text="Surname" />
+                  <TableColumn fx:id="empPhone" minWidth="250.0" prefWidth="250.0" text="PhoneNumber" />
+              </columns>
+            </TableView>
+            <TableView fx:id="tableSchedule" layoutX="315.0" prefHeight="480.0" prefWidth="904.5">
+               <columns>
+                  <TableColumn fx:id="viewWorkDay" minWidth="200.0" prefWidth="225.0" text="WorkDay" />
+                  <TableColumn fx:id="viewStartHour" minWidth="200.0" prefWidth="225.0" text="StartHour" />
+                  <TableColumn fx:id="viewEndHour" minWidth="200.0" prefWidth="225.0" text="EndHour" />
+                  <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="EmployeeID" />
+               </columns>
+            </TableView>
+         </children></AnchorPane>
       <AnchorPane fx:id="addPane" layoutY="10.0" prefHeight="480.0" prefWidth="1440.0" AnchorPane.bottomAnchor="390.0">
          <children>
             <ImageView fx:id="childImage" fitHeight="270.0" fitWidth="570.0" layoutX="40.0" layoutY="170.0">
@@ -52,7 +85,7 @@
                <font>
                   <Font size="16.0" />
                </font></TextField>
-            <RadioButton fx:id="waitingList" layoutX="1260.0" layoutY="260.0" mnemonicParsing="false" text="Waiting list">
+            <RadioButton fx:id="waitingList" layoutX="1240.0" layoutY="260.0" mnemonicParsing="false" text="Waiting list">
                <font>
                   <Font size="20.0" />
                </font></RadioButton>
@@ -103,40 +136,54 @@
             </TextField>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0">
+      <AnchorPane fx:id="updatePane" prefHeight="480.0" prefWidth="1440.0">
          <children>
-            <TableView fx:id="tableKid" layoutX="45.0" prefHeight="480.0" prefWidth="1442.5">
-               <columns>
-                  <TableColumn fx:id="kidId" prefWidth="70.0" text="ID" />
-                  <TableColumn fx:id="kidName" minWidth="200.0" prefWidth="200.0" text="Name" />
-                  <TableColumn fx:id="kidSurname" minWidth="180.0" prefWidth="200.0" text="Surname" />
-                  <TableColumn fx:id="kidBirthday" minWidth="90.0" prefWidth="100.0" text="DateOfBirth" />
-                  <TableColumn fx:id="parentPhoneNumber" minWidth="100.0" prefWidth="170.0" text="ParentPhone" />
-                  <TableColumn fx:id="parentsName" minWidth="200.0" prefWidth="200.0" text="ParentName" />
-                  <TableColumn fx:id="parentsSurname" prefWidth="200.0" text="ParentSurname" />
-                  <TableColumn fx:id="kidAddress" prefWidth="200.0" text="Address" />
-                  <TableColumn fx:id="kidGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
-               </columns>
-            </TableView>
-            <TableView fx:id="tableEmp" layoutX="280.0" prefHeight="480.0" prefWidth="972.5">
-              <columns>
-                <TableColumn fx:id="emploId" prefWidth="100.0" text="ID" />
-                <TableColumn fx:id="empGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
-                  <TableColumn fx:id="empName" minWidth="250.0" prefWidth="260.0" text="Name" />
-                  <TableColumn fx:id="empSurname" minWidth="250.0" prefWidth="260.0" text="Surname" />
-                  <TableColumn fx:id="empPhone" minWidth="250.0" prefWidth="250.0" text="PhoneNumber" />
-              </columns>
-            </TableView>
-            <TableView fx:id="tableSchedule" layoutX="315.0" prefHeight="480.0" prefWidth="904.5">
-               <columns>
-                  <TableColumn fx:id="viewWorkDay" minWidth="200.0" prefWidth="225.0" text="WorkDay" />
-                  <TableColumn fx:id="viewStartHour" minWidth="200.0" prefWidth="225.0" text="StartHour" />
-                  <TableColumn fx:id="viewEndHour" minWidth="200.0" prefWidth="225.0" text="EndHour" />
-                  <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="EmployeeID" />
-               </columns>
-            </TableView>
+            <TextField fx:id="nameUpdate" layoutX="680.0" layoutY="150.0" promptText="Child name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="dateOfBirthUpdate" layoutX="680.0" layoutY="220.0" promptText="Date of birth">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="parentNameUpdate" layoutX="680.0" layoutY="290.0" promptText="Parent name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="addressUpdate" layoutX="680.0" layoutY="360.0" promptText="Address">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="surnameUpdate" layoutX="930.0" layoutY="150.0" promptText="Child surname">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="parentPhoneUpdate" layoutX="930.0" layoutY="220.0" promptText="Parent phone">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="parentSurnameUpdate" layoutX="930.0" layoutY="290.0" promptText="Parent surname">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="groupUpdate" layoutX="930.0" layoutY="360.0" promptText="Group number">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <RadioButton fx:id="waitingListUpdate" layoutX="1240.0" layoutY="260.0" mnemonicParsing="false" text="Waiting list">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </RadioButton>
          </children></AnchorPane>
-      <AnchorPane fx:id="updatePane" prefHeight="480.0" prefWidth="1440.0" />
       <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0" />
       <ImageView fx:id="image" fitHeight="318.0" fitWidth="467.0" layoutX="-2.0" layoutY="553.0">
          <image>
