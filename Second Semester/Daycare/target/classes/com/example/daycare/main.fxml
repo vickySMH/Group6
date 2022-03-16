@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: transparent;" stylesheets="@resources/stylesheets/button.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.daycare.MainController">
+   <children>
+      <AnchorPane layoutX="16.0" layoutY="5.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+         <children>
+            <ImageView fx:id="image" fitHeight="500.0" fitWidth="750.0" layoutX="-21.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/imgs/Alien.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="cancelImage" fitHeight="500.0" fitWidth="750.0" layoutX="-22.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/imgs/sad%20alien%20copy.png" />
+               </image>
+            </ImageView>
+            <AnchorPane id="mainBubble" fx:id="box" layoutX="157.0" layoutY="267.0" prefHeight="182.0" prefWidth="452.0" style="-fx-background-color: #bafb6cbafb6c; -fx-background-radius: 20px;">
+               <children>
+                  <TextField fx:id="usernameField" layoutX="161.0" layoutY="36.0" style="-fx-background-radius: 12px;" />
+                  <PasswordField fx:id="passwordField" layoutX="160.0" layoutY="78.0" style="-fx-background-radius: 12px;" />
+                  <Button fx:id="loginButton" layoutX="45.0" layoutY="127.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="161.0" text="Login">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="cancelButton" layoutX="254.0" layoutY="128.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="161.0" text="Cancel">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </AnchorPane>
+            <Label id="Speech" fx:id="thumbnail" layoutX="310.0" layoutY="134.0" prefHeight="37.0" prefWidth="351.0" text="Roskilde Kindergarten">
+               <font>
+                  <Font name="SansSerif Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="235.0" layoutY="310.0" text="Username" />
+            <Label layoutX="236.0" layoutY="353.0" text="Password" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

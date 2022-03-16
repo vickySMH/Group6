@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.daycare.AdminController">
+   <children>
+      <ImageView fitHeight="470.0" fitWidth="849.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/imgs/Alien.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="274.0" layoutY="718.0" prefHeight="59.0" prefWidth="386.0" text="Welcome to admin panel">
+         <font>
+            <Font name="SansSerif Bold" size="32.0" />
+         </font>
+      </Label>
+      <Button fx:id="add" layoutX="596.0" layoutY="907.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="254.0" text="Add">
+         <font>
+            <Font name="SansSerif Regular" size="33.0" />
+         </font>
+      </Button>
+      <Button fx:id="remove" layoutX="1160.0" layoutY="908.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="254.0" text="Remove">
+         <font>
+            <Font name="SansSerif Regular" size="33.0" />
+         </font>
+      </Button>
+      <Button fx:id="update" layoutX="877.0" layoutY="907.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="254.0" text="Update">
+         <font>
+            <Font name="SansSerif Regular" size="33.0" />
+         </font>
+      </Button>
+      <Button fx:id="view" layoutX="316.0" layoutY="906.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="254.0" text="View">
+         <font>
+            <Font name="SansSerif Regular" size="33.0" />
+         </font>
+      </Button>
+      <Button fx:id="back" layoutX="1638.0" layoutY="908.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="254.0" text="Back">
+         <font>
+            <Font name="SansSerif Regular" size="33.0" />
+         </font>
+      </Button>
+      <AnchorPane fx:id="toView" layoutX="27.0" layoutY="24.0" prefHeight="588.0" prefWidth="1868.0" style="-fx-background-color: #F58C8C; -fx-background-radius: 15; -fx-border-radius: 15;" />
+      <AnchorPane fx:id="toAdd" layoutX="27.0" layoutY="24.0" prefHeight="588.0" prefWidth="1868.0" style="-fx-background-color: #938CF5; -fx-background-radius: 15; -fx-border-radius: 15;" />
+      <AnchorPane fx:id="toUpdate" layoutX="27.0" layoutY="24.0" prefHeight="588.0" prefWidth="1868.0" style="-fx-background-color: #F58C8C; -fx-background-radius: 15; -fx-border-radius: 15;" />
+      <AnchorPane fx:id="toRemove" layoutX="27.0" layoutY="24.0" prefHeight="588.0" prefWidth="1868.0" style="-fx-background-color: #938CF5; -fx-background-radius: 15; -fx-border-radius: 15;" />
+      <AnchorPane layoutX="27.0" layoutY="24.0" prefHeight="588.0" prefWidth="1868.0" style="-fx-background-color: #F58C8C; -fx-background-radius: 15; -fx-border-radius: 15;" />
+      <AnchorPane layoutX="27.0" layoutY="24.0" prefHeight="588.0" prefWidth="1868.0" style="-fx-background-color: #938CF5; -fx-background-radius: 15; -fx-border-radius: 15;" />
+      <AnchorPane layoutX="27.0" layoutY="24.0" prefHeight="588.0" prefWidth="1868.0" style="-fx-background-color: #F58C8C; -fx-background-radius: 15; -fx-border-radius: 15;" />
+      <AnchorPane layoutX="27.0" layoutY="24.0" prefHeight="588.0" prefWidth="1868.0" style="-fx-background-color: #938CF5; -fx-background-radius: 15; -fx-border-radius: 15;" />
+   </children>
+</AnchorPane>
