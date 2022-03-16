@@ -1,5 +1,7 @@
 package com.example.daycare;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -7,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -15,6 +18,8 @@ import java.awt.*;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Utilities
 {
@@ -200,6 +205,58 @@ public class Utilities
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void view(){
+        ObservableList<ModelTableEmployee> empList = FXCollections.observableArrayList();
+        ObservableList<ModelTableKid> kidList = FXCollections.observableArrayList();
+        ObservableList<ModelTableSchedule> scheduleList = FXCollections.observableArrayList();
+
+
+        try{
+            ResultSet rsEmp = connection.createStatement().executeQuery("SELECT * FROM Employees");
+            while(rsEmp.next()){
+                empList.add(new ModelTableEmployee(rsEmp.getInt("ID"), rsEmp.getInt("GroupNumber"),
+                        rsEmp.getString("Name"), rsEmp.getString("Surname"), rsEmp.getString("PhoneNumber")));
+            }
+        }
+        catch(SQLException e){
+            Logger.getLogger(ModelTableEmployee.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        try{
+            ResultSet rsKid = connection.createStatement().executeQuery("SELECT * FROM Children");
+            while(rsKid.next()){
+                kidList.add(new ModelTableKid(rsKid.getString("ID"), rsKid.getString("Name"),
+                        rsKid.getString("Surname"), rsKid.getString("DateOfBirth"), rsKid.getString("ParentPhone"),
+                        rsKid.getString("ParentName"), rsKid.getString("ParentSurname"),
+                        rsKid.getString("Address"), rsKid.getString("GroupNumber")));
+            }
+        }
+        catch(SQLException e){
+            Logger.getLogger(ModelTableKid.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        try{
+            ResultSet rsSch = connection.createStatement().executeQuery("SELECT * FROM Schedule");
+            while(rsSch.next()){
+                scheduleList.add(new ModelTableSchedule(rsSch.getDate("WorkDay"), rsSch.getTime("StartHour"),
+                        rsSch.getTime("EndHour"), rsSch.getInt("EmployeeID")));
+            }
+        }
+        catch(SQLException e){
+            Logger.getLogger(ModelTableSchedule.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        LoggedInController.getEmpId().setCellValueFactory(new PropertyValueFactory<>("id"));
+        LoggedInController.getEmpName().setCellValueFactory(new PropertyValueFactory<>("name"));
+        LoggedInController.getEmpSurname().setCellValueFactory(new PropertyValueFactory<>("surname"));
+        LoggedInController.getEmpPhone().setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        LoggedInController.getEmpGroup().setCellValueFactory(new PropertyValueFactory<>("groupNumber"));
+
+        LoggedInController.getTableEmp().setItems(empList);
+        LoggedInController.getTableKid().setItems(kidList);
+        LoggedInController.getTableSchedule().setItems(scheduleList);
     }
 
 }
