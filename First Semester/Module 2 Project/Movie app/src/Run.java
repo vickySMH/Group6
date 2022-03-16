@@ -77,6 +77,7 @@ public class Run
             {
                 history();
             }
+<<<<<<< HEAD:First Semester/Module 2 Project/Movie app/src/Run.java
             else if (command[0].equalsIgnoreCase("favourites") && !newUser.getUsername().isBlank())
             {
                 favourites();
@@ -84,6 +85,11 @@ public class Run
             else if (command[0].equalsIgnoreCase("search")){
                 search();
             }
+=======
+            else if (command[0].equalsIgnoreCase("favourites") && !newUser.getUsername().isBlank()){
+                favourites();
+            }
+>>>>>>> da48e9a725cfe649e954bf6a2007c081139ec1b4:Module 2 Project/Movie app/src/Run.java
             else
             {
                 System.out.println("Unknown command or you must be logged in/out to use it. Check 'help' for more information! ");
@@ -571,6 +577,7 @@ public class Run
         command = cmd.split(" ", 2);
     }
 
+<<<<<<< HEAD:First Semester/Module 2 Project/Movie app/src/Run.java
     public Integer parseIntOrNull(String value)
     {
         try
@@ -581,5 +588,13 @@ public class Run
         {
             return 0;
         }
+=======
+    public void favourites()throws IOException{
+        newUser.displayFavourites();
+
+        System.out.print("Please enter a command: ");
+        cmd = reader.readLine();
+        command = cmd.split(" ", 2);
+>>>>>>> da48e9a725cfe649e954bf6a2007c081139ec1b4:Module 2 Project/Movie app/src/Run.java
     }
 }

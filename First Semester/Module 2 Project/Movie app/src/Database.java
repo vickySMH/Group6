@@ -24,7 +24,11 @@ public class Database
     {
         fis = new FileInputStream("actors.ser");
         ois = new ObjectInputStream(fis);
+<<<<<<< HEAD:First Semester/Module 2 Project/Movie app/src/Database.java
         actorList = (ArrayList<Actor>) ois.readObject();
+=======
+        movieList = (ArrayList<Movie>) ois.readObject();
+>>>>>>> da48e9a725cfe649e954bf6a2007c081139ec1b4:Module 2 Project/Movie app/src/Database.java
         ois.close();
     }
 
@@ -51,6 +55,7 @@ public class Database
         output = new ObjectOutputStream(fos);
     }
 
+<<<<<<< HEAD:First Semester/Module 2 Project/Movie app/src/Database.java
     private static void openActors() throws IOException
     {
         actors = new File("actors.ser");
@@ -59,6 +64,16 @@ public class Database
     }
 
     private static void closeActors() throws IOException
+=======
+    public static void openActors() throws IOException
+    {
+        users = new File("actors.ser");
+        fos3 = new FileOutputStream(users, false);
+        out1 = new ObjectOutputStream(fos3);
+    }
+
+    public static void closeActors() throws IOException
+>>>>>>> da48e9a725cfe649e954bf6a2007c081139ec1b4:Module 2 Project/Movie app/src/Database.java
     {
         out1.close();
     }
@@ -109,14 +124,22 @@ public class Database
 
     private static void addActorToDatabase()
     {
+<<<<<<< HEAD:First Semester/Module 2 Project/Movie app/src/Database.java
         try
         {
+=======
+        try{
+>>>>>>> da48e9a725cfe649e954bf6a2007c081139ec1b4:Module 2 Project/Movie app/src/Database.java
             openActors();
             out1.writeObject(actorList);
             closeActors();
         }
+<<<<<<< HEAD:First Semester/Module 2 Project/Movie app/src/Database.java
         catch(IOException e)
         {
+=======
+        catch(IOException e){
+>>>>>>> da48e9a725cfe649e954bf6a2007c081139ec1b4:Module 2 Project/Movie app/src/Database.java
             System.out.println("Error in database actor file not found");
         }
     }
@@ -143,10 +166,15 @@ public class Database
         }
     }
 
+<<<<<<< HEAD:First Semester/Module 2 Project/Movie app/src/Database.java
     private static void addUserToDatabase()
     {
         try
         {
+=======
+    private static void addUserToDatabase(){
+        try{
+>>>>>>> da48e9a725cfe649e954bf6a2007c081139ec1b4:Module 2 Project/Movie app/src/Database.java
             openUsers();
             out.writeObject(userList);
             closeUsers();

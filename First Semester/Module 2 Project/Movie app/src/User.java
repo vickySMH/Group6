@@ -78,6 +78,7 @@ public class User implements Serializable
 
     }
 
+<<<<<<< HEAD:First Semester/Module 2 Project/Movie app/src/User.java
     public void displayFavourites()
     {
         if (favMovies.size() == 0)
@@ -88,6 +89,14 @@ public class User implements Serializable
         {
             for (Movie movie: favMovies)
             {
+=======
+    public void displayFavourites(){
+        if (favMovies.size() == 0){
+            System.out.println("Your list is empty");
+        }
+        else{
+            for (Movie movie: favMovies){
+>>>>>>> da48e9a725cfe649e954bf6a2007c081139ec1b4:Module 2 Project/Movie app/src/User.java
                 System.out.println(movie);
             }
         }
