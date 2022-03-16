@@ -5,10 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -112,12 +110,59 @@ public class LoggedInController implements Initializable
     @FXML
     Button search;
     @FXML
-    TableView tableEmp;
+    static TableView<ModelTableEmployee> tableEmp;
     @FXML
-    TableView tableKid;
+    static TableView<ModelTableChild> tableKid;
     @FXML
-    TableView tableSchedule;
+    static TableView<ModelTableSchedule> tableSchedule;
+    @FXML
+    TableColumn<ModelTableEmployee, String> emploId;
+    @FXML
+    TableColumn<ModelTableEmployee, String> empGroup;
+    @FXML
+    TableColumn<ModelTableEmployee, String> empName;
+    @FXML
+    TableColumn<ModelTableEmployee, String> empSurname;
+    @FXML
+    TableColumn<ModelTableEmployee, String> empPhone;
+    @FXML
+    TableColumn<ModelTableChild, String> kidId;
+    @FXML
+    TableColumn<ModelTableChild, String> kidName;
+    @FXML
+    TableColumn<ModelTableChild, String> kidSurname;
+    @FXML
+    TableColumn<ModelTableChild, String> kidBirthday;
+    @FXML
+    TableColumn<ModelTableChild, String> parentPhoneNumber;
+    @FXML
+    TableColumn<ModelTableChild, String> parentsName;
+    @FXML
+    TableColumn<ModelTableChild, String> parentsSurname;
+    @FXML
+    TableColumn<ModelTableChild, String> kidAddress;
+    @FXML
+    TableColumn<ModelTableChild, String> kidGroup;
+    @FXML
+    TableColumn<ModelTableSchedule, String> viewWorkDay;
+    @FXML
+    TableColumn<ModelTableSchedule, String> viewStartHour;
+    @FXML
+    TableColumn<ModelTableSchedule, String> viewEndHour;
+    @FXML
+    TableColumn<ModelTableSchedule, String> employeeId;
 
+    public static TableView<ModelTableEmployee> getTableEmp() {
+        return tableEmp;
+    }
+
+    public static TableView<ModelTableChild> getTableKid() {
+        return tableKid;
+    }
+
+    public static TableView<ModelTableSchedule> getTableSchedule() {
+        return tableSchedule;
+    }
 
     public static void setUsername(String newUsername)
     {
@@ -479,6 +524,10 @@ public class LoggedInController implements Initializable
         viewKid.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                Utilities.view();
+                tableEmp.setVisible(false);
+                tableKid.setVisible(true);
+                tableSchedule.setVisible(false);
             }
         });
 
@@ -489,6 +538,10 @@ public class LoggedInController implements Initializable
                 workDay.setVisible(false);
                 startHour.setVisible(false);
                 endHour.setVisible(false);
+                tableSchedule.setVisible(false);
+                tableKid.setVisible(false);
+                tableEmp.setVisible(true);
+                Utilities.view();
             }
         });
 
@@ -544,16 +597,36 @@ public class LoggedInController implements Initializable
         viewSchedule.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                tableEmp.setVisible(false);
+                tableKid.setVisible(false);
+                tableSchedule.setVisible(true);
+                Utilities.view();
             }
         });
 
 
 
-//        empId.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        empName.setCellValueFactory(new PropertyValueFactory<>("name"));
-//        empSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-//        empPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-//        empGroup.setCellValueFactory(new PropertyValueFactory<>("groupNumber"));
+        emploId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        empName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        empSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        empPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        empGroup.setCellValueFactory(new PropertyValueFactory<>("groupNumber"));
+
+        kidId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        kidName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        kidSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        kidBirthday.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        parentPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("parentPhone"));
+        parentsName.setCellValueFactory(new PropertyValueFactory<>("parentName"));
+        parentsSurname.setCellValueFactory(new PropertyValueFactory<>("parentSurname"));
+        kidAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        kidGroup.setCellValueFactory(new PropertyValueFactory<>("groupNumber"));
+
+        viewWorkDay.setCellValueFactory(new PropertyValueFactory<>("workday"));
+        viewStartHour.setCellValueFactory(new PropertyValueFactory<>("startHour"));
+        viewEndHour.setCellValueFactory(new PropertyValueFactory<>("endHour"));
+        employeeId.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
+
         updateKid.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override

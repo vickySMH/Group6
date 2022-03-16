@@ -206,4 +206,65 @@ public class Utilities
             }
         }
     }
+
+
+    public static void view(){
+
+        ObservableList<ModelTableEmployee> empList = FXCollections.observableArrayList();
+        ObservableList<ModelTableChild> childList = FXCollections.observableArrayList();
+        ObservableList<ModelTableSchedule> scheduleList = FXCollections.observableArrayList();
+
+        try
+        {
+            connection();
+            resultSet = connection.createStatement().executeQuery("SELECT * FROM Employees");
+            while(resultSet.next()){
+                empList.add(new ModelTableEmployee(resultSet.getString("ID"),
+                        resultSet.getString("Name"), resultSet.getString("Surname"),
+                        resultSet.getString("PhoneNumber"), resultSet.getString("GroupNumber")));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        try
+        {
+            connection();
+            resultSet = connection.createStatement().executeQuery("SELECT * FROM Children");
+            while (resultSet.next()){
+                childList.add(new ModelTableChild(resultSet.getString("id"), resultSet.getString("Name"),
+                        resultSet.getString("Surname"), resultSet.getString("DateOfBirth"),
+                        resultSet.getString("ParentPhone"), resultSet.getString("ParentName"),
+                        resultSet.getString("ParentSurname"), resultSet.getString("Address"),
+                        resultSet.getString("GroupNumber")));
+
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        try
+        {
+            connection();
+            resultSet = connection.createStatement().executeQuery("SELECT * FROM Schedule");
+            while (resultSet.next()){
+                scheduleList.add(new ModelTableSchedule(resultSet.getString("WorkDay"), resultSet.getString("StartHour"),
+                        resultSet.getString("EndHour"), resultSet.getString("EmployeeID")));
+
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        LoggedInController.getTableEmp().setItems(empList);
+        LoggedInController.getTableKid().setItems(childList);
+        LoggedInController.getTableSchedule().setItems(scheduleList);
+
+
+
+    }
+
 }
