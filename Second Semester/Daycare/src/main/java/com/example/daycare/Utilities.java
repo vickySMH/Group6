@@ -51,6 +51,22 @@ public class Utilities
         }
     }
 
+    public static void removeKid(int CPR) throws SQLException{
+        PreparedStatement stmt = null;
+        try
+        {
+            stmt = connection.prepareStatement("DELETE FROM sql11478968.Children WHERE CPR = ?");
+            stmt.setInt(1, CPR);
+            stmt.execute();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    }
+
     public static void addTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
     {
         try
