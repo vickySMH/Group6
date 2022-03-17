@@ -31,7 +31,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatementUserExists = connection.prepareStatement("DELETE * FROM sql11478968.Employees WHERE ID = ?");
+            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Employees WHERE ID = ?");
             preparedStatementUserExists.setInt(1, ID);
             preparedStatement = connection.prepareStatement("SELECT * FROM Employees");
             resultSet = preparedStatement.executeQuery();
@@ -67,7 +67,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatementUserExists = connection.prepareStatement("DELETE * FROM sql11478968.Children WHERE CPR = ?");
+            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Children WHERE CPR = ?");
             preparedStatementUserExists.setInt(1, CPR);
             preparedStatement = connection.prepareStatement("SELECT * FROM Children");
             resultSet = preparedStatement.executeQuery();
@@ -103,7 +103,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatementUserExists = connection.prepareStatement("DELETE * FROM sql11478968.Schedule WHERE ID = ? AND WorkDay = ?");
+            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Schedule WHERE ID = ? AND WorkDay = ?");
             preparedStatementUserExists.setInt(1, ID);
             preparedStatementUserExists.setDate(2, date);
             preparedStatement = connection.prepareStatement("SELECT * FROM Schedule");

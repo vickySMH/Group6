@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -18,6 +19,8 @@ import java.util.ResourceBundle;
 public class LoggedInController implements Initializable
 {
     //Danny is cool
+    private static String currentDefaultText = "Roskilde Kindergarten";
+    private static int currentSpeechXCoordinate = 197;
     private static String username;
     @FXML
     Button addButton;
@@ -150,6 +153,8 @@ public class LoggedInController implements Initializable
     @FXML
     Button search;
     @FXML
+    Label speech;
+    @FXML
     ImageView childImageUpdate;
 
     public static void setUsername(String newUsername)
@@ -222,6 +227,478 @@ public class LoggedInController implements Initializable
             viewSchedule.setLayoutX(833);
         }
 
+
+        commitAddKid.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Commit changes");
+                speech.setLayoutX(219);
+            }
+        });
+        commitAddKid.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        commitAddTeacher.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Commit changes");
+                speech.setLayoutX(219);
+            }
+        });
+        commitAddTeacher.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        commitAddSchedule.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Commit changes");
+                speech.setLayoutX(219);
+            }
+        });
+        commitAddSchedule.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        commitUpdateKid.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Commit changes");
+                speech.setLayoutX(219);
+            }
+        });
+        commitUpdateKid.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        commitUpdateSchedule.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Commit changes");
+                speech.setLayoutX(219);
+            }
+        });
+        commitUpdateSchedule.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        commitUpdateTeacher.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Commit changes");
+                speech.setLayoutX(219);
+            }
+        });
+        commitUpdateTeacher.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        commitRemoveKid.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Commit changes");
+                speech.setLayoutX(219);
+            }
+        });
+        commitRemoveKid.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        commitRemoveTeacher.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Commit changes");
+                speech.setLayoutX(219);
+            }
+        });
+        commitRemoveTeacher.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        commitRemoveSchedule.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Commit changes");
+                speech.setLayoutX(219);
+            }
+        });
+        commitRemoveSchedule.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        addButton.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to add information");
+                speech.setLayoutX(189);
+            }
+        });
+        addButton.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        addKidButton.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to add children");
+                speech.setLayoutX(207);
+            }
+        });
+        addKidButton.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        addTeacherButton.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to add employee");
+                speech.setLayoutX(199);
+            }
+        });
+        addTeacherButton.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        addScheduleButton.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to add workdays");
+                speech.setLayoutX(201);
+            }
+        });
+        addScheduleButton.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        updateButton.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to update information");
+                speech.setLayoutX(172);
+            }
+        });
+        updateButton.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        updateKid.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to update children");
+                speech.setLayoutX(189);
+            }
+        });
+        updateKid.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        updateTeacher.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to update employees");
+                speech.setLayoutX(174);
+            }
+        });
+        updateTeacher.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        updateSchedule.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to update workdays");
+                speech.setLayoutX(181);
+            }
+        });
+        updateSchedule.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        removeButton.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to remove information");
+                speech.setLayoutX(169);
+            }
+        });
+        removeButton.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        removeKid.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to remove children");
+                speech.setLayoutX(188);
+            }
+        });
+        removeKid.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        removeTeacher.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to remove employees");
+                speech.setLayoutX(171);
+            }
+        });
+        removeTeacher.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        removeSchedule.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to remove workdays");
+                speech.setLayoutX(178);
+            }
+        });
+        removeSchedule.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        viewButton.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to view information");
+                speech.setLayoutX(185);
+            }
+        });
+        viewButton.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        viewKid.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to view children");
+                speech.setLayoutX(203);
+            }
+        });
+        viewKid.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        viewTeacher.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to view employees");
+                speech.setLayoutX(190);
+            }
+        });
+        viewTeacher.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        viewSchedule.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Click to view schedules");
+                speech.setLayoutX(191);
+            }
+        });
+        viewSchedule.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+
+        search.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Search for child");
+                speech.setLayoutX(223);
+            }
+        });
+        search.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+
+
         addButton.setOnAction(new EventHandler<ActionEvent>()
         {
 
@@ -240,7 +717,8 @@ public class LoggedInController implements Initializable
                 commitUpdateKid.setVisible(false);
                 commitUpdateTeacher.setVisible(false);
                 commitUpdateSchedule.setVisible(false);
-
+                currentDefaultText = "Add information";
+                currentSpeechXCoordinate = 226;
                 addKidButton.setVisible(true);
                 addTeacherButton.setVisible(true);
                 addScheduleButton.setVisible(true);
@@ -278,7 +756,8 @@ public class LoggedInController implements Initializable
                 commitUpdateKid.setVisible(false);
                 commitUpdateTeacher.setVisible(false);
                 commitUpdateSchedule.setVisible(false);
-
+                currentDefaultText = "View information";
+                currentSpeechXCoordinate = 220;
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
                 addScheduleButton.setVisible(false);
@@ -319,7 +798,8 @@ public class LoggedInController implements Initializable
                 commitUpdateKid.setVisible(false);
                 commitUpdateTeacher.setVisible(false);
                 commitUpdateSchedule.setVisible(false);
-
+                currentDefaultText = "Update information";
+                currentSpeechXCoordinate = 212;
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
                 addScheduleButton.setVisible(false);
@@ -357,7 +837,8 @@ public class LoggedInController implements Initializable
                 commitUpdateKid.setVisible(false);
                 commitUpdateTeacher.setVisible(false);
                 commitUpdateSchedule.setVisible(false);
-
+                currentDefaultText = "Remove information";
+                currentSpeechXCoordinate = 207;
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
                 addScheduleButton.setVisible(false);
@@ -402,7 +883,8 @@ public class LoggedInController implements Initializable
                 commitUpdateKid.setVisible(false);
                 commitUpdateTeacher.setVisible(false);
                 commitUpdateSchedule.setVisible(false);
-
+                currentDefaultText = "Add child information";
+                currentSpeechXCoordinate = 205;
                 addButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 addKidButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
 
@@ -452,7 +934,8 @@ public class LoggedInController implements Initializable
 
                 addTeacherButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 addButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
-
+                currentDefaultText = "Add teacher information";
+                currentSpeechXCoordinate = 187;
                 teacherName.setVisible(true);
                 teacherSurname.setVisible(true);
                 teacherPhone.setVisible(true);
@@ -502,7 +985,8 @@ public class LoggedInController implements Initializable
 
                 addScheduleButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 addButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
-
+                currentDefaultText = "Add schedule information";
+                currentSpeechXCoordinate = 179;
                 teacherID.setVisible(true);
                 workDay.setVisible(true);
                 startHour.setVisible(true);
@@ -542,7 +1026,8 @@ public class LoggedInController implements Initializable
                 resetButtons();
                 viewButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 viewKid.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
-
+                currentDefaultText = "View children information";
+                currentSpeechXCoordinate = 180;
                 tableKid.setVisible(true);
                 tableEmp.setVisible(false);
                 tableSchedule.setVisible(false);
@@ -558,7 +1043,8 @@ public class LoggedInController implements Initializable
                 resetButtons();
                 viewButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 viewTeacher.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
-
+                currentDefaultText = "View teacher information";
+                currentSpeechXCoordinate = 182;
                 tableKid.setVisible(false);
                 tableEmp.setVisible(true);
                 tableSchedule.setVisible(false);
@@ -575,7 +1061,8 @@ public class LoggedInController implements Initializable
                 resetButtons();
                 viewButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 viewSchedule.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
-
+                currentDefaultText = "View schedule information";
+                currentSpeechXCoordinate = 174;
                 tableKid.setVisible(false);
                 tableEmp.setVisible(false);
                 tableSchedule.setVisible(true);
@@ -592,7 +1079,8 @@ public class LoggedInController implements Initializable
                 resetButtons();
                 updateButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 updateKid.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
-
+                currentDefaultText = "Update children information";
+                currentSpeechXCoordinate = 167;
                 updatePane.setVisible(true);
 
                 cprUpdate.setVisible(true);
@@ -662,6 +1150,8 @@ public class LoggedInController implements Initializable
             public void handle(ActionEvent event)
             {
                 updatePane.setVisible(true);
+                currentDefaultText = "Update teacher information";
+                currentSpeechXCoordinate = 169;
             }
         });
 
@@ -671,6 +1161,8 @@ public class LoggedInController implements Initializable
             public void handle(ActionEvent event)
             {
                 updatePane.setVisible(true);
+                currentDefaultText = "Update schedule information";
+                currentSpeechXCoordinate = 163;
             }
         });
 
