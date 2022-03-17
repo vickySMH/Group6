@@ -45,7 +45,7 @@ public class Utilities
         } catch (Exception e){
             e.printStackTrace();
         } finally {
-            if (stmt != null){
+            if (stmt != null) {
                 stmt.close();
             }
         }
