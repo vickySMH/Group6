@@ -67,6 +67,22 @@ public class Utilities
         }
     }
 
+    public static void removeSchedule(int EmployeeID) throws SQLException{
+        PreparedStatement stmt = null;
+        try
+        {
+            stmt = connection.prepareStatement("DELETE FROM sql11478968.Schedule WHERE EmployeeID = ?");
+            stmt.setInt(1, EmployeeID);
+            stmt.execute();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    }
+
     public static void addTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
     {
         try
