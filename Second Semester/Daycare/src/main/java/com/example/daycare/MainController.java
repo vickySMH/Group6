@@ -19,7 +19,7 @@ import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-//d
+
 public class MainController implements Initializable
 {
     @FXML

@@ -697,7 +697,24 @@ public class LoggedInController implements Initializable
                 speech.setLayoutX(currentSpeechXCoordinate);
             }
         });
-
+        backButton.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Log out");
+                speech.setLayoutX(270);
+            }
+        });
+        backButton.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
 
         addButton.setOnAction(new EventHandler<ActionEvent>()
         {
