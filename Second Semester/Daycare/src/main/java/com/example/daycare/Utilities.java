@@ -38,7 +38,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Employees WHERE ID = ?");
+            preparedStatementUserExists = connection.prepareStatement("DELETE * FROM sql11478968.Employees WHERE ID = ?");
             preparedStatementUserExists.setInt(1, ID);
             preparedStatement = connection.prepareStatement("SELECT * FROM Employees");
             resultSet = preparedStatement.executeQuery();
@@ -74,7 +74,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Children WHERE CPR = ?");
+            preparedStatementUserExists = connection.prepareStatement("DELETE * FROM sql11478968.Children WHERE CPR = ?");
             preparedStatementUserExists.setInt(1, CPR);
             preparedStatement = connection.prepareStatement("SELECT * FROM Children");
             resultSet = preparedStatement.executeQuery();
@@ -105,13 +105,14 @@ public class Utilities
         }
     }
 
-    public static void removeSchedule(int ID)
+    public static void removeSchedule(int ID, Date date)
     {
         try
         {
             connection();
-            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Schedule WHERE ID = ?");
+            preparedStatementUserExists = connection.prepareStatement("DELETE * FROM sql11478968.Schedule WHERE ID = ? AND WorkDay = ?");
             preparedStatementUserExists.setInt(1, ID);
+            preparedStatementUserExists.setDate(2, date);
             preparedStatement = connection.prepareStatement("SELECT * FROM Schedule");
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.isBeforeFirst())
@@ -124,7 +125,8 @@ public class Utilities
                 while (resultSet.next())
                 {
                     int retrieveID = resultSet.getInt("ID");
-                    if (retrieveID == ID)
+                    Date retrieveDate = resultSet.getDate("WorkDay");
+                    if (retrieveID == ID && retrieveDate.equals(date))
                     {
                         preparedStatementUserExists.executeUpdate();
                     }
