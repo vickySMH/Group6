@@ -553,6 +553,15 @@ public class LoggedInController implements Initializable
             }
         });
 
+        commitAddKid.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                //Utilities.addChild(event, name.getText(), surname.getText(), dateOfBirth);
+            }
+        });
+
         updateKid.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override

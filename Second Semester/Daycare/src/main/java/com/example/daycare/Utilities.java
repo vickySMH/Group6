@@ -32,6 +32,61 @@ public class Utilities
     private static String url = System.getenv("URL");
     private static String user = System.getenv("user");
     private static String password = System.getenv("password");
+
+    public static void addChild(ActionEvent event, String name, String surname, Date date, String cpr ,String parentPhone ,String parentName, String parentSurname, String address, String groupNumber, boolean waitingList)
+    {
+        try
+        {
+            connection();
+            preparedStatementInsert = connection.prepareStatement("INSERT INTO Children (Name, Surname, DateOfBirth, CPR ,ParentPhone, ParentName, ParentSurname, Address, GroupNumber, onWaitingList) VALUES (?,?,?,?,?,?,?,?,?,?) ");
+            preparedStatementInsert.setString(1, name);
+            preparedStatementInsert.setString(2, surname);
+            preparedStatementInsert.setDate(3, date);
+            preparedStatementInsert.setString(4, cpr);
+            preparedStatementInsert.setString(5, parentPhone);
+            preparedStatementInsert.setString(6, parentName);
+            preparedStatementInsert.setString(7, parentSurname);
+            preparedStatementInsert.setString(8, address);
+            preparedStatementInsert.setString(9, groupNumber);
+            preparedStatementInsert.setBoolean(10, waitingList);
+            preparedStatement = connection.prepareStatement("SELECT CPR FROM Children");
+            resultSet = preparedStatement.executeQuery();
+            boolean kidExists = false;
+            if(!resultSet.isBeforeFirst())
+            {
+                preparedStatementInsert.executeUpdate();
+            }
+            else
+            {
+                while(resultSet.next())
+                {
+                    String retrieveCPR = resultSet.getString("CPR");
+                    if(retrieveCPR.equals(cpr))
+                    {
+                        kidExists = true;
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Child already listed in a group");
+                        alert.show();
+                    }
+                }
+                if(!kidExists)
+                {
+                    preparedStatementInsert.executeUpdate();
+                }
+            }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added a child");
+            alert.show();
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
+
     public static void addTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
     {
         try
