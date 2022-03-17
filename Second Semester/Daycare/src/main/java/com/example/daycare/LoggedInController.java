@@ -143,6 +143,10 @@ public class LoggedInController implements Initializable
     TextField groupUpdate;
     @FXML
     RadioButton waitingListUpdate;
+    @FXML
+    TextField cpr;
+    @FXML
+    TextField cprUpdate;
 
     public static void setUsername(String newUsername)
     {
@@ -388,6 +392,7 @@ public class LoggedInController implements Initializable
                 commitUpdateSchedule.setVisible(false);
                 addButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 addKidButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
+                cpr.setVisible(true);
                 name.setVisible(true);
                 surname.setVisible(true);
                 dateOfBirth.setVisible(true);
@@ -411,6 +416,7 @@ public class LoggedInController implements Initializable
                 workDay.setVisible(false);
                 startHour.setVisible(false);
                 endHour.setVisible(false);
+
             }
         });
 
@@ -571,6 +577,7 @@ public class LoggedInController implements Initializable
                 updateButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 updateKid.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 updatePane.setVisible(true);
+                cprUpdate.setVisible(true);
                 nameUpdate.setVisible(true);
                 surnameUpdate.setVisible(true);
                 dateOfBirthUpdate.setVisible(true);

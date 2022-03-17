@@ -53,6 +53,11 @@
                   <Image url="@resources/imgs/pngegg.png" />
                </image>
             </ImageView>
+            <TextField fx:id="cpr" layoutX="810.0" layoutY="80.0" promptText="Child CPR">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
             <TextField fx:id="name" layoutX="680.0" layoutY="150.0" promptText="Child name">
                <font>
                   <Font size="16.0" />
@@ -138,6 +143,11 @@
       </AnchorPane>
       <AnchorPane fx:id="updatePane" prefHeight="480.0" prefWidth="1440.0">
          <children>
+            <TextField fx:id="cprUpdate" layoutX="810.0" layoutY="80.0" promptText="Child CPR">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
             <TextField fx:id="nameUpdate" layoutX="680.0" layoutY="150.0" promptText="Child name">
                <font>
                   <Font size="16.0" />
