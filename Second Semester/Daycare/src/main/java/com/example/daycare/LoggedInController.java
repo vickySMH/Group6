@@ -17,8 +17,8 @@ import java.util.ResourceBundle;
 
 public class LoggedInController implements Initializable
 {
+    //Danny is cool
     private static String username;
-
     @FXML
     Button addButton;
     @FXML
@@ -550,6 +550,15 @@ public class LoggedInController implements Initializable
             public void handle(ActionEvent event)
             {
                 Utilities.addTeacher(event, teacherName.getText(), teacherSurname.getText(),teacherPhone.getText(), groupNumber.getText());
+            }
+        });
+
+        commitAddKid.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                //Utilities.addChild(event, name.getText(), surname.getText(), dateOfBirth);
             }
         });
 
