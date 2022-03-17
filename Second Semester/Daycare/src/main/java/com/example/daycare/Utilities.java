@@ -26,6 +26,116 @@ public class Utilities
     private static String user = System.getenv("user");
     private static String password = System.getenv("password");
 
+    public static void removeTeacher(int ID)
+    {
+        try
+        {
+            connection();
+            preparedStatementUserExists = connection.prepareStatement("DELETE * FROM sql11478968.Employees WHERE ID = ?");
+            preparedStatementUserExists.setInt(1, ID);
+            preparedStatement = connection.prepareStatement("SELECT * FROM Employees");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Employee doesn't exist!");
+                alert.show();
+            }
+            else
+            {
+                while (resultSet.next())
+                {
+                    int retrieveID = resultSet.getInt("ID");
+                    if (retrieveID == ID)
+                    {
+                        preparedStatementUserExists.executeUpdate();
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
+
+    public static void removeKid(int CPR)
+    {
+        try
+        {
+            connection();
+            preparedStatementUserExists = connection.prepareStatement("DELETE * FROM sql11478968.Children WHERE CPR = ?");
+            preparedStatementUserExists.setInt(1, CPR);
+            preparedStatement = connection.prepareStatement("SELECT * FROM Children");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Child doesn't exist!");
+                alert.show();
+            }
+            else
+            {
+                while (resultSet.next())
+                {
+                    int retrieveCPR = resultSet.getInt("ID");
+                    if (retrieveCPR == CPR)
+                    {
+                        preparedStatementUserExists.executeUpdate();
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
+
+    public static void removeSchedule(int ID, Date date)
+    {
+        try
+        {
+            connection();
+            preparedStatementUserExists = connection.prepareStatement("DELETE * FROM sql11478968.Schedule WHERE ID = ? AND WorkDay = ?");
+            preparedStatementUserExists.setInt(1, ID);
+            preparedStatementUserExists.setDate(2, date);
+            preparedStatement = connection.prepareStatement("SELECT * FROM Schedule");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Schedule doesn't exist!");
+                alert.show();
+            }
+            else
+            {
+                while (resultSet.next())
+                {
+                    int retrieveID = resultSet.getInt("ID");
+                    Date retrieveDate = resultSet.getDate("WorkDay");
+                    if (retrieveID == ID && retrieveDate.equals(date))
+                    {
+                        preparedStatementUserExists.executeUpdate();
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
+
     public static void addChild(ActionEvent event, String name, String surname, Date date, String cpr ,String parentPhone ,String parentName, String parentSurname, String address, String groupNumber, boolean waitingList)
     {
         try
