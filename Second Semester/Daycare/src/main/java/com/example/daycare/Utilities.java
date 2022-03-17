@@ -136,6 +136,52 @@ public class Utilities
         }
     }
 
+    public static void addSchedule(ActionEvent event, Date workDay, Time startHour, Time endHour, int employeeID)
+    {
+        try
+        {
+            connection();
+            preparedStatementInsert = connection.prepareStatement("INSERT INTO Schedule VALUES (?,?,?,?)");
+            preparedStatementInsert.setDate(1, workDay);
+            preparedStatementInsert.setTime(2, startHour);
+            preparedStatementInsert.setTime(3, endHour);
+            preparedStatementInsert.setInt(4, employeeID);
+            preparedStatement = connection.prepareStatement("SELECT WorkDay, EmployeeID FROM Schedule");
+            resultSet = preparedStatement.executeQuery();
+            boolean empAlreadyWorking = false;
+            if(!resultSet.isBeforeFirst())
+            {
+                preparedStatementInsert.executeUpdate();
+            }
+            else
+            {
+                while (resultSet.next())
+                {
+                    Date retrieveWorkDay = resultSet.getDate("WorkDay");
+                    int retrieveEmployeeID = resultSet.getInt("EmployeeID");
+                    if(retrieveEmployeeID == employeeID && retrieveWorkDay.equals(workDay))
+                    {
+                        empAlreadyWorking = true;
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Employee is already working on that day");
+                        alert.show();
+                    }
+                }
+                if(!empAlreadyWorking)
+                {
+                    preparedStatementInsert.executeUpdate();
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
+
     public static void returnToLogin(ActionEvent event)
     {
         Parent root = null;

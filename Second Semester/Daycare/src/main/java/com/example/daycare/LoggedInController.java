@@ -569,6 +569,15 @@ public class LoggedInController implements Initializable
             }
         });
 
+        commitAddSchedule.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Utilities.addSchedule(event, Date.valueOf(workDay.getText()), Time.valueOf(startHour.getText()), Time.valueOf(endHour.getText()), parseString(teacherID.getText()));
+            }
+        });
+
         updateKid.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -608,5 +617,18 @@ public class LoggedInController implements Initializable
                 updatePane.setVisible(true);
             }
         });
+    }
+    private int parseString(String number)
+    {
+        try
+        {
+            int returnValue = Integer.parseInt(number);
+            return returnValue;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
