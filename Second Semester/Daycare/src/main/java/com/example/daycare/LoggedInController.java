@@ -11,8 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class LoggedInController implements Initializable
@@ -564,7 +564,8 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                //Utilities.addChild(event, name.getText(), surname.getText(), dateOfBirth);
+                Utilities.addChild(event, name.getText(), surname.getText(), Date.valueOf(dateOfBirth.getText()),
+                        cpr.getText(), parentPhone.getText(), parentName.getText(), parentSurname.getText(), address.getText(), groupNumber.getText(), waitingList.isSelected());
             }
         });
 
