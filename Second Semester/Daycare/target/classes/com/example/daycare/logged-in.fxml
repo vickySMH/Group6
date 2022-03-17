@@ -62,19 +62,11 @@
                <font>
                   <Font size="16.0" />
                </font></TextField>
-            <TextField fx:id="dateOfBirth" layoutX="680.0" layoutY="220.0" promptText="Date of birth">
-               <font>
-                  <Font size="16.0" />
-               </font></TextField>
-            <TextField fx:id="parentName" layoutX="680.0" layoutY="290.0" promptText="Parent name">
-               <font>
-                  <Font size="16.0" />
-               </font></TextField>
-            <TextField fx:id="address" layoutX="680.0" layoutY="360.0" promptText="Address">
-               <font>
-                  <Font size="16.0" />
-               </font></TextField>
             <TextField fx:id="surname" layoutX="930.0" layoutY="150.0" promptText="Child surname">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
+            <TextField fx:id="dateOfBirth" layoutX="680.0" layoutY="220.0" promptText="Date of birth">
                <font>
                   <Font size="16.0" />
                </font></TextField>
@@ -82,7 +74,15 @@
                <font>
                   <Font size="16.0" />
                </font></TextField>
+            <TextField fx:id="parentName" layoutX="680.0" layoutY="290.0" promptText="Parent name">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
             <TextField fx:id="parentSurname" layoutX="930.0" layoutY="290.0" promptText="Parent surname">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
+            <TextField fx:id="address" layoutX="680.0" layoutY="360.0" promptText="Address">
                <font>
                   <Font size="16.0" />
                </font></TextField>
@@ -161,22 +161,12 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="dateOfBirthUpdate" layoutX="680.0" layoutY="220.0" promptText="Date of birth">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="parentNameUpdate" layoutX="680.0" layoutY="290.0" promptText="Parent name">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="addressUpdate" layoutX="680.0" layoutY="360.0" promptText="Address">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
             <TextField fx:id="surnameUpdate" layoutX="930.0" layoutY="150.0" promptText="Child surname">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="dateOfBirthUpdate" layoutX="680.0" layoutY="220.0" promptText="Date of birth">
                <font>
                   <Font size="16.0" />
                </font>
@@ -186,7 +176,17 @@
                   <Font size="16.0" />
                </font>
             </TextField>
+            <TextField fx:id="parentNameUpdate" layoutX="680.0" layoutY="290.0" promptText="Parent name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
             <TextField fx:id="parentSurnameUpdate" layoutX="930.0" layoutY="290.0" promptText="Parent surname">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="addressUpdate" layoutX="680.0" layoutY="360.0" promptText="Address">
                <font>
                   <Font size="16.0" />
                </font>
@@ -201,6 +201,11 @@
                   <Font size="20.0" />
                </font>
             </RadioButton>
+            <ImageView fx:id="childImageUpdate" fitHeight="270.0" fitWidth="570.0" layoutX="40.0" layoutY="170.0">
+               <image>
+                  <Image url="@resources/imgs/pngegg.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
       <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0" />
       <ImageView fx:id="image" fitHeight="318.0" fitWidth="467.0" layoutX="-2.0" layoutY="553.0">

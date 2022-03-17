@@ -149,6 +149,8 @@ public class LoggedInController implements Initializable
     TextField cprUpdate;
     @FXML
     Button search;
+    @FXML
+    ImageView childImageUpdate;
 
     public static void setUsername(String newUsername)
     {
@@ -595,6 +597,52 @@ public class LoggedInController implements Initializable
 
                 cprUpdate.setVisible(true);
                 search.setVisible(true);
+                childImageUpdate.setVisible(true);
+                search.setOnAction(new EventHandler<ActionEvent>()
+                {
+                    @Override
+                    public void handle(ActionEvent event)
+                    {
+                        if (Utilities.search(event, cprUpdate.getText()))
+                        {
+                            cprUpdate.setVisible(false);
+                            search.setVisible(false);
+                            nameUpdate.setVisible(true);
+                            surnameUpdate.setVisible(true);
+                            dateOfBirthUpdate.setVisible(true);
+                            parentPhoneUpdate.setVisible(true);
+                            parentNameUpdate.setVisible(true);
+                            parentSurnameUpdate.setVisible(true);
+                            addressUpdate.setVisible(true);
+                            groupUpdate.setVisible(true);
+                            waitingListUpdate.setVisible(true);
+
+                            commitUpdateKid.setVisible(true);
+
+                            nameUpdate.setText(Utilities.name(event, cprUpdate.getText()));
+                            surnameUpdate.setText(Utilities.surname(event, cprUpdate.getText()));
+                            dateOfBirthUpdate.setText(Utilities.dateOfBirth(event, cprUpdate.getText()));
+                            parentPhoneUpdate.setText(Utilities.parentPhone(event, cprUpdate.getText()));
+                            parentNameUpdate.setText(Utilities.parentName(event, cprUpdate.getText()));
+                            parentSurnameUpdate.setText(Utilities.parentSurname(event, cprUpdate.getText()));
+                            addressUpdate.setText(Utilities.address(event, cprUpdate.getText()));
+                            groupUpdate.setText(Utilities.groupNumber(event, cprUpdate.getText()));
+                            if(Utilities.waitingList(event,cprUpdate.getText()))
+                            {
+                                waitingListUpdate.setSelected(true);
+                            }
+                            else
+                            {
+                                waitingListUpdate.setSelected(false);
+                            }
+                            Platform.runLater( () -> image.requestFocus() );
+                        }
+                        else
+                        {
+                            System.out.println("There is not child with this CPR.");
+                        }
+                    }
+                });
 
                 nameUpdate.setVisible(false);
                 surnameUpdate.setVisible(false);

@@ -1,25 +1,18 @@
 package com.example.daycare;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.awt.*;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Utilities
 {
@@ -201,6 +194,295 @@ public class Utilities
         stage.centerOnScreen();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static boolean search(ActionEvent event, String CPR)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT CPR FROM Children");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                return false;
+            }
+            else
+            {
+                while (resultSet.next())
+                {
+                    String retrieveCPR = resultSet.getString("CPR");
+                    if (retrieveCPR.equals(CPR))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        finally
+        {
+            closeConnection();
+        }
+        return false;
+    }
+
+    public static String name(ActionEvent event,String CPR )
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT NAME, CPR FROM Children WHERE CPR = ?");
+            preparedStatement.setString(1, CPR);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                String retrieveCPR = resultSet.getString("CPR");
+                if(retrieveCPR.equals(CPR))
+                {
+                    return resultSet.getString("Name");
+                }
+            }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String surname(ActionEvent event, String CPR)
+    {
+        try
+        {
+        connection();
+        preparedStatement = connection.prepareStatement("SELECT Surname, CPR FROM Children WHERE CPR = ?");
+        preparedStatement.setString(1, CPR);
+        resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+            String retrieveCPR = resultSet.getString("CPR");
+                if (retrieveCPR.equals(CPR))
+                {
+                    return resultSet.getString("Surname");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String dateOfBirth(ActionEvent event, String CPR)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT DateOfBirth, CPR FROM Children WHERE CPR = ?");
+            preparedStatement.setString(1, CPR);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                String retrieveCPR = resultSet.getString("CPR");
+                if (retrieveCPR.equals(CPR))
+                {
+                    return resultSet.getString("DateOfBirth");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String parentPhone(ActionEvent event, String CPR)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT ParentPhone, CPR FROM Children WHERE CPR = ?");
+            preparedStatement.setString(1, CPR);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                String retrieveCPR = resultSet.getString("CPR");
+                if (retrieveCPR.equals(CPR))
+                {
+                    return resultSet.getString("ParentPhone");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String parentName(ActionEvent event,String CPR )
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT ParentName, CPR FROM Children WHERE CPR = ?");
+            preparedStatement.setString(1, CPR);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next())
+            {
+                String retrieveCPR = resultSet.getString("CPR");
+                if(retrieveCPR.equals(CPR))
+                {
+                    return resultSet.getString("ParentName");
+                }
+            }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String parentSurname(ActionEvent event, String CPR)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT ParentSurname, CPR FROM Children WHERE CPR = ?");
+            preparedStatement.setString(1, CPR);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                String retrieveCPR = resultSet.getString("CPR");
+                if (retrieveCPR.equals(CPR))
+                {
+                    return resultSet.getString("ParentSurname");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String address(ActionEvent event, String CPR)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT Address, CPR FROM Children WHERE CPR = ?");
+            preparedStatement.setString(1, CPR);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                String retrieveCPR = resultSet.getString("CPR");
+                if (retrieveCPR.equals(CPR))
+                {
+                    return resultSet.getString("Address");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String groupNumber(ActionEvent event, String CPR)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT GroupNumber, CPR FROM Children WHERE CPR = ?");
+            preparedStatement.setString(1, CPR);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                String retrieveCPR = resultSet.getString("CPR");
+                if (retrieveCPR.equals(CPR))
+                {
+                    return resultSet.getString("GroupNumber");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static boolean waitingList(ActionEvent event, String CPR)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT onWaitingList, CPR FROM Children WHERE CPR = ?");
+            preparedStatement.setString(1, CPR);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                String retrieveCPR = resultSet.getString("CPR");
+                if (retrieveCPR.equals(CPR))
+                {
+                    return resultSet.getBoolean("onWaitingList");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return false;
     }
 
     public static void changeScene(ActionEvent event, String fxmlFile, String title ,String username, String password)
