@@ -14,10 +14,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.awt.*;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,18 +34,35 @@ public class Utilities
     private static String url = System.getenv("URL");
     private static String user = System.getenv("user");
     private static String password = System.getenv("password");
+
+    public static void removeTeacher(int ID) throws SQLException{
+        PreparedStatement stmt = null;
+        try
+        {
+            stmt = connection.prepareStatement("DELETE FROM sql11478968.Employees WHERE ID = ?");
+            stmt.setInt(1, ID);
+            stmt.execute();
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if (stmt != null){
+                stmt.close();
+            }
+        }
+    }
+
     public static void addTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
     {
         try
         {
             boolean teacherExists = false;
             connection();
-            preparedStatementInsert = connection.prepareStatement("INSERT INTO Employees (GroupNumber, Name, Surname, PhoneNumber) VALUES (?, ?, ?, ? )");
+            preparedStatementInsert = connection.prepareStatement("INSERT INTO sql11478968.Employees (GroupNumber, Name, Surname, PhoneNumber) VALUES (?, ?, ?, ? )");
             preparedStatementInsert.setString(1, GroupNumber);
             preparedStatementInsert.setString(2, name);
             preparedStatementInsert.setString(3, surname);
             preparedStatementInsert.setString(4, phoneNumber);
-            preparedStatement = connection.prepareStatement("SELECT PhoneNumber FROM Employees");
+            preparedStatement = connection.prepareStatement("SELECT PhoneNumber FROM sql11478968.Employees");
             resultSet = preparedStatement.executeQuery();
             if(!resultSet.isBeforeFirst())
             {
@@ -147,7 +166,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("SELECT password from Users where username = ?; ");
+            preparedStatement = connection.prepareStatement("SELECT password from sql11478968.Users where username = ?; ");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             if(!resultSet.isBeforeFirst())
