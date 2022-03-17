@@ -35,51 +35,111 @@ public class Utilities
     private static String user = System.getenv("user");
     private static String password = System.getenv("password");
 
-    public static void removeTeacher(int ID) throws SQLException{
-        PreparedStatement stmt = null;
+    public static void removeTeacher(int ID)
+    {
         try
         {
-            stmt = connection.prepareStatement("DELETE FROM sql11478968.Employees WHERE ID = ?");
-            stmt.setInt(1, ID);
-            stmt.execute();
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            if (stmt != null) {
-                stmt.close();
+            connection();
+            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Employees WHERE ID = ?");
+            preparedStatementUserExists.setInt(1, ID);
+            preparedStatement = connection.prepareStatement("SELECT * FROM Employees");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Employee doesn't exist!");
+                alert.show();
             }
+            else
+            {
+                while (resultSet.next())
+                {
+                    int retrieveID = resultSet.getInt("ID");
+                    if (retrieveID == ID)
+                    {
+                        preparedStatementUserExists.executeUpdate();
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
         }
     }
 
-    public static void removeKid(int CPR) throws SQLException{
-        PreparedStatement stmt = null;
+    public static void removeKid(int CPR)
+    {
         try
         {
-            stmt = connection.prepareStatement("DELETE FROM sql11478968.Children WHERE CPR = ?");
-            stmt.setInt(1, CPR);
-            stmt.execute();
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            if (stmt != null) {
-                stmt.close();
+            connection();
+            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Children WHERE CPR = ?");
+            preparedStatementUserExists.setInt(1, CPR);
+            preparedStatement = connection.prepareStatement("SELECT * FROM Children");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Child doesn't exist!");
+                alert.show();
             }
+            else
+            {
+                while (resultSet.next())
+                {
+                    int retrieveCPR = resultSet.getInt("ID");
+                    if (retrieveCPR == CPR)
+                    {
+                        preparedStatementUserExists.executeUpdate();
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
         }
     }
 
-    public static void removeSchedule(int EmployeeID) throws SQLException{
-        PreparedStatement stmt = null;
+    public static void removeSchedule(int ID)
+    {
         try
         {
-            stmt = connection.prepareStatement("DELETE FROM sql11478968.Schedule WHERE EmployeeID = ?");
-            stmt.setInt(1, EmployeeID);
-            stmt.execute();
-        } catch (Exception e){
-            e.printStackTrace();
-        } finally {
-            if (stmt != null) {
-                stmt.close();
+            connection();
+            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Schedule WHERE ID = ?");
+            preparedStatementUserExists.setInt(1, ID);
+            preparedStatement = connection.prepareStatement("SELECT * FROM Schedule");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Schedule doesn't exist!");
+                alert.show();
             }
+            else
+            {
+                while (resultSet.next())
+                {
+                    int retrieveID = resultSet.getInt("ID");
+                    if (retrieveID == ID)
+                    {
+                        preparedStatementUserExists.executeUpdate();
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
         }
     }
 
