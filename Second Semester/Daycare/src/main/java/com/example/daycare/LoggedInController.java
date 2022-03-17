@@ -147,6 +147,8 @@ public class LoggedInController implements Initializable
     TextField cpr;
     @FXML
     TextField cprUpdate;
+    @FXML
+    Button search;
 
     public static void setUsername(String newUsername)
     {
@@ -580,15 +582,6 @@ public class LoggedInController implements Initializable
             }
         });
 
-        commitAddSchedule.setOnAction(new EventHandler<ActionEvent>()
-        {
-            @Override
-            public void handle(ActionEvent event)
-            {
-                Utilities.addSchedule(event, Date.valueOf(workDay.getText()), Time.valueOf(startHour.getText()), Time.valueOf(endHour.getText()), parseString(teacherID.getText()));
-            }
-        });
-
         updateKid.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -601,15 +594,17 @@ public class LoggedInController implements Initializable
                 updatePane.setVisible(true);
 
                 cprUpdate.setVisible(true);
-                nameUpdate.setVisible(true);
-                surnameUpdate.setVisible(true);
-                dateOfBirthUpdate.setVisible(true);
-                parentPhoneUpdate.setVisible(true);
-                parentNameUpdate.setVisible(true);
-                parentSurnameUpdate.setVisible(true);
-                addressUpdate.setVisible(true);
-                groupUpdate.setVisible(true);
-                waitingListUpdate.setVisible(true);
+                search.setVisible(true);
+
+                nameUpdate.setVisible(false);
+                surnameUpdate.setVisible(false);
+                dateOfBirthUpdate.setVisible(false);
+                parentPhoneUpdate.setVisible(false);
+                parentNameUpdate.setVisible(false);
+                parentSurnameUpdate.setVisible(false);
+                addressUpdate.setVisible(false);
+                groupUpdate.setVisible(false);
+                waitingListUpdate.setVisible(false);
             }
         });
 
@@ -649,6 +644,16 @@ public class LoggedInController implements Initializable
                         cpr.getText(), parentPhone.getText(), parentName.getText(), parentSurname.getText(), address.getText(), groupNumber.getText(), waitingList.isSelected());
             }
         });
+
+        commitAddSchedule.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Utilities.addSchedule(event, Date.valueOf(workDay.getText()), Time.valueOf(startHour.getText()), Time.valueOf(endHour.getText()), parseString(teacherID.getText()));
+            }
+        });
+
     }
     private int parseString(String number)
     {
