@@ -49,7 +49,7 @@
                </columns>
             </TableView>
          </children></AnchorPane>
-      <AnchorPane fx:id="addPane" layoutY="10.0" prefHeight="480.0" prefWidth="1440.0" AnchorPane.bottomAnchor="390.0">
+      <AnchorPane fx:id="addPane" layoutY="1.0" prefHeight="480.0" prefWidth="1440.0" AnchorPane.bottomAnchor="480.0">
          <children>
             <ImageView fx:id="childImage" fitHeight="270.0" fitWidth="570.0" layoutX="40.0" layoutY="170.0">
                <image>
@@ -137,7 +137,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="endHour" layoutX="930.0" layoutY="290.0" promptText="End hour">
+            <TextField fx:id="workDay1" layoutX="930.0" layoutY="220.0" promptText="Work day">
                <font>
                   <Font size="16.0" />
                </font>
@@ -210,7 +210,29 @@
                </image>
             </ImageView>
          </children></AnchorPane>
-      <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0" />
+      <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0">
+         <children>
+            <TextField fx:id="cprRemove" layoutX="810.0" layoutY="257.0" promptText="Child CPR" rotate="-360.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="teacherIDRemove" layoutX="810.0" layoutY="257.0" promptText="Teacher name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="teacherIDRemove" layoutX="680.0" layoutY="257.0" promptText="Teacher ID">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="workDayRemove" layoutX="930.0" layoutY="257.0" promptText="Work day">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+         </children></AnchorPane>
       <ImageView fx:id="image" fitHeight="318.0" fitWidth="467.0" layoutX="-2.0" layoutY="553.0">
          <image>
             <Image url="@resources/imgs/Alien.png" />
