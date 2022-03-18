@@ -678,15 +678,17 @@ public class Utilities
         }
     }
 
-    private static void connection()
+    private static Connection connection()
     {
         try
         {
             connection = DriverManager.getConnection(url, user, password);
+            return connection;
         }
         catch (SQLException e)
         {
             e.printStackTrace();
+            return null;
         }
     }
     private static void closeConnection()
@@ -747,4 +749,64 @@ public class Utilities
             }
         }
     }
+    
+    public static ObservableList<ModelTableEmployee> getEmployeeData(){
+        connection = connection();
+        ObservableList<ModelTableEmployee> empList = FXCollections.observableArrayList();
+        try
+        {
+            preparedStatement = connection.prepareStatement("SELECT * FROM employees");
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                empList.add(new ModelTableEmployee(resultSet.getInt("ID"),
+                        resultSet.getString("Name"), resultSet.getString("Surname"),
+                        resultSet.getString("PhoneNumber"), resultSet.getString("GroupNumber")));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return empList;
+    }
+
+    public static ObservableList<ModelTableChild> getChildData(){
+        connection = connection();
+        ObservableList<ModelTableChild> childList = FXCollections.observableArrayList();
+        try{
+            preparedStatement = connection.prepareStatement("SELECT * FROM children");
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                childList.add(new ModelTableChild(Integer.parseInt(resultSet.getString("ID")),
+                        resultSet.getString("CPR"), resultSet.getString("Name"),
+                        resultSet.getString("Surname"), resultSet.getString("DateOfBirth"),
+                        resultSet.getString("ParentPhone"), resultSet.getString("ParentName"),
+                        resultSet.getString("ParentSurname"), resultSet.getString("Address"),
+                        resultSet.getString("GroupNumber"), resultSet.getString("onWaitingList")));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return childList;
+    }
+
+    public static ObservableList<ModelTableSchedule> getScheduleData(){
+        connection = connection();
+        ObservableList<ModelTableSchedule> scheduleList = FXCollections.observableArrayList();
+        try
+        {
+            preparedStatement = connection.prepareStatement("SELECT * FROM schedule");
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                scheduleList.add(new ModelTableSchedule(resultSet.getString("WorkDay"),
+                        resultSet.getString("StartHour"), resultSet.getString("EndHour"),
+                        resultSet.getInt("EmployeeID")));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return scheduleList;
+    }
+    
 }
