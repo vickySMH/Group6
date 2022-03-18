@@ -597,6 +597,40 @@ public class Utilities
         return false;
     }
 
+    public static boolean searchTeacher(ActionEvent event, int ID)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT ID FROM employees");
+            resultSet =preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                return false;
+            }
+            else
+            {
+                while (resultSet.next())
+                {
+                    int retrieveID = resultSet.getInt(ID);
+                    if (retrieveID == ID)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return false;
+    }
+
     public static void changeScene(ActionEvent event, String fxmlFile, String title ,String username, String password)
     {
         Parent root = null;

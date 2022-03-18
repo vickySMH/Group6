@@ -14,6 +14,29 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1440.0" stylesheets="@resources/stylesheets/loggedIn.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.daycare.LoggedInController">
    <children>
+      <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0">
+         <children>
+            <TextField fx:id="cprRemove" layoutX="810.0" layoutY="257.0" promptText="Child CPR" rotate="-360.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="teacherIDRemove" layoutX="810.0" layoutY="257.0" promptText="Teacher ID">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="teacherIDRemove" layoutX="680.0" layoutY="257.0" promptText="Teacher ID">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="workDayRemove" layoutX="930.0" layoutY="257.0" promptText="Work day">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+         </children></AnchorPane>
       <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
             <TableView fx:id="tableKid" layoutX="45.0" prefHeight="480.0" prefWidth="1442.5">
@@ -137,7 +160,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="workDay1" layoutX="930.0" layoutY="220.0" promptText="Work day">
+            <TextField fx:id="endHour" layoutX="930.0" layoutY="290.0" promptText="End hour">
                <font>
                   <Font size="16.0" />
                </font>
@@ -209,29 +232,44 @@
                   <Image url="@resources/imgs/pngegg.png" />
                </image>
             </ImageView>
-         </children></AnchorPane>
-      <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0">
-         <children>
-            <TextField fx:id="cprRemove" layoutX="810.0" layoutY="257.0" promptText="Child CPR" rotate="-360.0">
+            <TextField fx:id="teacherIDUpdate" layoutX="810.0" layoutY="257.0" promptText="Teacher ID">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="teacherIDRemove" layoutX="810.0" layoutY="257.0" promptText="Teacher name">
+            <Button id="commit" fx:id="searchTeacher" layoutX="1130.0" layoutY="247.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Search">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="19.5" />
+               </font>
+            </Button>
+            <TextField fx:id="teacherNameUpdate" layoutX="680.0" layoutY="220.0" promptText="Teacher name">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="teacherIDRemove" layoutX="680.0" layoutY="257.0" promptText="Teacher ID">
+            <TextField fx:id="teacherSurnameUpdate" layoutX="930.0" layoutY="220.0" promptText="Teacher surname">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="workDayRemove" layoutX="930.0" layoutY="257.0" promptText="Work day">
+            <TextField fx:id="teacherPhoneUpdate" layoutX="680.0" layoutY="290.0" promptText="Phone number">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
+            <TextField fx:id="groupNumberUpdate" layoutX="930.0" layoutY="290.0" promptText="Group number">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="teachersImageUpdate" fitHeight="370.0" fitWidth="570.0" layoutX="50.0" layoutY="90.0">
+               <image>
+                  <Image url="@resources/imgs/teacher.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
       <ImageView fx:id="image" fitHeight="318.0" fitWidth="467.0" layoutX="-2.0" layoutY="553.0">
          <image>
@@ -447,6 +485,6 @@
          </font>
       </Label>
       <AnchorPane layoutX="103.0" layoutY="742.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 12px; -fx-background-color: #bafb6c;" />
-      <AnchorPane layoutX="203.0" layoutY="761.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-radius: 12px; -fx-background-color: #bafb6c;" />
+      <AnchorPane layoutX="186.0" layoutY="743.0" prefHeight="213.0" prefWidth="120.0" style="-fx-background-radius: 12px; -fx-background-color: #bafb6c;" />
    </children>
 </AnchorPane>

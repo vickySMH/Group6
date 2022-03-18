@@ -197,6 +197,20 @@ public class LoggedInController implements Initializable
     TableColumn<ModelTableSchedule, String> viewEndHour;
     @FXML
     TableColumn<ModelTableSchedule, Integer> employeeId;
+    @FXML
+    TextField teacherNameUpdate;
+    @FXML
+    TextField teacherSurnameUpdate;
+    @FXML
+    TextField teacherPhoneUpdate;
+    @FXML
+    TextField groupNumberUpdate;
+    @FXML
+    ImageView teachersImageUpdate;
+    @FXML
+    TextField teacherIDUpdate;
+    @FXML
+    Button searchTeacher;
     
     private ObservableList listChild;
     private ObservableList listEmployee;
@@ -1280,7 +1294,7 @@ public class LoggedInController implements Initializable
                         }
                         else
                         {
-                            System.out.println("There is not child with this CPR.");
+                            speech.setText("No child with this CPR.");
                         }
                     }
                 });
@@ -1294,6 +1308,14 @@ public class LoggedInController implements Initializable
                 addressUpdate.setVisible(false);
                 groupUpdate.setVisible(false);
                 waitingListUpdate.setVisible(false);
+
+                teacherNameUpdate.setVisible(false);
+                teacherSurnameUpdate.setVisible(false);
+                teacherPhoneUpdate.setVisible(false);
+                groupNumberUpdate.setVisible(false);
+                teachersImageUpdate.setVisible(false);
+                teacherIDUpdate.setVisible(false);
+                searchTeacher.setVisible(false);
             }
         });
 
@@ -1302,9 +1324,57 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                updatePane.setVisible(true);
                 currentDefaultText = "Update teacher information";
                 currentSpeechXCoordinate = 169;
+                updatePane.setVisible(true);
+
+
+                teacherIDUpdate.setVisible(true);
+                searchTeacher.setVisible(true);
+                teacherNameUpdate.setVisible(false);
+                teacherSurnameUpdate.setVisible(false);
+                teacherPhoneUpdate.setVisible(false);
+                groupNumberUpdate.setVisible(false);
+                teachersImageUpdate.setVisible(true);
+
+                searchTeacher.setOnAction(new EventHandler<ActionEvent>()
+                {
+                    @Override
+                    public void handle(ActionEvent event)
+                    {
+                        if (Utilities.searchTeacher(event, parseString(teacherIDUpdate.getText())))
+                        {
+                            teacherIDUpdate.setVisible(false);
+                            searchTeacher.setVisible(false);
+                            teacherNameUpdate.setVisible(true);
+                            teacherSurnameUpdate.setVisible(true);
+                            teacherPhoneUpdate.setVisible(true);
+                            groupNumberUpdate.setVisible(true);
+                            teachersImageUpdate.setVisible(true);
+
+                            commitUpdateTeacher.setVisible(true);
+                        }
+                        else
+                        {
+                            System.out.println("No teacher with this ID");
+                        }
+                        Platform.runLater( () -> image.requestFocus() );
+                    }
+                });
+
+                cprUpdate.setVisible(false);
+                search.setVisible(false);
+                nameUpdate.setVisible(false);
+                surnameUpdate.setVisible(false);
+                dateOfBirthUpdate.setVisible(false);
+                parentPhoneUpdate.setVisible(false);
+                parentNameUpdate.setVisible(false);
+                parentSurnameUpdate.setVisible(false);
+                addressUpdate.setVisible(false);
+                groupUpdate.setVisible(false);
+                waitingListUpdate.setVisible(false);
+                childImageUpdate.setVisible(false);
+
             }
         });
 
