@@ -156,6 +156,50 @@ public class LoggedInController implements Initializable
     Label speech;
     @FXML
     ImageView childImageUpdate;
+    @FXML
+    TableColumn<ModelTableEmployee, Integer> empID;
+    @FXML
+    TableColumn<ModelTableEmployee, String> empGroup;
+    @FXML
+    TableColumn<ModelTableEmployee, String> empName;
+    @FXML
+    TableColumn<ModelTableEmployee, String> empSurname;
+    @FXML
+    TableColumn<ModelTableEmployee, String> empPhone;
+    @FXML
+    TableColumn<ModelTableChild, Integer> kidId;
+    @FXML
+    TableColumn<ModelTableChild, String> kidName;
+    @FXML
+    TableColumn<ModelTableChild, String> kidSurname;
+    @FXML
+    TableColumn<ModelTableChild, String> kidBirthday;
+    @FXML
+    TableColumn<ModelTableChild, String> parentPhoneNumber;
+    @FXML
+    TableColumn<ModelTableChild, String> parentsName;
+    @FXML
+    TableColumn<ModelTableChild, String> parentsSurname;
+    @FXML
+    TableColumn<ModelTableChild, String> kidAddress;
+    @FXML
+    TableColumn<ModelTableChild, String> kidGroup;
+    @FXML
+    TableColumn<ModelTableChild, String> kidCPR;
+    @FXML
+    TableColumn<ModelTableChild, String> kidWait;
+    @FXML
+    TableColumn<ModelTableSchedule, String> viewWorkDay;
+    @FXML
+    TableColumn<ModelTableSchedule, String> viewStartHour;
+    @FXML
+    TableColumn<ModelTableSchedule, String> viewEndHour;
+    @FXML
+    TableColumn<ModelTableSchedule, Integer> employeeId;
+    
+    private ObservableList listChild;
+    private ObservableList listEmployee;
+    private ObservableList listSchedule;
 
     public static void setUsername(String newUsername)
     {
@@ -185,6 +229,29 @@ public class LoggedInController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        empID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        empGroup.setCellValueFactory(new PropertyValueFactory<>("groupNumber"));
+        empName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        empSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        empPhone.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
+        kidId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        kidCPR.setCellValueFactory(new PropertyValueFactory<>("cpr"));
+        kidName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        kidSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        kidGroup.setCellValueFactory(new PropertyValueFactory<>("groupNumber"));
+        kidAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        kidBirthday.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        kidWait.setCellValueFactory(new PropertyValueFactory<>("onWaitList"));
+        parentPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("parentPhone"));
+        parentsName.setCellValueFactory(new PropertyValueFactory<>("parentName"));
+        parentsSurname.setCellValueFactory(new PropertyValueFactory<>("parentSurname"));
+
+        viewWorkDay.setCellValueFactory(new PropertyValueFactory<>("workday"));
+        viewStartHour.setCellValueFactory(new PropertyValueFactory<>("startHour"));
+        viewEndHour.setCellValueFactory(new PropertyValueFactory<>("endHour"));
+        employeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+    
         Platform.runLater( () -> image.requestFocus() );
         commitAddKid.setVisible(false);
         commitAddTeacher.setVisible(false);
@@ -1048,6 +1115,8 @@ public class LoggedInController implements Initializable
                 tableKid.setVisible(true);
                 tableEmp.setVisible(false);
                 tableSchedule.setVisible(false);
+                listChild = Utilities.getChildData();
+                tableKid.setItems(listChild);
 
                 viewPane.setVisible(true);
             }
@@ -1065,6 +1134,8 @@ public class LoggedInController implements Initializable
                 tableKid.setVisible(false);
                 tableEmp.setVisible(true);
                 tableSchedule.setVisible(false);
+                listEmployee = Utilities.getEmployeeData();
+                tableEmp.setItems(listEmployee);
 
                 viewPane.setVisible(true);
             }
@@ -1083,6 +1154,8 @@ public class LoggedInController implements Initializable
                 tableKid.setVisible(false);
                 tableEmp.setVisible(false);
                 tableSchedule.setVisible(true);
+                listSchedule = Utilities.getScheduleData();
+                tableSchedule.setItems(listSchedule);
 
                 viewPane.setVisible(true);
             }
