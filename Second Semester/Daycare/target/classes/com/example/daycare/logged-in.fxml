@@ -19,31 +19,33 @@
             <TableView fx:id="tableKid" layoutX="45.0" prefHeight="480.0" prefWidth="1442.5">
                <columns>
                   <TableColumn fx:id="kidId" prefWidth="70.0" text="ID" />
+                  <TableColumn fx:id="kidCPR" prefWidth="75.0" text="CPR" />
                   <TableColumn fx:id="kidName" minWidth="200.0" prefWidth="200.0" text="Name" />
                   <TableColumn fx:id="kidSurname" minWidth="180.0" prefWidth="200.0" text="Surname" />
-                  <TableColumn fx:id="kidBirthday" minWidth="90.0" prefWidth="100.0" text="DateOfBirth" />
-                  <TableColumn fx:id="parentPhoneNumber" minWidth="100.0" prefWidth="170.0" text="ParentPhone" />
-                  <TableColumn fx:id="parentsName" minWidth="200.0" prefWidth="200.0" text="ParentName" />
-                  <TableColumn fx:id="parentsSurname" prefWidth="200.0" text="ParentSurname" />
+                  <TableColumn fx:id="kidBirthday" minWidth="90.0" prefWidth="100.0" text="Date of Birth" />
+                  <TableColumn fx:id="parentPhoneNumber" minWidth="100.0" prefWidth="170.0" text="Parent Phone" />
+                  <TableColumn fx:id="parentsName" minWidth="200.0" prefWidth="200.0" text="Parent Name" />
+                  <TableColumn fx:id="parentsSurname" prefWidth="200.0" text="Parent Surname" />
                   <TableColumn fx:id="kidAddress" prefWidth="200.0" text="Address" />
-                  <TableColumn fx:id="kidGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
+                  <TableColumn fx:id="kidGroup" minWidth="0.0" prefWidth="100.0" text="Group Number" />
+                  <TableColumn fx:id="kidWait" prefWidth="75.0" text="On Waiting List" />
                </columns>
             </TableView>
             <TableView fx:id="tableEmp" layoutX="280.0" prefHeight="480.0" prefWidth="972.5">
               <columns>
-                <TableColumn fx:id="emploId" prefWidth="100.0" text="ID" />
-                <TableColumn fx:id="empGroup" minWidth="0.0" prefWidth="100.0" text="GroupNumber" />
+                <TableColumn fx:id="empID" prefWidth="100.0" text="ID" />
+                <TableColumn fx:id="empGroup" minWidth="0.0" prefWidth="100.0" text="Employee ID" />
                   <TableColumn fx:id="empName" minWidth="250.0" prefWidth="260.0" text="Name" />
                   <TableColumn fx:id="empSurname" minWidth="250.0" prefWidth="260.0" text="Surname" />
-                  <TableColumn fx:id="empPhone" minWidth="250.0" prefWidth="250.0" text="PhoneNumber" />
+                  <TableColumn fx:id="empPhone" minWidth="250.0" prefWidth="250.0" text="Phone Number" />
               </columns>
             </TableView>
             <TableView fx:id="tableSchedule" layoutX="315.0" prefHeight="480.0" prefWidth="904.5">
                <columns>
-                  <TableColumn fx:id="viewWorkDay" minWidth="200.0" prefWidth="225.0" text="WorkDay" />
-                  <TableColumn fx:id="viewStartHour" minWidth="200.0" prefWidth="225.0" text="StartHour" />
-                  <TableColumn fx:id="viewEndHour" minWidth="200.0" prefWidth="225.0" text="EndHour" />
-                  <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="EmployeeID" />
+                  <TableColumn fx:id="viewWorkDay" minWidth="200.0" prefWidth="225.0" text="Work Day" />
+                  <TableColumn fx:id="viewStartHour" minWidth="200.0" prefWidth="225.0" text="Start Hour" />
+                  <TableColumn fx:id="viewEndHour" minWidth="200.0" prefWidth="225.0" text="End Hour" />
+                  <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="Employee ID" />
                </columns>
             </TableView>
          </children></AnchorPane>

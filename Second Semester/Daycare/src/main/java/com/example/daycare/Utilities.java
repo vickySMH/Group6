@@ -105,7 +105,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Schedule WHERE ID = ? AND WorkDay = ?");
+            preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Schedule WHERE EmployeeID = ? AND WorkDay = ?");
             preparedStatementUserExists.setInt(1, ID);
             preparedStatementUserExists.setDate(2, date);
             preparedStatement = connection.prepareStatement("SELECT * FROM Schedule");
@@ -757,7 +757,7 @@ public class Utilities
         ObservableList<ModelTableEmployee> empList = FXCollections.observableArrayList();
         try
         {
-            preparedStatement = connection.prepareStatement("SELECT * FROM employees");
+            preparedStatement = connection.prepareStatement("SELECT * FROM Employees");
             resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 empList.add(new ModelTableEmployee(resultSet.getInt("ID"),
@@ -775,7 +775,7 @@ public class Utilities
         connection = connection();
         ObservableList<ModelTableChild> childList = FXCollections.observableArrayList();
         try{
-            preparedStatement = connection.prepareStatement("SELECT * FROM children");
+            preparedStatement = connection.prepareStatement("SELECT * FROM Children");
             resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 childList.add(new ModelTableChild(Integer.parseInt(resultSet.getString("ID")),
@@ -797,7 +797,7 @@ public class Utilities
         ObservableList<ModelTableSchedule> scheduleList = FXCollections.observableArrayList();
         try
         {
-            preparedStatement = connection.prepareStatement("SELECT * FROM schedule");
+            preparedStatement = connection.prepareStatement("SELECT * FROM Schedule");
             resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
                 scheduleList.add(new ModelTableSchedule(resultSet.getString("WorkDay"),
