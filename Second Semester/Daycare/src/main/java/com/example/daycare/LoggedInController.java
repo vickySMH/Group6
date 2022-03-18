@@ -282,7 +282,7 @@ public class LoggedInController implements Initializable
         updatePane.setVisible(false);
         removePane.setVisible(false);
 
-        if(!username.equals("admin"))
+        if(!username.equals("director") & !username.equals("admin"))
         {
             addButton.setVisible(false);
             removeButton.setVisible(false);
@@ -294,7 +294,6 @@ public class LoggedInController implements Initializable
             viewSchedule.setLayoutY(620);
             viewSchedule.setLayoutX(833);
         }
-
 
         commitAddKid.setOnMouseEntered(new EventHandler<MouseEvent>()
         {
@@ -465,6 +464,11 @@ public class LoggedInController implements Initializable
             {
                 speech.setText("Click to add information");
                 speech.setLayoutX(189);
+                if(username.equals("admin"))
+                {
+                    speech.setText("Click to add account");
+                    speech.setLayoutX(202);
+                }
             }
         });
         addButton.setOnMouseExited(new EventHandler<MouseEvent>()
@@ -537,6 +541,11 @@ public class LoggedInController implements Initializable
             {
                 speech.setText("Click to update information");
                 speech.setLayoutX(172);
+                if(username.equals("admin"))
+                {
+                    speech.setText("Click to update account");
+                    speech.setLayoutX(190);
+                }
             }
         });
         updateButton.setOnMouseExited(new EventHandler<MouseEvent>()
@@ -609,6 +618,11 @@ public class LoggedInController implements Initializable
             {
                 speech.setText("Click to remove information");
                 speech.setLayoutX(169);
+                if(username.equals("admin"))
+                {
+                    speech.setText("Click to remove account");
+                    speech.setLayoutX(185);
+                }
             }
         });
         removeButton.setOnMouseExited(new EventHandler<MouseEvent>()
@@ -681,6 +695,11 @@ public class LoggedInController implements Initializable
             {
                 speech.setText("Click to view information");
                 speech.setLayoutX(185);
+                if(username.equals("admin"))
+                {
+                    speech.setText("Click to view accounts");
+                    speech.setLayoutX(198);
+                }
             }
         });
         viewButton.setOnMouseExited(new EventHandler<MouseEvent>()
@@ -804,6 +823,11 @@ public class LoggedInController implements Initializable
                 commitUpdateSchedule.setVisible(false);
                 currentDefaultText = "Add information";
                 currentSpeechXCoordinate = 226;
+                if(username.equals("admin"))
+                {
+                    currentDefaultText = "Add user";
+                    currentSpeechXCoordinate = 255;
+                }
                 addKidButton.setVisible(true);
                 addTeacherButton.setVisible(true);
                 addScheduleButton.setVisible(true);
@@ -821,6 +845,12 @@ public class LoggedInController implements Initializable
                 viewPane.setVisible(false);
                 updatePane.setVisible(false);
                 removePane.setVisible(false);
+                if(username.equals("admin"))
+                {
+                    addKidButton.setVisible(false);
+                    addScheduleButton.setVisible(false);
+                    addTeacherButton.setVisible(false);
+                }
             }
         });
 
@@ -843,6 +873,11 @@ public class LoggedInController implements Initializable
                 commitUpdateSchedule.setVisible(false);
                 currentDefaultText = "View information";
                 currentSpeechXCoordinate = 220;
+                if(username.equals("admin"))
+                {
+                    currentDefaultText = "View user";
+                    currentSpeechXCoordinate = 258;
+                }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
                 addScheduleButton.setVisible(false);
@@ -850,7 +885,7 @@ public class LoggedInController implements Initializable
                 updateTeacher.setVisible(false);
                 updateSchedule.setVisible(false);
                 viewKid.setVisible(true);
-                if(username.equals("admin"))
+                if(username.equals("director"))
                 {
                     viewTeacher.setVisible(true);
                 }
@@ -863,6 +898,11 @@ public class LoggedInController implements Initializable
                 addPane.setVisible(false);
                 updatePane.setVisible(false);
                 removePane.setVisible(false);
+                if(username.equals("admin"))
+                {
+                    viewKid.setVisible(false);
+                    viewSchedule.setVisible(false);
+                }
             }
         });
 
@@ -885,6 +925,11 @@ public class LoggedInController implements Initializable
                 commitUpdateSchedule.setVisible(false);
                 currentDefaultText = "Update information";
                 currentSpeechXCoordinate = 212;
+                if(username.equals("admin"))
+                {
+                    currentDefaultText = "Update user";
+                    currentSpeechXCoordinate = 246;
+                }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
                 addScheduleButton.setVisible(false);
@@ -902,6 +947,12 @@ public class LoggedInController implements Initializable
                 viewPane.setVisible(false);
                 addPane.setVisible(false);
                 removePane.setVisible(false);
+                if(username.equals("admin"))
+                {
+                    updateKid.setVisible(false);
+                    updateSchedule.setVisible(false);
+                    updateTeacher.setVisible(false);
+                }
             }
         });
 
@@ -924,6 +975,11 @@ public class LoggedInController implements Initializable
                 commitUpdateSchedule.setVisible(false);
                 currentDefaultText = "Remove information";
                 currentSpeechXCoordinate = 207;
+                if(username.equals("admin"))
+                {
+                    currentDefaultText = "Remove user";
+                    currentSpeechXCoordinate = 246;
+                }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
                 addScheduleButton.setVisible(false);
@@ -941,6 +997,12 @@ public class LoggedInController implements Initializable
                 updatePane.setVisible(false);
                 viewPane.setVisible(false);
                 addPane.setVisible(false);
+                if(username.equals("admin"))
+                {
+                    removeKid.setVisible(false);
+                    removeTeacher.setVisible(false);
+                    removeSchedule.setVisible(false);
+                }
             }
         });
 
