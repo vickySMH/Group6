@@ -27,9 +27,9 @@ public class Utilities
     private static PreparedStatement preparedStatementUserExists = null;
     private static ResultSet resultSet = null;
     private static Connection connection = null;
-    private static String url = System.getenv("URL");
-    private static String user = System.getenv("user");
-    private static String password = System.getenv("password");
+    private static final String url = System.getenv("URL");
+    private static final String user = System.getenv("user");
+    private static final String password = System.getenv("password");
 
     public static void removeTeacher(int ID)
     {
@@ -141,6 +141,43 @@ public class Utilities
         }
     }
 
+    public static boolean removeAccount(ActionEvent event, String username)
+    {
+        try
+        {
+            connection();
+            preparedStatementUserExists = connection().prepareStatement("DELETE FROM Users WHERE Username = ?");
+            preparedStatementUserExists.setString(1, username);
+            preparedStatement = connection().prepareStatement("SELECT Username FROM Users");
+            resultSet = preparedStatement.executeQuery();
+            if(!resultSet.isBeforeFirst())
+            {
+                return false;
+            }
+            else
+            {
+                while(resultSet.next())
+                {
+                    String retrieveUsername = resultSet.getString("Username");
+                    if(retrieveUsername.equals(username))
+                    {
+                        preparedStatementUserExists.executeUpdate();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        catch (SQLException e)
+        {
+            return false;
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
+
     public static int addChild(ActionEvent event, String name, String surname, Date date, String cpr ,String parentPhone ,String parentName, String parentSurname, String address, String groupNumber, boolean waitingList)
     {
         try
@@ -199,7 +236,7 @@ public class Utilities
         return 0;
     }
 
-    public static boolean addTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
+    public static int addTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
     {
         try
         {
@@ -215,7 +252,7 @@ public class Utilities
             if(!resultSet.isBeforeFirst())
             {
                 preparedStatementInsert.executeUpdate();
-                return teacherExists;
+                return 0;
             }
             else
             {
@@ -226,28 +263,26 @@ public class Utilities
                     {
                         teacherExists = true;
                         closeConnection();
-                        return teacherExists;
+                        return 1;
                     }
                 }
                 if(!teacherExists)
                 {
                     preparedStatementInsert.executeUpdate();
                     closeConnection();
-                    return teacherExists;
+                    return 0;
                 }
             }
-
-
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            return 2;
         }
         finally
         {
             closeConnection();
         }
-        return false;
+        return 0;
     }
 
     public static boolean addSchedule(ActionEvent event, Date workDay, Time startHour, Time endHour, int employeeID)
@@ -301,7 +336,7 @@ public class Utilities
         return false;
     }
 
-    public static void updateChild(ActionEvent event, String name, String surname, Date date, String cpr ,String parentPhone ,String parentName, String parentSurname, String address, String groupNumber, boolean waitingList)
+    public static boolean updateChild(ActionEvent event, String name, String surname, Date date, String cpr ,String parentPhone ,String parentName, String parentSurname, String address, String groupNumber, boolean waitingList)
     {
         try
         {
@@ -317,10 +352,12 @@ public class Utilities
             preparedStatement.setString(8, groupNumber);
             preparedStatement.setBoolean(9, waitingList);
             preparedStatement.executeUpdate();
+            closeConnection();
+            return true;
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            return false;
         }
         finally
         {

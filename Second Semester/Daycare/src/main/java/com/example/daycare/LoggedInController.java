@@ -339,6 +339,7 @@ public class LoggedInController implements Initializable
 
         if(!username.equals("director") & !username.equals("admin"))
         {
+
             addButton.setVisible(false);
             removeButton.setVisible(false);
             updateButton.setVisible(false);
@@ -880,6 +881,8 @@ public class LoggedInController implements Initializable
                 currentSpeechXCoordinate = 226;
                 if(username.equals("admin"))
                 {
+                    accountRemove.setVisible(false);
+                    commitRemoveUser.setVisible(false);
                     currentDefaultText = "Add user";
                     currentSpeechXCoordinate = 255;
                     userPane.setVisible(true);
@@ -1036,8 +1039,14 @@ public class LoggedInController implements Initializable
                 currentSpeechXCoordinate = 207;
                 if(username.equals("admin"))
                 {
+                    addUTeacherID.setVisible(false);
+                    commitAddUser.setVisible(false);
+                    addUsername.setVisible(false);
                     currentDefaultText = "Remove user";
                     currentSpeechXCoordinate = 246;
+                    userPane.setVisible(true);
+                    accountRemove.setVisible(true);
+                    commitRemoveUser.setVisible(true);
                 }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
@@ -1511,12 +1520,13 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                if(Utilities.addTeacher(event, teacherName.getText(), teacherSurname.getText(),teacherPhone.getText(), groupNumber.getText()))
+                int result =Utilities.addTeacher(event, teacherName.getText(), teacherSurname.getText(),teacherPhone.getText(), groupNumber.getText());
+                if(result == 1)
                 {
                     speech.setText("Teacher already in database");
                     currentDefaultText = "Teacher already in database";
                 }
-                else
+                else if(result == 0)
                 {
                     speech.setText("Successfully added teacher");
                     currentDefaultText = "Successfully added teacher";
@@ -1526,6 +1536,11 @@ public class LoggedInController implements Initializable
                     addKidButton.setVisible(false);
                     addScheduleButton.setVisible(false);
                     commitAddTeacher.setVisible(false);
+                }
+                else
+                {
+                    speech.setText("No such group");
+                    currentDefaultText = "No such group";
                 }
             }
         });
@@ -1590,8 +1605,21 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                Utilities.updateChild(event, nameUpdate.getText(),surnameUpdate.getText(), Date.valueOf(dateOfBirthUpdate.getText()),
-                        cprUpdate.getText(), parentPhoneUpdate.getText(), parentNameUpdate.getText(), parentSurnameUpdate.getText(), addressUpdate.getText(), groupNumberUpdate.getText(), waitingListUpdate.isSelected());
+                if(Utilities.updateChild(event, nameUpdate.getText(),surnameUpdate.getText(), Date.valueOf(dateOfBirthUpdate.getText()),
+                    cprUpdate.getText(), parentPhoneUpdate.getText(), parentNameUpdate.getText(), parentSurnameUpdate.getText(), addressUpdate.getText(), groupNumberUpdate.getText(), waitingListUpdate.isSelected()))
+                {
+                    speech.setText("Successfully update child");
+                    commitUpdateKid.setVisible(false);
+                    resetButtons();
+                    updatePane.setVisible(false);
+                    updateKid.setVisible(false);
+                    updateTeacher.setVisible(false);
+                    updateSchedule.setVisible(false);
+                }
+                else
+                {
+                    speech.setText("No such group");
+                }
             }
         });
 
@@ -1618,6 +1646,8 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                accountRemove.setVisible(false);
+                commitRemoveUser.setVisible(false);
                 int result = Utilities.adminAdd(event, addUsername.getText() ,parseString(addUTeacherID.getText()));
                 if(result == 0)
                 {
@@ -1634,6 +1664,26 @@ public class LoggedInController implements Initializable
                 else
                 {
                     speech.setText("Account succesfully created");
+                }
+            }
+        });
+        commitRemoveUser.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                if(Utilities.removeAccount(event, accountRemove.getText()))
+                {
+                    speech.setText("Successfully removed account");
+                    currentDefaultText = "Successfully removed account";
+                    resetButtons();
+                    accountRemove.setVisible(false);
+                    userPane.setVisible(false);
+                }
+                else
+                {
+                    speech.setText("No such user");
+                    currentDefaultText = "No such user";
                 }
             }
         });
