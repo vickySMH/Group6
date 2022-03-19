@@ -1330,6 +1330,7 @@ public class LoggedInController implements Initializable
                 teacherIDUpdate.setVisible(false);
                 searchTeacher.setVisible(false);
 
+                calendar.setVisible(false);
                 teacherIDSearch.setVisible(false);
                 workDayUpdate.setVisible(false);
                 startHourUpdate.setVisible(false);
@@ -1400,6 +1401,7 @@ public class LoggedInController implements Initializable
                 waitingListUpdate.setVisible(false);
                 childImageUpdate.setVisible(false);
 
+                calendar.setVisible(false);
                 teacherIDSearch.setVisible(false);
                 workDayUpdate.setVisible(false);
                 startHourUpdate.setVisible(false);
@@ -1420,6 +1422,7 @@ public class LoggedInController implements Initializable
                 workDayUpdate.setVisible(true);
                 startHourUpdate.setVisible(false);
                 endHourUpdate.setVisible(false);
+                calendar.setVisible(true);
 
 
 
