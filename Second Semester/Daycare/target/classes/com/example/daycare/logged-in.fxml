@@ -301,11 +301,11 @@
                </image>
             </ImageView>
          </children></AnchorPane>
-      <AnchorPane prefHeight="480.0" prefWidth="1440.0">
+      <AnchorPane fx:id="userPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
             <TextField fx:id="addUTeacherID" layoutX="680.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Teacher ID" />
             <TextField fx:id="addUsername" layoutX="930.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Username" />
-            <Button id="commit" fx:id="commitAddUser" layoutX="1130.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
+            <Button id="commit" fx:id="commitAddUser" layoutX="1180.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -314,8 +314,8 @@
                </font>
             </Button>
             <TextField fx:id="updateUsername" layoutX="800.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Username" />
-            <TextField fx:id="passwordTeacherAdd" layoutX="800.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Password" />
-            <Button id="commit" fx:id="commitUpdateUser" layoutX="1130.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
+            <TextField fx:id="passwordTeacherUpdate" layoutX="800.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Password" />
+            <Button id="commit" fx:id="commitUpdateUser" layoutX="1180.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -324,7 +324,7 @@
                </font>
             </Button>
             <TextField fx:id="accountRemove" layoutX="800.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Username" />
-            <Button id="commit" fx:id="commitRemoveUser" layoutX="1130.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
+            <Button id="commit" fx:id="commitRemoveUser" layoutX="1180.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

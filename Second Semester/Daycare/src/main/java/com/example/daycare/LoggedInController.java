@@ -221,6 +221,24 @@ public class LoggedInController implements Initializable
     TextField endHourUpdate;
     @FXML
     ImageView calendar;
+    @FXML
+    AnchorPane userPane;
+    @FXML
+    TextField addUTeacherID;
+    @FXML
+    TextField addUsername;
+    @FXML
+    Button commitAddUser;
+    @FXML
+    Button commitUpdateUser;
+    @FXML
+    Button commitRemoveUser;
+    @FXML
+    TextField accountRemove;
+    @FXML
+    TextField updateUsername;
+    @FXML
+    TextField passwordTeacherUpdate;
     
     private ObservableList listChild;
     private ObservableList listEmployee;
@@ -278,6 +296,15 @@ public class LoggedInController implements Initializable
         employeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
     
         Platform.runLater( () -> image.requestFocus() );
+        passwordTeacherUpdate.setVisible(false);
+        accountRemove.setVisible(false);
+        updateUsername.setVisible(false);
+        userPane.setVisible(false);
+        addUsername.setVisible(false);
+        addUTeacherID.setVisible(false);
+        commitAddUser.setVisible(false);
+        commitRemoveUser.setVisible(false);
+        commitUpdateUser.setVisible(false);
         commitAddKid.setVisible(false);
         commitAddTeacher.setVisible(false);
         commitAddSchedule.setVisible(false);
@@ -851,6 +878,10 @@ public class LoggedInController implements Initializable
                 {
                     currentDefaultText = "Add user";
                     currentSpeechXCoordinate = 255;
+                    userPane.setVisible(true);
+                    addUTeacherID.setVisible(true);
+                    addUsername.setVisible(true);
+                    commitAddUser.setVisible(true);
                 }
                 addKidButton.setVisible(true);
                 addTeacherButton.setVisible(true);
@@ -1457,7 +1488,22 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                Utilities.addTeacher(event, teacherName.getText(), teacherSurname.getText(),teacherPhone.getText(), groupNumber.getText());
+                if(Utilities.addTeacher(event, teacherName.getText(), teacherSurname.getText(),teacherPhone.getText(), groupNumber.getText()))
+                {
+                    speech.setText("Teacher already in database");
+                    currentDefaultText = "Teacher already in database";
+                }
+                else
+                {
+                    speech.setText("Successfully added teacher");
+                    currentDefaultText = "Successfully added teacher";
+                    resetButtons();
+                    addPane.setVisible(false);
+                    addTeacherButton.setVisible(false);
+                    addKidButton.setVisible(false);
+                    addScheduleButton.setVisible(false);
+                    commitAddTeacher.setVisible(false);
+                }
             }
         });
 
@@ -1466,8 +1512,29 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                Utilities.addChild(event, name.getText(), surname.getText(), Date.valueOf(dateOfBirth.getText()),
-                        cpr.getText(), parentPhone.getText(), parentName.getText(), parentSurname.getText(), address.getText(), groupNumber.getText(), waitingList.isSelected());
+                int result = Utilities.addChild(event, name.getText(), surname.getText(), Date.valueOf(dateOfBirth.getText()),
+                        cpr.getText(), parentPhone.getText(), parentName.getText(), parentSurname.getText(), address.getText(), group.getText(), waitingList.isSelected());
+                if(result == 0)
+                {
+                    speech.setText("Child already in a group");
+                    currentDefaultText = "Child already in a group";
+                }
+                else if (result == 1)
+                {
+                    speech.setText("Successfully added child");
+                    currentDefaultText = "Successfully added child";
+                    addPane.setVisible(false);
+                    addKidButton.setVisible(false);
+                    addTeacherButton.setVisible(false);
+                    addScheduleButton.setVisible(false);
+                    commitAddKid.setVisible(false);
+                    resetButtons();
+                }
+                else
+                {
+                    speech.setText("No such group");
+                    currentDefaultText = "No such group";
+                }
             }
         });
 
@@ -1476,7 +1543,22 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                Utilities.addSchedule(event, Date.valueOf(workDay.getText()), Time.valueOf(startHour.getText()), Time.valueOf(endHour.getText()), parseString(teacherID.getText()));
+                if(Utilities.addSchedule(event, Date.valueOf(workDay.getText()), Time.valueOf(startHour.getText()), Time.valueOf(endHour.getText()), parseString(teacherID.getText())))
+                {
+                    speech.setText("Employee already working on date");
+                    currentDefaultText = "Employee already working on date";
+                }
+                else
+                {
+                    speech.setText("Added a working day for employee");
+                    currentDefaultText = "Added a working day for employee";
+                    resetButtons();
+                    addPane.setVisible(false);
+                    addTeacherButton.setVisible(false);
+                    addKidButton.setVisible(false);
+                    addScheduleButton.setVisible(false);
+                    commitAddTeacher.setVisible(false);
+                }
             }
         });
 
@@ -1498,8 +1580,32 @@ public class LoggedInController implements Initializable
                 Utilities.updateTeacher(event, teacherNameUpdate.getText(), teacherSurnameUpdate.getText(), teacherPhoneUpdate.getText(), groupNumberUpdate.getText());
             }
         });
-
+        commitAddUser.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                int result = Utilities.adminAdd(event, addUsername.getText() ,parseString(addUTeacherID.getText()));
+                if(result == 0)
+                {
+                    speech.setText("Account with this id exists");
+                }
+                else if(result == 1)
+                {
+                    speech.setText("Username already exists");
+                }
+                else if(result == 3)
+                {
+                    speech.setText("No teacher with such ID");
+                }
+                else
+                {
+                    speech.setText("Account succesfully created");
+                }
+            }
+        });
     }
+
     private int parseString(String number)
     {
         try

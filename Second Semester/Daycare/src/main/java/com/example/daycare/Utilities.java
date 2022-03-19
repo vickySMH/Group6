@@ -14,7 +14,10 @@ import javafx.stage.Stage;
 import java.awt.*;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.sql.*;
+import java.util.Random;
+
 //e
 public class Utilities
 {
@@ -138,12 +141,12 @@ public class Utilities
         }
     }
 
-    public static void addChild(ActionEvent event, String name, String surname, Date date, String cpr ,String parentPhone ,String parentName, String parentSurname, String address, String groupNumber, boolean waitingList)
+    public static int addChild(ActionEvent event, String name, String surname, Date date, String cpr ,String parentPhone ,String parentName, String parentSurname, String address, String groupNumber, boolean waitingList)
     {
         try
         {
             connection();
-            preparedStatementInsert = connection.prepareStatement("INSERT INTO Children (Name, Surname, DateOfBirth, CPR ,ParentPhone, ParentName, ParentSurname, Address, GroupNumber, onWaitingList) VALUES (?,?,?,?,?,?,?,?,?,?) ");
+            preparedStatementInsert = connection.prepareStatement("INSERT INTO Children (Name, Surname, DateOfBirth, CPR ,ParentPhone, ParentName, ParentSurname, Address, GroupNumber, onWaitingList) VALUES (?,?,?,?,?,?,?,?,?,?)");
             preparedStatementInsert.setString(1, name);
             preparedStatementInsert.setString(2, surname);
             preparedStatementInsert.setDate(3, date);
@@ -160,6 +163,8 @@ public class Utilities
             if(!resultSet.isBeforeFirst())
             {
                 preparedStatementInsert.executeUpdate();
+                closeConnection();
+                return 0;
             }
             else
             {
@@ -169,13 +174,15 @@ public class Utilities
                     if(retrieveCPR.equals(cpr))
                     {
                         kidExists = true;
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Child already listed in a group");
-                        alert.show();
+                        closeConnection();
+                        return 1;
                     }
                 }
                 if(!kidExists)
                 {
                     preparedStatementInsert.executeUpdate();
+                    closeConnection();
+                    return 0;
                 }
             }
 
@@ -183,16 +190,16 @@ public class Utilities
         catch (SQLException e)
         {
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added a child");
-            alert.show();
+            return 2;
         }
         finally
         {
             closeConnection();
         }
+        return 0;
     }
 
-    public static void addTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
+    public static boolean addTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
     {
         try
         {
@@ -208,6 +215,7 @@ public class Utilities
             if(!resultSet.isBeforeFirst())
             {
                 preparedStatementInsert.executeUpdate();
+                return teacherExists;
             }
             else
             {
@@ -217,15 +225,15 @@ public class Utilities
                     if(retrievePhoneNumber.equals(phoneNumber))
                     {
                         teacherExists = true;
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Teacher already hired");
-                        alert.show();
+                        closeConnection();
+                        return teacherExists;
                     }
                 }
                 if(!teacherExists)
                 {
                     preparedStatementInsert.executeUpdate();
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully hired teacher");
-                    alert.show();
+                    closeConnection();
+                    return teacherExists;
                 }
             }
 
@@ -239,9 +247,10 @@ public class Utilities
         {
             closeConnection();
         }
+        return false;
     }
 
-    public static void addSchedule(ActionEvent event, Date workDay, Time startHour, Time endHour, int employeeID)
+    public static boolean addSchedule(ActionEvent event, Date workDay, Time startHour, Time endHour, int employeeID)
     {
         try
         {
@@ -257,6 +266,8 @@ public class Utilities
             if(!resultSet.isBeforeFirst())
             {
                 preparedStatementInsert.executeUpdate();
+                closeConnection();
+                return empAlreadyWorking;
             }
             else
             {
@@ -267,13 +278,15 @@ public class Utilities
                     if(retrieveEmployeeID == employeeID && retrieveWorkDay.equals(workDay))
                     {
                         empAlreadyWorking = true;
-                        Alert alert = new Alert(Alert.AlertType.ERROR, "Employee is already working on that day");
-                        alert.show();
+                        closeConnection();
+                        return empAlreadyWorking;
                     }
                 }
                 if(!empAlreadyWorking)
                 {
                     preparedStatementInsert.executeUpdate();
+                    closeConnection();
+                    return empAlreadyWorking;
                 }
             }
         }
@@ -285,6 +298,7 @@ public class Utilities
         {
             closeConnection();
         }
+        return false;
     }
 
     public static void updateChild(ActionEvent event, String name, String surname, Date date, String cpr ,String parentPhone ,String parentName, String parentSurname, String address, String groupNumber, boolean waitingList)
@@ -292,7 +306,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("UPDATE children SET NAME = ?, Surname = ?, DateOfBirth = ?, ParentPhone = ?, ParentName = ?, ParentSurname = ?, Address = ?, GroupNumber = ?, onWaitingList = ?");
+            preparedStatement = connection.prepareStatement("UPDATE Children SET NAME = ?, Surname = ?, DateOfBirth = ?, ParentPhone = ?, ParentName = ?, ParentSurname = ?, Address = ?, GroupNumber = ?, onWaitingList = ?");
             preparedStatement.setString(1, name);
             preparedStatement.setString(2,surname);
             preparedStatement.setDate(3, date);
@@ -1004,6 +1018,74 @@ public class Utilities
             e.printStackTrace();
         }
         return scheduleList;
+    }
+
+    public static int adminAdd(ActionEvent event, String username, int id)
+    {
+        try
+        {
+            connection();
+            String password = generatePass();
+            preparedStatementInsert = connection.prepareStatement("INSERT INTO Users (username, password, employeeid) VALUES (?, ?, ?)");
+            preparedStatementInsert.setString(1, username);
+            preparedStatementInsert.setString(2, password);
+            preparedStatementInsert.setInt(3, id);
+            preparedStatement = connection.prepareStatement("SELECT Employees.ID, Users.EmployeeID, Users.Username FROM Employees, Users");
+            resultSet = preparedStatement.executeQuery();
+            boolean suchUserExists = false;
+            if(!resultSet.isBeforeFirst())
+            {
+                preparedStatementInsert.executeUpdate();
+                closeConnection();
+                return 2;
+            }
+            else
+            {
+                while(resultSet.next())
+                {
+                    String retrieveUsername = resultSet.getString("Username");
+                    int retrieveUEmpID = resultSet.getInt("EmployeeID");
+                    if(retrieveUEmpID == (id))
+                    {
+                        suchUserExists = true;
+                        closeConnection();
+                        return 0;
+                    }
+                    else if(retrieveUsername.equals(username))
+                    {
+                        closeConnection();
+                        suchUserExists = true;
+                        return 1;
+                    }
+                }
+                if(!suchUserExists)
+                {
+                    preparedStatementInsert.executeUpdate();
+                    closeConnection();
+                    return 2;
+                }
+            }
+
+        }
+        catch (SQLException e)
+        {
+            return 3;
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return 2;
+    }
+    private static String generatePass()
+    {
+        Random random = new Random();
+        String password = random.ints(48,123)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(7)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        return password;
     }
     
 }
