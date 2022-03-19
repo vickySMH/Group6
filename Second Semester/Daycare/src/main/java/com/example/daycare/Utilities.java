@@ -287,6 +287,33 @@ public class Utilities
         }
     }
 
+    public static void updateChild(ActionEvent event, String name, String surname, Date date, String cpr ,String parentPhone ,String parentName, String parentSurname, String address, String groupNumber, boolean waitingList)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("UPDATE children SET NAME = ?, Surname = ?, DateOfBirth = ?, ParentPhone = ?, ParentName = ?, ParentSurname = ?, Address = ?, GroupNumber = ?, onWaitingList = ?");
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2,surname);
+            preparedStatement.setDate(3, date);
+            preparedStatement.setString(4, parentPhone);
+            preparedStatement.setString(5, parentName);
+            preparedStatement.setString(6, parentSurname);
+            preparedStatement.setString(7, address);
+            preparedStatement.setString(8, groupNumber);
+            preparedStatement.setBoolean(9, waitingList);
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
+
     public static void returnToLogin(ActionEvent event)
     {
         Parent root = null;

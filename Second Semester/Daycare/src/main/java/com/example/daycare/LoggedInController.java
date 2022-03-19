@@ -1419,6 +1419,16 @@ public class LoggedInController implements Initializable
             }
         });
 
+        commitUpdateKid.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Utilities.updateChild(event, nameUpdate.getText(),surnameUpdate.getText(), Date.valueOf(dateOfBirthUpdate.getText()),
+                        cprUpdate.getText(), parentPhoneUpdate.getText(), parentNameUpdate.getText(), parentSurnameUpdate.getText(), addressUpdate.getText(), groupNumberUpdate.getText(), waitingListUpdate.isSelected());
+            }
+        });
+
     }
     private int parseString(String number)
     {
