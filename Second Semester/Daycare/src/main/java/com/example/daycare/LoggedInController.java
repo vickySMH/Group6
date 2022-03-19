@@ -1327,7 +1327,9 @@ public class LoggedInController implements Initializable
                 currentDefaultText = "Update teacher information";
                 currentSpeechXCoordinate = 169;
                 updatePane.setVisible(true);
-
+                resetButtons();
+                updateTeacher.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
+                updateButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
 
                 teacherIDUpdate.setVisible(true);
                 searchTeacher.setVisible(true);

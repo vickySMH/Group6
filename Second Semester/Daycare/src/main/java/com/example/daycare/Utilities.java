@@ -602,7 +602,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("SELECT ID FROM employees");
+            preparedStatement = connection.prepareStatement("SELECT ID FROM Employees");
             resultSet =preparedStatement.executeQuery();
             if (!resultSet.isBeforeFirst())
             {
