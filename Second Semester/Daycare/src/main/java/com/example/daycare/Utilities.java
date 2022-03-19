@@ -314,6 +314,28 @@ public class Utilities
         }
     }
 
+    public static void updateTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("UPDATE employees SET Name = ?, Surname = ?, PhoneNumber = ?, GroupNumber = ?");
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, surname);
+            preparedStatement.setString(3, phoneNumber);
+            preparedStatement.setString(4, GroupNumber);
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
+
     public static void returnToLogin(ActionEvent event)
     {
         Parent root = null;
@@ -656,6 +678,118 @@ public class Utilities
             closeConnection();
         }
         return false;
+    }
+
+    public static String teacherName(ActionEvent event, int ID)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT Name, ID FROM employees WHERE ID = ? ");
+            preparedStatement.setInt(1, ID);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                int retrieveID = resultSet.getInt("ID");
+                if (retrieveID == ID)
+                {
+                    return resultSet.getString("Name");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            connection();
+        }
+        return "";
+    }
+
+    public static String teacherSurname(ActionEvent event, int ID)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT Surname, ID FROM employees WHERE ID = ?");
+            preparedStatement.setInt(1, ID);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                int retrieveID = resultSet.getInt("ID");
+                if (retrieveID == ID)
+                {
+                    return resultSet.getString("Surname");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String teacherPhone(ActionEvent event, int ID)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT PhoneNumber, ID FROM employees WHERE ID = ?");
+            preparedStatement.setInt(1, ID);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                int retrieveID = resultSet.getInt("ID");
+                if (retrieveID == ID)
+                {
+                    return resultSet.getString("PhoneNumber");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String teacherGroup(ActionEvent event, int ID)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT GroupNumber, ID FROM employees WHERE ID = ?");
+            preparedStatement.setInt(1, ID);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                int retrieveID = resultSet.getInt("ID");
+                if (retrieveID == ID)
+                {
+                    return resultSet.getString("GroupNumber");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
     }
 
     public static void changeScene(ActionEvent event, String fxmlFile, String title ,String username, String password)

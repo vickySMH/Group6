@@ -165,6 +165,11 @@
                   <Font size="16.0" />
                </font>
             </TextField>
+            <ImageView fx:id="calendar" fitHeight="200.0" fitWidth="200.0" layoutX="220.0" layoutY="150.0">
+               <image>
+                  <Image url="@resources/imgs/calendar22222.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="updatePane" prefHeight="480.0" prefWidth="1440.0">
@@ -270,7 +275,65 @@
                   <Image url="@resources/imgs/teacher.png" />
                </image>
             </ImageView>
+            <TextField fx:id="teacherIDSearch" layoutX="680.0" layoutY="258.0" promptText="Teacher ID">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="workDayUpdate" layoutX="930.0" layoutY="258.0" promptText="Work day">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="startHourUpdate" layoutX="680.0" layoutY="258.0" promptText="Start hour">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="endHourUpdate" layoutX="930.0" layoutY="258.0" promptText="End hour">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="calendar1Update" fitHeight="200.0" fitWidth="200.0" layoutX="220.0" layoutY="150.0">
+               <image>
+                  <Image url="@resources/imgs/calendar22222.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
+      <AnchorPane prefHeight="480.0" prefWidth="1440.0">
+         <children>
+            <TextField fx:id="addUTeacherID" layoutX="680.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Teacher ID" />
+            <TextField fx:id="addUsername" layoutX="930.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Username" />
+            <Button id="commit" fx:id="commitAddUser" layoutX="1130.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="19.5" />
+               </font>
+            </Button>
+            <TextField fx:id="updateUsername" layoutX="800.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Username" />
+            <TextField fx:id="passwordTeacherAdd" layoutX="800.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Password" />
+            <Button id="commit" fx:id="commitUpdateUser" layoutX="1130.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="19.5" />
+               </font>
+            </Button>
+            <TextField fx:id="accountRemove" layoutX="800.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="Username" />
+            <Button id="commit" fx:id="commitRemoveUser" layoutX="1130.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="19.5" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
       <ImageView fx:id="image" fitHeight="318.0" fitWidth="467.0" layoutX="-2.0" layoutY="553.0">
          <image>
             <Image url="@resources/imgs/Alien.png" />

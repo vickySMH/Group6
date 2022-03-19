@@ -211,6 +211,16 @@ public class LoggedInController implements Initializable
     TextField teacherIDUpdate;
     @FXML
     Button searchTeacher;
+    @FXML
+    TextField teacherIDSearch;
+    @FXML
+    TextField workDayUpdate;
+    @FXML
+    TextField startHourUpdate;
+    @FXML
+    TextField endHourUpdate;
+    @FXML
+    ImageView calendar;
     
     private ObservableList listChild;
     private ObservableList listEmployee;
@@ -1073,6 +1083,7 @@ public class LoggedInController implements Initializable
                 workDay.setVisible(false);
                 startHour.setVisible(false);
                 endHour.setVisible(false);
+                calendar.setVisible(false);
             }
         });
 
@@ -1125,6 +1136,7 @@ public class LoggedInController implements Initializable
                 workDay.setVisible(false);
                 startHour.setVisible(false);
                 endHour.setVisible(false);
+                calendar.setVisible(false);
             }
         });
 
@@ -1152,6 +1164,7 @@ public class LoggedInController implements Initializable
                 workDay.setVisible(true);
                 startHour.setVisible(true);
                 endHour.setVisible(true);
+                calendar.setVisible(true);
 
                 addPane.setVisible(true);
 
@@ -1316,6 +1329,11 @@ public class LoggedInController implements Initializable
                 teachersImageUpdate.setVisible(false);
                 teacherIDUpdate.setVisible(false);
                 searchTeacher.setVisible(false);
+
+                teacherIDSearch.setVisible(false);
+                workDayUpdate.setVisible(false);
+                startHourUpdate.setVisible(false);
+                endHourUpdate.setVisible(false);
             }
         });
 
@@ -1355,6 +1373,11 @@ public class LoggedInController implements Initializable
                             teachersImageUpdate.setVisible(true);
 
                             commitUpdateTeacher.setVisible(true);
+
+                            teacherNameUpdate.setText(Utilities.teacherName(event, parseString(teacherIDUpdate.getText())));
+                            teacherSurnameUpdate.setText(Utilities.teacherSurname(event, parseString(teacherIDUpdate.getText())));
+                            teacherPhoneUpdate.setText(Utilities.teacherPhone(event, parseString(teacherIDUpdate.getText())));
+                            groupNumberUpdate.setText(Utilities.teacherGroup(event, parseString(teacherIDUpdate.getText())));
                         }
                         else
                         {
@@ -1377,6 +1400,10 @@ public class LoggedInController implements Initializable
                 waitingListUpdate.setVisible(false);
                 childImageUpdate.setVisible(false);
 
+                teacherIDSearch.setVisible(false);
+                workDayUpdate.setVisible(false);
+                startHourUpdate.setVisible(false);
+                endHourUpdate.setVisible(false);
             }
         });
 
@@ -1388,6 +1415,37 @@ public class LoggedInController implements Initializable
                 updatePane.setVisible(true);
                 currentDefaultText = "Update schedule information";
                 currentSpeechXCoordinate = 163;
+
+                teacherIDSearch.setVisible(true);
+                workDayUpdate.setVisible(true);
+                startHourUpdate.setVisible(false);
+                endHourUpdate.setVisible(false);
+
+
+
+
+
+
+                cprUpdate.setVisible(false);
+                search.setVisible(false);
+                nameUpdate.setVisible(false);
+                surnameUpdate.setVisible(false);
+                dateOfBirthUpdate.setVisible(false);
+                parentPhoneUpdate.setVisible(false);
+                parentNameUpdate.setVisible(false);
+                parentSurnameUpdate.setVisible(false);
+                addressUpdate.setVisible(false);
+                groupUpdate.setVisible(false);
+                waitingListUpdate.setVisible(false);
+                childImageUpdate.setVisible(false);
+
+                teacherIDUpdate.setVisible(false);
+                searchTeacher.setVisible(false);
+                teacherNameUpdate.setVisible(false);
+                teacherSurnameUpdate.setVisible(false);
+                teacherPhoneUpdate.setVisible(false);
+                groupNumberUpdate.setVisible(false);
+                teachersImageUpdate.setVisible(false);
             }
         });
 
@@ -1426,6 +1484,15 @@ public class LoggedInController implements Initializable
             {
                 Utilities.updateChild(event, nameUpdate.getText(),surnameUpdate.getText(), Date.valueOf(dateOfBirthUpdate.getText()),
                         cprUpdate.getText(), parentPhoneUpdate.getText(), parentNameUpdate.getText(), parentSurnameUpdate.getText(), addressUpdate.getText(), groupNumberUpdate.getText(), waitingListUpdate.isSelected());
+            }
+        });
+
+        commitUpdateTeacher.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Utilities.updateTeacher(event, teacherNameUpdate.getText(), teacherSurnameUpdate.getText(), teacherPhoneUpdate.getText(), groupNumberUpdate.getText());
             }
         });
 

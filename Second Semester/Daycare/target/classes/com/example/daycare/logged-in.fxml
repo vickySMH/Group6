@@ -165,6 +165,11 @@
                   <Font size="16.0" />
                </font>
             </TextField>
+            <ImageView fx:id="calendar" fitHeight="200.0" fitWidth="200.0" layoutX="220.0" layoutY="150.0">
+               <image>
+                  <Image url="@resources/imgs/calendar22222.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="updatePane" prefHeight="480.0" prefWidth="1440.0">
@@ -268,6 +273,31 @@
             <ImageView fx:id="teachersImageUpdate" fitHeight="370.0" fitWidth="570.0" layoutX="50.0" layoutY="90.0">
                <image>
                   <Image url="@resources/imgs/teacher.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="teacherIDSearch" layoutX="680.0" layoutY="258.0" promptText="Teacher ID">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="workDayUpdate" layoutX="930.0" layoutY="258.0" promptText="Work day">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="startHourUpdate" layoutX="680.0" layoutY="258.0" promptText="Start hour">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="endHourUpdate" layoutX="930.0" layoutY="258.0" promptText="End hour">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="calendar1Update" fitHeight="200.0" fitWidth="200.0" layoutX="220.0" layoutY="150.0">
+               <image>
+                  <Image url="@resources/imgs/calendar22222.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
