@@ -222,6 +222,8 @@ public class LoggedInController implements Initializable
     @FXML
     ImageView calendar;
     @FXML
+    ImageView calendarUpdate;
+    @FXML
     AnchorPane userPane;
     @FXML
     TextField addUTeacherID;
@@ -239,6 +241,8 @@ public class LoggedInController implements Initializable
     TextField updateUsername;
     @FXML
     TextField passwordTeacherUpdate;
+    @FXML
+    Button searchSchedule;
     
     private ObservableList listChild;
     private ObservableList listEmployee;
@@ -1361,11 +1365,12 @@ public class LoggedInController implements Initializable
                 teacherIDUpdate.setVisible(false);
                 searchTeacher.setVisible(false);
 
-                calendar.setVisible(false);
                 teacherIDSearch.setVisible(false);
                 workDayUpdate.setVisible(false);
                 startHourUpdate.setVisible(false);
                 endHourUpdate.setVisible(false);
+                calendarUpdate.setVisible(false);
+                searchSchedule.setVisible(false);
             }
         });
 
@@ -1432,11 +1437,12 @@ public class LoggedInController implements Initializable
                 waitingListUpdate.setVisible(false);
                 childImageUpdate.setVisible(false);
 
-                calendar.setVisible(false);
                 teacherIDSearch.setVisible(false);
                 workDayUpdate.setVisible(false);
                 startHourUpdate.setVisible(false);
                 endHourUpdate.setVisible(false);
+                calendarUpdate.setVisible(false);
+                searchSchedule.setVisible(false);
             }
         });
 
@@ -1451,14 +1457,31 @@ public class LoggedInController implements Initializable
 
                 teacherIDSearch.setVisible(true);
                 workDayUpdate.setVisible(true);
+                searchSchedule.setVisible(true);
                 startHourUpdate.setVisible(false);
                 endHourUpdate.setVisible(false);
-                calendar.setVisible(true);
+                calendarUpdate.setVisible(true);
 
+               searchSchedule.setOnAction(new EventHandler<ActionEvent>()
+               {
+                   @Override
+                   public void handle(ActionEvent event)
+                   {
+                       if (Utilities.searchSchedule(event, parseString(teacherIDSearch.getText()), Date.valueOf(workDayUpdate.getText())))
+                       {
+                           teacherIDSearch.setVisible(false);
+                           workDayUpdate.setVisible(false);
+                           searchSchedule.setVisible(false);
+                           startHourUpdate.setVisible(true);
+                           endHourUpdate.setVisible(true);
 
+                           commitUpdateSchedule.setVisible(true);
 
-
-
+                           startHourUpdate.setText(Utilities.startTime(event, parseString(teacherIDSearch.getText()), Date.valueOf(workDayUpdate.getText())));
+                           endHourUpdate.setText(Utilities.endTime(event, parseString(teacherIDSearch.getText()), Date.valueOf(workDayUpdate.getText())));
+                       }
+                   }
+               });
 
                 cprUpdate.setVisible(false);
                 search.setVisible(false);
@@ -1580,6 +1603,16 @@ public class LoggedInController implements Initializable
                 Utilities.updateTeacher(event, teacherNameUpdate.getText(), teacherSurnameUpdate.getText(), teacherPhoneUpdate.getText(), groupNumberUpdate.getText());
             }
         });
+
+        commitUpdateSchedule.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Utilities.updateSchedule(event, Time.valueOf(startHourUpdate.getText()), Time.valueOf(endHourUpdate.getText()));
+            }
+        });
+
         commitAddUser.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override

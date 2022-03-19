@@ -350,6 +350,26 @@ public class Utilities
         }
     }
 
+    public static void updateSchedule(ActionEvent event, Time startHour, Time endHour)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("UPDATE schedule SET StartHour = ?, EndHour = ?");
+            preparedStatement.setTime(1, startHour);
+            preparedStatement.setTime(2, endHour);
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+    }
+
     public static void returnToLogin(ActionEvent event)
     {
         Parent root = null;
@@ -666,7 +686,7 @@ public class Utilities
         {
             connection();
             preparedStatement = connection.prepareStatement("SELECT ID FROM Employees");
-            resultSet =preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             if (!resultSet.isBeforeFirst())
             {
                 return false;
@@ -675,7 +695,7 @@ public class Utilities
             {
                 while (resultSet.next())
                 {
-                    int retrieveID = resultSet.getInt(ID);
+                    int retrieveID = resultSet.getInt("ID");
                     if (retrieveID == ID)
                     {
                         return true;
@@ -792,6 +812,105 @@ public class Utilities
                 if (retrieveID == ID)
                 {
                     return resultSet.getString("GroupNumber");
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static boolean searchSchedule(ActionEvent event, int EmployeeID, Date WorkDay)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT EmployeeID, WorkDay FROM schedule");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                return false;
+            }
+            else
+            {
+                while (resultSet.next())
+                {
+                    int retrieveID = resultSet.getInt("EmployeeID");
+                    Date retrieveDay = resultSet.getDate("WorkDay");
+                    if(retrieveID == EmployeeID && retrieveDay.equals(WorkDay))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return false;
+    }
+
+    public static String startTime(ActionEvent event, int EmployeeID, Date WorkDay)
+    {
+        try
+        {
+            String time;
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT StartHour, EmployeeID, WorkDay FROM schedule WHERE EmployeeID = ? AND WorkDay = ?");
+            preparedStatement.setInt(1, EmployeeID);
+            preparedStatement.setDate(2, WorkDay);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                int retrieveID = resultSet.getInt("EmployeeID");
+                Date retrieveDay = resultSet.getDate("WorkDay");
+                if (retrieveID == EmployeeID && retrieveDay.equals(WorkDay))
+                {
+                    time = resultSet.getTime("StartHour").toString();
+                    return time;
+                }
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return "";
+    }
+
+    public static String endTime(ActionEvent event, int EmployeeID, Date WorkDay)
+    {
+        try
+        {
+            String time;
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT EndHour, EmployeeID, WorkDay FROM schedule WHERE EmployeeID = ? AND WorkDay = ?");
+            preparedStatement.setInt(1, EmployeeID);
+            preparedStatement.setDate(2, WorkDay);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                int retrieveID = resultSet.getInt("EmployeeID");
+                Date retrieveDay = resultSet.getDate("WorkDay");
+                if (retrieveID == EmployeeID && retrieveDay.equals(WorkDay))
+                {
+                    time = resultSet.getTime("EndHour").toString();
+                    return time;
                 }
             }
         }
