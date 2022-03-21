@@ -1755,14 +1755,14 @@ public class LoggedInController implements Initializable
                Utilities.changePassword(event, passwordTeacherUpdate.getText(), updateUsername.getText());
            }
         });
-        commitChangePass.setOnAction(new EventHandler<ActionEvent>()
+        /*commitChangePass.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event)
             {
                 Utilities.changePassword(event, newPassword.getText(), username);
             }
-        });
+        });*/
     }
 
     private int parseString(String number)
