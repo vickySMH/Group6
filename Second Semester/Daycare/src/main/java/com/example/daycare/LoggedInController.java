@@ -16,10 +16,9 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ResourceBundle;
-//b
+
 public class LoggedInController implements Initializable
 {
-    //Danny is cool
     private static String currentDefaultText = "Roskilde Kindergarten";
     private static int currentSpeechXCoordinate = 197;
     private static String username;
@@ -1755,14 +1754,14 @@ public class LoggedInController implements Initializable
                Utilities.changePassword(event, passwordTeacherUpdate.getText(), updateUsername.getText());
            }
         });
-        /*commitChangePass.setOnAction(new EventHandler<ActionEvent>()
+        commitChangePass.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
             public void handle(ActionEvent event)
             {
                 Utilities.changePassword(event, newPassword.getText(), username);
             }
-        });*/
+        });
     }
 
     private int parseString(String number)
