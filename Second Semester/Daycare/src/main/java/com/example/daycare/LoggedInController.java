@@ -346,13 +346,14 @@ public class LoggedInController implements Initializable
 
             addButton.setVisible(false);
             removeButton.setVisible(false);
-            updateButton.setVisible(false);
-            viewButton.setLayoutX(700);
+            updateButton.setText("Change password");
+            updateButton.setLayoutY(685);
+            viewButton.setLayoutX(659);
             viewButton.setLayoutY(685);
             viewKid.setLayoutY(620);
-            viewKid.setLayoutX(700);
+            viewKid.setLayoutX(660);
             viewSchedule.setLayoutY(620);
-            viewSchedule.setLayoutX(833);
+            viewSchedule.setLayoutX(794);
         }
 
         commitAddKid.setOnMouseEntered(new EventHandler<MouseEvent>()
@@ -601,6 +602,11 @@ public class LoggedInController implements Initializable
             {
                 speech.setText("Click to update information");
                 speech.setLayoutX(172);
+                if(!username.equals("director"))
+                {
+                    speech.setText("Change your password");
+                    speech.setLayoutX(190);
+                }
                 if(username.equals("admin"))
                 {
                     speech.setText("Click to update account");
@@ -991,6 +997,11 @@ public class LoggedInController implements Initializable
                 commitUpdateSchedule.setVisible(false);
                 currentDefaultText = "Update information";
                 currentSpeechXCoordinate = 212;
+                if(!username.equals("director") && !username.equals("admin"))
+                {
+                    speech.setText("Change your password");
+                    speech.setLayoutX(190);
+                }
                 if(username.equals("admin"))
                 {
                     currentDefaultText = "Update user";
@@ -1013,7 +1024,7 @@ public class LoggedInController implements Initializable
                 viewPane.setVisible(false);
                 addPane.setVisible(false);
                 removePane.setVisible(false);
-                if(username.equals("admin"))
+                if(!username.equals("director"))
                 {
                     updateKid.setVisible(false);
                     updateSchedule.setVisible(false);
@@ -1529,11 +1540,13 @@ public class LoggedInController implements Initializable
                 {
                     speech.setText("Teacher already in database");
                     currentDefaultText = "Teacher already in database";
+                    speech.setLayoutX(165);
                 }
                 else if(result == 0)
                 {
                     speech.setText("Successfully added teacher");
                     currentDefaultText = "Successfully added teacher";
+                    speech.setLayoutX(174);
                     resetButtons();
                     addPane.setVisible(false);
                     addTeacherButton.setVisible(false);
@@ -1545,6 +1558,7 @@ public class LoggedInController implements Initializable
                 {
                     speech.setText("No such group");
                     currentDefaultText = "No such group";
+                    speech.setLayoutX(232);
                 }
             }
         });
@@ -1560,11 +1574,13 @@ public class LoggedInController implements Initializable
                 {
                     speech.setText("Child already in a group");
                     currentDefaultText = "Child already in a group";
+                    speech.setLayoutX(190);
                 }
                 else if (result == 1)
                 {
                     speech.setText("Successfully added child");
                     currentDefaultText = "Successfully added child";
+                    speech.setLayoutX(188);
                     addPane.setVisible(false);
                     addKidButton.setVisible(false);
                     addTeacherButton.setVisible(false);
@@ -1576,6 +1592,7 @@ public class LoggedInController implements Initializable
                 {
                     speech.setText("No such group");
                     currentDefaultText = "No such group";
+                    speech.setLayoutX(232);
                 }
             }
         });
@@ -1656,18 +1673,24 @@ public class LoggedInController implements Initializable
                 if(result == 0)
                 {
                     speech.setText("Account with this id exists");
+                    speech.setLayoutX(176);
                 }
                 else if(result == 1)
                 {
                     speech.setText("Username already exists");
+                    speech.setLayoutX(184);
                 }
                 else if(result == 3)
                 {
                     speech.setText("No teacher with such ID");
+                    speech.setLayoutX(189);
                 }
                 else
                 {
-                    speech.setText("Account succesfully created");
+                    speech.setText("Account successfully created");
+                    speech.setLayoutX(159);
+                    userPane.setVisible(false);
+                    resetButtons();
                 }
             }
         });
@@ -1680,6 +1703,7 @@ public class LoggedInController implements Initializable
                 {
                     speech.setText("Successfully removed account");
                     currentDefaultText = "Successfully removed account";
+                    speech.setLayoutX(152);
                     resetButtons();
                     accountRemove.setVisible(false);
                     userPane.setVisible(false);
@@ -1688,6 +1712,7 @@ public class LoggedInController implements Initializable
                 {
                     speech.setText("No such user");
                     currentDefaultText = "No such user";
+                    speech.setLayoutX(241);
                 }
             }
         });
