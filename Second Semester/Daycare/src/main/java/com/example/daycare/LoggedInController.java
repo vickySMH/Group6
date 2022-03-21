@@ -1745,7 +1745,7 @@ public class LoggedInController implements Initializable
         commitUpdateUser.setOnAction(new EventHandler<ActionEvent>(){
            @Override
            public void handle(ActionEvent event){
-               Utilities.changePassword(event, passwordTeacherUpdate.getText());
+               Utilities.changePassword(event, passwordTeacherUpdate.getText(), updateUsername.getText());
            }
         });
     }

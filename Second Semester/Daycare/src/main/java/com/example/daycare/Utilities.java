@@ -1277,14 +1277,15 @@ public class Utilities
         return password;
     }
 
-    public static void changePassword(ActionEvent event, String password) {
+    public static void changePassword(ActionEvent event, String password, String username) {
 
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("UPDATE Users SET Password = ?");
+            preparedStatement = connection.prepareStatement("UPDATE Users SET Password = ? WHERE Username = ?");
             preparedStatement.setString(1, password);
-            preparedStatement.executeQuery();
+            preparedStatement.setString(2, username);
+            preparedStatement.executeUpdate();
 
         }
         catch(SQLException e){
