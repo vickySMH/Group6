@@ -1243,5 +1243,23 @@ public class Utilities
                 .toString();
         return password;
     }
+
+    public static void changePassword(ActionEvent event, String password) {
+
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("UPDATE Users SET Password = ?");
+            preparedStatement.setString(1, password);
+            preparedStatement.executeQuery();
+
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        finally {
+            closeConnection();
+        }
+    }
     
 }

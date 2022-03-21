@@ -243,6 +243,10 @@ public class LoggedInController implements Initializable
     TextField passwordTeacherUpdate;
     @FXML
     Button searchSchedule;
+    @FXML
+    Button commitChangePassword;
+    @FXML
+    TextField changePassword;
     
     private ObservableList listChild;
     private ObservableList listEmployee;
@@ -1686,6 +1690,13 @@ public class LoggedInController implements Initializable
                     currentDefaultText = "No such user";
                 }
             }
+        });
+
+        commitChangePassword.setOnAction(new EventHandler<ActionEvent>(){
+           @Override
+           public void handle(ActionEvent event){
+               Utilities.changePassword(event, changePassword.getText());
+           }
         });
     }
 
