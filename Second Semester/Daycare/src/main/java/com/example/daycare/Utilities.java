@@ -67,13 +67,13 @@ public class Utilities
         }
     }
 
-    public static void removeKid(int CPR)
+    public static void removeKid(String CPR)
     {
         try
         {
             connection();
             preparedStatementUserExists = connection.prepareStatement("DELETE FROM sql11478968.Children WHERE CPR = ?");
-            preparedStatementUserExists.setInt(1, CPR);
+            preparedStatementUserExists.setString(1, CPR);
             preparedStatement = connection.prepareStatement("SELECT * FROM Children");
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.isBeforeFirst())
@@ -85,8 +85,8 @@ public class Utilities
             {
                 while (resultSet.next())
                 {
-                    int retrieveCPR = resultSet.getInt("ID");
-                    if (retrieveCPR == CPR)
+                    String retrieveCPR = resultSet.getString("CPR");
+                    if (retrieveCPR.equals(CPR))
                     {
                         preparedStatementUserExists.executeUpdate();
                     }
@@ -122,7 +122,7 @@ public class Utilities
             {
                 while (resultSet.next())
                 {
-                    int retrieveID = resultSet.getInt("ID");
+                    int retrieveID = resultSet.getInt("EmployeeID");
                     Date retrieveDate = resultSet.getDate("WorkDay");
                     if (retrieveID == ID && retrieveDate.equals(date))
                     {
@@ -1232,6 +1232,47 @@ public class Utilities
             e.printStackTrace();
         }
         return scheduleList;
+    }
+
+    public static ObservableList<ModelTableTeacherChild> viewChildData(String username)
+    {
+        connection = connection();
+        ObservableList<ModelTableTeacherChild> teacherChildList = FXCollections.observableArrayList();
+        try{
+            preparedStatement = connection.prepareStatement("SELECT * FROM Children, Users, Employees WHERE Users.username = ? AND Users.EmployeeID = Employees.ID AND Employees.GroupNumber =  Children.GroupNumber");
+            preparedStatement.setString(1, username);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                teacherChildList.add(new ModelTableTeacherChild(Integer.parseInt(resultSet.getString("ID")),
+                        resultSet.getString("CPR"), resultSet.getString("Name"),
+                        resultSet.getString("Surname"), resultSet.getString("DateOfBirth"),
+                        resultSet.getString("ParentPhone"), resultSet.getString("ParentName"),
+                        resultSet.getString("ParentSurname"), resultSet.getString("Address"), resultSet.getString("onWaitingList")));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return teacherChildList;
+    }
+
+    public static ObservableList<ModelTableTeacherSchedule> viewTeacherSchedule(String username){
+        connection = connection();
+        ObservableList<ModelTableTeacherSchedule> teacherScheduleList = FXCollections.observableArrayList();
+        try
+        {
+            preparedStatement = connection.prepareStatement("SELECT * FROM Schedule, Users WHERE Users.username = ? AND Schedule.EmployeeID = Users.EmployeeID");
+            preparedStatement.setString(1, username);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                teacherScheduleList.add(new ModelTableTeacherSchedule(resultSet.getString("WorkDay"),
+                        resultSet.getString("StartHour"), resultSet.getString("EndHour")));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return teacherScheduleList;
     }
 
     public static int adminAdd(ActionEvent event, String username, int id)

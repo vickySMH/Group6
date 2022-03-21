@@ -260,12 +260,59 @@ public class LoggedInController implements Initializable
     TableColumn<ModelTableAccount, Integer> idColumn;
     @FXML
     TextField teacherIDRemoveTeacher;
+    @FXML
+    TableView<ModelTableTeacherChild> teacherKid;
+    @FXML
+    TableView<ModelTableTeacherSchedule> teacherSchedule;
+    @FXML
+    TableColumn<ModelTableChild, Integer> kidId1;
+    @FXML
+    TableColumn<ModelTableChild, String> kidName1;
+    @FXML
+    TableColumn<ModelTableChild, String> kidSurname1;
+    @FXML
+    TableColumn<ModelTableChild, String> kidBirthday1;
+    @FXML
+    TableColumn<ModelTableChild, String> parentPhoneNumber1;
+    @FXML
+    TableColumn<ModelTableChild, String> parentsName1;
+    @FXML
+    TableColumn<ModelTableChild, String> parentsSurname1;
+    @FXML
+    TableColumn<ModelTableChild, String> kidAddress1;
+    @FXML
+    TableColumn<ModelTableChild, String> kidCPR1;
+    @FXML
+    TableColumn<ModelTableChild, String> kidWait1;
+    @FXML
+    TableColumn<ModelTableSchedule, String> viewWorkDay1;
+    @FXML
+    TableColumn<ModelTableSchedule, String> viewStartHour1;
+    @FXML
+    TableColumn<ModelTableSchedule, String> viewEndHour1;
+    @FXML
+    TextField teacherIdRemoveTeacher;
+    @FXML
+    TextField cprRemove;
+    @FXML
+    TextField teacherIDRemove;
+    @FXML
+    TextField workDayRemove;
+    @FXML
+    ImageView childImageRemove;
+    @FXML
+    ImageView teachersImageRemove;
+    @FXML
+    ImageView calendarRemove;
+
 
 
     private ObservableList listChild;
     private ObservableList listEmployee;
     private ObservableList listSchedule;
     private ObservableList listAccounts;
+    private ObservableList listTeacherChild;
+    private ObservableList listTeacherSchedule;
 
     public static void setUsername(String newUsername)
     {
@@ -321,6 +368,18 @@ public class LoggedInController implements Initializable
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
+
+        kidId1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        kidCPR1.setCellValueFactory(new PropertyValueFactory<>("cpr"));
+        kidName1.setCellValueFactory(new PropertyValueFactory<>("name"));
+        kidSurname1.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        kidAddress1.setCellValueFactory(new PropertyValueFactory<>("address"));
+        kidBirthday1.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        kidWait1.setCellValueFactory(new PropertyValueFactory<>("onWaitList"));
+        parentPhoneNumber1.setCellValueFactory(new PropertyValueFactory<>("parentPhone"));
+        parentsName1.setCellValueFactory(new PropertyValueFactory<>("parentName"));
+        parentsSurname1.setCellValueFactory(new PropertyValueFactory<>("parentSurname"));
+
     
         Platform.runLater( () -> image.requestFocus() );
         passwordTeacherUpdate.setVisible(false);
@@ -990,6 +1049,8 @@ public class LoggedInController implements Initializable
                 addPane.setVisible(false);
                 updatePane.setVisible(false);
                 removePane.setVisible(false);
+                teacherKid.setVisible(false);
+                teacherSchedule.setVisible(false);
                 if(username.equals("admin"))
                 {
                     currentDefaultText = "View user";
@@ -1322,10 +1383,21 @@ public class LoggedInController implements Initializable
                 tableKid.setVisible(true);
                 tableEmp.setVisible(false);
                 tableSchedule.setVisible(false);
+                accountTable.setVisible(false);
                 listChild = Utilities.getChildData();
                 tableKid.setItems(listChild);
 
                 viewPane.setVisible(true);
+                if(!username.equals("admin") && !username.equals("director")){
+                    listTeacherChild = Utilities.viewChildData(username);
+                    teacherKid.setItems(listTeacherChild);
+                    teacherKid.setVisible(true);
+                    teacherSchedule.setVisible(false);
+                    tableSchedule.setVisible(false);
+                    tableEmp.setVisible(false);
+                    tableKid.setVisible(false);
+                    accountTable.setVisible(false);
+                }
             }
         });
 
@@ -1341,6 +1413,7 @@ public class LoggedInController implements Initializable
                 tableKid.setVisible(false);
                 tableEmp.setVisible(true);
                 tableSchedule.setVisible(false);
+                accountTable.setVisible(false);
                 listEmployee = Utilities.getEmployeeData();
                 tableEmp.setItems(listEmployee);
 
@@ -1361,10 +1434,21 @@ public class LoggedInController implements Initializable
                 tableKid.setVisible(false);
                 tableEmp.setVisible(false);
                 tableSchedule.setVisible(true);
+                accountTable.setVisible(false);
                 listSchedule = Utilities.getScheduleData();
                 tableSchedule.setItems(listSchedule);
 
                 viewPane.setVisible(true);
+                if(!username.equals("admin") && !username.equals("director")){
+                    listTeacherSchedule = Utilities.viewTeacherSchedule(username);
+                    teacherSchedule.setItems(listTeacherSchedule);
+                    teacherKid.setVisible(false);
+                    teacherSchedule.setVisible(true);
+                    tableSchedule.setVisible(false);
+                    tableEmp.setVisible(false);
+                    tableKid.setVisible(false);
+                    accountTable.setVisible(false);
+                }
             }
         });
 
@@ -1588,6 +1672,52 @@ public class LoggedInController implements Initializable
             }
         });
 
+        removeKid.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                removePane.setVisible(true);
+                cprRemove.setVisible(true);
+                commitRemoveKid.setVisible(true);
+                childImageRemove.setVisible(true);
+                calendarRemove.setVisible(false);
+                teachersImageRemove.setVisible(false);
+                teacherIDRemove.setVisible(false);
+                teacherIdRemoveTeacher.setVisible(false);
+                workDayRemove.setVisible(false);
+            }
+        });
+
+        removeTeacher.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                removePane.setVisible(true);
+                teacherIDRemove.setVisible(true);
+                commitRemoveTeacher.setVisible(true);
+                teachersImageRemove.setVisible(true);
+                childImageRemove.setVisible(false);
+                calendarRemove.setVisible(false);
+                workDayRemove.setVisible(false);
+                cprRemove.setVisible(false);
+                teacherIdRemoveTeacher.setVisible(false);
+            }
+        });
+
+        removeSchedule.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                removePane.setVisible(true);
+                teacherIdRemoveTeacher.setVisible(true);
+                workDayRemove.setVisible(true);
+                commitRemoveSchedule.setVisible(true);
+                calendarRemove.setVisible(true);
+                childImageRemove.setVisible(false);
+                teachersImageRemove.setVisible(false);
+                teacherIDRemove.setVisible(false);
+                cprRemove.setVisible(false);
+            }
+        });
+
+
         commitAddTeacher.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override
@@ -1787,6 +1917,27 @@ public class LoggedInController implements Initializable
             public void handle(ActionEvent event)
             {
                 Utilities.changePassword(event, newPassword.getText(), username);
+            }
+        });
+
+        commitRemoveKid.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Utilities.removeKid(cprRemove.getText());
+            }
+        });
+
+        commitRemoveTeacher.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Utilities.removeTeacher(parseString(teacherIDRemove.getText()));
+            }
+        });
+
+        commitRemoveSchedule.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Utilities.removeSchedule(parseString(teacherIdRemoveTeacher.getText()), Date.valueOf(workDayRemove.getText()));
             }
         });
     }

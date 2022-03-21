@@ -55,6 +55,27 @@
                   <TableColumn fx:id="passwordColumn" prefWidth="200.0" text="Password" />
               </columns>
             </TableView>
+            <TableView fx:id="teacherKid" layoutX="55.0" layoutY="10.0" prefHeight="480.0" prefWidth="1442.5">
+               <columns>
+                  <TableColumn fx:id="kidId1" prefWidth="60.0" text="ID" />
+                  <TableColumn fx:id="kidCPR1" prefWidth="70.0" text="CPR" />
+                  <TableColumn fx:id="kidName1" minWidth="200.0" prefWidth="170.0" text="Name" />
+                  <TableColumn fx:id="kidSurname1" minWidth="180.0" prefWidth="170.0" text="Surname" />
+                  <TableColumn fx:id="kidBirthday1" minWidth="90.0" prefWidth="110.0" text="Date of Birth" />
+                  <TableColumn fx:id="parentPhoneNumber1" minWidth="100.0" prefWidth="170.0" text="Parent Phone" />
+                  <TableColumn fx:id="parentsName1" minWidth="200.0" prefWidth="170.0" text="Parent Name" />
+                  <TableColumn fx:id="parentsSurname1" prefWidth="170.0" text="Parent Surname" />
+                  <TableColumn fx:id="kidAddress1" prefWidth="185.0" text="Address" />
+                  <TableColumn fx:id="kidWait1" prefWidth="95.0" text="On Waiting List" />
+               </columns>
+            </TableView>
+            <TableView fx:id="teacherSchedule" layoutX="430.0" layoutY="10.0" prefHeight="480.0" prefWidth="670.0">
+               <columns>
+                  <TableColumn fx:id="viewWorkDay1" minWidth="200.0" prefWidth="225.0" text="Work Day" />
+                  <TableColumn fx:id="viewStartHour1" minWidth="200.0" prefWidth="225.0" text="Start Hour" />
+                  <TableColumn fx:id="viewEndHour1" minWidth="200.0" prefWidth="225.0" text="End Hour" />
+               </columns>
+            </TableView>
          </children></AnchorPane>
       <AnchorPane fx:id="addPane" layoutY="1.0" prefHeight="480.0" prefWidth="1440.0" AnchorPane.bottomAnchor="480.0">
          <children>
