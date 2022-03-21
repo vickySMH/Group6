@@ -48,6 +48,13 @@
                   <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="Employee ID" />
                </columns>
             </TableView>
+            <TableView fx:id="accountTable" layoutX="490.0" prefHeight="480.0" prefWidth="475.0">
+              <columns>
+                <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="usernameColumn" prefWidth="200.0" text="Username" />
+                  <TableColumn fx:id="passwordColumn" prefWidth="200.0" text="Password" />
+              </columns>
+            </TableView>
          </children></AnchorPane>
       <AnchorPane fx:id="addPane" layoutY="1.0" prefHeight="480.0" prefWidth="1440.0" AnchorPane.bottomAnchor="480.0">
          <children>
@@ -327,29 +334,6 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0">
-         <children>
-            <TextField fx:id="cprRemove" layoutX="810.0" layoutY="257.0" promptText="Child CPR" rotate="-360.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="teacherIDRemove" layoutX="810.0" layoutY="257.0" promptText="Teacher ID">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="teacherIDRemove" layoutX="680.0" layoutY="257.0" promptText="Teacher ID">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="workDayRemove" layoutX="930.0" layoutY="257.0" promptText="Work day">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </TextField>
-         </children></AnchorPane>
       <AnchorPane fx:id="changePassPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
             <Button id="commit" fx:id="commitChangePass" layoutX="1180.0" layoutY="248.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="242.0" style="-fx-background-radius: 12;" text="Commit">
@@ -363,6 +347,44 @@
             <TextField fx:id="newPassword" layoutX="800.0" layoutY="258.0" prefHeight="36.8" prefWidth="199.2" promptText="New password" />
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="removePane" prefHeight="480.0" prefWidth="1440.0">
+         <children>
+            <TextField fx:id="cprRemove" layoutX="810.0" layoutY="257.0" promptText="Child CPR" rotate="-360.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="childImageRemove" fitHeight="270.0" fitWidth="570.0" layoutX="40.0" layoutY="170.0">
+               <image>
+                  <Image url="@resources/imgs/pngegg.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="teacherIDRemove" layoutX="810.0" layoutY="257.0" promptText="Teacher ID">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="teachersImageRemove" fitHeight="370.0" fitWidth="570.0" layoutX="50.0" layoutY="90.0">
+               <image>
+                  <Image url="@resources/imgs/teacher.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="teacherIDRemoveTeacher" layoutX="680.0" layoutY="257.0" promptText="Teacher ID">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="workDayRemove" layoutX="930.0" layoutY="257.0" promptText="Work day">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <ImageView fx:id="calendarRemove" fitHeight="200.0" fitWidth="200.0" layoutX="220.0" layoutY="150.0">
+               <image>
+                  <Image url="@resources/imgs/calendar22222.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
       <ImageView fx:id="image" fitHeight="318.0" fitWidth="467.0" layoutX="-2.0" layoutY="553.0">
          <image>
             <Image url="@resources/imgs/Alien.png" />

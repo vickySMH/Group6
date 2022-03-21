@@ -250,11 +250,22 @@ public class LoggedInController implements Initializable
     Button commitChangePass;
     @FXML
     TextField newPassword;
+    @FXML
+    TableView<ModelTableAccount> accountTable;
+    @FXML
+    TableColumn<ModelTableAccount, String> usernameColumn;
+    @FXML
+    TableColumn<ModelTableAccount, String> passwordColumn;
+    @FXML
+    TableColumn<ModelTableAccount, Integer> idColumn;
+    @FXML
+    TextField teacherIDRemoveTeacher;
 
 
     private ObservableList listChild;
     private ObservableList listEmployee;
     private ObservableList listSchedule;
+    private ObservableList listAccounts;
 
     public static void setUsername(String newUsername)
     {
@@ -306,13 +317,16 @@ public class LoggedInController implements Initializable
         viewStartHour.setCellValueFactory(new PropertyValueFactory<>("startHour"));
         viewEndHour.setCellValueFactory(new PropertyValueFactory<>("endHour"));
         employeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
+
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("employeeID"));
     
         Platform.runLater( () -> image.requestFocus() );
-        changePassPane.setVisible(false);
         passwordTeacherUpdate.setVisible(false);
         accountRemove.setVisible(false);
         updateUsername.setVisible(false);
-        userPane.setVisible(false);
+
         addUsername.setVisible(false);
         addUTeacherID.setVisible(false);
         commitAddUser.setVisible(false);
@@ -345,6 +359,8 @@ public class LoggedInController implements Initializable
         viewPane.setVisible(false);
         updatePane.setVisible(false);
         removePane.setVisible(false);
+        userPane.setVisible(false);
+        changePassPane.setVisible(false);
 
         if(!username.equals("director") & !username.equals("admin"))
         {
@@ -896,6 +912,8 @@ public class LoggedInController implements Initializable
                 currentSpeechXCoordinate = 226;
                 if(username.equals("admin"))
                 {
+                    updateUsername.setVisible(false);
+                    adminSearchUpdate.setVisible(false);
                     accountRemove.setVisible(false);
                     commitRemoveUser.setVisible(false);
                     currentDefaultText = "Add user";
@@ -905,6 +923,7 @@ public class LoggedInController implements Initializable
                     addUsername.setVisible(true);
                     commitAddUser.setVisible(true);
                     adminSearchUpdate.setVisible(false);
+                    viewPane.setVisible(false);
                 }
                 addKidButton.setVisible(true);
                 addTeacherButton.setVisible(true);
@@ -951,11 +970,6 @@ public class LoggedInController implements Initializable
                 commitUpdateSchedule.setVisible(false);
                 currentDefaultText = "View information";
                 currentSpeechXCoordinate = 220;
-                if(username.equals("admin"))
-                {
-                    currentDefaultText = "View user";
-                    currentSpeechXCoordinate = 258;
-                }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
                 addScheduleButton.setVisible(false);
@@ -978,8 +992,18 @@ public class LoggedInController implements Initializable
                 removePane.setVisible(false);
                 if(username.equals("admin"))
                 {
+                    currentDefaultText = "View user";
+                    currentSpeechXCoordinate = 258;
+                    listAccounts = Utilities.getAccountsData();
+                    accountTable.setItems(listAccounts);
                     viewKid.setVisible(false);
                     viewSchedule.setVisible(false);
+                    viewPane.setVisible(true);
+                    accountTable.setVisible(true);
+                    tableEmp.setVisible(false);
+                    tableKid.setVisible(false);
+                    tableSchedule.setVisible(false);
+                    userPane.setVisible(false);
                 }
             }
         });
@@ -1021,6 +1045,7 @@ public class LoggedInController implements Initializable
                     commitRemoveUser.setVisible(false);
                     adminSearchUpdate.setVisible(true);
                     updateUsername.setVisible(true);
+                    viewPane.setVisible(false);
 
                     adminSearchUpdate.setOnAction(new EventHandler<ActionEvent>()
                     {
@@ -1086,8 +1111,10 @@ public class LoggedInController implements Initializable
                     addUTeacherID.setVisible(false);
                     commitAddUser.setVisible(false);
                     addUsername.setVisible(false);
+                    workDayUpdate.setVisible(false);
                     currentDefaultText = "Remove user";
                     currentSpeechXCoordinate = 246;
+                    viewPane.setVisible(false);
                     userPane.setVisible(true);
                     accountRemove.setVisible(true);
                     commitRemoveUser.setVisible(true);

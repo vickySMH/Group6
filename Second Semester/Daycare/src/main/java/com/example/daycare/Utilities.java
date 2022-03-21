@@ -1149,21 +1149,46 @@ public class Utilities
             }
         }
     }
+
+    public static ObservableList<ModelTableAccount> getAccountsData()
+    {
+        connection = connection();
+        ObservableList<ModelTableAccount> accounts = FXCollections.observableArrayList();
+        try
+        {
+            preparedStatement = connection.prepareStatement("SELECT * FROM Users");
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next())
+            {
+                accounts.add(new ModelTableAccount(resultSet.getString("Username"),
+                        resultSet.getString("Password"),
+                        resultSet.getInt("EmployeeID")));
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return accounts;
+    }
     
-    public static ObservableList<ModelTableEmployee> getEmployeeData(){
+    public static ObservableList<ModelTableEmployee> getEmployeeData()
+    {
         connection = connection();
         ObservableList<ModelTableEmployee> empList = FXCollections.observableArrayList();
         try
         {
             preparedStatement = connection.prepareStatement("SELECT * FROM Employees");
             resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
+            while(resultSet.next())
+            {
                 empList.add(new ModelTableEmployee(resultSet.getInt("ID"),
                         resultSet.getString("Name"), resultSet.getString("Surname"),
                         resultSet.getString("PhoneNumber"), resultSet.getString("GroupNumber")));
             }
         }
-        catch (SQLException e){
+        catch (SQLException e)
+        {
             e.printStackTrace();
         }
         return empList;
