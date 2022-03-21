@@ -245,7 +245,12 @@ public class LoggedInController implements Initializable
     Button searchSchedule;
     @FXML
     Button adminSearchUpdate;
-
+    @FXML
+    AnchorPane changePassPane;
+    @FXML
+    Button commitChangePass;
+    @FXML
+    TextField newPassword;
 
 
     private ObservableList listChild;
@@ -304,6 +309,7 @@ public class LoggedInController implements Initializable
         employeeId.setCellValueFactory(new PropertyValueFactory<>("employeeId"));
     
         Platform.runLater( () -> image.requestFocus() );
+        changePassPane.setVisible(false);
         passwordTeacherUpdate.setVisible(false);
         accountRemove.setVisible(false);
         updateUsername.setVisible(false);
@@ -934,7 +940,7 @@ public class LoggedInController implements Initializable
             {
                 resetButtons();
                 viewButton.setStyle("-fx-background-color:#005918;-fx-text-fill:white;-fx-background-radius: 12px");
-
+                changePassPane.setVisible(false);
                 commitAddKid.setVisible(false);
                 commitAddTeacher.setVisible(false);
                 commitAddSchedule.setVisible(false);
@@ -1002,6 +1008,7 @@ public class LoggedInController implements Initializable
                 {
                     speech.setText("Change your password");
                     speech.setLayoutX(190);
+                    changePassPane.setVisible(true);
                 }
                 if(username.equals("admin"))
                 {
@@ -1747,6 +1754,14 @@ public class LoggedInController implements Initializable
            public void handle(ActionEvent event){
                Utilities.changePassword(event, passwordTeacherUpdate.getText(), updateUsername.getText());
            }
+        });
+        commitChangePass.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override
+            public void handle(ActionEvent event)
+            {
+                Utilities.changePassword(event, newPassword.getText(), username);
+            }
         });
     }
 
