@@ -334,12 +334,22 @@
                   <Font size="16.0" />
                </font>
             </TextField>
+            <ImageView fx:id="childImageRemove" fitHeight="270.0" fitWidth="570.0" layoutX="40.0" layoutY="170.0">
+               <image>
+                  <Image url="@resources/imgs/pngegg.png" />
+               </image>
+            </ImageView>
             <TextField fx:id="teacherIDRemove" layoutX="810.0" layoutY="257.0" promptText="Teacher ID">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="teacherIDRemove" layoutX="680.0" layoutY="257.0" promptText="Teacher ID">
+            <ImageView fx:id="teachersImageRemove" fitHeight="370.0" fitWidth="570.0" layoutX="50.0" layoutY="90.0">
+               <image>
+                  <Image url="@resources/imgs/teacher.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="teacherIDRemoveTeacher" layoutX="680.0" layoutY="257.0" promptText="Teacher ID">
                <font>
                   <Font size="16.0" />
                </font>
@@ -349,6 +359,11 @@
                   <Font size="16.0" />
                </font>
             </TextField>
+            <ImageView fx:id="calendarRemove" fitHeight="200.0" fitWidth="200.0" layoutX="220.0" layoutY="150.0">
+               <image>
+                  <Image url="@resources/imgs/calendar22222.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
       <AnchorPane fx:id="changePassPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
