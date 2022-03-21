@@ -962,6 +962,39 @@ public class Utilities
         return "";
     }
 
+    public static boolean accountSearch(ActionEvent event, String username)
+    {
+        try
+        {
+            connection();
+            preparedStatement = connection.prepareStatement("SELECT Username FROM users");
+            resultSet = preparedStatement.executeQuery();
+            if (!resultSet.isBeforeFirst())
+            {
+                return false;
+            }
+            else
+                while (resultSet.next())
+                {
+                    String retrieveUsername = resultSet.getString("Username");
+                    if (retrieveUsername.equals(username))
+                    {
+                        return true;
+                    }
+                }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            closeConnection();
+        }
+        return false;
+    }
+
     public static void changeScene(ActionEvent event, String fxmlFile, String title ,String username, String password)
     {
         Parent root = null;

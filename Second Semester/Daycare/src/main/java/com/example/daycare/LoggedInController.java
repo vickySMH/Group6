@@ -243,6 +243,10 @@ public class LoggedInController implements Initializable
     TextField passwordTeacherUpdate;
     @FXML
     Button searchSchedule;
+    @FXML
+    Button adminSearchUpdate;
+
+
 
     private ObservableList listChild;
     private ObservableList listEmployee;
@@ -895,6 +899,7 @@ public class LoggedInController implements Initializable
                     addUTeacherID.setVisible(true);
                     addUsername.setVisible(true);
                     commitAddUser.setVisible(true);
+                    adminSearchUpdate.setVisible(false);
                 }
                 addKidButton.setVisible(true);
                 addTeacherButton.setVisible(true);
@@ -1002,6 +1007,28 @@ public class LoggedInController implements Initializable
                 {
                     currentDefaultText = "Update user";
                     currentSpeechXCoordinate = 246;
+                    addUTeacherID.setVisible(false);
+                    commitAddUser.setVisible(false);
+                    addUsername.setVisible(false);
+                    userPane.setVisible(true);
+                    accountRemove.setVisible(false);
+                    commitRemoveUser.setVisible(false);
+                    adminSearchUpdate.setVisible(true);
+                    updateUsername.setVisible(true);
+
+                    adminSearchUpdate.setOnAction(new EventHandler<ActionEvent>()
+                    {
+                        @Override
+                        public void handle(ActionEvent event)
+                        {
+                            if (Utilities.accountSearch(event, updateUsername.getText()))
+                            {
+                                passwordTeacherUpdate.setVisible(true);
+                                commitUpdateUser.setVisible(true);
+                                adminSearchUpdate.setVisible(false);
+                            }
+                        }
+                    });
                 }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
@@ -1058,6 +1085,8 @@ public class LoggedInController implements Initializable
                     userPane.setVisible(true);
                     accountRemove.setVisible(true);
                     commitRemoveUser.setVisible(true);
+                    adminSearchUpdate.setVisible(false);
+
                 }
                 addKidButton.setVisible(false);
                 addTeacherButton.setVisible(false);
