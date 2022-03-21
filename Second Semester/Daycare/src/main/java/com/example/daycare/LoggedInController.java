@@ -243,11 +243,7 @@ public class LoggedInController implements Initializable
     TextField passwordTeacherUpdate;
     @FXML
     Button searchSchedule;
-    @FXML
-    Button commitChangePassword;
-    @FXML
-    TextField changePassword;
-    
+
     private ObservableList listChild;
     private ObservableList listEmployee;
     private ObservableList listSchedule;
@@ -1717,10 +1713,10 @@ public class LoggedInController implements Initializable
             }
         });
 
-        commitChangePassword.setOnAction(new EventHandler<ActionEvent>(){
+        commitUpdateUser.setOnAction(new EventHandler<ActionEvent>(){
            @Override
            public void handle(ActionEvent event){
-               Utilities.changePassword(event, changePassword.getText());
+               Utilities.changePassword(event, passwordTeacherUpdate.getText());
            }
         });
     }
