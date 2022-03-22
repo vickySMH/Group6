@@ -31,7 +31,7 @@ public class Utilities
     private static final String user = System.getenv("user");
     private static final String password = System.getenv("password");
 
-    public static void removeTeacher(int ID)
+    public static boolean removeTeacher(int ID)
     {
         try
         {
@@ -42,8 +42,7 @@ public class Utilities
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.isBeforeFirst())
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Employee doesn't exist!");
-                alert.show();
+                return false;
             }
             else
             {
@@ -53,6 +52,7 @@ public class Utilities
                     if (retrieveID == ID)
                     {
                         preparedStatementUserExists.executeUpdate();
+                        return true;
                     }
                 }
             }
@@ -65,9 +65,10 @@ public class Utilities
         {
             closeConnection();
         }
+        return false;
     }
 
-    public static void removeKid(String CPR)
+    public static boolean removeKid(String CPR)
     {
         try
         {
@@ -78,8 +79,7 @@ public class Utilities
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.isBeforeFirst())
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Child doesn't exist!");
-                alert.show();
+                return false;
             }
             else
             {
@@ -89,6 +89,7 @@ public class Utilities
                     if (retrieveCPR.equals(CPR))
                     {
                         preparedStatementUserExists.executeUpdate();
+                        return true;
                     }
                 }
             }
@@ -101,10 +102,12 @@ public class Utilities
         {
             closeConnection();
         }
+        return false;
     }
 
-    public static void removeSchedule(int ID, Date date)
+    public static boolean removeSchedule(int ID, Date date)
     {
+        boolean remove = false;
         try
         {
             connection();
@@ -115,8 +118,7 @@ public class Utilities
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.isBeforeFirst())
             {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Schedule doesn't exist!");
-                alert.show();
+                return false;
             }
             else
             {
@@ -127,18 +129,24 @@ public class Utilities
                     if (retrieveID == ID && retrieveDate.equals(date))
                     {
                         preparedStatementUserExists.executeUpdate();
+                        return remove = true;
                     }
                 }
             }
         }
-        catch (Exception e)
+        catch (SQLException e)
         {
-            e.printStackTrace();
+            return remove;
+        }
+        catch (IllegalArgumentException e)
+        {
+            return remove;
         }
         finally
         {
             closeConnection();
         }
+        return remove;
     }
 
     public static boolean removeAccount(ActionEvent event, String username)
@@ -365,21 +373,23 @@ public class Utilities
         }
     }
 
-    public static void updateTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
+    public static boolean updateTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
     {
+        boolean update = false;
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("UPDATE employees SET Name = ?, Surname = ?, PhoneNumber = ?, GroupNumber = ?");
+            preparedStatement = connection.prepareStatement("UPDATE Employees SET Name = ?, Surname = ?, PhoneNumber = ?, GroupNumber = ?");
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, surname);
             preparedStatement.setString(3, phoneNumber);
             preparedStatement.setString(4, GroupNumber);
             preparedStatement.executeUpdate();
+            return update = true;
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            return update;
         }
         finally
         {
@@ -387,19 +397,25 @@ public class Utilities
         }
     }
 
-    public static void updateSchedule(ActionEvent event, Time startHour, Time endHour)
+    public static boolean updateSchedule(ActionEvent event, Time startHour, Time endHour)
     {
+        boolean update = false;
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("UPDATE schedule SET StartHour = ?, EndHour = ?");
+            preparedStatement = connection.prepareStatement("UPDATE Schedule SET StartHour = ?, EndHour = ?");
             preparedStatement.setTime(1, startHour);
             preparedStatement.setTime(2, endHour);
             preparedStatement.executeUpdate();
+            return update = true;
         }
         catch (SQLException e)
         {
-            e.printStackTrace();
+            return update;
+        }
+        catch (IllegalArgumentException e)
+        {
+            return update;
         }
         finally
         {
@@ -756,7 +772,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("SELECT Name, ID FROM employees WHERE ID = ? ");
+            preparedStatement = connection.prepareStatement("SELECT Name, ID FROM Employees WHERE ID = ? ");
             preparedStatement.setInt(1, ID);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
@@ -784,7 +800,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("SELECT Surname, ID FROM employees WHERE ID = ?");
+            preparedStatement = connection.prepareStatement("SELECT Surname, ID FROM Employees WHERE ID = ?");
             preparedStatement.setInt(1, ID);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
@@ -812,7 +828,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("SELECT PhoneNumber, ID FROM employees WHERE ID = ?");
+            preparedStatement = connection.prepareStatement("SELECT PhoneNumber, ID FROM Employees WHERE ID = ?");
             preparedStatement.setInt(1, ID);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
@@ -840,7 +856,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("SELECT GroupNumber, ID FROM employees WHERE ID = ?");
+            preparedStatement = connection.prepareStatement("SELECT GroupNumber, ID FROM Employees WHERE ID = ?");
             preparedStatement.setInt(1, ID);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
@@ -868,7 +884,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("SELECT EmployeeID, WorkDay FROM schedule");
+            preparedStatement = connection.prepareStatement("SELECT EmployeeID, WorkDay FROM Schedule");
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.isBeforeFirst())
             {
@@ -904,7 +920,7 @@ public class Utilities
         {
             String time;
             connection();
-            preparedStatement = connection.prepareStatement("SELECT StartHour, EmployeeID, WorkDay FROM schedule WHERE EmployeeID = ? AND WorkDay = ?");
+            preparedStatement = connection.prepareStatement("SELECT StartHour, EmployeeID, WorkDay FROM Schedule WHERE EmployeeID = ? AND WorkDay = ?");
             preparedStatement.setInt(1, EmployeeID);
             preparedStatement.setDate(2, WorkDay);
             resultSet = preparedStatement.executeQuery();
@@ -936,7 +952,7 @@ public class Utilities
         {
             String time;
             connection();
-            preparedStatement = connection.prepareStatement("SELECT EndHour, EmployeeID, WorkDay FROM schedule WHERE EmployeeID = ? AND WorkDay = ?");
+            preparedStatement = connection.prepareStatement("SELECT EndHour, EmployeeID, WorkDay FROM Schedule WHERE EmployeeID = ? AND WorkDay = ?");
             preparedStatement.setInt(1, EmployeeID);
             preparedStatement.setDate(2, WorkDay);
             resultSet = preparedStatement.executeQuery();
@@ -967,7 +983,7 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("SELECT Username FROM users");
+            preparedStatement = connection.prepareStatement("SELECT Username FROM Users");
             resultSet = preparedStatement.executeQuery();
             if (!resultSet.isBeforeFirst())
             {
@@ -1256,20 +1272,23 @@ public class Utilities
         return teacherChildList;
     }
 
-    public static ObservableList<ModelTableTeacherSchedule> viewTeacherSchedule(String username){
+    public static ObservableList<ModelTableTeacherSchedule> viewTeacherSchedule(String teacher)
+    {
         connection = connection();
         ObservableList<ModelTableTeacherSchedule> teacherScheduleList = FXCollections.observableArrayList();
         try
         {
-            preparedStatement = connection.prepareStatement("SELECT * FROM Schedule, Users WHERE Users.username = ? AND Schedule.EmployeeID = Users.EmployeeID");
-            preparedStatement.setString(1, username);
+            preparedStatement = connection.prepareStatement("SELECT * FROM Schedule, Users, Employees WHERE Users.Username = ? AND Employees.ID = Users.EmployeeID AND Schedule.EmployeeID = Employees.ID");
+            preparedStatement.setString(1, teacher);
             resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
+            while(resultSet.next())
+            {
                 teacherScheduleList.add(new ModelTableTeacherSchedule(resultSet.getString("WorkDay"),
                         resultSet.getString("StartHour"), resultSet.getString("EndHour")));
             }
         }
-        catch (SQLException e){
+        catch (SQLException e)
+        {
             e.printStackTrace();
         }
         return teacherScheduleList;

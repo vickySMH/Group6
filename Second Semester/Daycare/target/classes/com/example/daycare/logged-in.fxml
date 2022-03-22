@@ -390,7 +390,7 @@
                   <Image url="@resources/imgs/teacher.png" />
                </image>
             </ImageView>
-            <TextField fx:id="teacherIDRemoveTeacher" layoutX="680.0" layoutY="257.0" promptText="Teacher ID">
+            <TextField fx:id="teacherIdRemoveTeacher" layoutX="680.0" layoutY="257.0" promptText="Teacher ID">
                <font>
                   <Font size="16.0" />
                </font>
