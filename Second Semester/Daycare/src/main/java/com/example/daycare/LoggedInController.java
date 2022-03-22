@@ -379,6 +379,10 @@ public class LoggedInController implements Initializable
         parentPhoneNumber1.setCellValueFactory(new PropertyValueFactory<>("parentPhone"));
         parentsName1.setCellValueFactory(new PropertyValueFactory<>("parentName"));
         parentsSurname1.setCellValueFactory(new PropertyValueFactory<>("parentSurname"));
+        viewWorkDay1.setCellValueFactory(new PropertyValueFactory<>("workday"));
+        viewStartHour1.setCellValueFactory(new PropertyValueFactory<>("startHour"));
+        viewEndHour1.setCellValueFactory(new PropertyValueFactory<>("endHour"));
+
 
     
         Platform.runLater( () -> image.requestFocus() );
@@ -948,6 +952,60 @@ public class LoggedInController implements Initializable
                 speech.setLayoutX(currentSpeechXCoordinate);
             }
         });
+        searchSchedule.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Search for schedule");
+                speech.setLayoutX(209);
+            }
+        });
+        searchSchedule.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        searchTeacher.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Search for teacher");
+                speech.setLayoutX(214);
+            }
+        });
+        searchTeacher.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
+        adminSearchUpdate.setOnMouseEntered(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText("Search for account");
+                speech.setLayoutX(210);
+            }
+        });
+        adminSearchUpdate.setOnMouseExited(new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent mouseEvent)
+            {
+                speech.setText(currentDefaultText);
+                speech.setLayoutX(currentSpeechXCoordinate);
+            }
+        });
 
         addButton.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -1388,7 +1446,8 @@ public class LoggedInController implements Initializable
                 tableKid.setItems(listChild);
 
                 viewPane.setVisible(true);
-                if(!username.equals("admin") && !username.equals("director")){
+                if(!username.equals("admin") && !username.equals("director"))
+                {
                     listTeacherChild = Utilities.viewChildData(username);
                     teacherKid.setItems(listTeacherChild);
                     teacherKid.setVisible(true);
@@ -1617,6 +1676,9 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
+                resetButtons();
+                updateButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
+                updateSchedule.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
                 updatePane.setVisible(true);
                 currentDefaultText = "Update schedule information";
                 currentSpeechXCoordinate = 163;
@@ -1837,7 +1899,20 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                Utilities.updateTeacher(event, teacherNameUpdate.getText(), teacherSurnameUpdate.getText(), teacherPhoneUpdate.getText(), groupNumberUpdate.getText());
+                if(Utilities.updateTeacher(event, teacherNameUpdate.getText(), teacherSurnameUpdate.getText(), teacherPhoneUpdate.getText(), groupNumberUpdate.getText()) == true)
+                {
+                    speech.setText("Successfully updated teacher");
+                    commitUpdateTeacher.setVisible(false);
+                    resetButtons();
+                    updatePane.setVisible(false);
+                    updateKid.setVisible(false);
+                    updateTeacher.setVisible(false);
+                    updateSchedule.setVisible(false);
+                }
+                else
+                {
+                    speech.setText("No such group");
+                }
             }
         });
 
@@ -1846,7 +1921,20 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                Utilities.updateSchedule(event, Time.valueOf(startHourUpdate.getText()), Time.valueOf(endHourUpdate.getText()));
+                if(Utilities.updateSchedule(event, Time.valueOf(startHourUpdate.getText()), Time.valueOf(endHourUpdate.getText())) == true)
+                {
+                    speech.setText("Successfully updated schedule");
+                    commitUpdateSchedule.setVisible(false);
+                    resetButtons();
+                    updatePane.setVisible(false);
+                    updateKid.setVisible(false);
+                    updateTeacher.setVisible(false);
+                    updateSchedule.setVisible(false);
+                }
+                else
+                {
+                    speech.setText("Please check format of date/time");
+                }
             }
         });
 
@@ -1905,10 +1993,17 @@ public class LoggedInController implements Initializable
             }
         });
 
-        commitUpdateUser.setOnAction(new EventHandler<ActionEvent>(){
+        commitUpdateUser.setOnAction(new EventHandler<ActionEvent>()
+        {
            @Override
-           public void handle(ActionEvent event){
+           public void handle(ActionEvent event)
+           {
                Utilities.changePassword(event, passwordTeacherUpdate.getText(), updateUsername.getText());
+               speech.setText("Successfully changed password");
+               resetButtons();
+               userPane.setVisible(false);
+               changePassPane.setVisible(false);
+               commitUpdateUser.setVisible(false);
            }
         });
         commitChangePass.setOnAction(new EventHandler<ActionEvent>()
@@ -1917,27 +2012,80 @@ public class LoggedInController implements Initializable
             public void handle(ActionEvent event)
             {
                 Utilities.changePassword(event, newPassword.getText(), username);
+                commitChangePass.setVisible(false);
+                changePassPane.setVisible(false);
             }
         });
 
-        commitRemoveKid.setOnAction(new EventHandler<ActionEvent>() {
+        commitRemoveKid.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
-            public void handle(ActionEvent event) {
-                Utilities.removeKid(cprRemove.getText());
+            public void handle(ActionEvent event)
+            {
+                if(Utilities.removeKid(cprRemove.getText()) == true)
+                {
+                    speech.setText("Successfully removed child");
+                    speech.setLayoutX(172);
+                    currentDefaultText = "Successfully removed child";
+                    currentSpeechXCoordinate = 172;
+                    resetButtons();
+                    removeSchedule.setVisible(false);
+                    removeKid.setVisible(false);
+                    removeTeacher.setVisible(false);
+                    commitRemoveKid.setVisible(false);
+                }
+                else
+                {
+                    speech.setText("Child does not exist");
+                }
             }
         });
 
-        commitRemoveTeacher.setOnAction(new EventHandler<ActionEvent>() {
+        commitRemoveTeacher.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
-            public void handle(ActionEvent event) {
-                Utilities.removeTeacher(parseString(teacherIDRemove.getText()));
+            public void handle(ActionEvent event)
+            {
+                if(Utilities.removeTeacher(parseString(teacherIDRemove.getText())) == true)
+                {
+                    speech.setText("Successfully removed teacher");
+                    speech.setLayoutX(159);
+                    currentDefaultText = "Successfully removed teacher";
+                    currentSpeechXCoordinate = 159;
+                    resetButtons();
+                    removeSchedule.setVisible(false);
+                    removeKid.setVisible(false);
+                    removeTeacher.setVisible(false);
+                    commitRemoveTeacher.setVisible(false);
+                }
+                else
+                {
+                    speech.setText("Teacher doesn't exist");
+                }
             }
         });
 
-        commitRemoveSchedule.setOnAction(new EventHandler<ActionEvent>() {
+        commitRemoveSchedule.setOnAction(new EventHandler<ActionEvent>()
+        {
             @Override
-            public void handle(ActionEvent event) {
-                Utilities.removeSchedule(parseString(teacherIdRemoveTeacher.getText()), Date.valueOf(workDayRemove.getText()));
+            public void handle(ActionEvent event)
+            {
+                if(Utilities.removeSchedule(parseString(teacherIdRemoveTeacher.getText()), Date.valueOf(workDayRemove.getText())) == true)
+                {
+                    speech.setText("Successfully removed schedule");
+                    speech.setLayoutX(151);
+                    currentDefaultText = "Successfully removed schedule";
+                    currentSpeechXCoordinate = 151;
+                    resetButtons();
+                    removeSchedule.setVisible(false);
+                    removeKid.setVisible(false);
+                    removeTeacher.setVisible(false);
+                    commitRemoveSchedule.setVisible(false);
+                }
+                else
+                {
+                    speech.setText("Date doesn't exist or check date format");
+                }
             }
         });
     }
