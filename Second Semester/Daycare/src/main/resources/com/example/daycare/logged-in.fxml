@@ -14,9 +14,13 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="1440.0" stylesheets="@resources/stylesheets/loggedIn.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.daycare.LoggedInController">
    <children>
+      <AnchorPane layoutX="1349.0" layoutY="102.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 12px; -fx-background-color: #bafb6c;" />
+      <AnchorPane layoutX="1263.0" layoutY="102.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 12px; -fx-background-color: #bafb6c;" />
+      <AnchorPane layoutX="1103.0" layoutY="102.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 12px; -fx-background-color: #bafb6c;" />
+      <AnchorPane layoutX="1098.0" layoutY="-11.0" prefHeight="213.0" prefWidth="120.0" style="-fx-background-radius: 12px; -fx-background-color: #bafb6c;" />
       <AnchorPane fx:id="viewPane" prefHeight="480.0" prefWidth="1440.0">
          <children>
-            <TableView fx:id="tableKid" layoutX="45.0" prefHeight="480.0" prefWidth="1442.5">
+            <TableView fx:id="tableKid" layoutX="5.0" prefHeight="480.0" prefWidth="1520.0">
                <columns>
                   <TableColumn fx:id="kidId" prefWidth="70.0" text="ID" />
                   <TableColumn fx:id="kidCPR" prefWidth="75.0" text="CPR" />
@@ -48,14 +52,14 @@
                   <TableColumn fx:id="employeeId" minWidth="200.0" prefWidth="225.0" text="Employee ID" />
                </columns>
             </TableView>
-            <TableView fx:id="accountTable" layoutX="490.0" prefHeight="480.0" prefWidth="475.0">
+            <TableView fx:id="accountTable" layoutX="490.0" prefHeight="480.0" prefWidth="478.0">
               <columns>
                 <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="usernameColumn" prefWidth="200.0" text="Username" />
                   <TableColumn fx:id="passwordColumn" prefWidth="200.0" text="Password" />
               </columns>
             </TableView>
-            <TableView fx:id="teacherKid" layoutX="55.0" layoutY="10.0" prefHeight="480.0" prefWidth="1442.5">
+            <TableView fx:id="teacherKid" layoutX="45.0" prefHeight="480.0" prefWidth="1442.5">
                <columns>
                   <TableColumn fx:id="kidId1" prefWidth="60.0" text="ID" />
                   <TableColumn fx:id="kidCPR1" prefWidth="70.0" text="CPR" />
@@ -69,15 +73,16 @@
                   <TableColumn fx:id="kidWait1" prefWidth="95.0" text="On Waiting List" />
                </columns>
             </TableView>
-            <TableView fx:id="teacherSchedule" layoutX="430.0" layoutY="10.0" prefHeight="480.0" prefWidth="670.0">
+            <TableView fx:id="teacherSchedule" layoutX="400.0" prefHeight="480.0" prefWidth="678.0">
                <columns>
                   <TableColumn fx:id="viewWorkDay1" minWidth="200.0" prefWidth="225.0" text="Work Day" />
                   <TableColumn fx:id="viewStartHour1" minWidth="200.0" prefWidth="225.0" text="Start Hour" />
                   <TableColumn fx:id="viewEndHour1" minWidth="200.0" prefWidth="225.0" text="End Hour" />
                </columns>
             </TableView>
-         </children></AnchorPane>
-      <AnchorPane fx:id="addPane" layoutY="1.0" prefHeight="480.0" prefWidth="1440.0" AnchorPane.bottomAnchor="480.0">
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="addPane" layoutY="76.60000000000002" prefHeight="480.0" prefWidth="1440.0" AnchorPane.bottomAnchor="400.0">
          <children>
             <ImageView fx:id="childImage" fitHeight="270.0" fitWidth="570.0" layoutX="40.0" layoutY="170.0">
                <image>
