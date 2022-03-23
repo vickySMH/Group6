@@ -1041,6 +1041,7 @@ public class LoggedInController implements Initializable
                     commitAddUser.setVisible(true);
                     adminSearchUpdate.setVisible(false);
                     viewPane.setVisible(false);
+                    passwordTeacherUpdate.setVisible(false);
                 }
                 addKidButton.setVisible(true);
                 addTeacherButton.setVisible(true);
@@ -1151,6 +1152,7 @@ public class LoggedInController implements Initializable
                     speech.setText("Change your password");
                     speech.setLayoutX(190);
                     changePassPane.setVisible(true);
+                    commitChangePass.setVisible(true);
                 }
                 if(username.equals("admin"))
                 {
@@ -1176,6 +1178,7 @@ public class LoggedInController implements Initializable
                                 passwordTeacherUpdate.setVisible(true);
                                 commitUpdateUser.setVisible(true);
                                 adminSearchUpdate.setVisible(false);
+                                Platform.runLater( () -> image.requestFocus() );
                             }
                         }
                     });
@@ -1645,7 +1648,6 @@ public class LoggedInController implements Initializable
                         {
                             System.out.println("No teacher with this ID");
                         }
-                        Platform.runLater( () -> image.requestFocus() );
                     }
                 });
 
@@ -1746,6 +1748,9 @@ public class LoggedInController implements Initializable
                 teacherIDRemove.setVisible(false);
                 teacherIdRemoveTeacher.setVisible(false);
                 workDayRemove.setVisible(false);
+                resetButtons();
+                removeKid.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
+                removeButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
             }
         });
 
@@ -1761,6 +1766,9 @@ public class LoggedInController implements Initializable
                 workDayRemove.setVisible(false);
                 cprRemove.setVisible(false);
                 teacherIdRemoveTeacher.setVisible(false);
+                resetButtons();
+                removeTeacher.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
+                removeButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
             }
         });
 
@@ -1776,6 +1784,9 @@ public class LoggedInController implements Initializable
                 teachersImageRemove.setVisible(false);
                 teacherIDRemove.setVisible(false);
                 cprRemove.setVisible(false);
+                resetButtons();
+                removeSchedule.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
+                removeButton.setStyle("-fx-background-color:#005918; -fx-text-fill:white; -fx-background-radius: 12px");
             }
         });
 
@@ -1803,6 +1814,10 @@ public class LoggedInController implements Initializable
                     addKidButton.setVisible(false);
                     addScheduleButton.setVisible(false);
                     commitAddTeacher.setVisible(false);
+                    teacherName.setText("");
+                    teacherSurname.setText("");
+                    teacherPhone.setText("");
+                    groupNumber.setText("");
                 }
                 else
                 {
@@ -1820,13 +1835,13 @@ public class LoggedInController implements Initializable
             {
                 int result = Utilities.addChild(event, name.getText(), surname.getText(), Date.valueOf(dateOfBirth.getText()),
                         cpr.getText(), parentPhone.getText(), parentName.getText(), parentSurname.getText(), address.getText(), group.getText(), waitingList.isSelected());
-                if(result == 0)
+                if(result == 1)
                 {
                     speech.setText("Child already in a group");
                     currentDefaultText = "Child already in a group";
                     speech.setLayoutX(190);
                 }
-                else if (result == 1)
+                else if (result == 0)
                 {
                     speech.setText("Successfully added child");
                     currentDefaultText = "Successfully added child";
@@ -1837,6 +1852,16 @@ public class LoggedInController implements Initializable
                     addScheduleButton.setVisible(false);
                     commitAddKid.setVisible(false);
                     resetButtons();
+                    name.setText("");
+                    surname.setText("");
+                    dateOfBirth.setText("");
+                    cpr.setText("");
+                    parentPhone.setText("");
+                    parentName.setText("");
+                    parentSurname.setText("");
+                    address.setText("");
+                    group.setText("");
+                    waitingList.setSelected(false);
                 }
                 else
                 {
@@ -1867,6 +1892,10 @@ public class LoggedInController implements Initializable
                     addKidButton.setVisible(false);
                     addScheduleButton.setVisible(false);
                     commitAddTeacher.setVisible(false);
+                    workDay.setText("");
+                    startHour.setText("");
+                    endHour.setText("");
+                    teacherID.setText("");
                 }
             }
         });
@@ -1877,7 +1906,7 @@ public class LoggedInController implements Initializable
             public void handle(ActionEvent event)
             {
                 if(Utilities.updateChild(event, nameUpdate.getText(),surnameUpdate.getText(), Date.valueOf(dateOfBirthUpdate.getText()),
-                    cprUpdate.getText(), parentPhoneUpdate.getText(), parentNameUpdate.getText(), parentSurnameUpdate.getText(), addressUpdate.getText(), groupNumberUpdate.getText(), waitingListUpdate.isSelected()))
+                    cprUpdate.getText(), parentPhoneUpdate.getText(), parentNameUpdate.getText(), parentSurnameUpdate.getText(), addressUpdate.getText(), groupUpdate.getText(), waitingListUpdate.isSelected()))
                 {
                     speech.setText("Successfully update child");
                     commitUpdateKid.setVisible(false);
@@ -1886,6 +1915,7 @@ public class LoggedInController implements Initializable
                     updateKid.setVisible(false);
                     updateTeacher.setVisible(false);
                     updateSchedule.setVisible(false);
+                    cprUpdate.setText("");
                 }
                 else
                 {
@@ -1899,7 +1929,7 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                if(Utilities.updateTeacher(event, teacherNameUpdate.getText(), teacherSurnameUpdate.getText(), teacherPhoneUpdate.getText(), groupNumberUpdate.getText()) == true)
+                if(Utilities.updateTeacher(event,parseString(teacherIDUpdate.getText()), teacherNameUpdate.getText(), teacherSurnameUpdate.getText(), teacherPhoneUpdate.getText(), groupNumberUpdate.getText()))
                 {
                     speech.setText("Successfully updated teacher");
                     commitUpdateTeacher.setVisible(false);
@@ -1908,6 +1938,7 @@ public class LoggedInController implements Initializable
                     updateKid.setVisible(false);
                     updateTeacher.setVisible(false);
                     updateSchedule.setVisible(false);
+                    teacherIDUpdate.setText("");
                 }
                 else
                 {
@@ -1921,7 +1952,7 @@ public class LoggedInController implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-                if(Utilities.updateSchedule(event, Time.valueOf(startHourUpdate.getText()), Time.valueOf(endHourUpdate.getText())) == true)
+                if(Utilities.updateSchedule(event, parseString(teacherIDSearch.getText()), Time.valueOf(startHourUpdate.getText()), Time.valueOf(endHourUpdate.getText())) == true)
                 {
                     speech.setText("Successfully updated schedule");
                     commitUpdateSchedule.setVisible(false);
@@ -1930,6 +1961,8 @@ public class LoggedInController implements Initializable
                     updateKid.setVisible(false);
                     updateTeacher.setVisible(false);
                     updateSchedule.setVisible(false);
+                    teacherIDSearch.setText("");
+                    workDayUpdate.setText("");
                 }
                 else
                 {
@@ -1967,6 +2000,8 @@ public class LoggedInController implements Initializable
                     speech.setLayoutX(159);
                     userPane.setVisible(false);
                     resetButtons();
+                    addUsername.setText("");
+                    addUTeacherID.setText("");
                 }
             }
         });
@@ -1983,6 +2018,7 @@ public class LoggedInController implements Initializable
                     resetButtons();
                     accountRemove.setVisible(false);
                     userPane.setVisible(false);
+                    accountRemove.setText("");
                 }
                 else
                 {
@@ -2004,6 +2040,10 @@ public class LoggedInController implements Initializable
                userPane.setVisible(false);
                changePassPane.setVisible(false);
                commitUpdateUser.setVisible(false);
+               passwordTeacherUpdate.setVisible(false);
+               passwordTeacherUpdate.setText("");
+               updateUsername.setText("");
+
            }
         });
         commitChangePass.setOnAction(new EventHandler<ActionEvent>()
@@ -2014,6 +2054,9 @@ public class LoggedInController implements Initializable
                 Utilities.changePassword(event, newPassword.getText(), username);
                 commitChangePass.setVisible(false);
                 changePassPane.setVisible(false);
+                speech.setText("Successfully changed password");
+                resetButtons();
+                newPassword.setText("");
             }
         });
 
@@ -2033,6 +2076,9 @@ public class LoggedInController implements Initializable
                     removeKid.setVisible(false);
                     removeTeacher.setVisible(false);
                     commitRemoveKid.setVisible(false);
+                    childImageRemove.setVisible(false);
+                    cprRemove.setVisible(false);
+                    cprRemove.setText("");
                 }
                 else
                 {
@@ -2057,6 +2103,9 @@ public class LoggedInController implements Initializable
                     removeKid.setVisible(false);
                     removeTeacher.setVisible(false);
                     commitRemoveTeacher.setVisible(false);
+                    teachersImageRemove.setVisible(false);
+                    teacherIDRemove.setVisible(false);
+                    teacherIDRemove.setText("");
                 }
                 else
                 {
@@ -2081,6 +2130,11 @@ public class LoggedInController implements Initializable
                     removeKid.setVisible(false);
                     removeTeacher.setVisible(false);
                     commitRemoveSchedule.setVisible(false);
+                    calendarRemove.setVisible(false);
+                    teacherIdRemoveTeacher.setVisible(false);
+                    workDayRemove.setVisible(false);
+                    teacherIdRemoveTeacher.setText("");
+                    workDayRemove.setText("");
                 }
                 else
                 {

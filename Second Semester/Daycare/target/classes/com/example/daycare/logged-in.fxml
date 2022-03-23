@@ -614,9 +614,9 @@
             <Font size="19.5" />
          </font>
       </Button>
-      <Label fx:id="speech" layoutX="189.0" layoutY="636.0" text="Roskilde Kindergarten">
+      <Label fx:id="speech" layoutX="197.0" layoutY="635.0" text="Roskilde Kindergarten">
          <font>
-            <Font size="24.0" />
+            <Font size="23.5" />
          </font>
       </Label>
       <AnchorPane layoutX="103.0" layoutY="742.0" prefHeight="100.0" prefWidth="200.0" style="-fx-background-radius: 12px; -fx-background-color: #bafb6c;" />

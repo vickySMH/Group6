@@ -349,9 +349,9 @@ public class Utilities
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("UPDATE Children SET NAME = ?, Surname = ?, DateOfBirth = ?, ParentPhone = ?, ParentName = ?, ParentSurname = ?, Address = ?, GroupNumber = ?, onWaitingList = ?");
+            preparedStatement = connection.prepareStatement("UPDATE Children SET NAME = ?, Surname = ?, DateOfBirth = ?, ParentPhone = ?, ParentName = ?, ParentSurname = ?, Address = ?, GroupNumber = ?, onWaitingList = ? WHERE CPR = ?");
             preparedStatement.setString(1, name);
-            preparedStatement.setString(2,surname);
+            preparedStatement.setString(2, surname);
             preparedStatement.setDate(3, date);
             preparedStatement.setString(4, parentPhone);
             preparedStatement.setString(5, parentName);
@@ -359,8 +359,12 @@ public class Utilities
             preparedStatement.setString(7, address);
             preparedStatement.setString(8, groupNumber);
             preparedStatement.setBoolean(9, waitingList);
+            preparedStatement.setString(10, cpr);
+            if (groupNumber == null)
+            {
+                preparedStatement.setString(8, " ");
+            }
             preparedStatement.executeUpdate();
-            closeConnection();
             return true;
         }
         catch (SQLException e)
@@ -373,23 +377,24 @@ public class Utilities
         }
     }
 
-    public static boolean updateTeacher(ActionEvent event, String name, String surname, String phoneNumber, String GroupNumber)
+    public static boolean updateTeacher(ActionEvent event,int id, String name, String surname, String phoneNumber, String GroupNumber)
     {
-        boolean update = false;
+       // boolean update = false;
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("UPDATE Employees SET Name = ?, Surname = ?, PhoneNumber = ?, GroupNumber = ?");
+            preparedStatement = connection.prepareStatement("UPDATE Employees SET Name = ?, Surname = ?, PhoneNumber = ?, GroupNumber = ? WHERE ID = ?");
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, surname);
             preparedStatement.setString(3, phoneNumber);
             preparedStatement.setString(4, GroupNumber);
+            preparedStatement.setInt(5, id);
             preparedStatement.executeUpdate();
-            return update = true;
+            return true;
         }
         catch (SQLException e)
         {
-            return update;
+            return false;
         }
         finally
         {
@@ -397,15 +402,16 @@ public class Utilities
         }
     }
 
-    public static boolean updateSchedule(ActionEvent event, Time startHour, Time endHour)
+    public static boolean updateSchedule(ActionEvent event,int employeeID, Time startHour, Time endHour)
     {
         boolean update = false;
         try
         {
             connection();
-            preparedStatement = connection.prepareStatement("UPDATE Schedule SET StartHour = ?, EndHour = ?");
+            preparedStatement = connection.prepareStatement("UPDATE Schedule SET StartHour = ?, EndHour = ? WHERE EmployeeID = ?");
             preparedStatement.setTime(1, startHour);
             preparedStatement.setTime(2, endHour);
+            preparedStatement.setInt(3, employeeID);
             preparedStatement.executeUpdate();
             return update = true;
         }
@@ -1380,5 +1386,5 @@ public class Utilities
             closeConnection();
         }
     }
-    
+
 }
