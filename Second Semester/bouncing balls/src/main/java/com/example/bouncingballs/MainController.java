@@ -19,6 +19,7 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable
@@ -30,39 +31,74 @@ public class MainController implements Initializable
     BorderPane backPane;
     @FXML
     AnchorPane bottomBorder;
-    BouncingCircle circle;
+    ArrayList<BouncingCircle> circles = new ArrayList<>();
+    double distanceX = 0;
+    double distanceY = 0;
+    double distanceBetweenCenter = 0;
 
     @FXML
-    public void press(MouseEvent event)
+    public boolean press(MouseEvent event)
     {
-        circle = new BouncingCircle(event.getX(), event.getY(), 150);
-        circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
-        mainPane.getChildren().add(circle);
-//        circle.setCenterY(50);
+        BouncingCircle circle;
+        if (!circles.isEmpty())
+        {
+            for (BouncingCircle c:circles)
+            {
+                if(c.getCenterX() >= event.getX())
+                {
+                    distanceX = c.getCenterX() - event.getX();
+                }
+                else
+                {
+                    distanceX = event.getX() - c.getCenterX();
+                }
+                if(c.getCenterY() >= event.getY())
+                {
+                    distanceY = c.getCenterY() - event.getY();
+                }
+                else
+                {
+                    distanceY = event.getY() - c.getCenterY();
+                }
+                distanceBetweenCenter = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
+                if(distanceBetweenCenter <= 215)
+                {
+                    distanceBetweenCenter = 0;
+                    return false;
+                }
+            }
+            if(distanceBetweenCenter > 215)
+            {
+                circle = new BouncingCircle(event.getX(), event.getY(), 150);
+                circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
+                circles.add(circle);
+                mainPane.getChildren().add(circle);
+                distanceBetweenCenter = 0;
+            }
+            return true;
+        }
+        else
+        {
+            circle = new BouncingCircle(event.getX(), event.getY(), 150);
+            circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
+            mainPane.getChildren().add(circle);
+            circles.add(circle);
+        }
+        return true;
     }
-
-
-
 
     @FXML
     public void bounce()
     {
-//        circle.setCenterY(circle.getCenterY() + circle.getSpeed());
-
         final Timeline loop = new Timeline(new KeyFrame(Duration.millis(10), new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
-                if(circle != null)
+            public void handle(ActionEvent event)
+            {
+                if(!circles.isEmpty())
                 {
-                    circle.setCenterY(circle.getCenterY() + circle.getSpeed());
-                    final Bounds bounds = backPane.getBoundsInLocal();
-                    final boolean atRightBorder = circle.getLayoutX() >= (bounds.getMaxX() - circle.getRadius());
-                    final boolean atLeftBorder = circle.getLayoutX() <= (bounds.getMinX() + circle.getRadius());
-                    final boolean atBottomBorder = circle.getLayoutY() >= (bounds.getMaxY() - circle.getRadius());
-                    final boolean atTopBorder = circle.getLayoutY() <= (bounds.getMinY() + circle.getRadius());
-                    if (atBottomBorder || atTopBorder)
+                    for (BouncingCircle c: circles)
                     {
-                        circle.setSpeed(circle.getSpeed()*-1);
+                        c.run();
                     }
                 }
             }
