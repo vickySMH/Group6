@@ -3,12 +3,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Stylesheets/ball.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bouncingballs.MainController">
+<BorderPane fx:id="backPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bouncingballs.MainController">
    <top>
       <AnchorPane prefHeight="0.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
    </top>
    <bottom>
-      <AnchorPane prefHeight="20.0" prefWidth="600.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="bottomBorder" prefHeight="20.0" prefWidth="600.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
    </bottom>
    <right>
       <AnchorPane prefHeight="0.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
