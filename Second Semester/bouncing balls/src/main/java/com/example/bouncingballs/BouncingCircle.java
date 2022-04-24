@@ -4,33 +4,53 @@ import javafx.scene.shape.Circle;
 
 public class BouncingCircle extends Circle implements Runnable
 {
-    private double speed = 2;
+    private double deltaX = 0.3;
+    private double deltaY = 5;
     BouncingCircle(double x, double y, int radius)
     {
         super(x,y,radius);
     }
 
-    public double getSpeed()
+    public double getDeltaY()
     {
-        return speed;
+        return deltaY;
     }
 
-    public void setSpeed(double speed)
+    public void setDeltaY(double deltaY)
     {
-        this.speed = speed;
+        this.deltaY = deltaY;
+    }
+
+    public double getDeltaX()
+    {
+        return deltaX;
+    }
+
+    public void setDeltaX(double deltaX)
+    {
+        this.deltaX = deltaX;
     }
 
     @Override
     public void run()
     {
-        setCenterY(getCenterY() + speed);
-        if(getCenterY() >= 690)
+        setCenterY(getCenterY() + deltaY);
+        setCenterX(getCenterX() + deltaX);
+        if(getCenterY() >= 680)
         {
-            speed *=-1;
+            deltaY *=-1;
         }
         if(getCenterY() < 100)
         {
-            speed *=-1;
+            deltaY *=-1;
+        }
+        if(getCenterX() > 100)
+        {
+            deltaX *=-1;
+        }
+        if(getCenterX() < 1500)
+        {
+            deltaX *=-1;
         }
     }
 }

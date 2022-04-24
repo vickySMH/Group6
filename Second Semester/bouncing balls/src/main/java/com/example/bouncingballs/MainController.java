@@ -63,26 +63,27 @@ public class MainController implements Initializable
                 distanceBetweenCenter = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
                 if(distanceBetweenCenter <= 215)
                 {
-                    distanceBetweenCenter = 0;
                     return false;
                 }
             }
-            if(distanceBetweenCenter > 215)
+            if(distanceBetweenCenter > 215 && (event.getY() > 100 && event.getY() < 690))
             {
                 circle = new BouncingCircle(event.getX(), event.getY(), 150);
                 circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
                 circles.add(circle);
                 mainPane.getChildren().add(circle);
-                distanceBetweenCenter = 0;
             }
             return true;
         }
         else
         {
-            circle = new BouncingCircle(event.getX(), event.getY(), 150);
-            circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
-            mainPane.getChildren().add(circle);
-            circles.add(circle);
+            if(event.getY() > 100 && event.getY() < 690)
+            {
+                circle = new BouncingCircle(event.getX(), event.getY(), 150);
+                circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
+                mainPane.getChildren().add(circle);
+                circles.add(circle);
+            }
         }
         return true;
     }
@@ -99,6 +100,33 @@ public class MainController implements Initializable
                     for (BouncingCircle c: circles)
                     {
                         c.run();
+                        for(BouncingCircle c1: circles)
+                        {
+                            if(c.getCenterX() >= c1.getCenterX())
+                            {
+                                distanceX = c.getCenterX() - c1.getCenterX();
+                            }
+                            else
+                            {
+                                distanceX = c1.getCenterX() - c.getCenterX();
+                            }
+                            if(c.getCenterY() >= c1.getCenterY())
+                            {
+                                distanceY = c.getCenterY() - c1.getCenterY();
+                            }
+                            else
+                            {
+                                distanceY = c1.getCenterY() - c.getCenterY();
+                            }
+                            distanceBetweenCenter = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
+                            if(distanceBetweenCenter <= 215)
+                            {
+                                c.setDeltaY(c.getDeltaY()*(-1));
+                                c1.setDeltaY(c1.getDeltaY()*(-1));
+                                c1.setDeltaX(c1.getDeltaX()*(-1));
+                                c.setDeltaX(c.getDeltaX()*(-1));
+                            }
+                        }
                     }
                 }
             }
