@@ -75,6 +75,10 @@ public class MainController implements Initializable
                 {
                     circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
                 }
+                else
+                {
+                    circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/968076995047088218/k.png?width=934&height=934')");
+                }
                 ++ballCounter;
                 circles.add(circle);
                 mainPane.getChildren().add(circle);
@@ -89,10 +93,6 @@ public class MainController implements Initializable
                 if(ballCounter % 2 == 0)
                 {
                     circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
-                }
-                else
-                {
-                    circle.setStyle("-fx-fill: url('https://media.discordapp.com/attachments/883248953666199625/968067924600434738/Lovepik_com-401246548-basketball.png')");
                 }
                 ++ballCounter;
                 mainPane.getChildren().add(circle);
