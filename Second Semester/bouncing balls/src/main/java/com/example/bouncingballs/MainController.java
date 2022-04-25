@@ -35,6 +35,8 @@ public class MainController implements Initializable
     double distanceX = 0;
     double distanceY = 0;
     double distanceBetweenCenter = 0;
+    double topLine = 708, bottomLine = 65, leftLine = 67, rightLine = 1390;
+    int ballCounter = 0;
 
     @FXML
     public boolean press(MouseEvent event)
@@ -61,15 +63,19 @@ public class MainController implements Initializable
                     distanceY = event.getY() - c.getCenterY();
                 }
                 distanceBetweenCenter = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
-                if(distanceBetweenCenter <= 215)
+                if(distanceBetweenCenter <= 140)
                 {
                     return false;
                 }
             }
-            if(distanceBetweenCenter > 215 && (event.getY() > 100 && event.getY() < 690))
+            if(distanceBetweenCenter > 140 && (event.getY() > bottomLine && event.getY() < topLine) && (event.getX() <= rightLine && event.getX() > leftLine))
             {
-                circle = new BouncingCircle(event.getX(), event.getY(), 150);
-                circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
+                circle = new BouncingCircle(event.getX(), event.getY(), 100);
+                if(ballCounter % 2 == 0)
+                {
+                    circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
+                }
+                ++ballCounter;
                 circles.add(circle);
                 mainPane.getChildren().add(circle);
             }
@@ -77,10 +83,18 @@ public class MainController implements Initializable
         }
         else
         {
-            if(event.getY() > 100 && event.getY() < 690)
+            if(event.getY() > bottomLine && event.getY() < topLine && event.getX() <= rightLine && event.getX() > leftLine)
             {
-                circle = new BouncingCircle(event.getX(), event.getY(), 150);
-                circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
+                circle = new BouncingCircle(event.getX(), event.getY(), 100);
+                if(ballCounter % 2 == 0)
+                {
+                    circle.setStyle("-fx-fill: url('https://media.discordapp.net/attachments/883248953666199625/966633139126534164/unknown.png?width=934&height=934')");
+                }
+                else
+                {
+                    circle.setStyle("-fx-fill: url('https://media.discordapp.com/attachments/883248953666199625/968067924600434738/Lovepik_com-401246548-basketball.png')");
+                }
+                ++ballCounter;
                 mainPane.getChildren().add(circle);
                 circles.add(circle);
             }
@@ -119,12 +133,32 @@ public class MainController implements Initializable
                                 distanceY = c1.getCenterY() - c.getCenterY();
                             }
                             distanceBetweenCenter = Math.sqrt(distanceX*distanceX + distanceY*distanceY);
-                            if(distanceBetweenCenter <= 215)
+                            if(distanceBetweenCenter <= 140)
                             {
                                 c.setDeltaY(c.getDeltaY()*(-1));
                                 c1.setDeltaY(c1.getDeltaY()*(-1));
-                                c1.setDeltaX(c1.getDeltaX()*(-1));
-                                c.setDeltaX(c.getDeltaX()*(-1));
+                                if(c.getCenterX() < c1.getCenterX())
+                                {
+                                    if(c.getDeltaX() > 0 && c.getCenterX() > leftLine)
+                                    {
+                                        c.setDeltaX(c.getDeltaX() * (-1));
+                                        if(c1.getDeltaX() < 0 && c1.getCenterX() < rightLine)
+                                        {
+                                            c1.setDeltaX(c.getDeltaX() * (-1));
+                                        }
+                                    }
+                                }
+                                if(c.getCenterX() > c1.getCenterX())
+                                {
+                                    if(c.getDeltaX() < 0 && c.getCenterX() < rightLine)
+                                    {
+                                        c.setDeltaX(c.getDeltaX()* (-1));
+                                        if(c1.getDeltaX() > 0 && c.getCenterX() > leftLine)
+                                        {
+                                            c1.setDeltaX(c1.getDeltaX() *(-1));
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
