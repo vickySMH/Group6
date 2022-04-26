@@ -1,7 +1,29 @@
-.ball-wrapper {
+* {
+    box-sizing: border-box;
+    background-color: cornsilk;
+}
+
+@media (max-width: 600px) {
+    .row {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+}
+
+.ball-wrapper, .ball-wrapper1 {
     height: 200px;
     position: relative;
+    z-index: 1;
 }
+
+.ball-wrapper:not(:first-child), .ball-wrapper1:not(:first-child){
+    margin: 400px 0 400px 0;
+}
+
+.ball-wrapper:last-child, .ball-wrapper1:last-child {
+    margin-bottom: 0;
+}
+
 .ball {
     width: 100px;
     height: 100px;
@@ -44,6 +66,51 @@
     }
 }
 
-.text {
+.football {
+    background: url(http://upload.wikimedia.org/wikipedia/en/e/ec/Soccer_ball.svg);
+    background-size: 100px 100px;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    animation: bounce .5s cubic-bezier(.8, -.5, .2, 1.4) infinite alternate;
+}
+
+p {
     margin-bottom: 20px;
 }
+
+img {
+    margin-bottom: 70px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header {
+    text-align: center;
+    font-size: 25px;
+    width: available;
+    padding: 10px;
+}
+
+.row {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.column {
+    padding: 10px;
+}
+
+.column.side {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.column.middle {
+    -webkit-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+}
+
