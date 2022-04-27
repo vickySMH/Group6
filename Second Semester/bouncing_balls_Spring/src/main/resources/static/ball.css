@@ -114,3 +114,13 @@ header {
     flex: 2;
 }
 
+a
+{
+    text-decoration: none;
+    text-align: center;
+}
+
+a:hover
+{
+    color: lightskyblue;
+}
