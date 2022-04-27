@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="ball.css">
+    <script src="../../static/js/index.js" th:src="@{js/index.js}"></script>
     <meta charset="UTF-8">
     <title>Bouncing ball documentation</title>
 </head>
 <body>
 <header>
     <h1 style="text-align: center">Project documentation</h1>
-    <p style="text-align: center">Today 21.04.2022 we started our project</p>
+    <p style="text-align: center"></p>
 </header>
 <div class="row">
     <div class="column side">
@@ -18,18 +19,27 @@
         </div>
     </div>
     <div class="column middle">
-        <p class="explanation" style="text-align: center">ojg;sdkroidxghvosdltugperthaprehyryha'egh\rdor\h\oh
-            <br>yuydfuyfutfjhjkhguiyfgiufgiufouguipgh</p>
+        <p class="explanation" style="text-align: center">First of all we would like to spawn a ball to start bouncing,
+            this we do with the following function - Press</p>
         <img src="../../static/images/press_1.png" height="700" width="800" class="screenshot" th:src="@{images/press_1.png}" alt="press function">
-        <p class="explanation" style="text-align: center">ojg;sdkroidxghvosdltugperthaprehyryha'egh\rdor\h\oh
-            <br>yuydfuyfutfjhjkhguiyfgiufgiufouguipgh</p>
+        <p class="explanation" style="text-align: center">In this part of the function we are looking out for other
+            balls in order to avoid spawning a ball inside of another ball, this we do by using the
+            Pythagorean theorem to find the distance between an already spawned ball and
+            the position of the click if it is less than 140 pixels a new ball would not be spawned.</p>
         <img src="../../static/images/press_2.png" height="700" width="1250"class="screenshot"  th:src="@{images/press_2.png}" alt="press function">
-        <p class="explanation" style="text-align: center">ojg;sdkroidxghvosdltugperthaprehyryha'egh\rdor\h\oh
-            <br>yuydfuyfutfjhjkhguiyfgiufgiufouguipgh</p>
+        <p class="explanation" style="text-align: center">In this part of the function we check for collisions with the walls, so as not to spawn a ball inside of a wall
+            after that we create an object of the threaded class then we have a simple if to
+            check whether the number of balls is even, if it is we would like to spawn a ball that looks like a football
+            and if it is not we would like to spawn a ball that looks like a basketball
+            then we add to the counter of the balls and add them inside of an array list storing all balls.</p>
         <img src="../../static/images/bounce_1.png" height="700" width="900"class="screenshot"  th:src="@{images/bounce_1.png}" alt="bounce function">
-        <p class="explanation" style="text-align: center">ojg;sdkroidxghvosdltugperthaprehyryha'egh\rdor\h\oh
-            <br>yuydfuyfutfjhjkhguiyfgiufgiufouguipgh</p>
+        <p class="explanation" style="text-align: center">Here you can see the use for the array list.
+            First we check if the array list is empty, if it is not we start to do checks for all the balls stored inside of the array list.
+            We do that by comparing one ball with every other ball inside fo the array list, this is done with a nested for each loop.
+            Again we need the distance between the balls in order for us to see if they touch or not.
+        </p>
         <img src="../../static/images/bounce_2.png" height="700" width="800"class="screenshot"  th:src="@{images/bounce_2.png}" alt="bounce function">
+        <p class="explanation" style="text-align: center">If the balls touch each other they bounce off one another in directions different than the one they were going towards.</p>
     </div>
     <div class="column side">
         <div class="ball-wrapper1">
@@ -38,6 +48,5 @@
         </div>
     </div>
 </div>
-<script src="../../static/js/index.js" th:src="@{js/index.js}"></script>
 </body>
 </html>
