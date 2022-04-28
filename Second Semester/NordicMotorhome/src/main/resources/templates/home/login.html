@@ -2,25 +2,25 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" href = "index.css">
+	<title>Login</title>
+	<link href="login.css" rel="stylesheet" type="text/css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
-	<title>Nordic Motorhome</title>
 </head>
 <body>
-	<header>
+		<header>
 		<a>
 		<div class="spinner">
-        	<img width= "45px" height="60" src="../../../../../../../../../New%20folder/motorhome/svg/wheel.svg" th:src="@{svg/wheel.svg}" alt="circle" class="spin">
+        	<img width= "45px" height="60" src="wheel.svg" alt="circle" class="spin">
 		</div>
 		<h1>Nordic Motorhome</h1>
 		</a>
 		<nav>
-		  	<a><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" th:xmlns:xlink="@{http://www.w3.org/1999/xlink}" x="0px" y="-30px"
+		  	<a><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="-30px"
 	 width="30px" height="30px" viewBox="0 0 457.508 457.508" style="enable-background:new 0 0 457.508 457.508; position: relative; top:-9px; padding: 10px;" xml:space="preserve">
 	<g>
 	<path d="M199.671,242.677c66.985,0,121.319-54.353,121.319-121.271C320.99,54.363,266.666,0,199.671,0
@@ -35,54 +35,26 @@
 		s-9.41-4.207-9.41-9.399v-31.355l-31.354-0.01c-5.202,0.01-9.41-4.197-9.4-9.391c0-5.201,4.207-9.409,9.4-9.409h31.364v-31.355
 		c0-5.192,4.208-9.399,9.4-9.391c5.183,0,9.399,4.198,9.409,9.4v31.346h31.346c5.192,0,9.4,4.208,9.41,9.41
 			 C402.53,386.976,398.322,391.183,393.13,391.183z"/></g></svg></a>
-			<a><svg width="30px" height="30px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" th:xmlns:xlink="@{http://www.w3.org/2000/svg}" class="icon"><path d="M14 10L8 5v3H1v4h7v3l6-5zm3 7H9v2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2H9v2h8v14z"/></svg></a>
+			<svg width="30px" height="30px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="icon currentClicked"><path d="M14 10L8 5v3H1v4h7v3l6-5zm3 7H9v2h8c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2H9v2h8v14z"/></svg>
 		</nav>
 	</header>
 	<div name = "leftside" class="leftside">
-		<p class="currentClicked">Home</p>
+		<a><p>Home</p></a>
 		<a><p>About us</p></a>
 	</div>
-	<div class="slideshow-container">
-
-  	<!-- Full-width images with number and caption text -->
-  	<div class="mySlides fade">
-    	<div class="numbertext">1 / 3</div>
-    	<a>
-    	  <img src="../../../../../../../../../New%20folder/motorhome/svg/img1.jpeg" th:src="@{svg/img1.PNG}" style="width:100%">
-   		</a>
-    <div class="text"></div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
-    <a href="aboutproduct.html">
-      <img src="../../../../../../../../../New%20folder/motorhome/svg/img2.PNG" th:src="@{svg/img2.PNG}" style="width:100%">
-    </a>
-    <div class="text"></div>
-  </div>
-
-  <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
-    <a href="aboutus.html">
-      <img src="../../../../../../../../../New%20folder/motorhome/svg/img3.PNG" th:src="@{svg/img3.PNG}" style="width:100%">
-    </a>
-    <div class="text"></div>
-  </div>
-
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>
-
-<!-- The dots/circles -->
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-	<script>var slideIndex = 1;</script><script src="../../../../../../../../../New%20folder/motorhome/javaScript/movement.js" th:src="@{javaScript/movement.js}"></script>
-	</div>
 	<main>
+		<h2>Login</h2>
+		<form>
+			<label>Username</label>
+			<input type = "text">
+			<br>
+			<br>
+			<label>Password</label>
+			<input class="password" type="password">
+		</form>
+		<br>
+		<button type="submit" class="button" style="vertical-align:middle"><span>Submit </span></button>
+		<p>Don't have an account?</p><a><p class="hyperlink">Register</p></a>
 	</main>
 </body>
 </html>
