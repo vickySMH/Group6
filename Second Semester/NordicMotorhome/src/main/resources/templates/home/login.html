@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Login</title>
-	<link href="login.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="../../static/login.css" type="text/css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
 <header>
 	<a>
 		<div class="spinner">
-			<img width= "45px" height="60" src="wheel.svg" alt="circle" class="spin">
+			<img width= "45px" height="60" src="../../static/svg/wheel.svg" alt="circle" class="spin" th:src="@{svg/wheel.svg}"">
 		</div>
 		<h1>Nordic Motorhome</h1>
 	</a>
@@ -42,7 +42,7 @@
 	<a><p>Home</p></a>
 	<a><p>About us</p></a>
 </div>
-<main>
+	<main>
 	<h2>Login</h2>
 	<form>
 		<label>Username</label>
@@ -55,6 +55,6 @@
 	<br>
 	<button type="submit" class="button" style="vertical-align:middle"><span>Submit </span></button>
 	<p>Don't have an account?</p><a><p class="hyperlink">Register</p></a>
-</main>
+	</main>
 </body>
 </html>
