@@ -32,11 +32,17 @@ header
 	padding-left: 20px;
 }
 
+a
+{
+	text-decoration: none;
+	color: #fca311;
+}
+
 nav
 {
 	position: absolute;
 	top:30px;
-	right: 28px;
+	right: 25px;
 }
 .icon
 {
@@ -102,6 +108,11 @@ a:hover
 	cursor: pointer;
 }
 
+svg
+{
+	fill: #fca311;
+}
+
 .currentClicked
 {
 	color: #AD6B01;
@@ -131,6 +142,7 @@ h1
 {
 	display: inline-block;
 	padding-left: 85px;
+	color: #fca311;
 }
 h2
 {
