@@ -19,4 +19,6 @@ public class HomeController
         return "home/login";
     }
 
+    @GetMapping("/register")
+    public String register(Model model) {return "home/register";}
 }

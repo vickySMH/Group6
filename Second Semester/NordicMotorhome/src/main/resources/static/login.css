@@ -88,6 +88,8 @@ p
 {
 	display: grid;
 	align-items: center;
+	position: absolute;
+	left:22px;
 }
 
 a:hover > .spinner .spin
@@ -130,12 +132,6 @@ img
 	position: absolute;
 	top: 14px;
 	padding-left: 15px;
-}
-
-.spinner
-{
-	position: absolute;
-	left:22px;
 }
 
 h1

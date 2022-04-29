@@ -2,24 +2,40 @@
 /* CSS Document */
 
 html, body {
-    max-width: 100%;
     overflow-x: hidden;
+}
+
+label
+{
+    font-family: 'Montserrat', sans-serif;
+    color: #7F7E7E;
+}
+
+.password
+{
+    margin-left: 5px;
 }
 
 header
 {
     margin: 0 -600.5rem;
     position: sticky;
-    z-index: 1;
+    z-index:1;
     border-left: 600rem solid #14213d;
     border-right: 600rem solid #14213d;
     background-color: #14213d;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
-    top: 0px;
+    top:0px;
     color: #fca311;
     fill: #fca311;
     padding-left: 20px;
+}
+
+a
+{
+    text-decoration: none;
+    color: #fca311;
 }
 
 nav
@@ -33,10 +49,6 @@ nav
     margin-bottom: 20px;
 }
 
-.password
-{
-}
-
 body
 {
     position: relative;
@@ -46,11 +58,12 @@ body
     margin-bottom: 0px;
     margin-left: 0px;
 }
+
 main
 {
-    position: relative;
-    top:150px;
     text-align: center;
+    margin-left: 30px ;
+    margin-top: 200px;
 }
 
 .leftside
@@ -61,7 +74,7 @@ main
     top: 88px;
     left: 0px;
     width: 100px;
-    height: 300%;
+    height: 100%;
     color: #fca311;
 }
 
@@ -75,13 +88,13 @@ p
 {
     display: grid;
     align-items: center;
-    position: absolute;
+    /*position: absolute;*/
     left:22px;
 }
 
 a:hover > .spinner .spin
 {
-    left: 15px;
+    left: 35px;
     padding: 0 0;
     animation-name: rotate;
     animation-duration: 1s;
@@ -95,6 +108,11 @@ a:hover
     color: #AD6B01;
     fill: #AD6B01;
     cursor: pointer;
+}
+
+svg
+{
+    fill: #fca311;
 }
 
 .currentClicked
@@ -116,17 +134,70 @@ img
     padding-left: 15px;
 }
 
-
 h1
 {
     display: inline-block;
     padding-left: 85px;
     color: #fca311;
 }
-
-svg
+h2
 {
-    fill: #fca311;
+    font-family: 'Montserrat', sans-serif;
+    color: #fca311;
+}
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #fca311;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -10px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 15px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+main
+{
+    top:250px;
+}
+
+.hyperlink
+{
+    color: #fca311;
+}
+.hyperlink:hover
+{
+    color: #AD6B01;
 }
 
 @keyframes rotate
