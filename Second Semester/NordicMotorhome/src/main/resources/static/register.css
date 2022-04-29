@@ -88,13 +88,13 @@ p
 {
     display: grid;
     align-items: center;
-    /*position: absolute;*/
+    position: absolute;
     left:22px;
 }
 
 a:hover > .spinner .spin
 {
-    left: 35px;
+    left: 15px;
     padding: 0 0;
     animation-name: rotate;
     animation-duration: 1s;
@@ -198,6 +198,16 @@ main
 .hyperlink:hover
 {
     color: #AD6B01;
+}
+
+input
+{
+    background-color: #f5f5f5;
+}
+
+.confirm
+{
+    margin-right: 68px;
 }
 
 @keyframes rotate

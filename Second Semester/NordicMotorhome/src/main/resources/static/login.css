@@ -115,6 +115,11 @@ svg
 	fill: #fca311;
 }
 
+svg:hover
+{
+	fill:#AD6B01;
+}
+
 .currentClicked
 {
 	color: #AD6B01;
@@ -198,6 +203,11 @@ main
 .hyperlink:hover
 {
 	color: #AD6B01;
+}
+
+input
+{
+	background-color: #f5f5f5;
 }
 
 @keyframes rotate
