@@ -19,6 +19,13 @@ public class HomeController
         return "home/login";
     }
 
+    @GetMapping("/aboutUs")
+    public String aboutUs(Model model)
+    {
+        return "home/aboutUs";
+    }
+
+
     @GetMapping("/register")
     public String register(Model model) {return "home/register";}
 }

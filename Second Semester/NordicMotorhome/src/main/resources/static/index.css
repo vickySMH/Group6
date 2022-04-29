@@ -129,6 +129,13 @@ svg
     fill: #fca311;
 }
 
+a
+{
+    text-decoration: none;
+    color: #fca311;
+}
+
+
 @keyframes rotate
 {
     0%
