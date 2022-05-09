@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href = "loggedin.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+	<title>Nordic Motorhome</title>
+</head>
+<body>
+	<header>
+		<a href="/loggedin">
+		<div class="spinner">
+        	<img width= "45px" height="60" src="../../../../../../../../../New%20folder/motorhome/svg/wheel.svg" th:src="@{svg/wheel.svg}" alt="circle" class="spin">
+		</div>
+		<h1>Nordic Motorhome</h1>
+		</a>
+		<nav>
+			<a href="/account"><svg width="30px" height="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 viewBox="0 0 258.75 258.75" style="enable-background:new 0 0 258.75 258.75;" xml:space="preserve">
+				<circle cx="129.375" cy="60" r="60"/>
+				<path d="M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z"/>
+			</svg></a>
+		</nav>
+	</header>
+	<div name = "leftside" class="leftside">
+		<p class="currentClicked">Home</p>
+		<a href="/aboutUs"><p>About us</p></a>
+		<a href="/FAQ"><p>FAQ</p></a>
+	</div>
+	<main>
+		<h2>Welcome, <span th:text="${username}"/></h2>
+		<div class = "controls">
+			<div class="add">
+				<a href="/addBooking"><svg width="120px" height="120px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 viewBox="0 0 455 455" style="enable-background:new 0 0 120 120;" xml:space="preserve">
+					<polygon points="455,212.5 242.5,212.5 242.5,0 212.5,0 212.5,212.5 0,212.5 0,242.5 212.5,242.5 212.5,455 242.5,455 242.5,242.5
+					455,242.5 "/>
+				</svg></a>
+				<p>Add</p>
+			</div>
+			<div class="view">
+				<a href="/viewBooking"><svg height="120px" width="120px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 viewBox="0 0 445 445" style="enable-background:new 0 0 120 120;" xml:space="preserve">
+					<path d="M0,37.215v55v15v300.57h445v-300.57v-15v-55H0z M276.667,277.595H168.333v-70.19h108.334V277.595z M306.667,207.405H415
+						v70.19H306.667V207.405z M276.667,307.595v70.19H168.333v-70.19H276.667z M30,207.405h108.333v70.19H30V207.405z M168.333,177.405
+						v-70.19h108.334v70.19H168.333z M138.333,107.215v70.19H30v-70.19H138.333z M30,307.595h108.333v70.19H30V307.595z M306.667,377.785
+						v-70.19H415v70.19H306.667z M415,177.405H306.667v-70.19H415V177.405z"/>
+				</svg></a>
+				<p>View</p>
+			</div>
+			<div class="update">
+				<a href="/updateBooking"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+					 width="120px" height="120px" viewBox="0 0 52 52" enable-background="new 0 0 120 120" xml:space="preserve">
+					<path d="M40.8,7.7C40.8,7.7,40.8,7.7,40.8,7.7"/>
+					<path d="M17.2,11.6h17.6c0.9,0,1.6-0.7,1.6-1.6V6.8c0-2.6-2.2-4.8-4.8-4.8H20.4c-2.6,0-4.8,2.2-4.8,4.8V10
+							C15.6,10.9,16.3,11.6,17.2,11.6z"/>
+					<path d="M43.6,6H42c-0.5,0-0.8,0.3-0.8,0.8V10c0,3.5-2.9,6.4-6.4,6.4H17.2c-3.5,0-6.4-2.9-6.4-6.4V6.8
+							C10.8,6.3,10.5,6,10,6H8.4c-2.6,0-4.8,2.2-4.8,4.8v34.4c0,2.6,2.2,4.8,4.8,4.8h35.2c2.6,0,4.8-2.2,4.8-4.8V10.8
+							C48.4,8.2,46.2,6,43.6,6z M34,30.4L21.2,43.2h0l-5.6,1.6c-0.5,0.1-1-0.4-0.9-0.9l1.6-5.5l12.8-12.8c0.2-0.2,0.5-0.2,0.7,0l4.1,4.2
+							C34.2,29.9,34.2,30.2,34,30.4z M37.7,26.7l-1.6,1.6c-0.2,0.2-0.5,0.2-0.7,0l-4.2-4.2c-0.2-0.2-0.2-0.5,0-0.7l1.6-1.6
+							c0.7-0.8,2-0.8,2.7,0l2.1,2.1C38.5,24.7,38.5,25.9,37.7,26.7z"/>
+				</svg></a>
+				<p>Update</p>
+			</div>
+			<div class="remove">
+				<a href="/removeBooking"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					 width="120px" height="120px" viewBox="0 0 94.926 94.926" style="enable-background:new 0 0 120 120;"
+					 xml:space="preserve">
+					<path d="M55.931,47.463L94.306,9.09c0.826-0.827,0.826-2.167,0-2.994L88.833,0.62C88.436,0.224,87.896,0,87.335,0
+						c-0.562,0-1.101,0.224-1.498,0.62L47.463,38.994L9.089,0.62c-0.795-0.795-2.202-0.794-2.995,0L0.622,6.096
+						c-0.827,0.827-0.827,2.167,0,2.994l38.374,38.373L0.622,85.836c-0.827,0.827-0.827,2.167,0,2.994l5.473,5.476
+						c0.397,0.396,0.936,0.62,1.498,0.62s1.1-0.224,1.497-0.62l38.374-38.374l38.374,38.374c0.397,0.396,0.937,0.62,1.498,0.62
+						s1.101-0.224,1.498-0.62l5.473-5.476c0.826-0.827,0.826-2.167,0-2.994L55.931,47.463z"/>
+				</svg></a>
+				<p>Remove</p>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
