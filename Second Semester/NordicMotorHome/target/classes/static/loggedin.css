@@ -6,6 +6,18 @@ html, body {
     overflow-x: hidden;
 }
 
+th:text
+{
+    margin-left: 40px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2
+{
+    margin-left: 130px;
+    font-family: 'Montserrat', sans-serif;
+}
+
 header
 {
     margin: 0 -600.5rem;
