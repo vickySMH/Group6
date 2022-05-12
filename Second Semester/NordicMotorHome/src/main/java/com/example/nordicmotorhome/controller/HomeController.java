@@ -53,7 +53,7 @@ public class HomeController
                 return "home/loggedin";
             }
         }
-        return null;
+        return "home/login";
     }
 
     @GetMapping("/update")
