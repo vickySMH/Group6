@@ -34,4 +34,7 @@ public class BookKeeperController
         return "home/addContinue";
     }
 
+    @GetMapping("/remove")
+    public String remove(Model model) {return "home/removeBooking";}
+
 }

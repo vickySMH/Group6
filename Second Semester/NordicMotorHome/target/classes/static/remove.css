@@ -1,38 +1,25 @@
+@charset "UTF-8";
+/* CSS Document */
+
 html, body {
+    max-width: 100%;
     overflow-x: hidden;
-}
-
-label
-{
-    font-family: 'Montserrat', sans-serif;
-    color: #7F7E7E;
-}
-
-.password
-{
-    margin-left: 5px;
 }
 
 header
 {
     margin: 0 -600.5rem;
     position: sticky;
-    z-index:1;
+    z-index: 1;
     border-left: 600rem solid #14213d;
     border-right: 600rem solid #14213d;
     background-color: #14213d;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
-    top:0px;
+    top: 0px;
     color: #fca311;
     fill: #fca311;
     padding-left: 20px;
-}
-
-a
-{
-    text-decoration: none;
-    color: #fca311;
 }
 
 nav
@@ -46,6 +33,10 @@ nav
     margin-bottom: 20px;
 }
 
+.password
+{
+}
+
 body
 {
     position: relative;
@@ -55,12 +46,11 @@ body
     margin-bottom: 0px;
     margin-left: 0px;
 }
-
 main
 {
     text-align: center;
-    margin-left: 30px ;
-    margin-top: 200px;
+    margin-top: 100px;
+    margin-left: 100px;
 }
 
 .leftside
@@ -71,7 +61,7 @@ main
     top: 88px;
     left: 0px;
     width: 100px;
-    height: 100%;
+    height: 300%;
     color: #fca311;
 }
 
@@ -107,16 +97,6 @@ a:hover
     cursor: pointer;
 }
 
-svg
-{
-    fill: #fca311;
-}
-
-svg:hover
-{
-    fill:#AD6B01;
-}
-
 .currentClicked
 {
     color: #AD6B01;
@@ -136,35 +116,29 @@ img
     padding-left: 15px;
 }
 
+
 h1
 {
     display: inline-block;
     padding-left: 85px;
     color: #fca311;
 }
-h2
+
+svg
 {
-    font-family: 'Montserrat', sans-serif;
+    fill: #fca311;
+}
+
+a
+{
+    text-decoration: none;
     color: #fca311;
 }
 
-main
-{
-    top:250px;
-}
 
-.hyperlink
+svg:hover
 {
-    color: #fca311;
-}
-.hyperlink:hover
-{
-    color: #AD6B01;
-}
-
-input
-{
-    background-color: #f5f5f5;
+    fill:#AD6B01;
 }
 
 @keyframes rotate
@@ -177,6 +151,21 @@ input
     {
         transform: rotate(360deg);
     }
+}
+
+h2{
+    font-family: 'Montserrat', sans-serif;
+    color: #fca311;
+}
+
+input{
+    background-color: #f5f5f5;
+}
+
+label
+{
+    font-family: 'Montserrat', sans-serif;
+    color: #7F7E7E;
 }
 
 
@@ -193,4 +182,29 @@ input
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
+}
+
+
+table {
+    width: 100%;
+    margin-top: 80px;
+    border-collapse: collapse;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hidden{
+    display: none;
+}
+
+
+.table-header {
+    background-color: #fca311;
+    color: #14213d;
+    font-size: 16px;
+}
+
+th, td {
+    height: 40px;
+    border: 1px solid #14213d;
+    font-size: 14px;
 }
