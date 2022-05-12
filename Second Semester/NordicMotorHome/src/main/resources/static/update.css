@@ -2,8 +2,13 @@
 
 html, body
 {
-    max-width: 100%;
     overflow-x: hidden;
+}
+
+label
+{
+    font-family: 'Montserrat', sans-serif;
+    color: #7F7E7E;
 }
 
 header
@@ -34,9 +39,6 @@ nav
     margin-bottom: 20px;
 }
 
-.password
-{
-}
 
 body
 {
@@ -50,9 +52,9 @@ body
 
 main
 {
-    position: relative;
-    top: 150px;
     text-align: center;
+    margin-left: 30px ;
+    margin-top: 200px;
 }
 
 .leftside
@@ -123,6 +125,12 @@ h1
     color: #fca311;
 }
 
+h2
+{
+    font-family: 'Montserrat', sans-serif;
+    color: #fca311;
+}
+
 svg
 {
     fill: #fca311;
@@ -139,6 +147,22 @@ svg:hover
     fill: #AD6B01;
 }
 
+input
+{
+    background-color: #f5f5f5;
+}
+table, th, td
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.centre
+{
+    margin-right: auto;
+    margin-left: auto;
+}
+
 @keyframes rotate
 {
     0%
@@ -150,3 +174,4 @@ svg:hover
         transform: rotate(360deg);
     }
 }
+

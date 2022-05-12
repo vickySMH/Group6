@@ -35,6 +35,12 @@ public class HomeController
         return "home/aboutUs";
     }
 
+    @GetMapping("/faqs")
+    public String faqs(Model model)
+    {
+        return "home/faqs";
+    }
+
 
     @GetMapping("/register")
     public String register(Model model) {return "home/register";}

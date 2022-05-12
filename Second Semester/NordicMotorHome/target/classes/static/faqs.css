@@ -8,12 +8,12 @@ html, body
 
 header
 {
+    background-color: #14213d;
     margin: 0 -600.5rem;
     position: sticky;
     z-index: 1;
     border-left: 600rem solid #14213d;
     border-right: 600rem solid #14213d;
-    background-color: #14213d;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     top: 0px;
@@ -25,17 +25,13 @@ header
 nav
 {
     position: absolute;
-    top:30px;
+    top: 30px;
     right: 25px;
 }
 
 .icon
 {
     margin-bottom: 20px;
-}
-
-.password
-{
 }
 
 body
