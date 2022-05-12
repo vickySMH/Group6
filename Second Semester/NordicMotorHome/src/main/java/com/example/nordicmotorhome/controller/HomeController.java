@@ -55,4 +55,11 @@ public class HomeController
         }
         return null;
     }
+
+    @GetMapping("/update")
+    public String update(Model model)
+    {
+        return "home/update";
+    }
+
 }

@@ -13,24 +13,29 @@ header
     z-index: 1;
     border-left: 600rem solid #14213d;
     border-right: 600rem solid #14213d;
+    background-color: #14213d;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     top: 0px;
     color: #fca311;
     fill: #fca311;
-    padding: 20px;
+    padding-left: 20px;
 }
 
 nav
 {
     position: absolute;
-    top: 30px;
+    top:30px;
     right: 25px;
 }
 
 .icon
 {
     margin-bottom: 20px;
+}
+
+.password
+{
 }
 
 body
