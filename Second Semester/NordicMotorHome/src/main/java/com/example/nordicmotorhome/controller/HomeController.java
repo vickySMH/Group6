@@ -62,10 +62,4 @@ public class HomeController
         return "home/login";
     }
 
-    @GetMapping("/update")
-    public String update(Model model)
-    {
-        return "home/update";
-    }
-
 }

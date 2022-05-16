@@ -151,17 +151,6 @@ input
 {
     background-color: #f5f5f5;
 }
-table, th, td
-{
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-.centre
-{
-    margin-right: auto;
-    margin-left: auto;
-}
 
 @keyframes rotate
 {
@@ -174,4 +163,47 @@ table, th, td
         transform: rotate(360deg);
     }
 }
+
+table
+{
+    width: 96%;
+    margin-top: 80px;
+    margin-left: 70px;
+    border-collapse: collapse;
+    font-family: 'Montserrat', sans-serif;
+}
+
+th, td
+{
+    height: 40px;
+    border: 1px solid #14213d;
+    font-size: 14px;
+}
+
+.table-header
+{
+    background-color: #fca311;
+    color: #14213d;
+    font-size: 16px;
+}
+.hidden
+{
+    display: none;
+}
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #fca311;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
 

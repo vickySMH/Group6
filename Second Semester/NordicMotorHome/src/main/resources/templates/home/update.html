@@ -46,12 +46,11 @@
 <main>
     <h2>Update</h2>
     <label>Username</label>
-    <label>
-        <input type="text" name="username">
-    </label>
+        <input id="username" type="text" name="username">
+        <button id="search" class="button" type="button" style="vertical-align: middle">Search</button>
 
-    <table class="centre">
-        <tr>
+    <table id="table" class="hidden">
+        <tr class="table-header">
             <th>First name</th>
             <th>Last name</th>
             <th>Phone number</th>
@@ -68,5 +67,20 @@
     </table>
 
 </main>
+<script>
+    var search = document.getElementById("search");
+    function myFunction(){
+        var username = document.getElementById("username");
+        var table = document.getElementById("table")
+        if(username.value.length == 0)
+        {
+            alert("Enter username")
+        }
+        else{
+            table.classList.toggle("hidden")
+        }
+    }
+    search.addEventListener('click', myFunction);
+</script>
 </body>
 </html>

@@ -61,4 +61,10 @@ public class BookKeeperController
     @GetMapping("/remove")
     public String remove(Model model) {return "home/removeBooking";}
 
+    @GetMapping("/update")
+    public String update(Model model)
+    {
+        return "home/update";
+    }
+
 }
