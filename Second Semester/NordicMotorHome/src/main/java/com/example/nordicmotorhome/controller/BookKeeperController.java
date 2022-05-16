@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -17,7 +18,7 @@ public class BookKeeperController
 {
     @Autowired
     MotorhomeService service;
-
+    private String startDate, endDate;
     @GetMapping("/add")
     public String add(Model model)
     {
@@ -27,11 +28,34 @@ public class BookKeeperController
     @PostMapping("/addContinue")
     public String addContinue(Model model, WebRequest webRequest)
     {
-        Date startDate = Date.valueOf(webRequest.getParameter("startDate"));
-        Date endDate = Date.valueOf(webRequest.getParameter("endDate"));
-        List<Motorhome> motorhomeList = service.fetchAll(startDate, endDate);
+        startDate = webRequest.getParameter("startDate");
+        endDate = webRequest.getParameter("endDate");
+        List<Motorhome> motorhomeList = service.fetchAll();
+        List<Motorhome> notAvailable = service.fetchNotAvailable(startDate, endDate);
+        for (int i = 0; i < motorhomeList.size(); ++i)
+        {
+            for (int j = 0; j < notAvailable.size(); ++j)
+            {
+                if(motorhomeList.get(i).getLicenseNumber().equals(notAvailable.get(j).getLicenseNumber()))
+                {
+                    motorhomeList.remove(i);
+                }
+            }
+        }
         model.addAttribute("motorhomes", motorhomeList);
         return "home/addContinue";
+    }
+
+    @PostMapping("/extras")
+    public String extras()
+    {
+        return null;
+    }
+
+    @PostMapping("/receipt")
+    public String receipt()
+    {
+        return null;
     }
 
     @GetMapping("/remove")

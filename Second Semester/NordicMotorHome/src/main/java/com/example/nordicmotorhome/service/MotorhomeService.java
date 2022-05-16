@@ -15,11 +15,15 @@ public class MotorhomeService
     @Autowired
     MotorhomeRepo repo;
 
-    public List<Motorhome> fetchAll(Date startDate, Date endDate)
+    public List<Motorhome> fetchNotAvailable(String startDate, String endDate)
     {
-        return repo.fetchAllPossible(startDate, endDate);
+        return repo.fetchNotAvailable(startDate, endDate);
     }
 
+    public List<Motorhome> fetchAll()
+    {
+        return repo.fetchAll();
+    }
 
 
 

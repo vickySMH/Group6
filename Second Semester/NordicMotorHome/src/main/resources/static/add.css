@@ -8,11 +8,6 @@ label
     color: #7F7E7E;
 }
 
-.password
-{
-    margin-left: 5px;
-}
-
 header
 {
     margin: 0 -600.5rem;
@@ -41,6 +36,12 @@ nav
     top:30px;
     right: 25px;
 }
+
+form
+{
+    margin-left: 40px;
+}
+
 .icon
 {
     margin-bottom: 20px;
@@ -146,6 +147,7 @@ h2
 {
     font-family: 'Montserrat', sans-serif;
     color: #fca311;
+    margin-left: 40px;
 }
 
 main
@@ -193,4 +195,10 @@ input
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
+    margin-left: 0px;
+}
+
+.button:hover
+{
+    background-color: #AD6B01;
 }

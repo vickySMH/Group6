@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href = "add.css">
+    <link rel="stylesheet" href = "addContinue.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
@@ -32,21 +32,29 @@
     <a href="/aboutUs"><p>About us</p></a>
     <a><p>FAQ</p></a>
 </div>
-<main>
-    <h2>Create a booking</h2>
-	<form id = "input" action="addContinue" method="post">
-		<label>Start date</label>
-		<br>
-		<input type="date" name = "startDate">
-		<br>
-        <br>
-		<label>End date</label>
-		<br>
-		<input type="date" name = "endDate">
-        <br>
-        <br>
-        <button type="submit" id="button" class="button">Check availability</button>
-	</form>
-</main>
+    <main>
+        <form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>License Number</th>
+                    <th>Beds</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each = "motorhome:${motorhomes}">
+                    <td th:text = "${motorhome.model}"/>
+                    <td th:text = "${motorhome.licenseNumber}"/>
+                    <td th:text = "${motorhome.beds}"/>
+                    <td th:text = "${motorhome.price}"/>
+                    <td><button>Choose</button></td>
+                </tr>
+            </tbody>
+        </table>
+        </form>
+    </main>
 </body>
 </html>

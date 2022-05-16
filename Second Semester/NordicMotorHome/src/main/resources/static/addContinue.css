@@ -11,8 +11,8 @@ label
 header
 {
     margin: 0 -600.5rem;
-    position: sticky;
-    z-index:1;
+    position: fixed;
+    z-index: 1;
     border-left: 600rem solid #14213d;
     border-right: 600rem solid #14213d;
     background-color: #14213d;
@@ -34,7 +34,7 @@ nav
 {
     position: absolute;
     top:30px;
-    right: 25px;
+    right: -965px;
 }
 
 form
@@ -59,9 +59,34 @@ body
 
 main
 {
+    margin-top: 120px;
+    margin-bottom: 25px;
+}
+
+table
+{
+    margin-left: 475px;
+    border: solid 3px #14213d;
+    border-collapse: collapse;
+}
+
+th
+{
     text-align: center;
-    margin-left: 30px ;
-    margin-top: 200px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    border: solid 3px #14213d;
+    color: #14213d;
+}
+
+td
+{
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: solid 1px #14213d;
+    font-family: 'Montserrat', sans-serif;
+    color: #14213d;
 }
 
 .leftside
