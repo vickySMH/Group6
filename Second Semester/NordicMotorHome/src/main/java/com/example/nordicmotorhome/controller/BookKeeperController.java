@@ -33,6 +33,26 @@ public class BookKeeperController
     private String startDate, endDate, phoneNumber;
     private Motorhome picked;
 
+    @GetMapping("/viewBooking")
+    public String viewBooking(Model model) {
+        return "home/viewBooking";
+    }
+
+    @PostMapping("/viewBookingContinue")
+    public String viewBookingContinue(Model model, WebRequest webRequest) {
+        phoneNumber = webRequest.getParameter("phoneNumber");
+        List<Booking> bookingsList = bookingService.fetchAll();
+        for (int i = 0; i < bookingsList.size(); i++)
+        {
+            if((bookingsList.get(i).getPhoneNumber().equals(phoneNumber)));
+            {
+                model.addAttribute(phoneNumber);
+            }
+        }
+        model.addAttribute("bookings", bookingsList);
+        return "home/viewBookingContinue";
+    }
+
     @GetMapping("/add")
     public String add(Model model)
     {
