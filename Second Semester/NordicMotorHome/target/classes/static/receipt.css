@@ -179,7 +179,7 @@ svg:hover
     font-size: 15px;
     padding: 10px;
     width: 100px;
-    margin-left: 250px;
+    margin-left: 220px;
     transition: all 0.5s;
     cursor: pointer;
     margin-bottom: 40px;
@@ -198,7 +198,7 @@ svg:hover
 table
 {
     font-family: 'Montserrat', sans-serif;
-    margin-left: 45px ;
+    text-align: center;
 }
 
 .button:hover

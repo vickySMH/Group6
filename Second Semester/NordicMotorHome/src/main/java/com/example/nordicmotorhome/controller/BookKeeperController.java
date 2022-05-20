@@ -1,19 +1,22 @@
 package com.example.nordicmotorhome.controller;
 
+import com.example.nordicmotorhome.model.Booking;
 import com.example.nordicmotorhome.model.Extra;
 import com.example.nordicmotorhome.model.Motorhome;
+import com.example.nordicmotorhome.service.BookingService;
 import com.example.nordicmotorhome.service.ExtraService;
 import com.example.nordicmotorhome.service.MotorhomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class BookKeeperController
@@ -24,7 +27,10 @@ public class BookKeeperController
     @Autowired
     ExtraService extraService;
 
-    private String startDate, endDate;
+    @Autowired
+    BookingService bookingService;
+
+    private String startDate, endDate, phoneNumber;
     private Motorhome picked;
 
     @GetMapping("/add")
@@ -39,6 +45,7 @@ public class BookKeeperController
         String placeHolder;
         startDate = webRequest.getParameter("startDate");
         endDate = webRequest.getParameter("endDate");
+        phoneNumber = webRequest.getParameter("phoneNumber");
 
         if(Date.valueOf(startDate).compareTo(Date.valueOf(endDate)) > 0)
         {
@@ -94,11 +101,32 @@ public class BookKeeperController
         extras.get(5).setQuantity(cast(webRequest.getParameter("smallAwningField")));
         extras.get(6).setQuantity(cast(webRequest.getParameter("mediumAwningField")));
         extras.get(7).setQuantity(cast(webRequest.getParameter("tableUmbrellaField")));
+        model.addAttribute("phoneNumber", phoneNumber);
         model.addAttribute("startDate" ,startDate);
         model.addAttribute("endDate" ,endDate);
         model.addAttribute(picked);
         model.addAttribute("extraList", extras);
-
+        Booking booking = new Booking();
+        booking.setStartDate(Date.valueOf(startDate));
+        booking.setEndDate(Date.valueOf(endDate));
+        booking.setLicenseNumber(picked.getLicenseNumber());
+        booking.setPhoneNumber(phoneNumber);
+        TimeUnit time = TimeUnit.DAYS;
+        long difference = time.convert(Date.valueOf(endDate).getTime() - Date.valueOf(startDate).getTime(), TimeUnit.MILLISECONDS);
+        float bookingPrice = difference * picked.getPrice();
+        booking.setPrice(bookingPrice);
+        model.addAttribute("bookingPrice",difference * picked.getPrice());
+        float extrasPrice = 0;
+        for(int i = 0; i < extras.size(); ++i)
+        {
+            if(extras.get(i).getQuantity() != 0)
+            {
+                extrasPrice += extras.get(i).getQuantity()*extras.get(i).getPrice();
+            }
+        }
+        model.addAttribute("extrasPrice", extrasPrice);
+        model.addAttribute("fullPrice", extrasPrice+bookingPrice);
+        bookingService.addBooking(booking);
 
         return "home/receipt";
     }

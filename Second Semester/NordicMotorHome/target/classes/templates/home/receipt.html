@@ -14,7 +14,7 @@
 </head>
 <body>
 <header>
-    <a href="/">
+    <a href="/loggedin">
         <div class="spinner">
             <img width= "45px" height="60" src="../../../../../../../../../New%20folder/motorhome/svg/wheel.svg" th:src="@{svg/wheel.svg}" alt="circle" class="spin">
         </div>
@@ -29,14 +29,15 @@
     </nav>
 </header>
 <div name = "leftside" class="leftside">
-    <p class="currentClicked">Home</p>
+    <p href="/loggedin">Home</p>
     <a href="/aboutUs"><p>About us</p></a>
     <a href="/FAQ"><p>FAQ</p></a>
 </div>
 <main>
-    <form>
+    <form method="post" action="loggedin">
     <div class = "receipt">
         <h2>Receipt</h2>
+        <p>Phone number:</p><p th:text = "${phoneNumber}"></p>
         <p>From: </p><p th:text = "${startDate}"></p>
         <p>To: </p><p th:text = "${endDate}"></p>
         <p>Motorhome Model: </p><p th:text = "${motorhome.model}"></p>
@@ -55,8 +56,11 @@
             </tr>
             </tbody>
         </table>
+        <p>Booking Price: </p><p th:text = "${bookingPrice}"></p>
+        <p>Extras price: </p><p th:text = "${extrasPrice}"></p>
+        <p>Final price: </p><p th:text = "${fullPrice}"></p>
     </div>
-        <button type="submit" class="button">Save booking</button>
+        <button type="submit" class="button">Home</button>
     </form>
 </main>
 </body>

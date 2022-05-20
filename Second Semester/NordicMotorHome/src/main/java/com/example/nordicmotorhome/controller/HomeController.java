@@ -16,6 +16,7 @@ public class HomeController
 {
     @Autowired
     UserService service;
+    private User currentUser = new User();
 
     @GetMapping("/")
     public String index(Model model)
@@ -48,18 +49,27 @@ public class HomeController
     @PostMapping("/loggedin")
     public String loggedin(Model model, WebRequest webRequest)
     {
-        String username = webRequest.getParameter("username");
-        String password = webRequest.getParameter("password");
-        List<User> userList = service.fetchAll();
-        for (User u:userList)
+        if(currentUser.getUsername() == null)
         {
-            if(u.getPassword().equals(password) && u.getUsername().equals(username))
+            String username = webRequest.getParameter("username");
+            String password = webRequest.getParameter("password");
+            currentUser.setUsername(username);
+            currentUser.setPassword(password);
+            List<User> userList = service.fetchAll();
+            for (User u : userList)
             {
-                model.addAttribute("username", username);
-                return "home/loggedin";
+                if (u.getPassword().equals(password) && u.getUsername().equals(username))
+                {
+                    model.addAttribute("username", username);
+                    return "home/loggedin";
+                }
             }
         }
-        return "home/login";
+        else
+        {
+            return "home/loggedin";
+        }
+        return "redirect:/login";
     }
 
 }

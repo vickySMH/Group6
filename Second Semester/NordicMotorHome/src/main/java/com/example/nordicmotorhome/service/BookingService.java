@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookingsService {
+public class BookingService
+{
     @Autowired
     BookingRepo repo;
 
@@ -16,4 +17,10 @@ public class BookingsService {
     {
         return repo.fetchAll();
     }
+
+    public Booking addBooking(Booking booking)
+    {
+        return repo.addBooking(booking);
+    }
+
 }
