@@ -19,7 +19,6 @@ public class MotorhomeRepo
 
     public List<Motorhome> fetchNotAvailable(String startDate, String endDate)
     {
-        SqlParameterSource namedParameters = new MapSqlParameterSource().addValue("start", startDate).addValue("end", endDate);
         String sql = "SELECT heroku_4aa3497124398a6.vehicle.LicenseNumber FROM heroku_4aa3497124398a6.vehicle, heroku_4aa3497124398a6.bookings WHERE heroku_4aa3497124398a6.vehicle.LicenseNumber = heroku_4aa3497124398a6.bookings.LicenseNumber AND (? BETWEEN StartDate AND EndDate OR ? BETWEEN StartDate AND EndDate)";
         RowMapper<Motorhome> rowMapper  = new BeanPropertyRowMapper<>(Motorhome.class);
         return template.query(sql, rowMapper, startDate, endDate);

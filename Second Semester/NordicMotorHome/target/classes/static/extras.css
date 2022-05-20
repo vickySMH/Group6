@@ -1,14 +1,21 @@
 @charset "UTF-8";
+/* CSS Document */
 
-html, body
-{
+html, body {
+    max-width: 100%;
     overflow-x: hidden;
 }
 
-label
+th:text
 {
+    margin-left: 40px;
     font-family: 'Montserrat', sans-serif;
-    color: #7F7E7E;
+}
+
+h2
+{
+    margin-left: 110px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 header
@@ -33,36 +40,54 @@ nav
     top:30px;
     right: 25px;
 }
-
 .icon
 {
     margin-bottom: 20px;
 }
 
-
 body
 {
-    position: relative;
-    overflow-x: hidden;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
+    overflow-x:hidden;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
 main
 {
     text-align: center;
-    margin-left: 30px ;
-    margin-top: 200px;
+}
+
+svg
+{
+    background-color: #14213d;
+    border-radius: 15px;
+}
+
+label
+{
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 125px;
+}
+
+.field
+{
+    margin-left: 707px;
+}
+
+button
+{
+    margin-left: 125px;
 }
 
 .leftside
 {
+
     background-color: #14213d;
     position: fixed;
     top: 88px;
-    left: 0;
+    left: 0px;
     width: 100px;
     height: 300%;
     color: #fca311;
@@ -71,7 +96,7 @@ main
 p
 {
     font-family: 'Montserrat', sans-serif;
-    text-align: center;
+    text-align: center
 }
 
 .spinner
@@ -79,7 +104,7 @@ p
     display: grid;
     align-items: center;
     position: absolute;
-    left: 22px;
+    left:22px;
 }
 
 a:hover > .spinner .spin
@@ -103,8 +128,9 @@ a:hover
 .currentClicked
 {
     color: #AD6B01;
-    fill: #AD6B01;
+    fill:  #AD6B01;
 }
+
 
 a:hover h1
 {
@@ -118,16 +144,11 @@ img
     padding-left: 15px;
 }
 
+
 h1
 {
     display: inline-block;
     padding-left: 85px;
-    color: #fca311;
-}
-
-h2
-{
-    font-family: 'Montserrat', sans-serif;
     color: #fca311;
 }
 
@@ -142,53 +163,10 @@ a
     color: #fca311;
 }
 
+
 svg:hover
 {
-    fill: #AD6B01;
-}
-
-input
-{
-    background-color: #f5f5f5;
-}
-
-@keyframes rotate
-{
-    0%
-    {
-        transform: rotate(0deg);
-    }
-    100%
-    {
-        transform: rotate(360deg);
-    }
-}
-
-table
-{
-    width: 96%;
-    margin-top: 80px;
-    margin-left: 70px;
-    border-collapse: collapse;
-    font-family: 'Montserrat', sans-serif;
-}
-
-th, td
-{
-    height: 40px;
-    border: 1px solid #14213d;
-    font-size: 14px;
-}
-
-.table-header
-{
-    background-color: #fca311;
-    color: #14213d;
-    font-size: 16px;
-}
-.hidden
-{
-    display: none;
+    fill:#AD6B01;
 }
 
 .button {
@@ -203,7 +181,21 @@ th, td
     width: 100px;
     transition: all 0.5s;
     cursor: pointer;
-    margin: 5px;
 }
 
+.button:hover
+{
+    background-color: #AD6B01;
+}
 
+@keyframes rotate
+{
+    0%
+    {
+        transform: rotate(0deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}

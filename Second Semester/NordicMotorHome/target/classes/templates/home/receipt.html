@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<!doctype html>
+<html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href = "addContinue.css">
+    <script type="text/javascript" th:src="@{/js/hiddenFields.js}"></script>
+    <link rel="stylesheet" href = "receipt.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
-    <title>Add booking</title>
+    <title>Extras</title>
 </head>
 <body>
 <header>
@@ -28,33 +29,35 @@
     </nav>
 </header>
 <div name = "leftside" class="leftside">
-    <a href="/"><p>Home</p></a>
+    <p class="currentClicked">Home</p>
     <a href="/aboutUs"><p>About us</p></a>
-    <a><p>FAQ</p></a>
+    <a href="/FAQ"><p>FAQ</p></a>
 </div>
-    <main>
+<main>
+    <form>
+    <div class = "receipt">
+        <h2>Receipt</h2>
+        <p>From: </p><p th:text = "${startDate}"></p>
+        <p>To: </p><p th:text = "${endDate}"></p>
+        <p>Motorhome Model: </p><p th:text = "${motorhome.model}"></p>
+        <p>Motorhome License Number: </p><p th:text = "${motorhome.licenseNumber}"></p>
+        <br>
         <table>
             <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>License Number</th>
-                    <th>Beds</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
+            <tr>
+            <th>Extras</th>
+            </tr>
             </thead>
             <tbody>
-                <tr th:each = "motorhome:${motorhomes}">
-                    <form method="post" action="extras">
-                    <td th:text = "${motorhome.model}"/>
-                    <input type="text" style="visibility: hidden" th:value = "${motorhome.licenseNumber}" name = "licensePlate"><td th:text = "${motorhome.licenseNumber}"/></input>
-                    <td th:text = "${motorhome.beds}"/>
-                    <td th:text = "${motorhome.price}"/>
-                    <td><button type="submit">Choose</button></td>
-                    </form>
-                </tr>
+            <tr th:each = "extra:${extraList}">
+                <td th:text = "${extra.quantity != 0} ? ${extra.extra}"></td>
+                <td th:text = "${extra.quantity != 0} ? ${extra.quantity}"></td>
+            </tr>
             </tbody>
         </table>
-    </main>
+    </div>
+        <button type="submit" class="button">Save booking</button>
+    </form>
+</main>
 </body>
 </html>

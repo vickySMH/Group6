@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href = "addContinue.css">
@@ -33,7 +33,6 @@
     <a><p>FAQ</p></a>
 </div>
     <main>
-        <form>
         <table>
             <thead>
                 <tr>
@@ -46,15 +45,16 @@
             </thead>
             <tbody>
                 <tr th:each = "motorhome:${motorhomes}">
+                    <form method="post" action="extras">
                     <td th:text = "${motorhome.model}"/>
-                    <td th:text = "${motorhome.licenseNumber}"/>
+                    <input type="text" style="visibility: hidden" th:value = "${motorhome.licenseNumber}" name = "licensePlate"><td th:text = "${motorhome.licenseNumber}"/></input>
                     <td th:text = "${motorhome.beds}"/>
                     <td th:text = "${motorhome.price}"/>
-                    <td><button>Choose</button></td>
+                    <td><button type="submit">Choose</button></td>
+                    </form>
                 </tr>
             </tbody>
         </table>
-        </form>
     </main>
 </body>
 </html>

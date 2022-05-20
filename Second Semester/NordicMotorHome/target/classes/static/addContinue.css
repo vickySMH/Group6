@@ -1,7 +1,4 @@
-@charset "UTF-8";
-
-html, body
-{
+html, body {
     overflow-x: hidden;
 }
 
@@ -14,24 +11,35 @@ label
 header
 {
     margin: 0 -600.5rem;
-    position: sticky;
+    position: fixed;
     z-index: 1;
     border-left: 600rem solid #14213d;
     border-right: 600rem solid #14213d;
     background-color: #14213d;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
-    top: 0px;
+    top:0px;
     color: #fca311;
     fill: #fca311;
     padding-left: 20px;
+}
+
+a
+{
+    text-decoration: none;
+    color: #fca311;
 }
 
 nav
 {
     position: absolute;
     top:30px;
-    right: 25px;
+    right: -965px;
+}
+
+form
+{
+    margin-left: 40px;
 }
 
 .icon
@@ -39,39 +47,64 @@ nav
     margin-bottom: 20px;
 }
 
-
 body
 {
     position: relative;
-    overflow-x: hidden;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
+    overflow-x:hidden;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
 }
 
 main
 {
+    margin-top: 120px;
+    margin-bottom: 25px;
+}
+
+table
+{
+    margin-left: 475px;
+    border: solid 3px #14213d;
+    border-collapse: collapse;
+}
+
+th
+{
     text-align: center;
-    margin-left: 30px ;
-    margin-top: 200px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    border: solid 3px #14213d;
+    color: #14213d;
+}
+
+td
+{
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: solid 1px #14213d;
+    font-family: 'Montserrat', sans-serif;
+    color: #14213d;
 }
 
 .leftside
 {
+
     background-color: #14213d;
     position: fixed;
     top: 88px;
-    left: 0;
+    left: 0px;
     width: 100px;
-    height: 300%;
+    height: 100%;
     color: #fca311;
 }
 
 p
 {
     font-family: 'Montserrat', sans-serif;
-    text-align: center;
+    text-align: center
 }
 
 .spinner
@@ -79,7 +112,7 @@ p
     display: grid;
     align-items: center;
     position: absolute;
-    left: 22px;
+    left:22px;
 }
 
 a:hover > .spinner .spin
@@ -100,11 +133,22 @@ a:hover
     cursor: pointer;
 }
 
+svg
+{
+    fill: #fca311;
+}
+
+svg:hover
+{
+    fill:#AD6B01;
+}
+
 .currentClicked
 {
     color: #AD6B01;
-    fill: #AD6B01;
+    fill:  #AD6B01;
 }
+
 
 a:hover h1
 {
@@ -124,27 +168,25 @@ h1
     padding-left: 85px;
     color: #fca311;
 }
-
 h2
 {
     font-family: 'Montserrat', sans-serif;
     color: #fca311;
+    margin-left: 40px;
 }
 
-svg
+main
 {
-    fill: #fca311;
+    top:250px;
 }
 
-a
+.hyperlink
 {
-    text-decoration: none;
     color: #fca311;
 }
-
-svg:hover
+.hyperlink:hover
 {
-    fill: #AD6B01;
+    color: #AD6B01;
 }
 
 input
@@ -164,32 +206,6 @@ input
     }
 }
 
-table
-{
-    width: 96%;
-    margin-top: 80px;
-    margin-left: 70px;
-    border-collapse: collapse;
-    font-family: 'Montserrat', sans-serif;
-}
-
-th, td
-{
-    height: 40px;
-    border: 1px solid #14213d;
-    font-size: 14px;
-}
-
-.table-header
-{
-    background-color: #fca311;
-    color: #14213d;
-    font-size: 16px;
-}
-.hidden
-{
-    display: none;
-}
 
 .button {
     display: inline-block;
@@ -204,6 +220,10 @@ th, td
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
+    margin-left: 0px;
 }
 
-
+.button:hover
+{
+    background-color: #AD6B01;
+}

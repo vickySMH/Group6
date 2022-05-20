@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" th:src="@{/js/hiddenFields.js}"></script>
+    <link rel="stylesheet" href = "extras.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <title>Extras</title>
+</head>
+<body>
+<header>
+    <a href="/">
+        <div class="spinner">
+            <img width= "45px" height="60" src="../../../../../../../../../New%20folder/motorhome/svg/wheel.svg" th:src="@{svg/wheel.svg}" alt="circle" class="spin">
+        </div>
+        <h1>Nordic Motorhome</h1>
+    </a>
+    <nav>
+        <a href="/account"><svg width="30px" height="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 viewBox="0 0 258.75 258.75" style="enable-background:new 0 0 258.75 258.75;" xml:space="preserve">
+				<circle cx="129.375" cy="60" r="60"/>
+				<path d="M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z"/>
+			</svg></a>
+    </nav>
+</header>
+<div name = "leftside" class="leftside">
+    <p class="currentClicked">Home</p>
+    <a href="/aboutUs"><p>About us</p></a>
+    <a href="/FAQ"><p>FAQ</p></a>
+</div>
+<main>
+    <h2>Extras</h2>
+    <form method="post" action="receipt">
+        <label>Bike rack
+            <input value="1" name = "bikeRack" id = "bikeRack" onclick="showBikeRack()" type="checkbox">
+            <br>
+            <input class="field" name = "bikeRackField" id = "bikeRackField" value="0" style="display: none" type="number">
+            <br>
+        </label>
+        <label>Bed linen
+            <input value="11" name = "bedLinen" id = "bedLinen" onclick="showBedLinen()" type="checkbox">
+            <br>
+            <input class="field" name = "bedLinenField" id = "bedLinenField" value="0" style="display: none" type="number">
+            <br>
+        </label>
+        <label>Child seat
+            <input value="21" name="childSeat" id = "childSeat" onclick="showChildSeat()" type="checkbox">
+            <br>
+            <input class="field" name="childSeatField" id = "childSeatField" value="0" style="display: none" type="number">
+            <br>
+        </label>
+        <label>Picnic table
+            <input value="31" name = "picnicTable" id = "picnicTable" onclick="showPicnicTable()" type="checkbox">
+            <br>
+            <input class="field" name = "picnicTableField" id = "picnicTableField" value="0" style="display: none" type="number">
+            <br>
+        </label>
+        <label>Chair
+            <input value="41" name = "chair" id = "chair" onclick="showChair()" type="checkbox">
+            <br>
+            <input class="field" name = "chairField" id = "chairField" value="0" style="display: none" type="number">
+            <br>
+        </label>
+        <label>Small awning
+            <input value="51" name = "smallAwning" id = "smallAwning" onclick="showSmallAwning()" type="checkbox">
+            <br>
+            <input class="field" name = "smallAwningField" id = "smallAwningField" value="0" style="display: none" type="number">
+            <br>
+        </label>
+        <label>Medium awning
+            <input value="61" name = "mediumAwning" id = "mediumAwning" onclick="showMediumAwning()" type="checkbox">
+            <br>
+            <input class="field" name = "mediumAwningField" id = "mediumAwningField" value="0" style="display: none" type="number">
+            <br>
+        </label>
+        <label>Table umbrella
+            <input value="71" name = "tableUmbrella" id = "tableUmbrella" onclick="showTableUmbrella()" type="checkbox">
+            <br>
+            <input class="field" name = "tableUmbrellaField" id = "tableUmbrellaField" value="0" style="display: none" type="number">
+            <br>
+        </label>
+        <button class="button" type="submit">Checkout</button>
+    </form>
+</main>
+</body>
+</html>

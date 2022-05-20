@@ -11,6 +11,11 @@ public class Motorhome
     boolean isClean, isBroken;
     float price;
 
+    public Motorhome()
+    {
+
+    }
+
     public String getLicenseNumber()
     {
         return licenseNumber;

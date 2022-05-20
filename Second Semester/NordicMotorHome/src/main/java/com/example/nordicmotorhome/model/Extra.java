@@ -6,7 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-public class Extras {
+public class Extra
+{
 
     @Id
     @GeneratedValue
@@ -14,7 +15,7 @@ public class Extras {
 
     private String extra;
     private int quantity;
-    private float proce;
+    private float price;
 
     public int getId() {
         return id;
@@ -40,11 +41,11 @@ public class Extras {
         this.quantity = quantity;
     }
 
-    public float getProce() {
-        return proce;
+    public float getPrice() {
+        return price;
     }
 
-    public void setProce(float proce) {
-        this.proce = proce;
+    public void setPrice(float price) {
+        this.price = price;
     }
 }
