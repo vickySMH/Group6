@@ -1,11 +1,13 @@
 package com.example.nordicmotorhome.controller;
 
 import com.example.nordicmotorhome.model.Booking;
+import com.example.nordicmotorhome.model.Customer;
 import com.example.nordicmotorhome.model.Extra;
 import com.example.nordicmotorhome.model.Motorhome;
 import com.example.nordicmotorhome.service.BookingService;
 import com.example.nordicmotorhome.service.ExtraService;
 import com.example.nordicmotorhome.service.MotorhomeService;
+import com.example.nordicmotorhome.service.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class BookKeeperController
 {
     @Autowired
     MotorhomeService service;
+
+    @Autowired
+    UpdateService updateService;
 
     @Autowired
     ExtraService extraService;
@@ -157,7 +162,24 @@ public class BookKeeperController
     @GetMapping("/update")
     public String update(Model model)
     {
+        List<Customer> bookings = updateService.fetchAll();
+        model.addAttribute("bookings", bookings);
         return "home/update";
+    }
+
+    @PostMapping("/updateContinue")
+    public String findUser(Model model, WebRequest webRequest)
+    {
+        String phoneNumber = webRequest.getParameter("phoneNumber");
+        List<Booking> bookingsList = updateService.fetchAll3();
+        for (Booking c: bookingsList)
+        {
+            if (c.getPhoneNumber().equals(phoneNumber))
+            {
+                return "home/updateContinue";
+            }
+        }
+        return  "redirect:/update";
     }
 
     public int cast(String integer)

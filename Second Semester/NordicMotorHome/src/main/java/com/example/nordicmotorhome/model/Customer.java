@@ -8,7 +8,7 @@ public class Customer {
 
     @Id
     private String phoneNumber;
-    private String fisrstName, lastName;
+    private String firstName, lastName;
     private String username;
 
     public String getPhoneNumber() {
@@ -19,12 +19,12 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFisrstName() {
-        return fisrstName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFisrstName(String fisrstName) {
-        this.fisrstName = fisrstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
