@@ -67,6 +67,7 @@ public class HomeController
         }
         else
         {
+            model.addAttribute("username", currentUser.getUsername());
             return "home/loggedin";
         }
         return "redirect:/login";

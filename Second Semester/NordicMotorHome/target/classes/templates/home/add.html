@@ -35,14 +35,19 @@
 <main>
     <h2>Create a booking</h2>
 	<form id = "input" action="addContinue" method="post">
-		<label>Start date</label>
+        <label>Phone number
+            <input type="tel" name = "phoneNumber">
+        </label>
+		<label>Start date
 		<br>
 		<input type="date" name = "startDate">
+        </label>
 		<br>
         <br>
-		<label>End date</label>
+		<label>End date
 		<br>
 		<input type="date" name = "endDate">
+        </label>
         <br>
         <br>
         <button type="submit" id="button" class="button">Check availability</button>
