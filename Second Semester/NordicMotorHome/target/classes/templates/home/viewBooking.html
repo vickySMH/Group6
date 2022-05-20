@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href = "addContinue.css">
+    <link rel="stylesheet" href = "../../static/viewBooking.css" th:href="@{viewBooking.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
-    <title>Add booking</title>
+    <title>View Bookings</title>
 </head>
 <body>
 <header>
@@ -32,31 +32,15 @@
     <a href="/aboutUs"><p>About us</p></a>
     <a><p>FAQ</p></a>
 </div>
-    <main>
-        <form>
-        <table>
-            <thead>
-                <tr>
-                    <th>Model</th>
-                    <th>License Number</th>
-                    <th>Beds</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each = "motorhome:${motorhomes}">
-                    <form method="post" action="extras">
-                    <td th:text = "${motorhome.model}"/>
-                    <input type="text" style="visibility: hidden" th:value = "${motorhome.licenseNumber}" name = "licensePlate"><td th:text = "${motorhome.licenseNumber}"/></input>
-                    <td th:text = "${motorhome.beds}"/>
-                    <td th:text = "${motorhome.price}"/>
-                    <td><button type="submit">Choose</button></td>
-                    </form>
-                </tr>
-            </tbody>
-        </table>
-        </form>
-    </main>
+<main>
+    <h2>View a booking</h2>
+    <form id = "input" action="viewBookingContinue" method="post">
+        <label>Phone number</label>
+        <br>
+        <input type="String" name = "phoneNumber">
+        <br>
+        <button type="submit" id="button" class="button">Confirm</button>
+    </form>
+</main>
 </body>
 </html>
