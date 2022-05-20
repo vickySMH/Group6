@@ -45,42 +45,45 @@
 </div>
 <main>
     <h2>Update</h2>
-    <label>Username</label>
-        <input id="username" type="text" name="username">
-        <button id="search" class="button" type="button" style="vertical-align: middle">Search</button>
-
-    <table id="table" class="hidden">
+    <form id="input" action="/updateContinue" method="post">
+        <label>Username</label>
+        <input type="text" name="phoneNumber">
+        <button id="button" class="button" type="submit" style="vertical-align: middle"><span>Search</span></button>
+    </form>
+    <table>
         <tr class="table-header">
             <th>First name</th>
             <th>Last name</th>
             <th>Phone number</th>
-            <th>Start date</th>
-            <th>End date</th>
-            <th>License number</th>
-            <th>Extras</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            <!--            <th>Extras</th>-->
+            <!--            <th>Quantity</th>-->
         </tr>
-        <tr>
-            <td>stefan</td>
+        <tbody>
+        <tr th:each="booking : ${bookings}" >
+            <td th:text="${booking.FirstName}"></td>
+            <td th:text="${booking.LastName}"></td>
+            <td th:text="${booking.PhoneNumber}"></td>
         </tr>
+        </tbody>
     </table>
 
+    <!--    <table>-->
+    <!--        <tr class="table-header">-->
+    <!--            <th>Start date</th>-->
+    <!--            <th>End date</th>-->
+    <!--            <th>License number</th>-->
+    <!--            <th>Price</th>-->
+    <!--        </tr>-->
+    <!--        <tbody>-->
+    <!--        <tr th:each="booking1 : ${bookings1}">-->
+    <!--            <td th:text="${booking1.startDate}"></td>-->
+    <!--            <td th:text="${booking1.endDate}"></td>-->
+    <!--            <td th:text="${booking1.licenseNumber}"></td>-->
+    <!--            <td th:text="${booking1.price}"></td>-->
+    <!--        </tr>-->
+    <!--        </tbody>-->
+    <!--    </table>-->
+
 </main>
-<script>
-    var search = document.getElementById("search");
-    function myFunction(){
-        var username = document.getElementById("username");
-        var table = document.getElementById("table")
-        if(username.value.length == 0)
-        {
-            alert("Enter username")
-        }
-        else{
-            table.classList.toggle("hidden")
-        }
-    }
-    search.addEventListener('click', myFunction);
-</script>
 </body>
 </html>

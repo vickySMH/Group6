@@ -166,7 +166,7 @@ input
 
 table
 {
-    width: 96%;
+    width: 50%;
     margin-top: 80px;
     margin-left: 70px;
     border-collapse: collapse;
@@ -185,10 +185,6 @@ th, td
     background-color: #fca311;
     color: #14213d;
     font-size: 16px;
-}
-.hidden
-{
-    display: none;
 }
 
 .button {
