@@ -1,7 +1,7 @@
 package com.example.nordicmotorhome.service;
 
-import com.example.nordicmotorhome.model.Bookings;
-import com.example.nordicmotorhome.repository.BookingsRepo;
+import com.example.nordicmotorhome.model.Booking;
+import com.example.nordicmotorhome.repository.BookingRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class BookingsService {
     @Autowired
-    BookingsRepo repo;
+    BookingRepo repo;
 
-    public List<Bookings> fetchAll()
+    public List<Booking> fetchAll()
     {
         return repo.fetchAll();
     }

@@ -6,7 +6,8 @@ import javax.persistence.Id;
 import java.sql.Date;
 
 @Entity
-public class Bookings {
+public class Booking
+{
 
     @Id
     @GeneratedValue
