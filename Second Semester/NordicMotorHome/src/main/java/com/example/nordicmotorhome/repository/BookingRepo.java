@@ -30,5 +30,23 @@ public class BookingRepo
         return null;
     }
 
+    public List<Booking> findByPhoneNumber(String phoneNumber)
+    {
+        String sql = "SELECT * FROM heroku_4aa3497124398a6.bookings WHERE  heroku_4aa3497124398a6.bookings.PhoneNumber = ?";
+        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
+        return template.query(sql, rowMapper, phoneNumber);
+    }
+
+    public Boolean deleteBooking(int id){
+//        String sql = "DELETE FROM heroku_4aa3497124398a6.bookings WHERE heroku_4aa3497124398a6.bookings.PhoneNumber = ? ";
+//        String sql = "DELETE FROM heroku_4aa3497124398a6.bookings WHERE heroku_4aa3497124398a6.bookings.ID IN (SELECT heroku_4aa3497124398a6.bookings.ID FROM heroku_4aa3497124398a6.bookings WHERE heroku_4aa3497124398a6.bookings.PhoneNumber = ?);";
+        String sql ="DELETE FROM heroku_4aa3497124398a6.bookings WHERE heroku_4aa3497124398a6.bookings.ID = ?";
+
+
+        return template.update(sql, id) > 0;
+    }
+//    public Boolean deleteFK(String phoneNumber){
+//        String sql = "DELETE FROM heroku_4aa3497124398a6.extradetails WHERE heroku_4aa3497124398a6.extradetails.BookingIDr = heroku_4aa3497124398a6.bookings. ";
+//    }
 
 }

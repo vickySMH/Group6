@@ -35,40 +35,13 @@
 <main>
   <div class="search-booking">
     <h2>Search by</h2>
-    <label>Username</label>
-    <input id="username" class="search" type="text">
-    <button id="search" class="button" type="button" style="vertical-align:middle">Search</button>
+    <form id = "input" action="removeContinue" method="post">
+      <label>Phone Number</label>
+      <input type="text" name="phoneNumber">
+      <button id="search" class="button" type="submit" style="vertical-align:middle">Search</button>
+    </form>
   </div>
 
-  <table id="table" class="hidden">
-    <tr class="table-header">
-      <th>Booking ID</th>
-      <th>Username</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Vehicle</th>
-      <th>License plate</th>
-      <th>First name</th>
-      <th>Surname</th>
-      <th>Phone number</th>
-    </tr>
-  </table>
-
 </main>
-<script>
-  var search = document.getElementById("search");
-  function myFunction(){
-    var username = document.getElementById("username");
-    var table = document.getElementById("table")
-    if(username.value.length == 0)
-    {
-      alert("Enter username")
-    }
-    else{
-      table.classList.toggle("hidden")
-    }
-  }
-  search.addEventListener('click', myFunction);
-</script>
 </body>
 </html>

@@ -23,4 +23,12 @@ public class BookingService
         return repo.addBooking(booking);
     }
 
+    public List<Booking> findByPhoneNumber(String phoneNumber)
+    {
+        return repo.findByPhoneNumber(phoneNumber);
+    }
+
+    public Boolean deleteBooking(int id){return repo.deleteBooking(id);}
+
+
 }

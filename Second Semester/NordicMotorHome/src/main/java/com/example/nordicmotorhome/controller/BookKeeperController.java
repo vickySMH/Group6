@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import java.awt.print.Book;
 import java.sql.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -38,6 +39,7 @@ public class BookKeeperController
 
     private String startDate, endDate, phoneNumber;
     private Motorhome picked;
+    private Booking booking;
 
     @GetMapping("/viewBooking")
     public String viewBooking(Model model) {
@@ -157,8 +159,35 @@ public class BookKeeperController
         return "home/receipt";
     }
 
-    @GetMapping("/remove")
+    @GetMapping("/removeBooking")
     public String remove(Model model) {return "home/removeBooking";}
+
+    @PostMapping("/removeContinue")
+    public String removeContinue(Model model, WebRequest webRequest){
+
+        phoneNumber = webRequest.getParameter("phoneNumber");
+        List<Booking> bookingInfo = bookingService.findByPhoneNumber(phoneNumber);
+
+        model.addAttribute("bookings", bookingInfo);
+        return "home/removeContinue";
+    }
+
+    @PostMapping("/removeSuccess")
+    public String deleteBooking(Model model, WebRequest webRequest)
+    {
+        List<Booking> bookingList = bookingService.fetchAll();
+        int id = cast(webRequest.getParameter("ID"));
+        System.out.println(id);
+        for (int i = 0; i < bookingList.size(); ++i){
+            if(bookingList.get(i).getId() == id)
+            {
+                bookingService.deleteBooking(id);
+            }
+        }
+        return "home/removeSuccess";
+
+    }
+
 
     @GetMapping("/update")
     public String update(Model model)
