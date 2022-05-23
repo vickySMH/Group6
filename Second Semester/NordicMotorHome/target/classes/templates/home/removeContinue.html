@@ -47,8 +47,8 @@
       </thead>
       <tbody>
         <tr th:each="booking:${bookings}">
-          <form method="post" action="/">
-            <input type="number" style="visibility:hidden" th:value = "${booking.id}" name="id"><td th:text = "${booking.id}"></td></input>
+          <form method="post" action="removeSuccess">
+            <input type="number" style="visibility:visible" th:value = "${booking.id}" name="ID"><td th:text = "${booking.id}"></td></input>
             <td th:text = "${booking.startDate}">
             <td th:text = "${booking.endDate}">
             <td th:text = "${booking.licenseNumber}">

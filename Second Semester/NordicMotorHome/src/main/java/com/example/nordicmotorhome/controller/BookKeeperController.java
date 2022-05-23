@@ -177,6 +177,7 @@ public class BookKeeperController
     {
         List<Booking> bookingList = bookingService.fetchAll();
         int id = cast(webRequest.getParameter("ID"));
+        System.out.println(id);
         for (int i = 0; i < bookingList.size(); ++i){
             if(bookingList.get(i).getId() == id)
             {
