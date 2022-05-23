@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href = "removeContinue.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+  <title>Remove Booking</title>
+</head>
+<body>
+<header>
+  <a href="/">
+    <div class="spinner">
+      <img width= "45px" height="60" src="../../../../../../../../../New%20folder/motorhome/svg/wheel.svg" th:src="@{svg/wheel.svg}" alt="circle" class="spin">
+    </div>
+    <h1>Nordic Motorhome</h1>
+  </a>
+  <nav>
+    <a href="/account"><svg width="30px" height="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 viewBox="0 0 258.75 258.75" style="enable-background:new 0 0 258.75 258.75;" xml:space="preserve">
+				<circle cx="129.375" cy="60" r="60"/>
+				<path d="M129.375,150c-60.061,0-108.75,48.689-108.75,108.75h217.5C238.125,198.689,189.436,150,129.375,150z"/>
+			</svg></a>
+  </nav>
+</header>
+<div name = "leftside" class="leftside">
+  <a href="/"><p>Home</p></a>
+  <a href="/aboutUs"><p>About us</p></a>
+  <a href="/FAQ"><p>FAQ</p></a>
+</div>
+<main>
+  <form>
+    <table>
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Start date</th>
+          <th>End date</th>
+          <th>License Number</th>
+          <th>Phone number</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="booking:${bookings}">
+          <form method="post" action="/">
+            <input type="number" style="visibility:hidden" th:value = "${booking.id}" name="id"><td th:text = "${booking.id}"></td></input>
+            <td th:text = "${booking.startDate}">
+            <td th:text = "${booking.endDate}">
+            <td th:text = "${booking.licenseNumber}">
+            <td th:text = "${booking.phoneNumber}">
+            <td th:text = "${booking.price}">
+            <td><button type="submit">Delete</button></td>
+          </form>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</main>
+</body>
+</html>
