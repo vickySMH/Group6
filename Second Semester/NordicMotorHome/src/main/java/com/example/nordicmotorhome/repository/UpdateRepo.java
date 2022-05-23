@@ -24,17 +24,17 @@ public class UpdateRepo
         return template.query(sql, rowMapper);
     }
 
-    public List<Booking> fetchAll2()
+    public List<Booking> fetchAll2(String PhoneNumber)
     {
-        String sql = "SELECT StartDate, EndDate, LicenseNumber, Price FROM heroku_4aa3497124398a6.bookings";
+        String sql = "SELECT PhoneNumber, StartDate, EndDate, LicenseNumber FROM heroku_4aa3497124398a6.bookings WHERE PhoneNumber = ?";
         RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
-        return template.query(sql, rowMapper);
+        return template.query(sql, rowMapper, PhoneNumber);
     }
 
-    public List<Booking> fetchAll3()
+    public Booking update(Booking booking)
     {
-        String sql = "SELECT PhoneNumber FROM heroku_4aa3497124398a6.bookings";
-        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
-        return template.query(sql, rowMapper);
+        String sql = "UPDATE heroku_4aa3497124398a6.bookings SET StartDate = ?, EndDate = ?, LicenseNumber = ?";
+        template.update(sql, booking.getStartDate(), booking.getEndDate(), booking.getLicenseNumber());
+        return null;
     }
 }

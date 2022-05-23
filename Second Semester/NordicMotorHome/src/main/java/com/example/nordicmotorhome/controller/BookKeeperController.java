@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
@@ -168,14 +169,19 @@ public class BookKeeperController
     }
 
     @PostMapping("/updateContinue")
-    public String findUser(Model model, WebRequest webRequest)
+
+    public String findUser(Model model, WebRequest webRequest, Booking booking)
     {
         String phoneNumber = webRequest.getParameter("phoneNumber");
-        List<Booking> bookingsList = updateService.fetchAll3();
-        for (Booking c: bookingsList)
+        List<Booking> bookingsSearch = updateService.fetchAll2(phoneNumber);
+        List<Motorhome> motorhomes = service.fetchAll();
+        model.addAttribute("motorhomes", motorhomes);
+        updateService.update(booking);
+        for (Booking c: bookingsSearch)
         {
             if (c.getPhoneNumber().equals(phoneNumber))
             {
+                model.addAttribute("bookings1", bookingsSearch);
                 return "home/updateContinue";
             }
         }

@@ -21,14 +21,14 @@ public class UpdateService
         return UpdateRepo.fetchAll();
     }
 
-    public List<Booking> fetchAll2()
+    public List<Booking> fetchAll2(String PhoneNumber)
     {
-        return UpdateRepo.fetchAll2();
+        return UpdateRepo.fetchAll2(PhoneNumber);
     }
 
-    public List<Booking> fetchAll3()
+    public Booking update(Booking booking)
     {
-        return UpdateRepo.fetchAll3();
+        return UpdateRepo.update(booking);
     }
 
 }
