@@ -34,7 +34,7 @@ public class BookKeeperController
     @Autowired
     BookingService bookingService;
 
-    private String startDate, endDate, phoneNumber;
+    private String startDate, endDate, phoneNumber, licenseNumber;
     private Motorhome picked;
     private Booking booking;
 
@@ -46,14 +46,8 @@ public class BookKeeperController
     @PostMapping("/viewBookingContinue")
     public String viewBookingContinue(Model model, WebRequest webRequest) {
         phoneNumber = webRequest.getParameter("phoneNumber");
-        List<Booking> bookingsList = bookingService.fetchAll();
+        List<Booking> bookingsList = bookingService.findByPhoneNumber(phoneNumber);
         for (int i = 0; i < bookingsList.size(); i++)
-        {
-            if((bookingsList.get(i).getPhoneNumber().equals(phoneNumber)));
-            {
-                model.addAttribute(phoneNumber);
-            }
-        }
         model.addAttribute("bookings", bookingsList);
         return "home/viewBookingContinue";
     }
@@ -196,16 +190,15 @@ public class BookKeeperController
 
     @PostMapping("/updateContinue")
 
-    public String findUser(Model model, WebRequest webRequest, Booking booking)
+    public String findUser(Model model, WebRequest webRequest)
     {
         String phoneNumber = webRequest.getParameter("phoneNumber");
         List<Booking> bookingsSearch = bookingService.fetchViaPhone(phoneNumber);
         List<Motorhome> motorhomes = motorhomeService.fetchAll();
         model.addAttribute("motorhomes", motorhomes);
-        bookingService.update(booking);
-        for (Booking c: bookingsSearch)
+        for (Booking b: bookingsSearch)
         {
-            if (c.getPhoneNumber().equals(phoneNumber))
+            if (b.getPhoneNumber().equals(phoneNumber))
             {
                 model.addAttribute("bookings1", bookingsSearch);
                 return "home/updateContinue";
@@ -215,9 +208,31 @@ public class BookKeeperController
     }
 
     @PostMapping("/updateSave")
-    public String updateSave(Booking booking)
+    public String updateSave(Model model, WebRequest webRequest)
     {
-        bookingService.update(booking);
+        Booking booking = new Booking();
+        String placeHolder;
+        startDate = webRequest.getParameter("startDate");
+        endDate = webRequest.getParameter("endDate");
+        licenseNumber = webRequest.getParameter("licenseNumber");
+        if(Date.valueOf(startDate).compareTo(Date.valueOf(endDate)) > 0)
+        {
+            placeHolder = startDate;
+            startDate = endDate;
+            endDate = placeHolder;
+        }
+        booking.setStartDate(Date.valueOf(startDate));
+        booking.setStartDate(Date.valueOf(endDate));
+        booking.setLicenseNumber(licenseNumber);
+        List<Booking> bookings = bookingService.fetchAll();
+        int id = cast(webRequest.getParameter("ID"));
+        System.out.println(id);
+        for (int i = 0; i < bookings.size(); ++i){
+            if(bookings.get(i).getId() == id)
+            {
+                bookingService.update(id,booking);
+            }
+        }
         return "home/updateSave";
     }
 

@@ -50,10 +50,10 @@ public class BookingRepo
         return template.query(sql, rowMapper, PhoneNumber);
     }
 
-    public Booking update(Booking booking)
+    public Booking update(int id, Booking booking)
     {
-        String sql = "UPDATE heroku_4aa3497124398a6.bookings SET StartDate = ?, EndDate = ?, LicenseNumber = ? WHERE PhoneNumber = ?";
-        template.update(sql, booking.getStartDate(), booking.getEndDate(), booking.getLicenseNumber(), booking.getPhoneNumber());
+        String sql = "UPDATE heroku_4aa3497124398a6.bookings SET StartDate = ?, EndDate = ?, LicenseNumber = ? WHERE ID = ?";
+        template.update(sql, id, booking.getStartDate(), booking.getEndDate(), booking.getLicenseNumber(), booking.getId());
         return null;
     }
 

@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    <a href="/">
+    <a href="/loggedin">
         <div class="spinner">
             <img width= "45px" height="60" src="../../../../../../../../../New%20folder/motorhome/svg/wheel.svg" th:src="@{svg/wheel.svg}" alt="circle" class="spin">
         </div>
@@ -39,13 +39,14 @@
     </nav>
 </header>
 <div name = "leftside" class="leftside">
-    <a href="/"><p>Home</p></a>
+    <a href="/loggedin"><p>Home</p></a>
     <a href="/aboutUs"><p>About us</p></a>
     <a href="/faqs"><p>FAQ</p></a>
 </div>
 <main>
         <table>
             <tr class="table-header">
+                <th>Booking ID</th>
                 <th>Start date</th>
                 <th>End date</th>
                 <th>License number</th>
@@ -53,11 +54,13 @@
             </tr>
             <tbody>
             <tr th:each="booking1 : ${bookings1}">
-                <td><input type="date" th:value="${booking1.startDate}"></td>
-                <td><input type="date" th:value="${booking1.endDate}"></td>
-                <td><select><option th:each = "motorhome:${motorhomes}" th:value="${motorhome.licenseNumber}" th:text="${motorhome.licenseNumber}" th:selected="${motorhome.licenseNumber == booking1.licenseNumber} ? ${motorhome.licenseNumber}"></select></td>
-
-                <td><button type="submit">Submit</button></td>
+                <form action="updateSave" method="post">
+                    <input type="number" style="visibility:hidden" th:value = "${booking1.id}" name="ID"><td th:text = "${booking1.id}"></td></input>
+                <td><input type="date" name="startDate" th:value="${booking1.startDate}">
+                <td><input type="date" name="endDate" th:value="${booking1.endDate}">
+                <td><select><option name="licenseNumber" th:each = "motorhome:${motorhomes}" th:value="${motorhome.licenseNumber}" th:text="${motorhome.licenseNumber}" th:selected="${motorhome.licenseNumber == booking1.licenseNumber} ? ${motorhome.licenseNumber}"></select>
+                <td><button type="submit">Submit</button>
+                </form>
             </tr>
             </tbody>
         </table>
