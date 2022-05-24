@@ -52,8 +52,8 @@ public class BookingRepo
 
     public Booking update(Booking booking)
     {
-        String sql = "UPDATE heroku_4aa3497124398a6.bookings SET StartDate = ?, EndDate = ?, LicenseNumber = ?";
-        template.update(sql, booking.getStartDate(), booking.getEndDate(), booking.getLicenseNumber());
+        String sql = "UPDATE heroku_4aa3497124398a6.bookings SET StartDate = ?, EndDate = ?, LicenseNumber = ? WHERE PhoneNumber = ?";
+        template.update(sql, booking.getStartDate(), booking.getEndDate(), booking.getLicenseNumber(), booking.getPhoneNumber());
         return null;
     }
 

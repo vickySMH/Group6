@@ -214,6 +214,14 @@ public class BookKeeperController
         return  "redirect:/update";
     }
 
+    @PostMapping("/updateSave")
+    public String updateSave(Booking booking)
+    {
+        bookingService.update(booking);
+        return "home/updateSave";
+    }
+
+
     public int cast(String integer)
     {
         try
