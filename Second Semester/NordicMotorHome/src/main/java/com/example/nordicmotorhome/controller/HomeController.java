@@ -16,7 +16,7 @@ public class HomeController
 {
     @Autowired
     UserService service;
-    private User currentUser = new User();
+    final private User currentUser = new User();
 
     @GetMapping("/")
     public String index(Model model)
@@ -53,14 +53,14 @@ public class HomeController
         {
             String username = webRequest.getParameter("username");
             String password = webRequest.getParameter("password");
-            currentUser.setUsername(username);
-            currentUser.setPassword(password);
             List<User> userList = service.fetchAll();
             for (User u : userList)
             {
                 if (u.getPassword().equals(password) && u.getUsername().equals(username))
                 {
                     model.addAttribute("username", username);
+                    currentUser.setUsername(username);
+                    currentUser.setPassword(password);
                     return "home/loggedin";
                 }
             }

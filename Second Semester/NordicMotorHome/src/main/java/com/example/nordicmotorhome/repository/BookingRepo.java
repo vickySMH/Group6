@@ -37,16 +37,25 @@ public class BookingRepo
         return template.query(sql, rowMapper, phoneNumber);
     }
 
-    public Boolean deleteBooking(int id){
-//        String sql = "DELETE FROM heroku_4aa3497124398a6.bookings WHERE heroku_4aa3497124398a6.bookings.PhoneNumber = ? ";
-//        String sql = "DELETE FROM heroku_4aa3497124398a6.bookings WHERE heroku_4aa3497124398a6.bookings.ID IN (SELECT heroku_4aa3497124398a6.bookings.ID FROM heroku_4aa3497124398a6.bookings WHERE heroku_4aa3497124398a6.bookings.PhoneNumber = ?);";
+    public Boolean deleteBooking(int id)
+    {
         String sql ="DELETE FROM heroku_4aa3497124398a6.bookings WHERE heroku_4aa3497124398a6.bookings.ID = ?";
-
-
         return template.update(sql, id) > 0;
     }
-//    public Boolean deleteFK(String phoneNumber){
-//        String sql = "DELETE FROM heroku_4aa3497124398a6.extradetails WHERE heroku_4aa3497124398a6.extradetails.BookingIDr = heroku_4aa3497124398a6.bookings. ";
-//    }
+
+    public List<Booking> fetchViaPhone(String PhoneNumber)
+    {
+        String sql = "SELECT PhoneNumber, StartDate, EndDate, LicenseNumber FROM heroku_4aa3497124398a6.bookings WHERE PhoneNumber = ?";
+        RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
+        return template.query(sql, rowMapper, PhoneNumber);
+    }
+
+    public Booking update(Booking booking)
+    {
+        String sql = "UPDATE heroku_4aa3497124398a6.bookings SET StartDate = ?, EndDate = ?, LicenseNumber = ?";
+        template.update(sql, booking.getStartDate(), booking.getEndDate(), booking.getLicenseNumber());
+        return null;
+    }
+
 
 }

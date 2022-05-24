@@ -7,17 +7,14 @@ import com.example.nordicmotorhome.model.Motorhome;
 import com.example.nordicmotorhome.service.BookingService;
 import com.example.nordicmotorhome.service.ExtraService;
 import com.example.nordicmotorhome.service.MotorhomeService;
-import com.example.nordicmotorhome.service.UpdateService;
+import com.example.nordicmotorhome.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
-import java.awt.print.Book;
 import java.sql.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -26,10 +23,10 @@ import java.util.concurrent.TimeUnit;
 public class BookKeeperController
 {
     @Autowired
-    MotorhomeService service;
+    MotorhomeService motorhomeService;
 
     @Autowired
-    UpdateService updateService;
+    CustomerService customerService;
 
     @Autowired
     ExtraService extraService;
@@ -82,8 +79,8 @@ public class BookKeeperController
             endDate = placeHolder;
         }
 
-        List<Motorhome> motorhomeList = service.fetchAll();
-        List<Motorhome> notAvailable = service.fetchNotAvailable(startDate, endDate);
+        List<Motorhome> motorhomeList = motorhomeService.fetchAll();
+        List<Motorhome> notAvailable = motorhomeService.fetchNotAvailable(startDate, endDate);
         for (int i = 0; i < motorhomeList.size(); ++i)
         {
             for (int j = 0; j < notAvailable.size(); ++j)
@@ -104,7 +101,7 @@ public class BookKeeperController
         picked = new Motorhome();
         String licensePlate = webRequest.getParameter("licensePlate");
         picked.setLicenseNumber(licensePlate);
-        List<Motorhome> motorhomes = service.fetchAll();
+        List<Motorhome> motorhomes = motorhomeService.fetchAll();
         for(int i = 0; i < motorhomes.size(); ++i)
         {
             if(picked.getLicenseNumber().equals(motorhomes.get(i).getLicenseNumber()))
@@ -192,7 +189,7 @@ public class BookKeeperController
     @GetMapping("/update")
     public String update(Model model)
     {
-        List<Customer> bookings = updateService.fetchAll();
+        List<Customer> bookings = customerService.fetchAll();
         model.addAttribute("bookings", bookings);
         return "home/update";
     }
@@ -202,10 +199,10 @@ public class BookKeeperController
     public String findUser(Model model, WebRequest webRequest, Booking booking)
     {
         String phoneNumber = webRequest.getParameter("phoneNumber");
-        List<Booking> bookingsSearch = updateService.fetchAll2(phoneNumber);
-        List<Motorhome> motorhomes = service.fetchAll();
+        List<Booking> bookingsSearch = bookingService.fetchViaPhone(phoneNumber);
+        List<Motorhome> motorhomes = motorhomeService.fetchAll();
         model.addAttribute("motorhomes", motorhomes);
-        updateService.update(booking);
+        bookingService.update(booking);
         for (Booking c: bookingsSearch)
         {
             if (c.getPhoneNumber().equals(phoneNumber))

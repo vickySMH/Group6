@@ -30,5 +30,16 @@ public class BookingService
 
     public Boolean deleteBooking(int id){return repo.deleteBooking(id);}
 
+    public List<Booking> fetchViaPhone(String PhoneNumber)
+    {
+        return repo.fetchViaPhone(PhoneNumber);
+    }
+
+    public Booking update(Booking booking)
+    {
+        return repo.update(booking);
+    }
+
+
 
 }
