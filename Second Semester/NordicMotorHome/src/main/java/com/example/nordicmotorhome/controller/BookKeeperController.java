@@ -151,10 +151,14 @@ public class BookKeeperController
     }
 
     @GetMapping("/removeBooking")
-    public String remove(Model model) {return "home/removeBooking";}
+    public String remove(Model model)
+    {
+        return "home/removeBooking";
+    }
 
     @PostMapping("/removeContinue")
-    public String removeContinue(Model model, WebRequest webRequest){
+    public String removeContinue(Model model, WebRequest webRequest)
+    {
 
         phoneNumber = webRequest.getParameter("phoneNumber");
         List<Booking> bookingInfo = bookingService.findByPhoneNumber(phoneNumber);
