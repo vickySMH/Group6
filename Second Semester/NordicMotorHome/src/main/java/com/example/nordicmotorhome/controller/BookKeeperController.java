@@ -226,15 +226,28 @@ public class BookKeeperController
             endDate = placeHolder;
         }
         booking.setStartDate(Date.valueOf(startDate));
-        booking.setStartDate(Date.valueOf(endDate));
+        booking.setEndDate(Date.valueOf(endDate));
         booking.setLicenseNumber(licenseNumber);
         List<Booking> bookings = bookingService.fetchAll();
         int id = cast(webRequest.getParameter("ID"));
-        System.out.println(id);
+        float price = 0;
+        booking.setId(id);
+        List<Motorhome> motorhomes = motorhomeService .fetchAll();
+        TimeUnit time = TimeUnit.DAYS;
+        long difference = time.convert(Date.valueOf(endDate).getTime() - Date.valueOf(startDate).getTime(), TimeUnit.MILLISECONDS);
+        for (int i = 0; i < motorhomes.size(); ++i)
+        {
+            if(licenseNumber.equals(motorhomes.get(i).getLicenseNumber()))
+            {
+                price = motorhomes.get(i).getPrice();
+            }
+        }
+        float bookingPrice = difference * price;
+        booking.setPrice(bookingPrice);
         for (int i = 0; i < bookings.size(); ++i){
             if(bookings.get(i).getId() == id)
             {
-                bookingService.update(id,booking);
+                bookingService.update(booking);
             }
         }
         return "home/updateSave";

@@ -38,9 +38,9 @@ public class BookingService
         return repo.fetchViaPhone(PhoneNumber);
     }
 
-    public Booking update(int id, Booking booking)
+    public Boolean update(Booking booking)
     {
-        return repo.update(id, booking);
+        return repo.update(booking);
     }
 
 

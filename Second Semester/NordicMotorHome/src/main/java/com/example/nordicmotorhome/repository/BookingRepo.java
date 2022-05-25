@@ -45,16 +45,16 @@ public class BookingRepo
 
     public List<Booking> fetchViaPhone(String PhoneNumber)
     {
-        String sql = "SELECT PhoneNumber, StartDate, EndDate, LicenseNumber FROM heroku_4aa3497124398a6.bookings WHERE PhoneNumber = ?";
+        String sql = "SELECT ID, PhoneNumber, StartDate, EndDate, LicenseNumber FROM heroku_4aa3497124398a6.bookings WHERE PhoneNumber = ?";
         RowMapper<Booking> rowMapper = new BeanPropertyRowMapper<>(Booking.class);
         return template.query(sql, rowMapper, PhoneNumber);
     }
 
-    public Booking update(int id, Booking booking)
+    public Boolean update(Booking booking)
     {
-        String sql = "UPDATE heroku_4aa3497124398a6.bookings SET StartDate = ?, EndDate = ?, LicenseNumber = ? WHERE ID = ?";
-        template.update(sql, id, booking.getStartDate(), booking.getEndDate(), booking.getLicenseNumber(), booking.getId());
-        return null;
+        String sql = "UPDATE heroku_4aa3497124398a6.bookings SET StartDate = ?, EndDate = ?, LicenseNumber = ?, Price = ? WHERE ID = ?";
+        return template.update(sql, booking.getStartDate(), booking.getEndDate(), booking.getLicenseNumber(), booking.getPrice(), booking.getId()) > 0;
+
     }
 
 
