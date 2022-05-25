@@ -73,4 +73,12 @@ public class HomeController
         return "redirect:/login";
     }
 
+    @GetMapping("/loggedin")
+    public String loggedinReturn(Model model, WebRequest webRequest)
+    {
+            model.addAttribute("username", currentUser.getUsername());
+            return "home/loggedin";
+    }
+
+
 }

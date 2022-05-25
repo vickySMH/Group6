@@ -65,9 +65,9 @@ main
 
 table
 {
-    width: 96%;
+    width: 93%;
     margin-top: 80px;
-    margin-left: 70px;
+    margin-left: 100px;
     border-collapse: collapse;
     font-family: 'Montserrat', sans-serif;
 }
@@ -216,7 +216,7 @@ input
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
-    margin-left: 0px;
+    margin-left: 660px;
 }
 
 .button:hover
