@@ -35,7 +35,6 @@
 <main>
         <table>
             <tr class="table-header">
-                <th>Booking ID</th>
                 <th>Start date</th>
                 <th>End date</th>
                 <th>License number</th>
@@ -44,7 +43,7 @@
             <tbody>
             <tr th:each="booking1 : ${bookings1}">
                 <form action="updateSave" method="post">
-                    <input type="number" style="visibility:visible" th:value = "${booking1.id}" name="ID"/>
+                    <input type="number" style="visibility:hidden" th:value = "${booking1.id}" name="ID"/>
                 <td><input type="date" name="startDate" th:value="${booking1.startDate}">
                 <td><input type="date" name="endDate" th:value="${booking1.endDate}">
                     <td><select name="licenseNumber"><option th:each = "motorhome:${motorhomes}" th:value="${motorhome.licenseNumber}" th:text="${motorhome.licenseNumber}" th:selected="${motorhome.licenseNumber == booking1.licenseNumber} ? ${motorhome.licenseNumber}"></select></td>
