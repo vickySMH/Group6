@@ -16,51 +16,63 @@ public class Booking
     String licenseNumber, phoneNumber;
     float price;
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public Date getStartDate()
+    {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(Date startDate)
+    {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public Date getEndDate()
+    {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(Date endDate)
+    {
         this.endDate = endDate;
     }
 
-    public String getLicenseNumber() {
+    public String getLicenseNumber()
+    {
         return licenseNumber;
     }
 
-    public void setLicenseNumber(String licenseNumber) {
+    public void setLicenseNumber(String licenseNumber)
+    {
         this.licenseNumber = licenseNumber;
     }
 
-    public String getPhoneNumber() {
+    public String getPhoneNumber()
+    {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber)
+    {
         this.phoneNumber = phoneNumber;
     }
 
-    public float getPrice() {
+    public float getPrice()
+    {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(float price)
+    {
         this.price = price;
     }
 }

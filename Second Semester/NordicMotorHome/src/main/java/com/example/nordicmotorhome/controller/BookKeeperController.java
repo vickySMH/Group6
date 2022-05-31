@@ -39,16 +39,20 @@ public class BookKeeperController
     private Booking booking;
 
     @GetMapping("/viewBooking")
-    public String viewBooking(Model model) {
+    public String viewBooking(Model model)
+    {
         return "home/viewBooking";
     }
 
     @PostMapping("/viewBookingContinue")
-    public String viewBookingContinue(Model model, WebRequest webRequest) {
+    public String viewBookingContinue(Model model, WebRequest webRequest)
+    {
         phoneNumber = webRequest.getParameter("phoneNumber");
         List<Booking> bookingsList = bookingService.findByPhoneNumber(phoneNumber);
         for (int i = 0; i < bookingsList.size(); i++)
-        model.addAttribute("bookings", bookingsList);
+        {
+            model.addAttribute("bookings", bookingsList);
+        }
         return "home/viewBookingContinue";
     }
 

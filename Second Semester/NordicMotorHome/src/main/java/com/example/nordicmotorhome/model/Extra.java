@@ -21,31 +21,38 @@ public class Extra
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public String getExtra() {
+    public String getExtra()
+    {
         return extra;
     }
 
-    public void setExtra(String extra) {
+    public void setExtra(String extra)
+    {
         this.extra = extra;
     }
 
-    public int getQuantity() {
+    public int getQuantity()
+    {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(int quantity)
+    {
         this.quantity = quantity;
     }
 
-    public float getPrice() {
+    public float getPrice()
+    {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(float price)
+    {
         this.price = price;
     }
 }

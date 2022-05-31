@@ -15,35 +15,43 @@ public class ExtraDetails {
     private int extraId;
     private int quantity;
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public int getBookingId() {
+    public int getBookingId()
+    {
         return bookingId;
     }
 
-    public void setBookingId(int bookingId) {
+    public void setBookingId(int bookingId)
+    {
         this.bookingId = bookingId;
     }
 
-    public int getExtraId() {
+    public int getExtraId()
+    {
         return extraId;
     }
 
-    public void setExtraId(int extraId) {
+    public void setExtraId(int extraId)
+    {
         this.extraId = extraId;
     }
 
-    public int getQuantity() {
+    public int getQuantity()
+    {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(int quantity)
+    {
         this.quantity = quantity;
     }
 }

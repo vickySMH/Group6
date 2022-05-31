@@ -44,7 +44,10 @@ public class HomeController
 
 
     @GetMapping("/register")
-    public String register(Model model) {return "home/register";}
+    public String register(Model model)
+    {
+        return "home/register";
+    }
 
     @PostMapping("/loggedin")
     public String loggedin(Model model, WebRequest webRequest)
